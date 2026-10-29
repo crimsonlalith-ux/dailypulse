@@ -282,7 +282,7 @@ const AppState = {
       flair: 'r/WorkplaceHumor',
       time: '6h ago',
       title: 'Polite Workplace Boundary Challenge',
-      scenario: '<strong>Scenario Analysis:</strong> A colleague messages you at 8:15 PM asking for a task update. You want to decline politely without working overtime. What would you say?',
+      scenario: '<strong>Scenario Analysis:</strong> A colleague messages you at 8:15 PM requesting a project status update after business hours. You want to decline politely without working overtime. What would you say?',
       sourceUrl: 'https://hbr.org/2021/04/how-to-set-boundaries-when-the-lines-are-blurred',
       sourceOutlet: 'Harvard Business Review',
       explanation: '<strong>The Golden Rule:</strong> Never apologize for logging off on time. Acknowledge receipt, set a clear time window for tomorrow, and log off with confidence.',
@@ -754,21 +754,7 @@ function initCategoryFilters() {
 }
 
 function updateReadingProgressStrip() {
-  const timeline = document.querySelector('.social-timeline');
-  const badge = document.getElementById('deckTopicBadge');
-  const percentText = document.getElementById('deckPercentText');
-  const fill = document.getElementById('deckProgressBarFill');
-  const cards = getFilteredCards();
-
-  if (!timeline) return;
-
-  const scrollTotal = timeline.scrollHeight - timeline.clientHeight;
-  const currentScroll = timeline.scrollTop;
-  const percent = scrollTotal > 0 ? Math.min(100, Math.round((currentScroll / scrollTotal) * 100)) : 100;
-
-  if (fill) fill.style.width = `${Math.max(12, percent)}%`;
-  if (percentText) percentText.textContent = `${percent}% Explored`;
-  if (badge) badge.innerHTML = `<span>Radar Stream:</span> <strong>${cards.length} Stories Loaded (Scroll for More)</strong>`;
+  // Progress and task bars eliminated as requested
 }
 
 function getCategoryIcon(cat) {
@@ -1040,7 +1026,7 @@ function triggerInfiniteScrollBatch() {
     container.appendChild(tempDiv.firstChild);
   }
 
-  addXp(10);
+  
   updateReadingProgressStrip();
 
   setTimeout(() => {
@@ -1548,7 +1534,7 @@ window.toggleLikeCard = function(cardId) {
   AppState.likedCards[cardId] = !AppState.likedCards[cardId];
   localStorage.setItem('dp_likes', JSON.stringify(AppState.likedCards));
   playSyntheticTone(AppState.likedCards[cardId] ? 784 : 440, 'triangle', 0.08);
-  addXp(10);
+  
   
   const cardElement = document.getElementById(`card-${cardId}`);
   if (cardElement) {
@@ -1619,7 +1605,7 @@ window.toggleSpeechRecording = function() {
     isSpeechRecording = false;
     micBtn.classList.remove('recording');
     statusText.textContent = 'Voice captured! Tap "Evaluate Phrasing"';
-    addXp(25);
+    
   };
 
   speechRecognizer.start();
@@ -1640,11 +1626,11 @@ window.evaluateReplySocial = function() {
 
   feedback.style.color = '#a7f3d0';
   feedback.innerHTML = `
-    <strong>Evaluated: 9/10 Polished Tone (Exemplary)</strong><br>
+    <strong>Feedback: Polished Workplace Phrasing</strong><br>
     Your response is clear and assertive. Here is how a Senior Director would phrase it:<br>
     <em>"Hi! Thanks for the note. I've logged off for the evening, but I will review this first thing tomorrow morning and update you by 10 AM."</em>
   `;
-  addXp(35);
+  
   playSyntheticTone(880, 'sine', 0.12);
 };
 
@@ -1656,7 +1642,7 @@ function completeDailyStories() {
     AppState.lastCompletedDate = today;
     localStorage.setItem('dp_streak', AppState.streak);
     localStorage.setItem('dp_last_completed', today);
-    addXp(50);
+    
   }
 
   updateStreakUI();
@@ -1665,10 +1651,7 @@ function completeDailyStories() {
 }
 
 function updateStreakUI() {
-  const streakCount = document.getElementById('streakCount');
-  if (streakCount) streakCount.textContent = AppState.streak;
-  const sidebarStreak = document.getElementById('sidebarStreakCount');
-  if (sidebarStreak) sidebarStreak.textContent = `${AppState.streak} Day`;
+  // Streak tracking eliminated
 }
 
 function updateXpUI() {
@@ -2079,7 +2062,7 @@ function initQuizEngine() {
 
 function renderQuizQuestion(idx) {
   const box = document.getElementById('quizStageBox');
-  const badge = document.getElementById('quizScoreBadge');
+  
   const total = AppState.quizQuestions.length;
 
   if (idx >= total) {
@@ -2087,16 +2070,16 @@ function renderQuizQuestion(idx) {
       <div style="text-align:center; padding: 20px;">
         <div style="margin-bottom:8px;"><svg style="width:48px; height:48px; stroke:#facc15;" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg></div>
         <h3>Quiz Completed!</h3>
-        <p style="color:var(--text-secondary); margin:8px 0 16px 0;">You earned +150 XP today and proved your fluency mastery!</p>
+        <p style="color:var(--text-secondary); margin:8px 0 16px 0;">You have reviewed today's key technical insights and executive phrasing.</p>
         <button class="feed-next-btn" onclick="resetQuiz()">Practice Again</button>
       </div>
     `;
-    badge.textContent = `${AppState.quizScore} / ${total} Correct`;
+    
     return;
   }
 
   const q = AppState.quizQuestions[idx];
-  badge.textContent = `Question ${idx + 1} of ${total}`;
+  
 
   let optionsHtml = '';
   q.options.forEach((opt, oIdx) => {
@@ -2130,7 +2113,7 @@ window.checkQuizAnswer = function(qIdx, oIdx) {
   if (oIdx === q.correctIndex) {
     buttons[oIdx].classList.add('correct');
     AppState.quizScore++;
-    addXp(50);
+    
     playSyntheticTone(880, 'sine', 0.15);
     explanation.style.color = '#a7f3d0';
     explanation.innerHTML = `<strong>Verified Accurate ✓</strong> ${q.explanation}`;
@@ -2462,7 +2445,7 @@ window.toggleSaveItem = function(title, author, btnElement) {
     isSaved = false;
   } else {
     AppState.savedItems.push({ title, author, date: new Date().toLocaleDateString() });
-    addXp(15);
+    
     playSyntheticTone(784, 'triangle', 0.1);
     isSaved = true;
   }

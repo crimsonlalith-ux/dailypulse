@@ -874,6 +874,7 @@ body.theme-white-glass .dynamic-island-capsule {
 
 /* Category Filter Bar */
 .category-filter-bar {
+  margin-bottom: 20px;
   display: flex;
   gap: 8px;
   overflow-x: auto;
@@ -2952,4 +2953,14 @@ body.theme-white-glass .social-bottom-nav {
 .art-vector-card svg {
   max-width: 100%;
   max-height: 100%;
+}
+
+/* Eliminate all progress bars, task bars, XP pills, and score indicators */
+.deck-progress-strip,
+.deck-progress-bar-wrap,
+.deck-progress-bar-fill,
+.island-stat-chip,
+.sidebar-stat-chip,
+.quiz-badge {
+  display: none !important;
 }
