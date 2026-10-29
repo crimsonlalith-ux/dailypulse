@@ -782,6 +782,7 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   transition: var(--transition);
