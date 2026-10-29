@@ -3129,14 +3129,13 @@ body.theme-white-glass .social-bottom-nav {
           <div class="dynamic-island-capsule">
             
             <!-- Left Live Beacon & Home Trigger -->
-            <div class="island-left-meta" id="brandLogoBtn" title="DailyPulse Live Frequency">
-              <div class="island-emblem-mini">
-                <div class="island-pulse-dot"></div>
-                <svg class="island-svg-mini" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ffffff" />
+            <div class="island-left-meta" id="brandLogoBtn" title="DailyPulse">
+              <div class="island-logo-emblem">
+                <svg class="island-brand-svg" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2 L3 14 H12 L10 22 L21 10 H12 L13 2 Z" fill="#ffffff" />
                 </svg>
               </div>
-              <span class="island-badge-label">PULSE LIVE</span>
+              <span class="island-badge-label">DAILYPULSE</span>
             </div>
 
             <!-- Center Animated Live Culture Marquee Ticker -->
@@ -4194,10 +4193,10 @@ function initNavigation() {
   const triggerFeedTop = () => {
     switchTab('feed');
     playSyntheticTone(1050, 'sine', 0.08);
-    const emblems = document.querySelectorAll('.pulse-brand-emblem');
+    const emblems = document.querySelectorAll('.x-brand-emblem, .island-logo-emblem');
     emblems.forEach(emblem => {
-      emblem.style.transform = 'scale(1.2) rotate(8deg)';
-      setTimeout(() => emblem.style.transform = '', 280);
+      emblem.style.transform = 'scale(1.08)';
+      setTimeout(() => emblem.style.transform = '', 200);
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

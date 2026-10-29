@@ -668,10 +668,10 @@ function initNavigation() {
   const triggerFeedTop = () => {
     switchTab('feed');
     playSyntheticTone(1050, 'sine', 0.08);
-    const emblems = document.querySelectorAll('.pulse-brand-emblem');
+    const emblems = document.querySelectorAll('.x-brand-emblem, .island-logo-emblem');
     emblems.forEach(emblem => {
-      emblem.style.transform = 'scale(1.2) rotate(8deg)';
-      setTimeout(() => emblem.style.transform = '', 280);
+      emblem.style.transform = 'scale(1.08)';
+      setTimeout(() => emblem.style.transform = '', 200);
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
