@@ -204,16 +204,11 @@
             <!-- Continuous Social Feed Cards Stream -->
             <div id="activeSocialCardContainer" style="display:flex; flex-direction:column; gap:18px;"></div>
 
-            <!-- Bottom Completed Catch-Up Card -->
-            <div class="social-post-card" id="dailyCompleteCard" style="text-align: center; margin-top: 20px;">
-              <div style="font-size: 2.8rem; margin-bottom: 8px;">🎉🔥</div>
-              <h2 style="font-size: 1.35rem; color: #fff;">You're All Caught Up!</h2>
-              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-top: 4px;">
-                +50 XP Earned! You explored today's stories, polished your English, and locked in your streak.
-              </p>
-              <div style="margin-top: 16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-                <button class="feed-next-btn" id="goToQuizFromFeed" style="display:inline-block; padding: 10px 22px;">Take Daily Quiz 🎯 (+100 XP)</button>
-                <button class="feed-prev-btn" id="goToRadarFromFeed" style="display:inline-block; padding: 10px 22px;">Explore Social Radar 📡</button>
+            <!-- Infinite Scroll Sentinel & Loader (Replaces You're All Caught Up!) -->
+            <div id="infiniteScrollSentinel" class="infinite-scroll-sentinel">
+              <div class="infinite-scroll-loader">
+                <div class="infinite-spinner-ring"></div>
+                <span>⚡ Streaming live culture & tech radar...</span>
               </div>
             </div>
 
@@ -339,6 +334,100 @@
         </section>
 
       </main>
+
+      <!-- DESKTOP RIGHT SIDEBAR (Verified News Sources & Live Outbound Links) -->
+      <aside class="x-right-sidebar">
+        <div class="right-sidebar-sticky">
+          
+          <!-- Verified News Sources Panel -->
+          <div class="sidebar-news-panel">
+            <div class="news-panel-header">
+              <span class="news-radar-icon">📰</span>
+              <div>
+                <div class="news-panel-title">Original News Sources</div>
+                <div class="news-panel-sub">Verified Publications & Direct Links</div>
+              </div>
+            </div>
+
+            <div class="news-sources-list">
+              <a href="https://www.theguardian.com/music/article/2024/jul/20/brat-summer-charli-xcx" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">The Guardian</div>
+                  <div class="source-item-topic">Charli XCX Brat Summer Phenomenon</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://www.bbc.com/news/technology-68593478" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">BBC News</div>
+                  <div class="source-item-topic">NVIDIA Blackwell B200 208B Transistors</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://www.businessinsider.com/sam-altman-openai-chatgpt-agi-timeline-2024" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">Business Insider</div>
+                  <div class="source-item-topic">Sam Altman: o1 & o3 Frontier Reasoning</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://www.goal.com/en/news/real-madrid-champions-league-dominance-dna/blt123456789" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">Goal.com</div>
+                  <div class="source-item-topic">Real Madrid 15× Champions of Europe</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://time.com/7010777/demure-mindful-tiktok-trend-jools-lebron/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">TIME Magazine</div>
+                  <div class="source-item-topic">Very Demure, Very Mindful Workplace Lore</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/place-items" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">MDN Web Docs</div>
+                  <div class="source-item-topic">Modern CSS Grid Centering Standards</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://hbr.org/2023/11/how-to-say-no-at-work-without-damaging-relationships" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">Harvard Business Review</div>
+                  <div class="source-item-topic">Executive Boundaries & Saying No</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+
+              <a href="https://www.dexerto.com/entertainment/who-is-ishowspeed-youtube-streamer-viral-2035222/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+                <div>
+                  <div class="source-item-outlet">Dexerto</div>
+                  <div class="source-item-topic">IShowSpeed Global Tours & 2.5B Views</div>
+                </div>
+                <span class="source-item-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="sidebar-news-panel" style="background:rgba(255,255,255,0.02);">
+            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">⚡ Infinite Culture Radar</div>
+            <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.4; margin-bottom:12px;">Stories load infinitely as you scroll. Click any news link to view the verified primary article.</p>
+            <div style="display:flex; gap:6px;">
+              <button onclick="switchTab('quiz')" style="flex:1; background:#ffffff; color:#000; border:none; padding:6px 12px; border-radius:var(--radius-pill); font-size:0.75rem; font-weight:800; cursor:pointer;">Quiz 🎯</button>
+              <button onclick="switchTab('ai')" style="flex:1; background:rgba(255,255,255,0.1); color:#fff; border:1px solid rgba(255,255,255,0.2); padding:6px 12px; border-radius:var(--radius-pill); font-size:0.75rem; font-weight:800; cursor:pointer;">Ask AI 🤖</button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
     </div>
 
     <!-- MOBILE BOTTOM NAVIGATION -->

@@ -757,8 +757,8 @@ function updateReadingProgressStrip() {
   const percent = scrollTotal > 0 ? Math.min(100, Math.round((currentScroll / scrollTotal) * 100)) : 100;
 
   if (fill) fill.style.width = `${Math.max(12, percent)}%`;
-  if (percentText) percentText.textContent = percent >= 92 ? 'All Caught Up! 🎉' : `${percent}% Read`;
-  if (badge) badge.innerHTML = `<span>⚡</span> Continuous Feed: <strong>${cards.length} Stories (Scroll Down)</strong>`;
+  if (percentText) percentText.textContent = `${percent}% Explored`;
+  if (badge) badge.innerHTML = `<span>⚡</span> Infinite Feed: <strong>${cards.length} Stories Loaded (Scroll for More)</strong>`;
 }
 
 function getCategoryIcon(cat) {
@@ -778,10 +778,186 @@ function getCategoryLabel(cat) {
 }
 
 // ==========================================
-// 5. CONTINUOUS SCROLL FEED (No Next Story Clicks Needed)
+// 5. CONTINUOUS INFINITE SCROLL FEED
 // ==========================================
+let infiniteScrollObserver = null;
+let isFetchingInfiniteBatch = false;
+let infiniteStoryIndex = 0;
+
+// High-Yield Infinite Stories Pool
+const INFINITE_STORIES_POOL = [
+  {
+    topicTag: 'DeepSeek V3',
+    category: 'tech',
+    author: 'AI Open Source Watch',
+    handle: '@deepseeknews',
+    flair: 'r/MachineLearning',
+    time: 'Live',
+    title: 'DeepSeek-V3: The Open-Weights Architecture Shaking Global Tech',
+    sourceUrl: 'https://www.reuters.com/technology/artificial-intelligence/deepseek-ai-model-open-source-2025/',
+    sourceOutlet: 'Reuters & MIT Tech Review',
+    explanation: '<strong>The Breakthrough:</strong> DeepSeek launched V3 with Multi-head Latent Attention (MLA) and DeepSeekMoE architecture, delivering GPT-4o tier reasoning at a fraction of training compute.<br><br><strong>Key Vocabulary:</strong> <em>"Compute efficiency"</em> means achieving maximum machine intelligence using minimal electricity and GPU cycles.',
+    pronounceText: 'DeepSeek V3 achieves frontier reasoning efficiency with open weights architecture',
+    commentsCount: 1840,
+    repostsCount: '6.8k',
+    likesCount: 28400
+  },
+  {
+    topicTag: 'Rust Mandate',
+    category: 'tech',
+    author: 'Systems Engineering Pulse',
+    handle: '@systems_core',
+    flair: 'r/rust',
+    time: '4h ago',
+    title: 'White House & CISA Urge Developers to Transition to Memory-Safe Languages (Rust)',
+    sourceUrl: 'https://arstechnica.com/information-technology/2024/02/white-house-urges-developers-to-dump-c-and-c-for-memory-safe-languages/',
+    sourceOutlet: 'Ars Technica',
+    explanation: '<strong>Why It Matters:</strong> Over 70% of historical cybersecurity vulnerabilities in C and C++ stem from buffer overflows and dangling pointers. The White House and CISA officially recommended memory-safe languages like Rust.<br><br><strong>Fluency Tip:</strong> <em>"Memory safety"</em> refers to programming languages preventing code from accessing invalid RAM addresses.',
+    pronounceText: 'The White House urges software engineers to adopt memory safe languages like Rust',
+    commentsCount: 920,
+    repostsCount: '3.1k',
+    likesCount: 14200
+  },
+  {
+    topicTag: 'AlphaFold Nobel',
+    category: 'icon',
+    author: 'Scientific Breakthroughs',
+    handle: '@nobelradar',
+    flair: 'r/science',
+    time: '6h ago',
+    title: 'Demis Hassabis & John Jumper Awarded Nobel Prize in Chemistry for AlphaFold',
+    sourceUrl: 'https://www.nobelprize.org/prizes/chemistry/2024/summary/',
+    sourceOutlet: 'The Nobel Prize Official & Nature',
+    explanation: '<strong>The 50-Year Grand Challenge:</strong> Demis Hassabis and John Jumper at Google DeepMind solved the 50-year protein folding problem with AlphaFold, predicting 200 million protein structures.<br><br><strong>Student Insight:</strong> Combines computational graph neural networks with biophysics, accelerating drug discovery from decades to seconds.',
+    pronounceText: 'Demis Hassabis received the Nobel Prize in Chemistry for AlphaFold protein structure prediction',
+    commentsCount: 2400,
+    repostsCount: '8.9k',
+    likesCount: 39500
+  },
+  {
+    topicTag: 'Python 3.13 No-GIL',
+    category: 'tech',
+    author: 'Python Core Developers',
+    handle: '@pythontrend',
+    flair: 'r/python',
+    time: '1d ago',
+    title: 'Python 3.13 Officially Introduces Free-Threaded Mode (No-GIL)',
+    sourceUrl: 'https://www.infoworld.com/article/3715560/python-3-13-preview-free-threading-comes-to-python.html',
+    sourceOutlet: 'InfoWorld & Python Software Foundation',
+    explanation: '<strong>The 30-Year Barrier:</strong> For decades, the Global Interpreter Lock (GIL) prevented Python threads from running concurrently on multiple CPU cores. Python 3.13 enables free-threaded execution.<br><br><strong>Term to Know:</strong> <em>"True parallelism"</em> means CPU threads executing simultaneously on separate physical processor cores.',
+    pronounceText: 'Python three point thirteen introduces free threaded execution without the global interpreter lock',
+    commentsCount: 1120,
+    repostsCount: '4.2k',
+    likesCount: 18700
+  },
+  {
+    topicTag: 'Touch Grass',
+    category: 'slang',
+    author: 'Digital Wellness & Lore',
+    handle: '@modernslang',
+    flair: 'r/OutOfTheLoop',
+    time: 'Live',
+    title: '"Touch Grass": The Universal Cultural Call to Disconnect from the Screen',
+    slangPhrase: '"Bro, you have been arguing on Reddit for 8 hours. Go touch grass."',
+    formalPhrase: '"I suggest stepping away from your screen and re-engaging with the physical world."',
+    pronounceText: 'I suggest stepping away from your screen and re-engaging with the physical world',
+    sourceUrl: 'https://knowyourmeme.com/memes/touch-grass',
+    sourceOutlet: 'Know Your Meme',
+    explanation: '<strong>Cultural Lore:</strong> Originated as gaming slang used to mock players who spend all day indoors. Now recognized in mainstream dictionaries as a phrase for digital mindfulness and mental grounding.',
+    commentsCount: 640,
+    repostsCount: '2.4k',
+    likesCount: 12400
+  },
+  {
+    topicTag: 'Negotiating Salary',
+    category: 'reply',
+    author: 'Executive Career Mentor',
+    handle: '@careeredge',
+    flair: 'r/careerguidance',
+    time: '3h ago',
+    title: 'How to Professionally Counter an Initial Job Offer',
+    scenario: 'You received a software engineering offer of $90,000, but market rate for your skillset is $105,000. How do you counter with confidence?',
+    slangPhrase: '"Nah that offer is way too low, you gotta pay me more."',
+    formalPhrase: '"Thank you for the offer. Based on my research and the specific impact I will bring, I was expecting a range closer to $105,000. Is there flexibility here?"',
+    pronounceText: 'Thank you for the offer. Based on my research and the specific impact I will bring, I was expecting a range closer to one hundred and five thousand dollars.',
+    sourceUrl: 'https://hbr.org/2014/04/15-rules-for-negotiating-a-job-offer',
+    sourceOutlet: 'Harvard Business Review',
+    explanation: '<strong>Professional Etiquette:</strong> Always express gratitude first, cite market benchmark data rather than personal expenses, and ask open questions about compensation flexibility.',
+    commentsCount: 880,
+    repostsCount: '3.7k',
+    likesCount: 16800
+  },
+  {
+    topicTag: 'Claude 3.5 Sonnet',
+    category: 'tech',
+    author: 'Frontier AI Laboratory',
+    handle: '@anthropicnews',
+    flair: 'r/artificial',
+    time: '5h ago',
+    title: 'Anthropic Launches Claude 3.5 Sonnet with Computer Use Capability',
+    sourceUrl: 'https://techcrunch.com/2024/10/22/anthropic-claude-3-5-sonnet-computer-use/',
+    sourceOutlet: 'TechCrunch',
+    explanation: '<strong>Autonomous GUI Agents:</strong> Claude 3.5 Sonnet became the first frontier model capable of directly controlling desktop computers by moving the mouse, clicking buttons, and typing text across web applications.<br><br><strong>Engineering Term:</strong> <em>"Action space"</em> represents the set of possible actions (clicks, keypresses) an AI model can take in an environment.',
+    pronounceText: 'Anthropic launched Claude three point five Sonnet with autonomous computer use capabilities',
+    commentsCount: 1540,
+    repostsCount: '5.9k',
+    likesCount: 26100
+  },
+  {
+    topicTag: 'Roman Empire',
+    category: 'slang',
+    author: 'Viral Trend Tracker',
+    handle: '@historiclore',
+    flair: 'r/tiktoktrends',
+    time: '12h ago',
+    title: '"How Often Do You Think About the Roman Empire?"',
+    slangPhrase: '"That concept has become my personal Roman Empire."',
+    formalPhrase: '"That particular subject occupies my thoughts on a remarkably frequent basis."',
+    pronounceText: 'That particular subject occupies my thoughts on a remarkably frequent basis',
+    sourceUrl: 'https://www.washingtonpost.com/lifestyle/2023/09/14/roman-empire-trend-tiktok-women-men/',
+    sourceOutlet: 'The Washington Post',
+    explanation: '<strong>The Viral Lore:</strong> A global social experiment where women asked men how often they think about ancient Rome, discovering millions think about it daily. Now used as slang for any topic you are quietly obsessed with.',
+    commentsCount: 2200,
+    repostsCount: '9.4k',
+    likesCount: 34200
+  },
+  {
+    topicTag: 'xAI Colossus',
+    category: 'icon',
+    author: 'Silicon Supercomputers',
+    handle: '@elonwire',
+    flair: 'r/hardware',
+    time: '8h ago',
+    title: 'Elon Musk Activates 100,000 Liquid-Cooled H100 GPU Cluster in Memphis (Colossus)',
+    sourceUrl: 'https://www.tomshardware.com/tech-industry/artificial-intelligence/elon-musk-reveals-xai-100k-gpu-colossus-cluster-brought-online-in-just-122-days',
+    sourceOutlet: 'Tom\'s Hardware & CNBC',
+    explanation: '<strong>122 Days to Deployment:</strong> Built in Memphis, Tennessee in just 122 days, Colossus connects 100,000 liquid-cooled Nvidia H100 GPUs via a flat RoCE Ethernet fabric to train Grok 3.<br><br><strong>Student Relevance:</strong> Demonstrates high-performance computing infrastructure at hyperscale.',
+    pronounceText: 'Elon Musk brought the one hundred thousand liquid cooled GPU Colossus cluster online in Memphis',
+    commentsCount: 1980,
+    repostsCount: '7.3k',
+    likesCount: 31200
+  },
+  {
+    topicTag: 'WebGPU',
+    category: 'tech',
+    author: 'Web Standards Group',
+    handle: '@browsertech',
+    flair: 'r/webdev',
+    time: '2d ago',
+    title: 'WebGPU Replaces WebGL: Delivering Native Graphics & On-Device ML to Browsers',
+    sourceUrl: 'https://developer.chrome.com/docs/web-platform/webgpu',
+    sourceOutlet: 'Chrome Developers & W3C',
+    explanation: '<strong>The New Web Standard:</strong> WebGPU provides modern low-overhead access to Vulkan, Metal, and DirectX 12 hardware APIs from JavaScript, enabling local LLMs and neural rendering to run inside browsers with zero installation.<br><br><strong>Student Takeaway:</strong> Bridges the performance gap between native desktop software and web applications.',
+    pronounceText: 'WebGPU brings native hardware graphics and in browser neural machine learning to web applications',
+    commentsCount: 840,
+    repostsCount: '2.9k',
+    likesCount: 13500
+  }
+];
+
 function initDeck() {
   renderContinuousFeed();
+  initInfiniteScroll();
 
   const timeline = document.querySelector('.social-timeline');
   if (timeline) {
@@ -791,6 +967,69 @@ function initDeck() {
       }
     });
   }
+}
+
+function initInfiniteScroll() {
+  const sentinel = document.getElementById('infiniteScrollSentinel');
+  if (!sentinel) return;
+
+  if (infiniteScrollObserver) {
+    infiniteScrollObserver.disconnect();
+  }
+
+  infiniteScrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !isFetchingInfiniteBatch) {
+        triggerInfiniteScrollBatch();
+      }
+    });
+  }, {
+    rootMargin: '400px'
+  });
+
+  infiniteScrollObserver.observe(sentinel);
+}
+
+function triggerInfiniteScrollBatch() {
+  isFetchingInfiniteBatch = true;
+  const container = document.getElementById('activeSocialCardContainer');
+  if (!container) {
+    isFetchingInfiniteBatch = false;
+    return;
+  }
+
+  // Pick next 3 stories from infinite pool
+  const batchSize = 3;
+  const newBatch = [];
+  
+  for (let i = 0; i < batchSize; i++) {
+    const template = INFINITE_STORIES_POOL[infiniteStoryIndex % INFINITE_STORIES_POOL.length];
+    infiniteStoryIndex++;
+    const newId = `story-inf-${Date.now()}-${i}`;
+    const newCard = {
+      ...template,
+      id: newId,
+      time: 'Just now'
+    };
+    AppState.dailyCards.push(newCard);
+    newBatch.push(newCard);
+  }
+
+  const startIdx = AppState.dailyCards.length - batchSize;
+  const htmlChunk = newBatch.map((card, offset) => renderSingleCardHtml(card, startIdx + offset)).join('');
+  
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = htmlChunk;
+  while (tempDiv.firstChild) {
+    container.appendChild(tempDiv.firstChild);
+  }
+
+  addXp(10);
+  updateReadingProgressStrip();
+
+  setTimeout(() => {
+    isFetchingInfiniteBatch = false;
+  }, 350);
 }
 
 function renderCardAestheticVisual(card) {
@@ -942,7 +1181,107 @@ function renderCardAestheticVisual(card) {
     `;
   }
 
-  // 7. Slang vs Formal Comparison Embed
+  // 7. DeepSeek V3 Architecture Banner
+  if (card.topicTag === 'DeepSeek V3') {
+    return `
+      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(6,182,212,0.25), rgba(16,185,129,0.15), rgba(0,0,0,0.85)); border-color: rgba(6,182,212,0.45);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(6,182,212,0.18); border-color:rgba(6,182,212,0.5); color:#22d3ee;">
+            <span>🧠</span> <span>MULTI-HEAD LATENT ATTENTION (MLA)</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Open Weights AI</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.6rem; width: 64px; height: 64px; background: rgba(6,182,212,0.18); border:1.5px solid rgba(6,182,212,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(6,182,212,0.4);">⚡</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">The Open-Source Efficiency Milestone</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Frontier reasoning trained for just $6M compute.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(6,182,212,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">DeepSeekMoE Sparse Architecture</span>
+          <button class="sound-mini-btn" style="border-color:#22d3ee; color:#22d3ee;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 8. Rust Memory Safety Mandate Banner
+  if (card.topicTag === 'Rust Mandate') {
+    return `
+      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(249,115,22,0.25), rgba(220,38,38,0.15), rgba(0,0,0,0.85)); border-color: rgba(249,115,22,0.45);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(249,115,22,0.18); border-color:rgba(249,115,22,0.5); color:#fb923c;">
+            <span>🛡️</span> <span>MEMORY SAFETY MANDATE • CISA & WHITE HOUSE</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Rust Language</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.6rem; width: 64px; height: 64px; background: rgba(249,115,22,0.18); border:1.5px solid rgba(249,115,22,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(249,115,22,0.4);">🦀</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">Eliminating 70% of Historical CVE Exploits</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Borrow checker enforces zero runtime memory leaks.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(249,115,22,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Systems Engineering Gold Standard</span>
+          <button class="sound-mini-btn" style="border-color:#fb923c; color:#fb923c;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 9. AlphaFold Nobel Prize Banner
+  if (card.topicTag === 'AlphaFold Nobel') {
+    return `
+      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(234,179,8,0.25), rgba(16,185,129,0.18), rgba(0,0,0,0.85)); border-color: rgba(234,179,8,0.45);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.5); color:#facc15;">
+            <span>🏆</span> <span>NOBEL PRIZE IN CHEMISTRY • 200M PROTEINS</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Google DeepMind</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.6rem; width: 64px; height: 64px; background: rgba(234,179,8,0.18); border:1.5px solid rgba(234,179,8,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(234,179,8,0.4);">🧬</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">AlphaFold & Demis Hassabis</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Solving the 50-year biological folding mystery.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Transforming Global Molecular Medicine</span>
+          <button class="sound-mini-btn" style="border-color:#facc15; color:#facc15;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 10. Claude 3.5 Sonnet Computer Use Banner
+  if (card.topicTag === 'Claude 3.5 Sonnet') {
+    return `
+      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(217,119,6,0.25), rgba(244,63,94,0.15), rgba(0,0,0,0.85)); border-color: rgba(217,119,6,0.45);">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(217,119,6,0.18); border-color:rgba(217,119,6,0.5); color:#fbbf24;">
+            <span>🤖</span> <span>AUTONOMOUS COMPUTER USE • API</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Anthropic</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.6rem; width: 64px; height: 64px; background: rgba(217,119,6,0.18); border:1.5px solid rgba(217,119,6,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 24px rgba(217,119,6,0.4);">💻</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">Claude 3.5 Sonnet Controlling Screens</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Moving cursor, clicking UI elements, and reasoning.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(217,119,6,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Pioneering General Purpose Agentic AI</span>
+          <button class="sound-mini-btn" style="border-color:#fbbf24; color:#fbbf24;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 11. Slang vs Formal Comparison Embed
   if (card.slangPhrase && card.formalPhrase) {
     return `
       <div class="slang-formal-embed">
@@ -964,7 +1303,7 @@ function renderCardAestheticVisual(card) {
     `;
   }
 
-  // 8. Scenario / Voice Practice
+  // 12. Scenario / Voice Practice
   if (card.scenario) {
     return `
       <div class="voice-practice-container">
@@ -985,6 +1324,89 @@ function renderCardAestheticVisual(card) {
   return '';
 }
 
+function renderSingleCardHtml(card, idx) {
+  const isSaved = AppState.savedItems.some(i => i.title === card.title);
+  const isLiked = AppState.likedCards[card.id] || false;
+  const bodyEmbedHtml = renderCardAestheticVisual(card);
+
+  return `
+    <article class="social-post-card" id="card-${card.id}">
+      
+      <!-- Card Top Header Bar -->
+      <div class="card-meta-topbar">
+        <div class="card-category-tag">
+          <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
+          <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
+        </div>
+        
+        <div class="card-top-actions">
+          ${card.sourceUrl ? `
+          <a class="card-icon-action-btn" href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news on ${card.sourceOutlet || 'source'}">
+            <span>🔗 Source</span>
+          </a>` : ''}
+          <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}', this)" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
+            <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
+          </button>
+          <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
+            <span>🔊 Listen</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card Title / Headline -->
+      <h2 class="post-headline-text">${card.title}</h2>
+
+      <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
+      ${bodyEmbedHtml}
+
+      <!-- Clean Lore & Guidance Breakdown -->
+      <div class="post-narrative">
+        ${card.explanation}
+      </div>
+
+      <!-- Prominent News Source Citation Box (Inside Card) -->
+      ${card.sourceUrl ? `
+      <div class="card-news-source-box">
+        <div class="source-info">
+          <span class="source-icon">🌐</span>
+          <div class="source-text">
+            <span class="source-tag">ORIGINAL NEWS SOURCE</span>
+            <span class="source-name">${card.sourceOutlet || 'Global News Outlet'}</span>
+          </div>
+        </div>
+        <a href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" class="source-direct-link" title="Read original news report on ${card.sourceOutlet || 'source'}">
+          <span>Read Full Article ↗</span>
+        </a>
+      </div>` : ''}
+
+      <!-- Pulse AI Context Note -->
+      <div class="x-community-note">
+        <div class="note-header">
+          <span>⚡ Pulse AI Context Note</span>
+        </div>
+        <div class="note-body">
+          Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
+        </div>
+      </div>
+
+      <!-- Card Action Footer -->
+      <div class="card-footer-action-bar">
+        <div class="footer-left-actions">
+          <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}')">
+            <span>${isLiked ? '❤️' : '🤍'}</span>
+            <span>${(card.likesCount || 1200) + (isLiked ? 1 : 0)}</span>
+          </button>
+          <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title.replace(/'/g, "\\'")}')">
+            <span>🤖 Ask AI</span>
+          </button>
+        </div>
+        <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.04em;">Story #${idx + 1} • Infinite Radar</span>
+      </div>
+
+    </article>
+  `;
+}
+
 function renderContinuousFeed() {
   const cards = getFilteredCards();
   const container = document.getElementById('activeSocialCardContainer');
@@ -999,73 +1421,9 @@ function renderContinuousFeed() {
     return;
   }
 
-  container.innerHTML = cards.map((card, idx) => {
-    const isSaved = AppState.savedItems.some(i => i.title === card.title);
-    const isLiked = AppState.likedCards[card.id] || false;
-    const bodyEmbedHtml = renderCardAestheticVisual(card);
-
-    return `
-      <article class="social-post-card" id="card-${card.id}">
-        
-        <!-- Card Top Header Bar -->
-        <div class="card-meta-topbar">
-          <div class="card-category-tag">
-            <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
-            <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
-          </div>
-          
-          <div class="card-top-actions">
-            ${card.sourceUrl ? `
-            <a class="card-icon-action-btn" href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news on ${card.sourceOutlet || 'source'}">
-              <span>🔗 Source</span>
-            </a>` : ''}
-            <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}', this)" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
-              <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
-            </button>
-            <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
-              <span>🔊 Listen</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Card Title / Headline -->
-        <h2 class="post-headline-text">${card.title}</h2>
-
-        <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
-        ${bodyEmbedHtml}
-
-        <!-- Clean Lore & Guidance Breakdown -->
-        <div class="post-narrative">
-          ${card.explanation}
-        </div>
-
-        <!-- Pulse AI Context Note -->
-        <div class="x-community-note">
-          <div class="note-header">
-            <span>⚡ Pulse AI Context Note</span>
-          </div>
-          <div class="note-body">
-            Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
-          </div>
-        </div>
-
-        <!-- Card Action Footer (Natural scrolling stream, no next buttons) -->
-        <div class="card-footer-action-bar">
-          <div class="footer-left-actions">
-            <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}')">
-              <span>${isLiked ? '❤️' : '🤍'}</span>
-              <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
-            </button>
-            <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title.replace(/'/g, "\\'")}')">
-              <span>🤖 Ask AI</span>
-            </button>
-          </div>
-          <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.04em;">Story ${idx + 1} of ${cards.length}</span>
-        </div>
-
-      </article>
-    `;
-  }).join('');
+  container.innerHTML = cards.map((card, idx) => renderSingleCardHtml(card, idx)).join('');
+  updateReadingProgressStrip();
+}
 
   updateReadingProgressStrip();
 }
@@ -1175,11 +1533,8 @@ window.evaluateReplySocial = function() {
   playSyntheticTone(880, 'sine', 0.12);
 };
 
-// Finish Daily Deck
+// Finish Daily Deck Milestone
 function completeDailyStories() {
-  document.getElementById('activeSocialCardContainer').innerHTML = '';
-  document.getElementById('dailyCompleteCard').classList.remove('hidden');
-
   const today = new Date().toDateString();
   if (AppState.lastCompletedDate !== today) {
     AppState.streak++;
