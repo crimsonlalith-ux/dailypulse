@@ -15,82 +15,51 @@
 <body>
   <div class="social-app-shell">
     
-    <!-- TOP X-STYLE HEADER -->
-    <header class="x-header">
-      <div class="x-header-brand" id="brandLogoBtn" title="DailyPulse: Global Culture & Fluency">
-        <div class="pulse-brand-emblem">
-          <div class="pulse-radar-halo"></div>
-          <svg class="pulse-svg-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="boltSheen" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff" />
-                <stop offset="50%" stop-color="#f0f4ff" />
-                <stop offset="100%" stop-color="#ffffff" />
-              </linearGradient>
-              <filter id="boltGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="2.5" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-            <!-- Frosted Glass Squircle Base -->
-            <rect x="2" y="2" width="40" height="40" rx="12" class="logo-glass-bg" />
-            <!-- Animated Cardiogram / Sound Pulse Wave -->
-            <path class="logo-ecg-line" d="M 5 23 L 13 23 L 17 14 L 21 32 L 25 17 L 29 23 L 39 23" />
-            <!-- Electric Bolt Hero -->
-            <path class="logo-bolt-icon" d="M 23 7 L 15 22 L 21.5 22 L 19 37 L 30 19 L 22.5 19 Z" filter="url(#boltGlow)" fill="url(#boltSheen)" />
-          </svg>
-        </div>
-        <div class="pulse-brand-text">
-          <div class="pulse-title-wrap">
-            <span class="brand-title-daily">Daily</span><span class="brand-title-pulse">Pulse</span>
-            <span class="pulse-live-beacon" title="Live Frequency"></span>
-          </div>
-          <div class="pulse-sub-row">
-            <span class="x-brand-sub">Culture & Fluency</span>
-            <span class="mini-equalizer" title="Fluency Audio Equalizer">
-              <span class="eq-bar eq-1"></span>
-              <span class="eq-bar eq-2"></span>
-              <span class="eq-bar eq-3"></span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="x-header-actions">
-        <!-- XP Level Pill -->
-        <div class="xp-level-pill" id="xpPill" title="Your Experience Points & Tier">
-          <span>⚡</span>
-          <span id="xpCount">150 XP</span>
-        </div>
-
-        <!-- Streak Pill -->
-        <div class="streak-pill-social" id="streakBadge" title="Daily Streak">
-          <span>🔥</span>
-          <span id="streakCount">1</span>
-        </div>
-
-        <!-- Audio Toggle -->
-        <button class="header-icon-btn" id="audioToggleBtn" title="Sound Effects & Speech Toggle">
-          <span id="audioIcon">🔊</span>
-        </button>
-
-        <!-- Theme Toggle (Black / White Transparent Glass) -->
-        <button class="header-icon-btn" id="themeToggleBtn" title="Toggle Black / White Glass Theme">
-          <span id="themeIcon">🌓</span>
-        </button>
-
-        <!-- Settings Gear -->
-        <button class="header-icon-btn" id="openSettingsBtn" title="Settings & Customization">
-          <span>⚙️</span>
-        </button>
-      </div>
-    </header>
-
     <!-- MAIN BODY GRID (Twitter Desktop Sidebar + Timeline Feed) -->
     <div class="social-main-grid">
       
       <!-- DESKTOP LEFT NAVIGATION (Twitter / X Style) -->
       <aside class="x-desktop-nav">
+        <!-- Sidebar Top Brand Header -->
+        <div class="sidebar-brand-box" id="sidebarBrandBtn" title="DailyPulse: Global Culture & Fluency">
+          <div class="pulse-brand-emblem">
+            <div class="pulse-radar-halo"></div>
+            <svg class="pulse-svg-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="boltSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="50%" stop-color="#f0f4ff" />
+                  <stop offset="100%" stop-color="#ffffff" />
+                </linearGradient>
+                <filter id="boltGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <!-- Frosted Glass Squircle Base -->
+              <rect x="2" y="2" width="40" height="40" rx="12" class="logo-glass-bg" />
+              <!-- Animated Cardiogram / Sound Pulse Wave -->
+              <path class="logo-ecg-line" d="M 5 23 L 13 23 L 17 14 L 21 32 L 25 17 L 29 23 L 39 23" />
+              <!-- Electric Bolt Hero -->
+              <path class="logo-bolt-icon" d="M 23 7 L 15 22 L 21.5 22 L 19 37 L 30 19 L 22.5 19 Z" filter="url(#boltGlow)" fill="url(#boltSheen)" />
+            </svg>
+          </div>
+          <div class="pulse-brand-text">
+            <div class="pulse-title-wrap">
+              <span class="brand-title-daily">Daily</span><span class="brand-title-pulse">Pulse</span>
+              <span class="pulse-live-beacon" title="Live Frequency"></span>
+            </div>
+            <div class="pulse-sub-row">
+              <span class="x-brand-sub">Culture & Fluency</span>
+              <span class="mini-equalizer" title="Fluency Audio Equalizer">
+                <span class="eq-bar eq-1"></span>
+                <span class="eq-bar eq-2"></span>
+                <span class="eq-bar eq-3"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+
         <div class="x-nav-menu">
           <button class="x-nav-button active" data-tab="feed">
             <span>🏠</span>
@@ -127,16 +96,86 @@
         </div>
 
         <div class="x-profile-strip" id="profileStrip">
-          <div class="x-avatar" id="userAvatarText">LS</div>
-          <div class="x-user-meta">
-            <span class="x-user-display"><span id="userDisplayName">Lalith Sanjay</span> <span class="verified-badge">✓</span></span>
-            <span class="x-user-handle" id="userDisplayHandle">@lalithsanjay</span>
+          <div style="display:flex; align-items:center; gap:10px; width:100%;">
+            <div class="x-avatar" id="userAvatarText">LS</div>
+            <div class="x-user-meta" style="flex:1;">
+              <span class="x-user-display"><span id="userDisplayName">Lalith Sanjay</span> <span class="verified-badge">✓</span></span>
+              <span class="x-user-handle" id="userDisplayHandle">@lalithsanjay</span>
+            </div>
+          </div>
+          <div class="sidebar-user-stats" style="display:flex; gap:8px; width:100%; margin-top:8px;">
+            <span class="sidebar-stat-chip" style="background:rgba(255,255,255,0.06); padding:3px 8px; border-radius:var(--radius-pill); font-size:0.74rem; font-weight:700; color:#ffffff;">⚡ <span id="sidebarXpCount">150 XP</span></span>
+            <span class="sidebar-stat-chip" style="background:rgba(255,255,255,0.06); padding:3px 8px; border-radius:var(--radius-pill); font-size:0.74rem; font-weight:700; color:#ffb703;">🔥 <span id="sidebarStreakCount">1 Day</span></span>
           </div>
         </div>
       </aside>
 
       <!-- TIMELINE VIEWPORT -->
       <main class="social-timeline">
+
+        <!-- FLOATING FROSTED GLASS DYNAMIC ISLAND (Replaces the rigid old header bar) -->
+        <div class="floating-island-container">
+          <div class="dynamic-island-capsule">
+            
+            <!-- Left Live Beacon & Home Trigger -->
+            <div class="island-left-meta" id="brandLogoBtn" title="DailyPulse Live Frequency">
+              <div class="island-emblem-mini">
+                <div class="island-pulse-dot"></div>
+                <svg class="island-svg-mini" viewBox="0 0 24 24" fill="none">
+                  <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#ffffff" />
+                </svg>
+              </div>
+              <span class="island-badge-label">PULSE LIVE</span>
+            </div>
+
+            <!-- Center Animated Live Culture Marquee Ticker -->
+            <div class="island-ticker-wrapper" title="Live Breaking Culture & Tech Radar">
+              <div class="island-ticker-track">
+                <span class="ticker-item">⚡ Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">🟢 Brat Summer: Culture Word of the Year</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">👑 Real Madrid: 15× Champions of Europe</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">🤖 OpenAI o3: Frontier Test-Time Reasoning</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">💻 Modern CSS Grid: place-items center</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">⚡ Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">🟢 Brat Summer: Culture Word of the Year</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">👑 Real Madrid: 15× Champions of Europe</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">🤖 OpenAI o3: Frontier Test-Time Reasoning</span>
+                <span class="ticker-dot">•</span>
+                <span class="ticker-item">💻 Modern CSS Grid: place-items center</span>
+              </div>
+            </div>
+
+            <!-- Right Quick Status & Controls -->
+            <div class="island-right-meta">
+              <div class="island-stat-chip" id="xpPill" title="Experience Points">
+                <span class="stat-icon">⚡</span>
+                <span id="xpCount">150 XP</span>
+              </div>
+              <div class="island-stat-chip streak" id="streakBadge" title="Daily Streak">
+                <span class="stat-icon">🔥</span>
+                <span id="streakCount">1</span>
+              </div>
+              <button class="island-icon-btn" id="audioToggleBtn" title="Toggle Sound Effects">
+                <span id="audioIcon">🔊</span>
+              </button>
+              <button class="island-icon-btn" id="themeToggleBtn" title="Toggle Glass Theme">
+                <span id="themeIcon">🌓</span>
+              </button>
+              <button class="island-icon-btn" id="openSettingsBtn" title="Settings & Customization">
+                <span>⚙️</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
 
         <!-- ================= PANE 1: HOME SOCIAL FEED (Daily Deck) ================= -->
         <section class="timeline-pane active" id="pane-feed">

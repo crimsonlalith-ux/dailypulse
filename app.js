@@ -651,16 +651,19 @@ function initNavigation() {
     });
   });
 
-  document.getElementById('brandLogoBtn')?.addEventListener('click', () => {
+  const triggerFeedTop = () => {
     switchTab('feed');
     playSyntheticTone(1050, 'sine', 0.08);
-    const emblem = document.querySelector('.pulse-brand-emblem');
-    if (emblem) {
+    const emblems = document.querySelectorAll('.pulse-brand-emblem');
+    emblems.forEach(emblem => {
       emblem.style.transform = 'scale(1.2) rotate(8deg)';
       setTimeout(() => emblem.style.transform = '', 280);
-    }
+    });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  };
+
+  document.getElementById('brandLogoBtn')?.addEventListener('click', triggerFeedTop);
+  document.getElementById('sidebarBrandBtn')?.addEventListener('click', triggerFeedTop);
   document.getElementById('goToRadarFromFeed')?.addEventListener('click', () => switchTab('radar'));
   document.getElementById('goToQuizFromFeed')?.addEventListener('click', () => switchTab('quiz'));
 
@@ -1192,12 +1195,17 @@ function completeDailyStories() {
 }
 
 function updateStreakUI() {
-  document.getElementById('streakCount').textContent = AppState.streak;
+  const streakCount = document.getElementById('streakCount');
+  if (streakCount) streakCount.textContent = AppState.streak;
+  const sidebarStreak = document.getElementById('sidebarStreakCount');
+  if (sidebarStreak) sidebarStreak.textContent = `${AppState.streak} Day`;
 }
 
 function updateXpUI() {
   const xpCount = document.getElementById('xpCount');
   if (xpCount) xpCount.textContent = `${AppState.xp} XP`;
+  const sidebarXp = document.getElementById('sidebarXpCount');
+  if (sidebarXp) sidebarXp.textContent = `${AppState.xp} XP`;
 }
 
 function addXp(points) {
