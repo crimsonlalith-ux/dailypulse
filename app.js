@@ -594,22 +594,23 @@ function renderActiveCard(index) {
           <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
           <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
         </div>
-        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#a7f3d0; background:var(--x-black); padding:10px; border-radius:var(--radius-sm); border:1px solid var(--x-border);"></div>
+        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
       </div>
     `;
   } else if (card.category === 'tech') {
     bodyEmbedHtml = `
-      <div style="background: var(--x-black); border:1px solid var(--x-border); padding: 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.95rem; color:#00f2fe; line-height:1.5;">
+      <div class="slang-formal-embed" style="padding: 18px 20px; font-family: monospace; font-size: 1rem; color:#ffffff; line-height:1.6; letter-spacing:0.02em;">
+        <span style="color:rgba(255,255,255,0.5); display:block; font-size:0.75rem; text-transform:uppercase; font-weight:800; margin-bottom:6px;">Modern CSS Grid Pattern</span>
         display: grid;<br>place-items: center;
       </div>
     `;
   } else if (card.category === 'icon') {
     bodyEmbedHtml = `
-      <div style="display: flex; gap: 14px; align-items:center; background: var(--x-black); padding: 14px; border-radius: var(--radius-md); border:1px solid var(--x-border);">
-        <div style="font-size: 2.5rem; width: 60px; height: 60px; background: rgba(225, 48, 108, 0.15); border-radius: 50%; display:flex; align-items:center; justify-content:center;">${card.avatarEmoji || '👑'}</div>
+      <div class="slang-formal-embed" style="display: flex; gap: 16px; align-items:center; padding: 18px 20px;">
+        <div style="font-size: 2.4rem; width: 62px; height: 62px; background: rgba(255, 255, 255, 0.1); border:1px solid rgba(255,255,255,0.25); border-radius: 50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(15px); box-shadow:inset 0 1px 1px rgba(255,255,255,0.4);">${card.avatarEmoji || '👑'}</div>
         <div>
-          <div style="font-weight: 800; font-size: 1.1rem; color:#fff;">${card.title}</div>
-          <div style="color:var(--x-blue); font-size: 0.85rem; font-weight:600;">${card.role}</div>
+          <div style="font-weight: 800; font-size: 1.15rem; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.7);">${card.title}</div>
+          <div style="color:rgba(255,255,255,0.85); font-size: 0.88rem; font-weight:600; margin-top:2px;">${card.role}</div>
         </div>
       </div>
     `;
