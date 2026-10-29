@@ -1,5 +1,5 @@
 // Service Worker for DailyPulse PWA
-const CACHE_NAME = 'dailypulse-v2';
+const CACHE_NAME = 'dailypulse-v3';
 const ASSETS = [
   './',
   './index.html',
