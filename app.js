@@ -723,30 +723,39 @@ function initCategoryFilters() {
     pill.addEventListener('click', () => {
       pills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      AppState.activeCategory = pill.getAttribute('data-cat');
-      AppState.currentCardIndex = 0;
-      renderActiveCard(0);
+      const cat = pill.getAttribute('data-cat');
+      
+      if (cat === 'icon') {
+        switchTab('titans');
+        return;
+      }
+
+      AppState.activeCategory = cat;
+      renderContinuousFeed();
       playSyntheticTone(640, 'sine', 0.05);
+      
+      const timeline = document.querySelector('.social-timeline');
+      if (timeline) timeline.scrollTop = 0;
     });
   });
 }
 
-function updateDeckProgressUI(index, total, card) {
+function updateReadingProgressStrip() {
+  const timeline = document.querySelector('.social-timeline');
   const badge = document.getElementById('deckTopicBadge');
   const percentText = document.getElementById('deckPercentText');
   const fill = document.getElementById('deckProgressBarFill');
-  const stepLabel = document.getElementById('stepIndicatorLabel');
-  const prevBtn = document.getElementById('prevCardBtn');
-  const nextBtn = document.getElementById('nextCardBtn');
+  const cards = getFilteredCards();
 
-  const percent = Math.round(((index + 1) / total) * 100);
-  if (badge) badge.innerHTML = `<span>⚡</span> Story ${index + 1} of ${total}: <strong>${card.topicTag || card.title}</strong>`;
-  if (percentText) percentText.textContent = `${percent}% Completed`;
-  if (fill) fill.style.width = `${percent}%`;
+  if (!timeline) return;
 
-  if (stepLabel) stepLabel.textContent = `Story ${index + 1} of ${total}`;
-  if (prevBtn) prevBtn.disabled = index === 0;
-  if (nextBtn) nextBtn.textContent = index === total - 1 ? 'Finish Stories 🔥' : 'Next Story →';
+  const scrollTotal = timeline.scrollHeight - timeline.clientHeight;
+  const currentScroll = timeline.scrollTop;
+  const percent = scrollTotal > 0 ? Math.min(100, Math.round((currentScroll / scrollTotal) * 100)) : 100;
+
+  if (fill) fill.style.width = `${Math.max(12, percent)}%`;
+  if (percentText) percentText.textContent = percent >= 92 ? 'All Caught Up! 🎉' : `${percent}% Read`;
+  if (badge) badge.innerHTML = `<span>⚡</span> Continuous Feed: <strong>${cards.length} Stories (Scroll Down)</strong>`;
 }
 
 function getCategoryIcon(cat) {
@@ -766,190 +775,177 @@ function getCategoryLabel(cat) {
 }
 
 // ==========================================
-// 5. DAILY DECK FEED (Navigation & Render)
+// 5. CONTINUOUS SCROLL FEED (No Next Story Clicks Needed)
 // ==========================================
 function initDeck() {
-  const prevBtn = document.getElementById('prevCardBtn');
-  const nextBtn = document.getElementById('nextCardBtn');
+  renderContinuousFeed();
 
-  prevBtn?.addEventListener('click', () => {
-    if (AppState.currentCardIndex > 0) {
-      navigateCard(AppState.currentCardIndex - 1);
-    }
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    navigateCard(AppState.currentCardIndex + 1);
-  });
-
-  renderActiveCard(0);
+  const timeline = document.querySelector('.social-timeline');
+  if (timeline) {
+    timeline.addEventListener('scroll', () => {
+      if (AppState.activeTab === 'feed') {
+        updateReadingProgressStrip();
+      }
+    });
+  }
 }
 
-function navigateCard(idx) {
+function renderContinuousFeed() {
   const cards = getFilteredCards();
-  if (idx < 0) return;
-  if (idx >= cards.length) {
-    completeDailyStories();
+  const container = document.getElementById('activeSocialCardContainer');
+  if (!container) return;
+
+  if (!cards || cards.length === 0) {
+    container.innerHTML = `
+      <div class="social-post-card" style="text-align:center; padding:30px;">
+        <h3 style="color:#fff;">No Stories in this category</h3>
+      </div>
+    `;
     return;
   }
-  AppState.currentCardIndex = idx;
-  renderActiveCard(idx);
-  playSyntheticTone(560, 'sine', 0.05);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-function renderActiveCard(index) {
-  const cards = getFilteredCards();
-  if (!cards || cards.length === 0) return;
+  container.innerHTML = cards.map((card, idx) => {
+    const isSaved = AppState.savedItems.some(i => i.title === card.title);
+    const isLiked = AppState.likedCards[card.id] || false;
 
-  const card = cards[index] || cards[0];
-  const container = document.getElementById('activeSocialCardContainer');
+    let bodyEmbedHtml = '';
 
-  updateDeckProgressUI(index, cards.length, card);
-
-  const isSaved = AppState.savedItems.some(i => i.title === card.title);
-  const isLiked = AppState.likedCards[card.id] || false;
-  const currentVotes = AppState.cardVotes[index] || 1200;
-
-  let bodyEmbedHtml = '';
-
-  if (card.slangPhrase && card.formalPhrase) {
-    bodyEmbedHtml = `
-      <div class="slang-formal-embed">
-        <div class="embed-quote-row">
-          <div>
-            <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
-            <span class="quote-phrase-text">${card.slangPhrase}</span>
+    if (card.slangPhrase && card.formalPhrase) {
+      bodyEmbedHtml = `
+        <div class="slang-formal-embed">
+          <div class="embed-quote-row">
+            <div>
+              <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
+              <span class="quote-phrase-text">${card.slangPhrase}</span>
+            </div>
+            <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
           </div>
-          <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
-        </div>
-        <div class="embed-quote-row">
-          <div>
-            <span class="quote-label-tag formal-color">Polished / Fluent English</span>
-            <span class="quote-phrase-text">${card.formalPhrase}</span>
+          <div class="embed-quote-row">
+            <div>
+              <span class="quote-label-tag formal-color">Polished / Fluent English</span>
+              <span class="quote-phrase-text">${card.formalPhrase}</span>
+            </div>
+            <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
           </div>
-          <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
         </div>
-      </div>
-    `;
-  } else if (card.scenario) {
-    bodyEmbedHtml = `
-      <div class="voice-practice-container">
-        <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
-        <div class="voice-input-row">
-          <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
-          <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
+      `;
+    } else if (card.scenario) {
+      bodyEmbedHtml = `
+        <div class="voice-practice-container">
+          <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
+          <div class="voice-input-row">
+            <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
+            <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
+            <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
+          </div>
+          <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
-          <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
+      `;
+    } else if (card.category === 'tech') {
+      bodyEmbedHtml = `
+        <div class="slang-formal-embed" style="padding: 18px 20px; font-family: monospace; font-size: 1rem; color:#ffffff; line-height:1.6; letter-spacing:0.02em;">
+          <span style="color:rgba(255,255,255,0.5); display:block; font-size:0.75rem; text-transform:uppercase; font-weight:800; margin-bottom:6px;">Modern CSS Grid Pattern</span>
+          display: grid;<br>place-items: center;
         </div>
-        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
-      </div>
-    `;
-  } else if (card.category === 'tech') {
-    bodyEmbedHtml = `
-      <div class="slang-formal-embed" style="padding: 18px 20px; font-family: monospace; font-size: 1rem; color:#ffffff; line-height:1.6; letter-spacing:0.02em;">
-        <span style="color:rgba(255,255,255,0.5); display:block; font-size:0.75rem; text-transform:uppercase; font-weight:800; margin-bottom:6px;">Modern CSS Grid Pattern</span>
-        display: grid;<br>place-items: center;
-      </div>
-    `;
-  } else if (card.category === 'icon') {
-    bodyEmbedHtml = `
-      <div class="slang-formal-embed" style="display: flex; gap: 16px; align-items:center; padding: 18px 20px;">
-        <div style="font-size: 2.4rem; width: 62px; height: 62px; background: rgba(255, 255, 255, 0.1); border:1px solid rgba(255,255,255,0.25); border-radius: 50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(15px); box-shadow:inset 0 1px 1px rgba(255,255,255,0.4);">${card.avatarEmoji || '👑'}</div>
-        <div>
-          <div style="font-weight: 800; font-size: 1.15rem; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.7);">${card.title}</div>
-          <div style="color:rgba(255,255,255,0.85); font-size: 0.88rem; font-weight:600; margin-top:2px;">${card.role}</div>
+      `;
+    } else if (card.category === 'icon') {
+      bodyEmbedHtml = `
+        <div class="slang-formal-embed" style="display: flex; gap: 16px; align-items:center; padding: 18px 20px;">
+          <div style="font-size: 2.4rem; width: 62px; height: 62px; background: rgba(255, 255, 255, 0.1); border:1px solid rgba(255,255,255,0.25); border-radius: 50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(15px); box-shadow:inset 0 1px 1px rgba(255,255,255,0.4);">${card.avatarEmoji || '👑'}</div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.15rem; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.7);">${card.title}</div>
+            <div style="color:rgba(255,255,255,0.85); font-size: 0.88rem; font-weight:600; margin-top:2px;">${card.role || 'Industry Pioneer'}</div>
+          </div>
         </div>
-      </div>
-    `;
-  }
+      `;
+    }
 
-  container.innerHTML = `
-    <article class="social-post-card">
-      
-      <!-- Card Top Header Bar -->
-      <div class="card-meta-topbar">
-        <div class="card-category-tag">
-          <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
-          <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
-        </div>
+    return `
+      <article class="social-post-card" id="card-${card.id}">
         
-        <div class="card-top-actions">
-          ${card.sourceUrl ? `
-          <a class="card-icon-action-btn" href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news on ${card.sourceOutlet || 'source'}">
-            <span>🔗 Source</span>
-          </a>` : ''}
-          <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
-            <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
-          </button>
-          <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
-            <span>🔊 Listen</span>
-          </button>
+        <!-- Card Top Header Bar -->
+        <div class="card-meta-topbar">
+          <div class="card-category-tag">
+            <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
+            <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
+          </div>
+          
+          <div class="card-top-actions">
+            ${card.sourceUrl ? `
+            <a class="card-icon-action-btn" href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news on ${card.sourceOutlet || 'source'}">
+              <span>🔗 Source</span>
+            </a>` : ''}
+            <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}', this)" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
+              <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
+            </button>
+            <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
+              <span>🔊 Listen</span>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Card Title / Headline -->
-      <h2 class="post-headline-text">${card.title}</h2>
+        <!-- Card Title / Headline -->
+        <h2 class="post-headline-text">${card.title}</h2>
 
-      <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
-      ${bodyEmbedHtml}
+        <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
+        ${bodyEmbedHtml}
 
-      <!-- Clean Lore & Guidance Breakdown -->
-      <div class="post-narrative">
-        ${card.explanation}
-      </div>
-
-      <!-- Pulse AI Context Note -->
-      <div class="x-community-note">
-        <div class="note-header">
-          <span>⚡ Pulse AI Context Note</span>
+        <!-- Clean Lore & Guidance Breakdown -->
+        <div class="post-narrative">
+          ${card.explanation}
         </div>
-        <div class="note-body">
-          Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
-        </div>
-      </div>
 
-      <!-- Card Action & Step Navigation Bar -->
-      <div class="card-footer-action-bar">
-        <div class="footer-left-actions">
-          <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
-            <span>${isLiked ? '❤️' : '🤍'}</span>
-            <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
-          </button>
-          <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title}')">
-            <span>🤖 Ask AI</span>
-          </button>
+        <!-- Pulse AI Context Note -->
+        <div class="x-community-note">
+          <div class="note-header">
+            <span>⚡ Pulse AI Context Note</span>
+          </div>
+          <div class="note-body">
+            Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
+          </div>
         </div>
-        <button class="card-next-step-btn" onclick="navigateCard(${index + 1})">
-          <span>${index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →'}</span>
-        </button>
-      </div>
 
-    </article>
-  `;
+        <!-- Card Action Footer (Natural scrolling stream, no next buttons) -->
+        <div class="card-footer-action-bar">
+          <div class="footer-left-actions">
+            <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}')">
+              <span>${isLiked ? '❤️' : '🤍'}</span>
+              <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
+            </button>
+            <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title.replace(/'/g, "\\'")}')">
+              <span>🤖 Ask AI</span>
+            </button>
+          </div>
+          <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.04em;">Story ${idx + 1} of ${cards.length}</span>
+        </div>
+
+      </article>
+    `;
+  }).join('');
+
+  updateReadingProgressStrip();
 }
 
-// Interactive Likes & Votes
-window.toggleLikeCard = function(cardId, index) {
+// Interactive Likes directly in place (no page jump)
+window.toggleLikeCard = function(cardId) {
   AppState.likedCards[cardId] = !AppState.likedCards[cardId];
   localStorage.setItem('dp_likes', JSON.stringify(AppState.likedCards));
   playSyntheticTone(AppState.likedCards[cardId] ? 784 : 440, 'triangle', 0.08);
   addXp(10);
-  renderActiveCard(index);
-};
-
-window.upvoteCard = function(index) {
-  AppState.cardVotes[index] = (AppState.cardVotes[index] || 1200) + 1;
-  document.getElementById(`voteCount-${index}`).textContent = formatVotes(AppState.cardVotes[index]);
-  playSyntheticTone(659.25, 'sine', 0.06);
-};
-
-window.downvoteCard = function(index) {
-  AppState.cardVotes[index] = (AppState.cardVotes[index] || 1200) - 1;
-  document.getElementById(`voteCount-${index}`).textContent = formatVotes(AppState.cardVotes[index]);
-  playSyntheticTone(329.63, 'sine', 0.06);
+  
+  const cardElement = document.getElementById(`card-${cardId}`);
+  if (cardElement) {
+    const likeBtn = cardElement.querySelector('.card-footer-pill-btn');
+    const card = AppState.dailyCards.find(c => c.id === cardId);
+    if (likeBtn && card) {
+      const isLiked = AppState.likedCards[cardId];
+      likeBtn.classList.toggle('liked', isLiked);
+      likeBtn.innerHTML = `<span>${isLiked ? '❤️' : '🤍'}</span> <span>${card.likesCount + (isLiked ? 1 : 0)}</span>`;
+    }
+  }
 };
 
 function formatVotes(num) {
@@ -1728,18 +1724,25 @@ function renderVaultList() {
   list.innerHTML = html;
 }
 
-window.toggleSaveItem = function(title, author) {
+window.toggleSaveItem = function(title, author, btnElement) {
   const existingIdx = AppState.savedItems.findIndex(i => i.title === title);
+  let isSaved = false;
   if (existingIdx > -1) {
     AppState.savedItems.splice(existingIdx, 1);
+    isSaved = false;
   } else {
     AppState.savedItems.push({ title, author, date: new Date().toLocaleDateString() });
     addXp(15);
     playSyntheticTone(784, 'triangle', 0.1);
+    isSaved = true;
   }
   localStorage.setItem('dp_saved', JSON.stringify(AppState.savedItems));
   renderVaultList();
-  renderActiveCard(AppState.currentCardIndex);
+
+  if (btnElement) {
+    btnElement.classList.toggle('saved', isSaved);
+    btnElement.innerHTML = `<span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>`;
+  }
 };
 
 window.removeFromVault = function(idx) {

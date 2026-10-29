@@ -151,37 +151,30 @@
               <button class="category-pill" data-cat="icon">👑 Titans</button>
             </div>
 
-            <!-- Clean Deck Progress Strip (Replaces Cluttered Story Bar) -->
+            <!-- Clean Reading Progress Strip -->
             <div class="deck-progress-strip" id="deckProgressStrip">
               <div class="deck-progress-meta">
-                <span class="deck-topic-badge" id="deckTopicBadge">⚡ Story 1 of 13: Cooked</span>
-                <span class="deck-percent-text" id="deckPercentText">8% Completed</span>
+                <span class="deck-topic-badge" id="deckTopicBadge">⚡ Continuous Feed: 13 Stories to Explore</span>
+                <span class="deck-percent-text" id="deckPercentText">Scroll to Learn ↓</span>
               </div>
               <div class="deck-progress-bar-wrap">
-                <div class="deck-progress-bar-fill" id="deckProgressBarFill" style="width: 8%;"></div>
+                <div class="deck-progress-bar-fill" id="deckProgressBarFill" style="width: 15%;"></div>
               </div>
             </div>
 
-            <!-- Active Social Card Container -->
-            <div id="activeSocialCardContainer"></div>
+            <!-- Continuous Social Feed Cards Stream -->
+            <div id="activeSocialCardContainer" style="display:flex; flex-direction:column; gap:18px;"></div>
 
-            <!-- Bottom Step Navigator -->
-            <div class="deck-step-footer">
-              <button class="feed-prev-btn" id="prevCardBtn" disabled>← Previous</button>
-              <span class="step-indicator-label" id="stepIndicatorLabel">Story 1 of 5</span>
-              <button class="feed-next-btn" id="nextCardBtn">Next Story →</button>
-            </div>
-
-            <!-- Daily Completed Banner -->
-            <div class="social-post-card hidden" id="dailyCompleteCard" style="text-align: center; margin-top: 20px;">
-              <div style="font-size: 3rem;">🎉🔥</div>
-              <h2 style="font-size: 1.4rem;">Today's Stories Completed!</h2>
-              <p style="color: var(--text-secondary); font-size: 0.95rem;">
-                +50 XP Earned! You unlocked today's knowledge, polished your English, and locked in your streak.
+            <!-- Bottom Completed Catch-Up Card -->
+            <div class="social-post-card" id="dailyCompleteCard" style="text-align: center; margin-top: 20px;">
+              <div style="font-size: 2.8rem; margin-bottom: 8px;">🎉🔥</div>
+              <h2 style="font-size: 1.35rem; color: #fff;">You're All Caught Up!</h2>
+              <p style="color: var(--text-secondary); font-size: 0.92rem; margin-top: 4px;">
+                +50 XP Earned! You explored today's stories, polished your English, and locked in your streak.
               </p>
-              <div style="margin-top: 14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-                <button class="feed-next-btn" id="goToQuizFromFeed" style="display:inline-block; padding: 10px 20px;">Take Daily Quiz 🎯 (+100 XP)</button>
-                <button class="feed-prev-btn" id="goToRadarFromFeed" style="display:inline-block; padding: 10px 20px;">Explore Social Radar 📡</button>
+              <div style="margin-top: 16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <button class="feed-next-btn" id="goToQuizFromFeed" style="display:inline-block; padding: 10px 22px;">Take Daily Quiz 🎯 (+100 XP)</button>
+                <button class="feed-prev-btn" id="goToRadarFromFeed" style="display:inline-block; padding: 10px 22px;">Explore Social Radar 📡</button>
               </div>
             </div>
 
