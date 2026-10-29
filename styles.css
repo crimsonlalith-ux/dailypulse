@@ -1372,12 +1372,4 @@ body {
   }
 }
 
-/* ============================================================
-   MODAL DIALOGS & INSTALL GUIDE
-   ============================================================ */
-.install-guide-box {
-  background: var(--glass-card);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-}
+

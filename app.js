@@ -1324,70 +1324,10 @@ function initSettingsModal() {
 }
 
 // ==========================================
-// 12. 1-CLICK PWA INSTALLATION & MOBILE GUIDE
+// 12. PWA SERVICE WORKER
 // ==========================================
-let deferredPwaPrompt = null;
 function initPwaInstaller() {
-  const installHeaderBtn = document.getElementById('installAppBtn');
-  const installBanner = document.getElementById('glassInstallBanner');
-  const bannerInstallBtn = document.getElementById('bannerInstallBtn');
-  const bannerCloseBtn = document.getElementById('bannerCloseBtn');
-  const installModal = document.getElementById('installModal');
-  const closeInstallModal = document.getElementById('closeInstallModal');
-  const gotItInstallBtn = document.getElementById('gotItInstallBtn');
-
-  // Check if running in standalone mode (already installed)
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if (isStandalone && installBanner) {
-    installBanner.style.display = 'none';
-  }
-
-  // Check if user dismissed banner previously
-  if (localStorage.getItem('dp_hide_install_banner') === 'true' && installBanner) {
-    installBanner.style.display = 'none';
-  }
-
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(err => console.log('SW:', err));
   }
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPwaPrompt = e;
-  });
-
-  const triggerInstall = async () => {
-    if (deferredPwaPrompt) {
-      deferredPwaPrompt.prompt();
-      const { outcome } = await deferredPwaPrompt.userChoice;
-      if (outcome === 'accepted') {
-        if (installBanner) installBanner.style.display = 'none';
-        showToast('DailyPulse installed successfully! 🎉');
-      }
-      deferredPwaPrompt = null;
-    } else {
-      // Show modal guide if beforeinstallprompt isn't directly triggered
-      if (installModal) installModal.classList.add('active');
-    }
-  };
-
-  installHeaderBtn?.addEventListener('click', triggerInstall);
-  bannerInstallBtn?.addEventListener('click', triggerInstall);
-
-  bannerCloseBtn?.addEventListener('click', () => {
-    if (installBanner) installBanner.style.display = 'none';
-    localStorage.setItem('dp_hide_install_banner', 'true');
-  });
-
-  closeInstallModal?.addEventListener('click', () => {
-    if (installModal) installModal.classList.remove('active');
-  });
-
-  gotItInstallBtn?.addEventListener('click', () => {
-    if (installModal) installModal.classList.remove('active');
-  });
-
-  installModal?.addEventListener('click', (e) => {
-    if (e.target === installModal) installModal.classList.remove('active');
-  });
 }
