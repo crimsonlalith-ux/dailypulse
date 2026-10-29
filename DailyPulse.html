@@ -866,6 +866,236 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* ============================================================
+   AESTHETIC HERO VISUAL BANNERS (Topic Art & Culture Embeds)
+   ============================================================ */
+.aesthetic-visual-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.aesthetic-visual-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+/* 1. Charli XCX Brat Summer Aesthetic Banner */
+.art-brat-summer {
+  background: radial-gradient(circle at 50% 40%, rgba(138, 206, 0, 0.22) 0%, rgba(12, 18, 5, 0.92) 100%);
+  border: 1.5px solid rgba(138, 206, 0, 0.45);
+  animation: bratPulse 4s infinite ease-in-out;
+}
+
+@keyframes bratPulse {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(138, 206, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    border-color: rgba(138, 206, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(138, 206, 0, 0.35), inset 0 1px 3px rgba(255, 255, 255, 0.7);
+    border-color: #8ace00;
+  }
+}
+
+.brat-typography {
+  font-family: -apple-system, BlinkMacSystemFont, "Arial Black", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #8ace00;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(138, 206, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.9);
+  filter: blur(0.3px);
+  text-transform: lowercase;
+}
+
+.brat-subline {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 2. Jensen Huang NVIDIA Blackwell Cyberpunk Banner */
+.art-jensen-nvidia {
+  background: radial-gradient(circle at 80% 20%, rgba(118, 185, 0, 0.25) 0%, rgba(8, 12, 6, 0.95) 100%);
+  border: 1.5px solid rgba(118, 185, 0, 0.4);
+  animation: nvidiaCircuitGlow 4.5s infinite ease-in-out;
+}
+
+@keyframes nvidiaCircuitGlow {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(118, 185, 0, 0.15);
+    border-color: rgba(118, 185, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(118, 185, 0, 0.4);
+    border-color: #76b900;
+  }
+}
+
+.nvidia-chip-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nvidia-emblem-badge {
+  font-size: 2.8rem;
+  width: 72px;
+  height: 72px;
+  background: rgba(118, 185, 0, 0.12);
+  border: 1.5px solid rgba(118, 185, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(118, 185, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* 3. Real Madrid Champions League Regal Banner */
+.art-real-madrid {
+  background: radial-gradient(circle at 50% 30%, rgba(234, 179, 8, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(234, 179, 8, 0.45);
+  animation: uclGoldGlow 4s infinite ease-in-out;
+}
+
+@keyframes uclGoldGlow {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 179, 8, 0.4);
+    border-color: #eab308;
+  }
+}
+
+.ucl-stars-row {
+  display: flex;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #facc15;
+  filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.8));
+}
+
+/* 4. IShowSpeed High Voltage Electric Banner */
+.art-ishowspeed {
+  background: radial-gradient(circle at 50% 50%, rgba(234, 179, 8, 0.2) 0%, rgba(126, 34, 206, 0.25) 50%, rgba(10, 5, 20, 0.95) 100%);
+  border: 1.5px solid rgba(234, 179, 8, 0.4);
+  animation: speedVoltage 3s infinite ease-in-out;
+}
+
+@keyframes speedVoltage {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(234, 179, 8, 0.2);
+    border-color: rgba(234, 179, 8, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(168, 85, 247, 0.5);
+    border-color: #c084fc;
+  }
+}
+
+.speed-wave-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 24px;
+}
+
+.speed-wave-bar {
+  width: 4px;
+  background: #facc15;
+  border-radius: 2px;
+  animation: speedWave 0.9s infinite ease-in-out alternate;
+}
+
+@keyframes speedWave {
+  0% { height: 6px; }
+  100% { height: 24px; }
+}
+
+/* 5. Sam Altman OpenAI Neural Lattice Banner */
+.art-sam-altman {
+  background: radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.22) 0%, rgba(124, 58, 237, 0.2) 60%, rgba(8, 10, 20, 0.95) 100%);
+  border: 1.5px solid rgba(6, 182, 212, 0.4);
+  animation: openAiAgiPulse 4s infinite ease-in-out;
+}
+
+@keyframes openAiAgiPulse {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(124, 58, 237, 0.4);
+    border-color: #a855f7;
+  }
+}
+
+/* 6. Centering a Div CSS Wireframe Banner */
+.art-center-div {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+}
+
+.center-grid-canvas {
+  height: 90px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.center-grid-target {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: centerPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes centerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(255, 255, 255, 1); }
+}
+
+/* Generic Aesthetic Visual Tag */
+.art-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  color: #ffffff;
+}
+
 /* Transparent White Frosted Glass Embed Box with Animated White Sheen */
 .slang-formal-embed {
   position: relative;
@@ -1826,17 +2056,94 @@ body {
 }
 
 .titan-avatar-circle {
-  width: 50px;
-  height: 50px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.09);
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   flex-shrink: 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 2px 3px rgba(255, 255, 255, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.titan-card:hover .titan-avatar-circle {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.avatar-trump {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.45), rgba(239, 68, 68, 0.3), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(239, 68, 68, 0.7);
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-linus {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(6, 182, 212, 0.7);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-jensen {
+  background: radial-gradient(circle, rgba(118, 185, 0, 0.45), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(118, 185, 0, 0.7);
+  box-shadow: 0 0 24px rgba(118, 185, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-satya {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 22px rgba(2, 132, 199, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-sam {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45), rgba(6, 182, 212, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(168, 85, 247, 0.7);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-zuck {
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.45), rgba(147, 51, 234, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(37, 99, 235, 0.7);
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-demis {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.45), rgba(59, 130, 246, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-sundar {
+  background: radial-gradient(circle, rgba(234, 67, 53, 0.35), rgba(66, 133, 244, 0.35), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(66, 133, 244, 0.7);
+  box-shadow: 0 0 22px rgba(66, 133, 244, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-elon {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.45), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(249, 115, 22, 0.7);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-guido {
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.45), rgba(34, 197, 94, 0.35), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(234, 179, 8, 0.7);
+  box-shadow: 0 0 24px rgba(234, 179, 8, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-yann {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-vitalik {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.45), rgba(236, 72, 153, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(99, 102, 241, 0.7);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .titan-info-box {
@@ -3226,6 +3533,198 @@ function initDeck() {
   }
 }
 
+function renderCardAestheticVisual(card) {
+  // 1. Charli XCX Brat Summer Aesthetic Banner
+  if (card.id === 'story-1' || card.topicTag === 'Brat Summer') {
+    return `
+      <div class="aesthetic-visual-banner art-brat-summer">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(138,206,0,0.15); border-color:rgba(138,206,0,0.5); color:#8ace00;">
+            <span>🟢</span> <span>VIRAL AESTHETIC • PANTONE 3507 C</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Charli XCX</span>
+        </div>
+        <div style="padding: 18px 0; text-align:center;">
+          <div class="brat-typography">brat</div>
+          <div class="brat-subline" style="margin-top:6px;">unapologetic confidence • 365 party girl • club classics</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(138,206,0,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Culture Word of the Year</span>
+          <button class="sound-mini-btn" style="border-color:#8ace00; color:#8ace00;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. Jensen Huang NVIDIA Blackwell Cyberpunk Banner
+  if (card.id === 'story-4' || card.topicTag === 'Jensen Huang') {
+    return `
+      <div class="aesthetic-visual-banner art-jensen-nvidia">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(118,185,0,0.15); border-color:rgba(118,185,0,0.5); color:#76b900;">
+            <span>⚡</span> <span>NVIDIA BLACKWELL B200 • 208B TRANSISTORS</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">CEO Keynote</span>
+        </div>
+        <div class="nvidia-chip-diagram" style="padding: 12px 0;">
+          <div class="nvidia-emblem-badge">🧥</div>
+          <div style="flex:1;">
+            <div style="font-size:1.18rem; font-weight:800; color:#ffffff; line-height:1.3;">"Domain expertise and problem-solving is the new coding syntax."</div>
+            <div style="font-size:0.8rem; color:#76b900; font-weight:700; margin-top:4px;">Jensen Huang • Signature Motorcycle Leather Jacket</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(118,185,0,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Powering Global AI Superclusters</span>
+          <button class="sound-mini-btn" style="border-color:#76b900; color:#76b900;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. Real Madrid Champions League Regal Banner
+  if (card.id === 'story-11' || card.topicTag === 'Real Madrid') {
+    return `
+      <div class="aesthetic-visual-banner art-real-madrid">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(234,179,8,0.15); border-color:rgba(234,179,8,0.5); color:#facc15;">
+            <span>👑</span> <span>15× CHAMPIONS OF EUROPE • UCL DNA</span>
+          </span>
+          <div class="ucl-stars-row">★★★★★ ★★★★★ ★★★★★</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(234,179,8,0.15); border:1.5px solid rgba(234,179,8,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(234,179,8,0.35);">🏆</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">The Santiago Bernabéu Comeback Aura</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">"85 minutes of calm, 3 minutes of miracles."</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Unmatched European Dominance</span>
+          <button class="sound-mini-btn" style="border-color:#facc15; color:#facc15;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. IShowSpeed High Voltage Electric Banner
+  if (card.id === 'story-12' || card.topicTag === 'IShowSpeed') {
+    return `
+      <div class="aesthetic-visual-banner art-ishowspeed">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.5); color:#facc15;">
+            <span>⚡</span> <span>LIVE IRL STREAMING • 2.5B VIEWS</span>
+          </span>
+          <div class="speed-wave-bars">
+            <div class="speed-wave-bar" style="animation-delay:0.1s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.3s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.2s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.4s;"></div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(168,85,247,0.2); border:1.5px solid rgba(234,179,8,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(234,179,8,0.4);">⚡</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">"SIUUU!" High-Voltage Global Tours</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Mobbed by 50,000 fans across Europe, Asia & Brazil.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">The Internet's Most Energetic Creator</span>
+          <button class="sound-mini-btn" style="border-color:#facc15; color:#facc15;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 5. Sam Altman AGI Banner
+  if (card.id === 'story-9' || card.topicTag === 'Sam Altman') {
+    return `
+      <div class="aesthetic-visual-banner art-sam-altman">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(6,182,212,0.18); border-color:rgba(6,182,212,0.5); color:#22d3ee;">
+            <span>🤖</span> <span>FRONTIER REASONING • o1 & o3 AGI</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">OpenAI</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(6,182,212,0.2); border:1.5px solid rgba(6,182,212,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(6,182,212,0.4);">🧠</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">The Shift to Test-Time Compute</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Models that deliberate, self-correct, and reason.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(6,182,212,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">The Architect of ChatGPT</span>
+          <button class="sound-mini-btn" style="border-color:#22d3ee; color:#22d3ee;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 6. Centering a Div CSS Pattern
+  if (card.id === 'story-3' || card.topicTag === 'Center Div') {
+    return `
+      <div class="aesthetic-visual-banner art-center-div">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="art-meta-tag" style="background:rgba(255,255,255,0.08); color:#ffffff;">
+            <span>💻</span> <span>MODERN CSS GRID PATTERN</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.6); font-family:monospace;">display: grid;</span>
+        </div>
+        <div class="center-grid-canvas">
+          <div class="center-grid-target">place-items: center;</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Horizontal & Vertical Centering Solved</span>
+          <button class="sound-mini-btn" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 7. Slang vs Formal Comparison Embed
+  if (card.slangPhrase && card.formalPhrase) {
+    return `
+      <div class="slang-formal-embed">
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
+            <span class="quote-phrase-text">${card.slangPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag formal-color">Polished / Fluent English</span>
+            <span class="quote-phrase-text">${card.formalPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 8. Scenario / Voice Practice
+  if (card.scenario) {
+    return `
+      <div class="voice-practice-container">
+        <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
+        <div class="voice-input-row">
+          <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
+          <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
+          <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
+        </div>
+        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
+      </div>
+    `;
+  }
+
+  return '';
+}
+
 function renderContinuousFeed() {
   const cards = getFilteredCards();
   const container = document.getElementById('activeSocialCardContainer');
@@ -3243,61 +3742,7 @@ function renderContinuousFeed() {
   container.innerHTML = cards.map((card, idx) => {
     const isSaved = AppState.savedItems.some(i => i.title === card.title);
     const isLiked = AppState.likedCards[card.id] || false;
-
-    let bodyEmbedHtml = '';
-
-    if (card.slangPhrase && card.formalPhrase) {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed">
-          <div class="embed-quote-row">
-            <div>
-              <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
-              <span class="quote-phrase-text">${card.slangPhrase}</span>
-            </div>
-            <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
-          </div>
-          <div class="embed-quote-row">
-            <div>
-              <span class="quote-label-tag formal-color">Polished / Fluent English</span>
-              <span class="quote-phrase-text">${card.formalPhrase}</span>
-            </div>
-            <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
-          </div>
-        </div>
-      `;
-    } else if (card.scenario) {
-      bodyEmbedHtml = `
-        <div class="voice-practice-container">
-          <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
-          <div class="voice-input-row">
-            <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
-            <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
-            <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
-          </div>
-          <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
-        </div>
-      `;
-    } else if (card.category === 'tech') {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed" style="padding: 18px 20px; font-family: monospace; font-size: 1rem; color:#ffffff; line-height:1.6; letter-spacing:0.02em;">
-          <span style="color:rgba(255,255,255,0.5); display:block; font-size:0.75rem; text-transform:uppercase; font-weight:800; margin-bottom:6px;">Modern CSS Grid Pattern</span>
-          display: grid;<br>place-items: center;
-        </div>
-      `;
-    } else if (card.category === 'icon') {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed" style="display: flex; gap: 16px; align-items:center; padding: 18px 20px;">
-          <div style="font-size: 2.4rem; width: 62px; height: 62px; background: rgba(255, 255, 255, 0.1); border:1px solid rgba(255,255,255,0.25); border-radius: 50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(15px); box-shadow:inset 0 1px 1px rgba(255,255,255,0.4);">${card.avatarEmoji || '👑'}</div>
-          <div>
-            <div style="font-weight: 800; font-size: 1.15rem; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.7);">${card.title}</div>
-            <div style="color:rgba(255,255,255,0.85); font-size: 0.88rem; font-weight:600; margin-top:2px;">${card.role || 'Industry Pioneer'}</div>
-          </div>
-        </div>
-      `;
-    }
+    const bodyEmbedHtml = renderCardAestheticVisual(card);
 
     return `
       <article class="social-post-card" id="card-${card.id}">
@@ -3552,7 +3997,7 @@ function initTitansView() {
         <!-- Header Row -->
         <div class="titan-header-row">
           <div class="titan-left-meta">
-            <div class="titan-avatar-circle">${titan.avatar}</div>
+            <div class="titan-avatar-circle avatar-${titan.id.replace('titan-', '')}">${titan.avatar}</div>
             <div class="titan-info-box">
               <div class="titan-name-line">
                 <span>${titan.name}</span>

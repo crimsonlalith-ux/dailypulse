@@ -790,6 +790,198 @@ function initDeck() {
   }
 }
 
+function renderCardAestheticVisual(card) {
+  // 1. Charli XCX Brat Summer Aesthetic Banner
+  if (card.id === 'story-1' || card.topicTag === 'Brat Summer') {
+    return `
+      <div class="aesthetic-visual-banner art-brat-summer">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(138,206,0,0.15); border-color:rgba(138,206,0,0.5); color:#8ace00;">
+            <span>🟢</span> <span>VIRAL AESTHETIC • PANTONE 3507 C</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Charli XCX</span>
+        </div>
+        <div style="padding: 18px 0; text-align:center;">
+          <div class="brat-typography">brat</div>
+          <div class="brat-subline" style="margin-top:6px;">unapologetic confidence • 365 party girl • club classics</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(138,206,0,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Culture Word of the Year</span>
+          <button class="sound-mini-btn" style="border-color:#8ace00; color:#8ace00;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 2. Jensen Huang NVIDIA Blackwell Cyberpunk Banner
+  if (card.id === 'story-4' || card.topicTag === 'Jensen Huang') {
+    return `
+      <div class="aesthetic-visual-banner art-jensen-nvidia">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(118,185,0,0.15); border-color:rgba(118,185,0,0.5); color:#76b900;">
+            <span>⚡</span> <span>NVIDIA BLACKWELL B200 • 208B TRANSISTORS</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">CEO Keynote</span>
+        </div>
+        <div class="nvidia-chip-diagram" style="padding: 12px 0;">
+          <div class="nvidia-emblem-badge">🧥</div>
+          <div style="flex:1;">
+            <div style="font-size:1.18rem; font-weight:800; color:#ffffff; line-height:1.3;">"Domain expertise and problem-solving is the new coding syntax."</div>
+            <div style="font-size:0.8rem; color:#76b900; font-weight:700; margin-top:4px;">Jensen Huang • Signature Motorcycle Leather Jacket</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(118,185,0,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Powering Global AI Superclusters</span>
+          <button class="sound-mini-btn" style="border-color:#76b900; color:#76b900;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 3. Real Madrid Champions League Regal Banner
+  if (card.id === 'story-11' || card.topicTag === 'Real Madrid') {
+    return `
+      <div class="aesthetic-visual-banner art-real-madrid">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(234,179,8,0.15); border-color:rgba(234,179,8,0.5); color:#facc15;">
+            <span>👑</span> <span>15× CHAMPIONS OF EUROPE • UCL DNA</span>
+          </span>
+          <div class="ucl-stars-row">★★★★★ ★★★★★ ★★★★★</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(234,179,8,0.15); border:1.5px solid rgba(234,179,8,0.5); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(234,179,8,0.35);">🏆</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">The Santiago Bernabéu Comeback Aura</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">"85 minutes of calm, 3 minutes of miracles."</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Unmatched European Dominance</span>
+          <button class="sound-mini-btn" style="border-color:#facc15; color:#facc15;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. IShowSpeed High Voltage Electric Banner
+  if (card.id === 'story-12' || card.topicTag === 'IShowSpeed') {
+    return `
+      <div class="aesthetic-visual-banner art-ishowspeed">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.5); color:#facc15;">
+            <span>⚡</span> <span>LIVE IRL STREAMING • 2.5B VIEWS</span>
+          </span>
+          <div class="speed-wave-bars">
+            <div class="speed-wave-bar" style="animation-delay:0.1s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.3s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.2s;"></div>
+            <div class="speed-wave-bar" style="animation-delay:0.4s;"></div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(168,85,247,0.2); border:1.5px solid rgba(234,179,8,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(234,179,8,0.4);">⚡</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">"SIUUU!" High-Voltage Global Tours</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Mobbed by 50,000 fans across Europe, Asia & Brazil.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">The Internet's Most Energetic Creator</span>
+          <button class="sound-mini-btn" style="border-color:#facc15; color:#facc15;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 5. Sam Altman AGI Banner
+  if (card.id === 'story-9' || card.topicTag === 'Sam Altman') {
+    return `
+      <div class="aesthetic-visual-banner art-sam-altman">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="art-meta-tag" style="background:rgba(6,182,212,0.18); border-color:rgba(6,182,212,0.5); color:#22d3ee;">
+            <span>🤖</span> <span>FRONTIER REASONING • o1 & o3 AGI</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">OpenAI</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px; padding: 14px 0;">
+          <div style="font-size: 2.8rem; width: 68px; height: 68px; background: rgba(6,182,212,0.2); border:1.5px solid rgba(6,182,212,0.6); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 25px rgba(6,182,212,0.4);">🧠</div>
+          <div>
+            <div style="font-size:1.15rem; font-weight:800; color:#ffffff;">The Shift to Test-Time Compute</div>
+            <div style="font-size:0.84rem; color:rgba(255,255,255,0.85); font-weight:600; margin-top:2px;">Models that deliberate, self-correct, and reason.</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(6,182,212,0.25); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">The Architect of ChatGPT</span>
+          <button class="sound-mini-btn" style="border-color:#22d3ee; color:#22d3ee;" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 6. Centering a Div CSS Pattern
+  if (card.id === 'story-3' || card.topicTag === 'Center Div') {
+    return `
+      <div class="aesthetic-visual-banner art-center-div">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="art-meta-tag" style="background:rgba(255,255,255,0.08); color:#ffffff;">
+            <span>💻</span> <span>MODERN CSS GRID PATTERN</span>
+          </span>
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.6); font-family:monospace;">display: grid;</span>
+        </div>
+        <div class="center-grid-canvas">
+          <div class="center-grid-target">place-items: center;</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; border-top:1px solid rgba(255,255,255,0.12); padding-top:10px;">
+          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Horizontal & Vertical Centering Solved</span>
+          <button class="sound-mini-btn" onclick="speakText('${card.pronounceText}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 7. Slang vs Formal Comparison Embed
+  if (card.slangPhrase && card.formalPhrase) {
+    return `
+      <div class="slang-formal-embed">
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
+            <span class="quote-phrase-text">${card.slangPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag formal-color">Polished / Fluent English</span>
+            <span class="quote-phrase-text">${card.formalPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 8. Scenario / Voice Practice
+  if (card.scenario) {
+    return `
+      <div class="voice-practice-container">
+        <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
+        <div class="voice-input-row">
+          <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
+          <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
+          <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
+        </div>
+        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
+      </div>
+    `;
+  }
+
+  return '';
+}
+
 function renderContinuousFeed() {
   const cards = getFilteredCards();
   const container = document.getElementById('activeSocialCardContainer');
@@ -807,61 +999,7 @@ function renderContinuousFeed() {
   container.innerHTML = cards.map((card, idx) => {
     const isSaved = AppState.savedItems.some(i => i.title === card.title);
     const isLiked = AppState.likedCards[card.id] || false;
-
-    let bodyEmbedHtml = '';
-
-    if (card.slangPhrase && card.formalPhrase) {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed">
-          <div class="embed-quote-row">
-            <div>
-              <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
-              <span class="quote-phrase-text">${card.slangPhrase}</span>
-            </div>
-            <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
-          </div>
-          <div class="embed-quote-row">
-            <div>
-              <span class="quote-label-tag formal-color">Polished / Fluent English</span>
-              <span class="quote-phrase-text">${card.formalPhrase}</span>
-            </div>
-            <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
-          </div>
-        </div>
-      `;
-    } else if (card.scenario) {
-      bodyEmbedHtml = `
-        <div class="voice-practice-container">
-          <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
-          <div class="voice-input-row">
-            <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
-            <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
-          </div>
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
-            <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
-          </div>
-          <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
-        </div>
-      `;
-    } else if (card.category === 'tech') {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed" style="padding: 18px 20px; font-family: monospace; font-size: 1rem; color:#ffffff; line-height:1.6; letter-spacing:0.02em;">
-          <span style="color:rgba(255,255,255,0.5); display:block; font-size:0.75rem; text-transform:uppercase; font-weight:800; margin-bottom:6px;">Modern CSS Grid Pattern</span>
-          display: grid;<br>place-items: center;
-        </div>
-      `;
-    } else if (card.category === 'icon') {
-      bodyEmbedHtml = `
-        <div class="slang-formal-embed" style="display: flex; gap: 16px; align-items:center; padding: 18px 20px;">
-          <div style="font-size: 2.4rem; width: 62px; height: 62px; background: rgba(255, 255, 255, 0.1); border:1px solid rgba(255,255,255,0.25); border-radius: 50%; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(15px); box-shadow:inset 0 1px 1px rgba(255,255,255,0.4);">${card.avatarEmoji || '👑'}</div>
-          <div>
-            <div style="font-weight: 800; font-size: 1.15rem; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,0.7);">${card.title}</div>
-            <div style="color:rgba(255,255,255,0.85); font-size: 0.88rem; font-weight:600; margin-top:2px;">${card.role || 'Industry Pioneer'}</div>
-          </div>
-        </div>
-      `;
-    }
+    const bodyEmbedHtml = renderCardAestheticVisual(card);
 
     return `
       <article class="social-post-card" id="card-${card.id}">
@@ -1116,7 +1254,7 @@ function initTitansView() {
         <!-- Header Row -->
         <div class="titan-header-row">
           <div class="titan-left-meta">
-            <div class="titan-avatar-circle">${titan.avatar}</div>
+            <div class="titan-avatar-circle avatar-${titan.id.replace('titan-', '')}">${titan.avatar}</div>
             <div class="titan-info-box">
               <div class="titan-name-line">
                 <span>${titan.name}</span>

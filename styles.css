@@ -853,6 +853,236 @@ body {
   letter-spacing: -0.01em;
 }
 
+/* ============================================================
+   AESTHETIC HERO VISUAL BANNERS (Topic Art & Culture Embeds)
+   ============================================================ */
+.aesthetic-visual-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.aesthetic-visual-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+/* 1. Charli XCX Brat Summer Aesthetic Banner */
+.art-brat-summer {
+  background: radial-gradient(circle at 50% 40%, rgba(138, 206, 0, 0.22) 0%, rgba(12, 18, 5, 0.92) 100%);
+  border: 1.5px solid rgba(138, 206, 0, 0.45);
+  animation: bratPulse 4s infinite ease-in-out;
+}
+
+@keyframes bratPulse {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(138, 206, 0, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    border-color: rgba(138, 206, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(138, 206, 0, 0.35), inset 0 1px 3px rgba(255, 255, 255, 0.7);
+    border-color: #8ace00;
+  }
+}
+
+.brat-typography {
+  font-family: -apple-system, BlinkMacSystemFont, "Arial Black", sans-serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #8ace00;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(138, 206, 0, 0.6), 0 4px 15px rgba(0, 0, 0, 0.9);
+  filter: blur(0.3px);
+  text-transform: lowercase;
+}
+
+.brat-subline {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 2. Jensen Huang NVIDIA Blackwell Cyberpunk Banner */
+.art-jensen-nvidia {
+  background: radial-gradient(circle at 80% 20%, rgba(118, 185, 0, 0.25) 0%, rgba(8, 12, 6, 0.95) 100%);
+  border: 1.5px solid rgba(118, 185, 0, 0.4);
+  animation: nvidiaCircuitGlow 4.5s infinite ease-in-out;
+}
+
+@keyframes nvidiaCircuitGlow {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(118, 185, 0, 0.15);
+    border-color: rgba(118, 185, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(118, 185, 0, 0.4);
+    border-color: #76b900;
+  }
+}
+
+.nvidia-chip-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nvidia-emblem-badge {
+  font-size: 2.8rem;
+  width: 72px;
+  height: 72px;
+  background: rgba(118, 185, 0, 0.12);
+  border: 1.5px solid rgba(118, 185, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(118, 185, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* 3. Real Madrid Champions League Regal Banner */
+.art-real-madrid {
+  background: radial-gradient(circle at 50% 30%, rgba(234, 179, 8, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1.5px solid rgba(234, 179, 8, 0.45);
+  animation: uclGoldGlow 4s infinite ease-in-out;
+}
+
+@keyframes uclGoldGlow {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 179, 8, 0.4);
+    border-color: #eab308;
+  }
+}
+
+.ucl-stars-row {
+  display: flex;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #facc15;
+  filter: drop-shadow(0 0 6px rgba(250, 204, 21, 0.8));
+}
+
+/* 4. IShowSpeed High Voltage Electric Banner */
+.art-ishowspeed {
+  background: radial-gradient(circle at 50% 50%, rgba(234, 179, 8, 0.2) 0%, rgba(126, 34, 206, 0.25) 50%, rgba(10, 5, 20, 0.95) 100%);
+  border: 1.5px solid rgba(234, 179, 8, 0.4);
+  animation: speedVoltage 3s infinite ease-in-out;
+}
+
+@keyframes speedVoltage {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(234, 179, 8, 0.2);
+    border-color: rgba(234, 179, 8, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(168, 85, 247, 0.5);
+    border-color: #c084fc;
+  }
+}
+
+.speed-wave-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 24px;
+}
+
+.speed-wave-bar {
+  width: 4px;
+  background: #facc15;
+  border-radius: 2px;
+  animation: speedWave 0.9s infinite ease-in-out alternate;
+}
+
+@keyframes speedWave {
+  0% { height: 6px; }
+  100% { height: 24px; }
+}
+
+/* 5. Sam Altman OpenAI Neural Lattice Banner */
+.art-sam-altman {
+  background: radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.22) 0%, rgba(124, 58, 237, 0.2) 60%, rgba(8, 10, 20, 0.95) 100%);
+  border: 1.5px solid rgba(6, 182, 212, 0.4);
+  animation: openAiAgiPulse 4s infinite ease-in-out;
+}
+
+@keyframes openAiAgiPulse {
+  0%, 100% {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.35);
+  }
+  50% {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(124, 58, 237, 0.4);
+    border-color: #a855f7;
+  }
+}
+
+/* 6. Centering a Div CSS Wireframe Banner */
+.art-center-div {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+}
+
+.center-grid-canvas {
+  height: 90px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.center-grid-target {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  animation: centerPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes centerPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(255, 255, 255, 1); }
+}
+
+/* Generic Aesthetic Visual Tag */
+.art-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  color: #ffffff;
+}
+
 /* Transparent White Frosted Glass Embed Box with Animated White Sheen */
 .slang-formal-embed {
   position: relative;
@@ -1813,17 +2043,94 @@ body {
 }
 
 .titan-avatar-circle {
-  width: 50px;
-  height: 50px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.09);
   border: 1.5px solid rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   flex-shrink: 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), inset 0 2px 3px rgba(255, 255, 255, 0.45);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.titan-card:hover .titan-avatar-circle {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.avatar-trump {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.45), rgba(239, 68, 68, 0.3), rgba(15, 23, 42, 0.9));
+  border: 1.5px solid rgba(239, 68, 68, 0.7);
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-linus {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(6, 182, 212, 0.7);
+  box-shadow: 0 0 22px rgba(6, 182, 212, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-jensen {
+  background: radial-gradient(circle, rgba(118, 185, 0, 0.45), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(118, 185, 0, 0.7);
+  box-shadow: 0 0 24px rgba(118, 185, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-satya {
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(2, 132, 199, 0.7);
+  box-shadow: 0 0 22px rgba(2, 132, 199, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-sam {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.45), rgba(6, 182, 212, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(168, 85, 247, 0.7);
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-zuck {
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.45), rgba(147, 51, 234, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(37, 99, 235, 0.7);
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-demis {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.45), rgba(59, 130, 246, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-sundar {
+  background: radial-gradient(circle, rgba(234, 67, 53, 0.35), rgba(66, 133, 244, 0.35), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(66, 133, 244, 0.7);
+  box-shadow: 0 0 22px rgba(66, 133, 244, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-elon {
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.45), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(249, 115, 22, 0.7);
+  box-shadow: 0 0 24px rgba(249, 115, 22, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-guido {
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.45), rgba(34, 197, 94, 0.35), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(234, 179, 8, 0.7);
+  box-shadow: 0 0 24px rgba(234, 179, 8, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-yann {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.45), rgba(15, 23, 42, 0.95));
+  border: 1.5px solid rgba(139, 92, 246, 0.7);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.avatar-vitalik {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.45), rgba(236, 72, 153, 0.3), rgba(0, 0, 0, 0.95));
+  border: 1.5px solid rgba(99, 102, 241, 0.7);
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .titan-info-box {
