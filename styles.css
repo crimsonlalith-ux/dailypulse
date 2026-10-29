@@ -2991,3 +2991,175 @@ body.theme-white-glass .social-bottom-nav {
 .timeline-pane {
   contain: style layout;
 }
+
+
+/* ============================================================
+   GOOGLE GEMINI SIGNATURE PEARLESCENT WHITE AURORA SHIMMER
+   (White, Diamond Ice, Platinum & Opalescent Ambient Sheen)
+   ============================================================ */
+@keyframes geminiAuroraSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes geminiLinearSheen {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes geminiAmbientDrift {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.08) translateY(18px);
+    opacity: 1;
+  }
+}
+
+/* Living Ambient Gemini Mesh in App Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(ellipse 65% 45% at 50% -10%, rgba(255, 255, 255, 0.07), transparent 70%),
+    radial-gradient(ellipse 45% 35% at 88% 22%, rgba(224, 242, 254, 0.05), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 12% 78%, rgba(241, 245, 249, 0.04), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: geminiAmbientDrift 16s infinite alternate ease-in-out;
+}
+
+/* 1. Dynamic Island Capsule Gemini White Liquid Light Border */
+.dynamic-island-capsule {
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.dynamic-island-capsule::before {
+  content: '';
+  position: absolute;
+  top: -125px;
+  left: -50%;
+  width: 200%;
+  height: 300px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.05) 40deg,
+    rgba(224, 242, 254, 0.35) 80deg,
+    rgba(255, 255, 255, 0.95) 120deg,
+    rgba(241, 245, 249, 0.45) 160deg,
+    rgba(255, 255, 255, 0.05) 200deg,
+    transparent 240deg,
+    transparent 360deg
+  );
+  animation: geminiAuroraSpin 7s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dynamic-island-capsule::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: rgba(10, 12, 16, 0.88);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
+  border-radius: inherit;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dynamic-island-capsule > * {
+  position: relative;
+  z-index: 2;
+}
+
+body.theme-white-glass .dynamic-island-capsule::after {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 2. Monolithic Brand Emblem Pearl-White Sheen */
+.x-brand-emblem {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.x-brand-emblem::before {
+  content: '';
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 255, 255, 0.08) 60deg,
+    rgba(224, 242, 254, 0.5) 120deg,
+    #ffffff 180deg,
+    transparent 240deg
+  );
+  animation: geminiAuroraSpin 8s linear infinite;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.x-brand-emblem::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: rgba(12, 14, 18, 0.92);
+  border-radius: inherit;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.x-brand-emblem svg {
+  position: relative;
+  z-index: 2;
+}
+
+/* 3. Gemini AI Prompt Composer Bar Aurora Shimmer */
+.dm-composer-bar {
+  position: relative;
+  border-radius: var(--radius-pill);
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(224, 242, 254, 0.4),
+    rgba(255, 255, 255, 0.95),
+    rgba(241, 245, 249, 0.35),
+    rgba(255, 255, 255, 0.12)
+  );
+  background-size: 200% 100%;
+  animation: geminiLinearSheen 5s linear infinite;
+  display: flex;
+  gap: 8px;
+}
+
+.dm-composer-bar .dm-input {
+  border: none !important;
+  background: rgba(10, 12, 16, 0.94) !important;
+  box-shadow: none !important;
+}
+
+/* 4. Active Navigation Indicator Pearl Sheen */
+.social-nav-btn.active::after {
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 14px rgba(224, 242, 254, 0.6);
+}
