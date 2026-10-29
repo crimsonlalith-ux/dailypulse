@@ -96,6 +96,12 @@
             <span>🏠</span>
             <span>Home Feed</span>
           </button>
+
+          <button class="x-nav-button" data-tab="titans">
+            <span>👑</span>
+            <span>Titans & Leaders</span>
+            <span class="nav-badge" style="background:#f59e0b; color:#000;">HOT</span>
+          </button>
           
           <button class="x-nav-button" data-tab="radar">
             <span>📡</span>
@@ -182,7 +188,47 @@
           </div>
         </section>
 
-        <!-- ================= PANE 2: SOCIAL RADAR STREAM ================= -->
+        <!-- ================= PANE 2: TECH TITANS & WORLD LEADERS ================= -->
+        <section class="timeline-pane" id="pane-titans">
+          <div class="titans-container">
+            
+            <!-- Header Banner -->
+            <div class="titans-header-banner">
+              <div class="titans-banner-top">
+                <div>
+                  <h2 class="titans-banner-title">👑 Tech Titans & World Leaders</h2>
+                  <p class="titans-banner-desc">The founders, open-source architects, and world leaders every tech student must know in 2026.</p>
+                </div>
+                <div class="titans-live-pill">
+                  <span class="radar-live-beacon"></span>
+                  <span>LIVE RADAR</span>
+                </div>
+              </div>
+
+              <!-- Real-time Search Input -->
+              <div class="titans-search-wrap">
+                <input type="text" id="titansSearchInput" class="dm-input" placeholder="🔍 Search by name (Trump, Linus, Jensen), company, or technology..." autocomplete="off" />
+              </div>
+
+              <!-- Category Filter Pills -->
+              <div class="titans-filter-bar" id="titansFilterBar">
+                <button class="titans-filter-pill active" data-filter="all">🌟 All Minds (12)</button>
+                <button class="titans-filter-pill" data-filter="opensource">🐧 Open Source & Dev</button>
+                <button class="titans-filter-pill" data-filter="ai">🤖 AI & Deep Science</button>
+                <button class="titans-filter-pill" data-filter="tech">⚡ Big Tech CEOs</button>
+                <button class="titans-filter-pill" data-filter="policy">🏛️ Geopolitics & Policy</button>
+              </div>
+            </div>
+
+            <!-- Titans Cards Dynamic Stream -->
+            <div id="titansCardContainer" class="titans-card-stream">
+              <!-- Dynamically populated leader cards -->
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= PANE 3: SOCIAL RADAR STREAM ================= -->
         <section class="timeline-pane" id="pane-radar">
           <div class="radar-timeline-stream">
             
@@ -268,6 +314,11 @@
       <button class="social-nav-btn active" data-tab="feed">
         <span class="icon">🏠</span>
         <span>Home</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="titans">
+        <span class="icon">👑</span>
+        <span>Titans</span>
       </button>
 
       <button class="social-nav-btn" data-tab="radar">

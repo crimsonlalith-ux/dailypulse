@@ -25,6 +25,216 @@ const AppState = {
   currentQuizIndex: 0,
   quizScore: 0,
 
+  // Titans & World Leaders State
+  titansFilter: 'all',
+  titansSearchQuery: '',
+  titansList: [
+    {
+      id: 'titan-trump',
+      name: 'Donald Trump',
+      role: '47th President of the United States',
+      org: 'U.S. Executive Branch & Global Geopolitics',
+      category: 'policy',
+      categoryLabel: 'Geopolitics & Policy',
+      avatar: '🇺🇸',
+      essentialWhy: 'Government policies directly dictate international tech jobs, semiconductor chip supply chains, and student visas. Trump\'s administration heavily influences tariff rates on Taiwanese and Asian electronics (TSMC), federal AI safety deregulation, executive orders for American domestic energy to power massive AI data centers, and H-1B visa policies affecting international engineering graduates.',
+      coreImpact: 'Tech Trade Tariffs, Federal AI Deregulation & American Energy Initiatives for Supercomputing',
+      keyTerms: ['Semiconductor Tariffs', 'AI Deregulation', 'STEM Visas & H-1B', 'Data Center Energy'],
+      radarHeadline: 'Fast-Tracking Domestic AI Power Grid & Proposing Reciprocal Hardware Tariffs',
+      radarDetail: 'Prioritizing aggressive deregulation of frontier AI models to maintain global technological supremacy, encouraging private nuclear and natural gas energy buildouts for compute clusters, while reviewing international hardware manufacturing supply chains.',
+      radarSource: 'Reuters & Wall Street Journal',
+      sourceUrl: 'https://www.reuters.com/technology/',
+      aiPrompt: 'Explain how Donald Trump\'s tech policies, semiconductor tariffs, and visa regulations affect tech students and software engineering jobs.'
+    },
+    {
+      id: 'titan-linus',
+      name: 'Linus Torvalds',
+      role: 'Creator of Linux & Git; Fellow at The Linux Foundation',
+      org: 'The Linux Foundation & Open-Source Movement',
+      category: 'opensource',
+      categoryLabel: 'Open Source & Dev',
+      avatar: '🐧',
+      essentialWhy: 'Linus is the most influential open-source software engineer in human history. In 1991, as a college student, he created the Linux kernel, which now powers 96% of the top 1 million cloud servers, Android smartphones, AWS, Google, and supercomputers. In 2005, he created Git in 14 days to manage Linux development. Every software student writes code with Git and runs deployments on Linux.',
+      coreImpact: 'The Linux Operating System Kernel & The Git Distributed Version Control System',
+      keyTerms: ['Linux Kernel', 'Git Version Control', 'Open-Source Philosophy', 'Memory Safety & Rust'],
+      radarHeadline: 'Championing Rust Integration in Linux Kernel 6.13+ for Memory Safety',
+      radarDetail: 'Linus continues to personally review pull requests and lead the global Linux kernel community, advocating for practical memory safety by integrating Rust alongside C, while warning developers against blind over-reliance on generative AI coding tools.',
+      radarSource: 'The Linux Foundation & Kernel.org',
+      sourceUrl: 'https://www.kernel.org/',
+      aiPrompt: 'Explain why Linus Torvalds created Linux and Git as a student, and why every software engineer must master both.'
+    },
+    {
+      id: 'titan-jensen',
+      name: 'Jensen Huang',
+      role: 'Co-Founder, President & CEO',
+      org: 'NVIDIA (World\'s Leading AI Chipmaker)',
+      category: 'tech',
+      categoryLabel: 'Big Tech CEOs',
+      avatar: '🧥',
+      essentialWhy: 'Jensen transformed NVIDIA from a PC video game graphics card maker into the multi-trillion-dollar backbone of global artificial intelligence. In 2006, he bet the entire company on CUDA, allowing developers to run general-purpose math on GPUs. Today, every modern LLM (ChatGPT, Gemini, Claude, Llama) is trained on Nvidia silicon.',
+      coreImpact: 'CUDA Parallel Computing Platform & Hopper/Blackwell AI GPU Architecture',
+      keyTerms: ['CUDA Computing', 'Blackwell B200', 'Parallel Processing', 'First-Principles Engineering'],
+      radarHeadline: 'Shipping Blackwell B200 Systems & Declaring Domain Expertise the New Syntax',
+      radarDetail: 'Speaking at international tech summits, Huang emphasizes that while AI will write code syntax, students must become master problem solvers, domain experts (biology, physics, finance), and systems thinkers who understand how compute scaling works.',
+      radarSource: 'Business Insider & GTC Global',
+      sourceUrl: 'https://www.businessinsider.com/jensen-huang-nvidia-ceo-leather-jackets-wardrobe-explained-2024-3',
+      aiPrompt: 'What did Jensen Huang mean when he said students should focus on domain expertise rather than just syntax coding?'
+    },
+    {
+      id: 'titan-satya',
+      name: 'Satya Nadella',
+      role: 'Chairman & CEO',
+      org: 'Microsoft ($3T+ Enterprise, Azure & Cloud)',
+      category: 'tech',
+      categoryLabel: 'Big Tech CEOs',
+      avatar: '🪟',
+      essentialWhy: 'Took over Microsoft in 2014 when it was seen as a stagnating desktop dinosaur and engineered one of the greatest turnarounds in business history. He embraced open-source (acquiring GitHub in 2018), built Microsoft Azure into a cloud giant, and made the legendary $13B strategic investment in OpenAI in 2019 that placed Microsoft at the center of the AI revolution.',
+      coreImpact: 'Growth Mindset Leadership, Microsoft Azure Cloud, GitHub Acquisition & OpenAI Alliance',
+      keyTerms: ['Growth Mindset', 'Azure Cloud Architecture', 'GitHub Ecosystem', 'Enterprise AI Copilots'],
+      radarHeadline: 'Embedding Copilot Natively Across Windows & Deploying In-House Maia AI Silicon',
+      radarDetail: 'Satya is pushing Microsoft\'s Copilot-first OS experience, transforming every software tool into an agentic workflow, while diversifying cloud hardware beyond Nvidia with proprietary Maia and Cobalt in-house silicon.',
+      radarSource: 'Microsoft News & Bloomberg',
+      sourceUrl: 'https://news.microsoft.com/exec/satya-nadella/',
+      aiPrompt: 'What is Satya Nadella\'s Growth Mindset philosophy, and how should a computer science student apply it?'
+    },
+    {
+      id: 'titan-sam',
+      name: 'Sam Altman',
+      role: 'Co-Founder & CEO',
+      org: 'OpenAI (Creators of ChatGPT, GPT-4 & o1)',
+      category: 'ai',
+      categoryLabel: 'AI Pioneers',
+      avatar: '🧠',
+      essentialWhy: 'Sam Altman is the public face of the modern Generative AI era. He previously ran Y Combinator (the startup accelerator that funded Stripe, Airbnb, Dropbox, Reddit). Under his leadership, OpenAI launched ChatGPT in November 2022, reaching 100 million users faster than any consumer application in history and kicking off the race to Artificial General Intelligence (AGI).',
+      coreImpact: 'ChatGPT Consumer Revolution, GPT-4/o1 Reasoning Architectures & AGI Safety Research',
+      keyTerms: ['Artificial General Intelligence (AGI)', 'Test-Time Compute', 'Reasoning Models (o1/o3)', 'Startup Incubation (YC)'],
+      radarHeadline: 'Advancing Test-Time Reasoning Models (o1/o3) & The $100B Stargate Supercluster',
+      radarDetail: 'OpenAI shifted the frontier from simply predicting the next word to System 2 step-by-step reasoning, where models think before answering. Altman is heavily focused on secure energy and chip supply chains needed for multi-gigawatt datacenters.',
+      radarSource: 'TIME Magazine & MIT Tech Review',
+      sourceUrl: 'https://time.com/collection/100-most-influential-people-2023/6269986/sam-altman/',
+      aiPrompt: 'What is the difference between standard LLMs and OpenAI\'s new reasoning models (like o1), and how does this affect future developer jobs?'
+    },
+    {
+      id: 'titan-zuck',
+      name: 'Mark Zuckerberg',
+      role: 'Founder, Chairman & CEO',
+      org: 'Meta (Instagram, WhatsApp, Facebook, Meta AI)',
+      category: 'tech',
+      categoryLabel: 'Big Tech CEOs',
+      avatar: '👓',
+      essentialWhy: 'Started Facebook in 2004 from his Harvard dorm at age 19. When proprietary AI gatekeepers attempted to keep weights locked behind API paywalls, Zuckerberg championed open-source AI by releasing the Llama model family for free. This enabled millions of students and researchers worldwide to build, fine-tune, and run state-of-the-art AI on their own machines.',
+      coreImpact: 'Open-Source AI Foundation Models (Llama), PyTorch Deep Learning Framework & Global Social Graph',
+      keyTerms: ['Llama Open Weights', 'PyTorch Framework', 'Commoditizing Infrastructure', 'Holographic AR (Orion)'],
+      radarHeadline: 'Training Llama 4 on 100,000+ GPU Superclusters & Unveiling Orion Holographic AR',
+      radarDetail: 'Zuckerberg published a manifesto arguing that open-source AI is safer, more democratic, and critical for human innovation, while heavily investing in next-generation wearable compute forms.',
+      radarSource: 'Meta Engineering & The Verge',
+      sourceUrl: 'https://about.meta.com/media-gallery/executives/mark-zuckerberg/',
+      aiPrompt: 'Why did Mark Zuckerberg release Llama models as open source, and how does open-source AI benefit students and independent developers?'
+    },
+    {
+      id: 'titan-demis',
+      name: 'Demis Hassabis',
+      role: 'CEO & Co-Founder, Google DeepMind; 2024 Nobel Laureate in Chemistry',
+      org: 'Google DeepMind (Scientific & Foundational AI)',
+      category: 'ai',
+      categoryLabel: 'AI Pioneers',
+      avatar: '🧬',
+      essentialWhy: 'A child chess prodigy and computer scientist who founded DeepMind. He created AlphaGo (which defeated world champion Lee Sedol in 2016) and AlphaFold, which predicted the 3D structures of over 200 million proteins. In October 2024, Demis was awarded the Nobel Prize in Chemistry, proving that AI can solve fundamental 50-year-old scientific mysteries.',
+      coreImpact: 'AlphaFold Protein Biology Solver (2024 Nobel Prize), AlphaGo Reinforcement Learning & Gemini Models',
+      keyTerms: ['AlphaFold Biology', '2024 Nobel Prize in Chemistry', 'Deep Reinforcement Learning', 'AI for Science'],
+      radarHeadline: 'Scaling AlphaFold 3 for Precision Drug Discovery & Leading Google Gemini Roadmap',
+      radarDetail: 'Following his Nobel win, Hassabis is expanding AI applications in materials science, climate modeling, and quantum physics, showcasing to students that software engineering can revolutionize fundamental biology and medicine.',
+      radarSource: 'The Nobel Foundation & Nature',
+      sourceUrl: 'https://www.nobelprize.org/prizes/chemistry/2024/hassabis/facts/',
+      aiPrompt: 'How did Demis Hassabis and AlphaFold win the 2024 Nobel Prize in Chemistry, and why is AI for science so important?'
+    },
+    {
+      id: 'titan-sundar',
+      name: 'Sundar Pichai',
+      role: 'CEO, Alphabet & Google',
+      org: 'Alphabet (Google Search, Android, YouTube, Cloud)',
+      category: 'tech',
+      categoryLabel: 'Big Tech CEOs',
+      avatar: '🔍',
+      essentialWhy: 'A materials engineer who joined Google in 2004, led the launch of the Google Chrome browser (now used by 65%+ of the world), and took over Android development. Under his tenure, Google researchers invented the Transformer architecture (the 2017 paper Attention Is All You Need), which is the mathematical foundation of ChatGPT, Claude, and all modern AI.',
+      coreImpact: 'Google Chrome, Android Global Scale, Transformer Architecture Research & Gemini AI Ecosystem',
+      keyTerms: ['Transformer Architecture', 'Global Scale Systems', 'Android Ecosystem', 'Quantum Computing (Willow)'],
+      radarHeadline: 'Unveiling the Willow Quantum Chip & Launching Gemini 2.0 Native Agentic Workflows',
+      radarDetail: 'Pichai is steering Google through its biggest transition since the internet began, embedding multimodal AI into Search, workspace apps, and Chrome, while proving exponential quantum computing milestones with the Willow chip.',
+      radarSource: 'Google Keynote & The Wall Street Journal',
+      sourceUrl: 'https://blog.google/inside-google/company-announcements/sundar-pichai/',
+      aiPrompt: 'What is the Transformer architecture invented by Google researchers, and why did it make modern AI possible?'
+    },
+    {
+      id: 'titan-elon',
+      name: 'Elon Musk',
+      role: 'Technologist & CEO',
+      org: 'Tesla, SpaceX, xAI, Neuralink, Boring Co.',
+      category: 'tech',
+      categoryLabel: 'Big Tech CEOs',
+      avatar: '🚀',
+      essentialWhy: 'The ultimate practitioner of First-Principles Thinking. He co-founded PayPal, built SpaceX from scratch (creating the world\'s only reusable orbital rockets and the Starlink satellite constellation), scaled Tesla to kickstart global EV adoption, created Neuralink for brain-computer interfaces, and built xAI\'s 100k GPU Colossus supercluster in just 122 days.',
+      coreImpact: 'Reusable Orbital Spaceflight (Falcon 9 & Starship), Electric Vehicles (Tesla), xAI (Grok) & Neuralink BCI',
+      keyTerms: ['First-Principles Thinking', 'Starship Reusability', 'Autonomous Robotics (Optimus)', 'xAI Colossus Cluster'],
+      radarHeadline: 'Starship Booster Catches, Training Grok 3 on 200k GPUs & Optimus Factory Rollout',
+      radarDetail: 'Musk continues to push hyper-ambitious hardware engineering timelines, uniting xAI, Tesla autonomous driving algorithms, and SpaceX orbital infrastructure toward multi-planetary human civilization.',
+      radarSource: 'SpaceX & Bloomberg Technology',
+      sourceUrl: 'https://www.spacex.com/',
+      aiPrompt: 'What is First Principles Thinking as popularized by Elon Musk, and how can an engineering student use it to solve hard problems?'
+    },
+    {
+      id: 'titan-guido',
+      name: 'Guido van Rossum',
+      role: 'Creator of Python; Distinguished Engineer at Microsoft',
+      org: 'Python Software Foundation & Microsoft',
+      category: 'opensource',
+      categoryLabel: 'Open Source & Dev',
+      avatar: '🐍',
+      essentialWhy: 'In 1989, Guido created Python as a holiday hobby project, focusing on readability and simplicity: "Beautiful is better than ugly. Simple is better than complex." Today, Python is the world\'s #1 programming language, the universal lingua franca for Artificial Intelligence, Machine Learning (PyTorch, TensorFlow, Scikit-learn), Data Science, and Computer Science education.',
+      coreImpact: 'The Python Programming Language, PEP Architecture & The Zen of Python',
+      keyTerms: ['The Zen of Python', 'CPython Performance', 'PyTorch & AI Ecosystem', 'Open-Source Governance'],
+      radarHeadline: 'Leading Faster CPython Project to Enable Free-Threaded (No-GIL) Multicore Python',
+      radarDetail: 'Guido is actively guiding the modernization of Python to remove the Global Interpreter Lock (GIL), enabling true multicore CPU parallelism required for high-performance AI data pipelines and scientific computing.',
+      radarSource: 'Python Software Foundation & GitHub',
+      sourceUrl: 'https://gvanrossum.github.io/',
+      aiPrompt: 'Why did Guido van Rossum design Python for readability, and why did Python become the dominant language for modern AI and data science?'
+    },
+    {
+      id: 'titan-yann',
+      name: 'Yann LeCun',
+      role: 'Chief AI Scientist, Meta; Silver Professor of Computer Science, NYU',
+      org: 'Meta FAIR (Fundamental AI Research) & NYU',
+      category: 'ai',
+      categoryLabel: 'AI Pioneers',
+      avatar: '👨‍🏫',
+      essentialWhy: 'One of the three "Godfathers of AI" and recipient of the 2018 ACM Turing Award (the Nobel Prize of Computer Science). In the 1980s, he invented Convolutional Neural Networks (CNNs), which enabled computers to "see" images. He pioneered optical character recognition (reading checks at ATMs) and is one of the most outspoken defenders of open-source science and realistic AI cognition.',
+      coreImpact: 'Convolutional Neural Networks (CNNs), Turing Award Winner (2018) & World Model Architectures (JEPA)',
+      keyTerms: ['Convolutional Neural Networks', 'Turing Award', 'World Models (JEPA)', 'Open Science Advocacy'],
+      radarHeadline: 'Challenging LLM Limits & Developing V-JEPA Video World Models for Physical Intuition',
+      radarDetail: 'LeCun frequently engages in intellectual debates explaining to students why simply predicting words cannot achieve human-level common sense, urging the next generation of researchers to build World Models that understand physical cause and effect.',
+      radarSource: 'ACM & Meta AI Research',
+      sourceUrl: 'https://yann.lecun.com/',
+      aiPrompt: 'Why does Yann LeCun argue that today\'s LLMs alone are not enough for human-level intelligence, and what are World Models?'
+    },
+    {
+      id: 'titan-vitalik',
+      name: 'Vitalik Buterin',
+      role: 'Co-Founder & Chief Scientist',
+      org: 'Ethereum Foundation & Decentralized Systems',
+      category: 'opensource',
+      categoryLabel: 'Open Source & Dev',
+      avatar: '💎',
+      essentialWhy: 'At age 19, frustrated by the limitations of Bitcoin, Vitalik wrote the Ethereum Whitepaper, introducing the world to programmable blockchains, smart contracts, and decentralized computing. In 2022, he coordinated "The Merge", a monumental technical achievement that transitioned Ethereum from Proof-of-Work to Proof-of-Stake while the network was running live, eliminating 99.95% of its electricity consumption.',
+      coreImpact: 'Ethereum Turing-Complete Smart Contracts, Decentralized Consensus & The Merge (Proof-of-Stake)',
+      keyTerms: ['Smart Contracts', 'Zero-Knowledge Proofs (zk-SNARKs)', 'Proof of Stake & The Merge', 'Decentralized Governance'],
+      radarHeadline: 'Pioneering Zero-Knowledge Rollup Research & Quadratic Funding for Public Open-Source Goods',
+      radarDetail: 'Vitalik is deeply engaged in cryptographic privacy, AI-assisted smart contract security auditing, and publishing open-source research on how distributed systems can resist censorship and centralized single points of failure.',
+      radarSource: 'Ethereum.org & Vitalik.eth',
+      sourceUrl: 'https://vitalik.eth.limo/',
+      aiPrompt: 'How did Vitalik Buterin invent smart contracts at age 19, and what are the computer science principles behind Ethereum?'
+    }
+  ],
+
   // 13 Rich Dynamic Cards across categories
   dailyCards: [
     {
@@ -407,6 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initCategoryFilters();
   initDeck();
+  initTitansView();
   initRadar();
   initPulseAI();
   initVault();
@@ -862,7 +1073,172 @@ function addXp(points) {
 }
 
 // ==========================================
-// 6. LIVE REDDIT API INTEGRATION & RADAR
+// 6. TECH TITANS & WORLD LEADERS VIEW
+// ==========================================
+function initTitansView() {
+  const container = document.getElementById('titansCardContainer');
+  const searchInput = document.getElementById('titansSearchInput');
+  const filterPills = document.querySelectorAll('.titans-filter-pill');
+
+  if (!container) return;
+
+  function render() {
+    const query = (AppState.titansSearchQuery || '').toLowerCase();
+    const filter = AppState.titansFilter || 'all';
+
+    const filtered = AppState.titansList.filter(titan => {
+      const matchesFilter = filter === 'all' || titan.category === filter;
+      const matchesQuery = !query || 
+        titan.name.toLowerCase().includes(query) ||
+        titan.role.toLowerCase().includes(query) ||
+        titan.org.toLowerCase().includes(query) ||
+        titan.keyTerms.some(t => t.toLowerCase().includes(query)) ||
+        titan.essentialWhy.toLowerCase().includes(query) ||
+        titan.radarHeadline.toLowerCase().includes(query);
+      return matchesFilter && matchesQuery;
+    });
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="titan-card" style="text-align: center; padding: 40px 20px;">
+          <div style="font-size: 2.5rem; margin-bottom: 10px;">🔍</div>
+          <h3 style="color: #fff; font-size: 1.1rem;">No Leaders Found</h3>
+          <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px;">
+            Try a different search term like "Linux", "AI", "Trump", or "Python".
+          </p>
+          <button class="titans-filter-pill" onclick="resetTitansFilter()" style="margin-top: 14px; display: inline-block;">
+            Reset Search & Filters
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered.map(titan => `
+      <article class="titan-card" id="card-${titan.id}">
+        
+        <!-- Header Row -->
+        <div class="titan-header-row">
+          <div class="titan-left-meta">
+            <div class="titan-avatar-circle">${titan.avatar}</div>
+            <div class="titan-info-box">
+              <div class="titan-name-line">
+                <span>${titan.name}</span>
+                <span class="verified-badge" title="Global Industry Titan">✓</span>
+              </div>
+              <span class="titan-role-text">${titan.role}</span>
+              <span class="titan-org-text">${titan.org}</span>
+            </div>
+          </div>
+          <span class="titan-category-tag">${titan.categoryLabel}</span>
+        </div>
+
+        <!-- Student Foundation Box -->
+        <div class="titan-student-knowledge-box">
+          <div class="titan-section-label">
+            <span>🎓</span> <span>Why Every Student Must Know Them</span>
+          </div>
+          <div class="titan-knowledge-text">
+            ${titan.essentialWhy}
+          </div>
+
+          <div class="titan-core-box">
+            <strong>💡 Core Innovation:</strong> ${titan.coreImpact}
+          </div>
+
+          <div class="titan-tags-wrap">
+            ${titan.keyTerms.map(tag => `<span class="titan-tag-chip">${tag}</span>`).join('')}
+          </div>
+        </div>
+
+        <!-- Live Radar 2026 Update Box -->
+        <div class="titan-radar-update-box">
+          <div class="titan-radar-top">
+            <div class="titan-radar-badge">
+              <span class="radar-live-beacon"></span>
+              <span>Live Radar (2026 Update)</span>
+            </div>
+            <span style="font-size: 0.72rem; color: var(--text-muted);">${titan.radarSource}</span>
+          </div>
+          <div class="titan-radar-headline">${titan.radarHeadline}</div>
+          <div class="titan-radar-desc">${titan.radarDetail}</div>
+        </div>
+
+        <!-- Card Action Footer -->
+        <div class="titan-card-actions">
+          <div class="titan-left-buttons">
+            <button class="titan-action-pill" onclick="speakLeaderOverview('${titan.id}')" title="Listen to student audio summary">
+              <span>🔊 Listen</span>
+            </button>
+            <a class="titan-action-pill" href="${titan.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news & profile">
+              <span>🔗 Source</span>
+            </a>
+            <button class="titan-action-pill" onclick="saveTitanToVault('${titan.name.replace(/'/g, "\\'")}', '${titan.role.replace(/'/g, "\\'")}')" title="Save to Vault">
+              <span>⭐ Save</span>
+            </button>
+          </div>
+          <button class="titan-ask-ai-btn" onclick="askAiAboutLeader('${titan.name.replace(/'/g, "\\'")}', '${titan.aiPrompt.replace(/'/g, "\\'")}')">
+            <span>🤖 Ask AI</span>
+          </button>
+        </div>
+
+      </article>
+    `).join('');
+  }
+
+  // Filter Pills Event Listeners
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      AppState.titansFilter = pill.getAttribute('data-filter');
+      render();
+      playSyntheticTone(640, 'sine', 0.05);
+    });
+  });
+
+  // Search Input Event Listener
+  searchInput?.addEventListener('input', (e) => {
+    AppState.titansSearchQuery = e.target.value.trim();
+    render();
+  });
+
+  render();
+}
+
+window.resetTitansFilter = function() {
+  AppState.titansFilter = 'all';
+  AppState.titansSearchQuery = '';
+  const searchInput = document.getElementById('titansSearchInput');
+  if (searchInput) searchInput.value = '';
+  document.querySelectorAll('.titans-filter-pill').forEach(p => {
+    p.classList.toggle('active', p.getAttribute('data-filter') === 'all');
+  });
+  initTitansView();
+};
+
+window.askAiAboutLeader = function(name, prompt) {
+  switchTab('ai');
+  const aiInput = document.getElementById('aiInput');
+  if (aiInput) {
+    aiInput.value = prompt;
+    handleSendAi();
+  }
+};
+
+window.speakLeaderOverview = function(titanId) {
+  const titan = AppState.titansList.find(t => t.id === titanId);
+  if (!titan) return;
+  const text = `${titan.name}. ${titan.role}. Key takeaway for students: ${titan.coreImpact}. Current news: ${titan.radarHeadline}.`;
+  speakText(text);
+};
+
+window.saveTitanToVault = function(name, role) {
+  toggleSaveItem(`Profile: ${name}`, role);
+};
+
+// ==========================================
+// 7. LIVE REDDIT API INTEGRATION & RADAR
 // ==========================================
 function initRadar() {
   renderRadarStream(AppState.radarFilter);
@@ -1156,6 +1532,71 @@ function generateSmartAiResponse(query) {
     return `<strong>IShowSpeed & Cristiano Ronaldo:</strong><br><br>
     IShowSpeed became a global phenomenon through high-energy streams and his intense obsession with football legend Cristiano Ronaldo.<br>
     His catchphrase "SIUUU" and energetic street streams have made him one of the most recognized figures among Gen Z globally.`;
+  }
+
+  // Tech Titans & Leaders Knowledge for Students
+  if (q.includes('trump') || q.includes('tariff') || q.includes('policy')) {
+    return `<strong>Donald Trump & Tech Policy for Students:</strong><br><br>
+    • <strong>Semiconductor Tariffs:</strong> Tariffs on imported chips accelerate the push to manufacture electronics domestically (TSMC Arizona, Intel).<br>
+    • <strong>AI Deregulation:</strong> Prioritizing minimal regulatory hurdles allows AI labs to scale compute without bureaucratic delays.<br>
+    • <strong>Student Impact:</strong> Energy infrastructure (nuclear/gas for data centers) and STEM visa policies directly dictate which tech companies hire and where compute is built.`;
+  }
+
+  if (q.includes('linus') || q.includes('git') || q.includes('linux')) {
+    return `<strong>Linus Torvalds, Linux & Git Explained:</strong><br><br>
+    • <strong>Linux (1991):</strong> Linus built the Linux kernel as a 21-year-old student. Today, it runs virtually every web server, Android phone, Docker container, and cloud infrastructure on Earth.<br>
+    • <strong>Git (2005):</strong> Created in just 14 days when BitKeeper revoked their license. Git revolutionized collaboration, version control, and GitHub.<br>
+    • <strong>Student Tip:</strong> Master the Linux command line (bash, ssh, grep, permissions) and Git branching early. It is the #1 foundational skill expected of every junior software engineer.`;
+  }
+
+  if (q.includes('jensen') || q.includes('nvidia') || q.includes('cuda')) {
+    return `<strong>Jensen Huang & NVIDIA's AI Dominance:</strong><br><br>
+    • <strong>The CUDA Gamble (2006):</strong> Jensen spent billions adding parallel computing capability to every gaming GPU, laying the groundwork for Deep Learning 10 years before anyone else realized it.<br>
+    • <strong>Advice for Students:</strong> Jensen emphasizes that while AI will handle syntax coding, students must focus on <em>domain expertise</em> (biology, finance, physics, math) and systems architecture.<br>
+    • <strong>Key Takeaway:</strong> Learn how memory bandwidth, GPU clustering, and parallel algorithms operate under the hood.`;
+  }
+
+  if (q.includes('satya') || q.includes('growth mindset') || q.includes('nadella')) {
+    return `<strong>Satya Nadella & Growth Mindset Leadership:</strong><br><br>
+    • <strong>The Turnaround:</strong> Shifted Microsoft from defensive Windows monopolies to open-source (acquiring GitHub in 2018), Azure cloud, and the historic $13B partnership with OpenAI.<br>
+    • <strong>"Learn-it-all vs. Know-it-all":</strong> Replaced internal arrogance with empathy and continuous learning.<br>
+    • <strong>Student Takeaway:</strong> Technology changes every 3 years; having the curiosity to learn new tools fast is far more valuable than being an expert in an obsolete framework.`;
+  }
+
+  if (q.includes('altman') || q.includes('openai') || q.includes('reasoning') || q.includes('o1')) {
+    return `<strong>Sam Altman & Frontier AI Models:</strong><br><br>
+    • <strong>From Next-Token to Reasoning:</strong> With the o1/o3 series, AI models now use "test-time compute"—spending seconds thinking and checking their own logic before generating a response.<br>
+    • <strong>Student Impact:</strong> Simple boilerplate coding is automated; engineers now act as architectural orchestrators and system designers directing fleets of AI agents.`;
+  }
+
+  if (q.includes('zuck') || q.includes('zuckerberg') || q.includes('llama')) {
+    return `<strong>Mark Zuckerberg & Open-Source AI:</strong><br><br>
+    • <strong>The Open Weights Revolution:</strong> By giving away Llama 2 and 3 for free, Meta prevented closed AI gatekeepers from monopolizing modern AI infrastructure.<br>
+    • <strong>Student Tip:</strong> You can download Llama models locally using tools like Ollama or vLLM to run and fine-tune private AI on your own laptop without paying API fees!`;
+  }
+
+  if (q.includes('hassabis') || q.includes('alphafold') || q.includes('nobel')) {
+    return `<strong>Demis Hassabis & AlphaFold (2024 Nobel Prize):</strong><br><br>
+    • <strong>The Breakthrough:</strong> Solved the 50-year-old protein folding problem, predicting the 3D molecular structure of 200+ million proteins.<br>
+    • <strong>Why it Matters:</strong> Proved to the world that Computer Science and AI are now the driving engines of biological discovery and cancer medicine.`;
+  }
+
+  if (q.includes('guido') || q.includes('python')) {
+    return `<strong>Guido van Rossum & The Power of Python:</strong><br><br>
+    • <strong>The Philosophy:</strong> 'Readability counts.' Python prioritized human ergonomics over machine verbosity.<br>
+    • <strong>Why it Won AI:</strong> Because researchers could write clean math without worrying about memory pointers, Python became the official wrapper for PyTorch and C++ backend compute.`;
+  }
+
+  if (q.includes('vitalik') || q.includes('ethereum') || q.includes('smart contract')) {
+    return `<strong>Vitalik Buterin & Ethereum:</strong><br><br>
+    • <strong>Smart Contracts:</strong> Turning blockchain from a simple ledger (Bitcoin) into a Turing-complete global decentralized computer.<br>
+    • <strong>The Merge:</strong> Successfully shifted Ethereum from Proof of Work to Proof of Stake live on mainnet, cutting global power consumption by 99.95%.`;
+  }
+
+  if (q.includes('elon') || q.includes('musk') || q.includes('first principles')) {
+    return `<strong>Elon Musk & First-Principles Engineering:</strong><br><br>
+    • <strong>The Technique:</strong> Boil things down to fundamental physics truths (e.g., what are the raw material costs of a rocket or battery cell?) rather than reasoning by analogy.<br>
+    • <strong>Execution:</strong> Built SpaceX, Tesla, Neuralink, and trained Grok 3 on custom superclusters.`;
   }
 
   return `<strong>Here is my take on that:</strong><br><br>
