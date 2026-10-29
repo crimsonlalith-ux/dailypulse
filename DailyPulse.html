@@ -617,14 +617,14 @@ body {
    ============================================================ */
 .ig-stories-bar {
   display: flex;
-  gap: 12px;
-  padding: 14px 18px;
+  gap: 16px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--glass-border);
   overflow-x: auto;
   scrollbar-width: none;
   background: var(--glass-header);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(35px) saturate(200%);
+  -webkit-backdrop-filter: blur(35px) saturate(200%);
 }
 
 .ig-stories-bar::-webkit-scrollbar {
@@ -635,12 +635,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: transparent;
   border: none;
   cursor: pointer;
   flex-shrink: 0;
   transition: var(--transition);
+  padding: 2px 4px;
+}
+
+.story-bubble:hover {
+  transform: translateY(-2px);
 }
 
 .story-ring {
@@ -697,20 +702,35 @@ body {
 }
 
 .story-title {
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  font-weight: 600;
-  max-width: 68px;
+  font-size: 0.76rem;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   text-align: center;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: var(--transition);
+}
+
+.story-bubble:hover .story-title {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25);
 }
 
 .story-bubble.active-story .story-title {
-  color: #fff;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: #000000;
+  background: #ffffff;
+  border-color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.85);
+  transform: scale(1.04);
 }
 
 /* ============================================================
@@ -1938,6 +1958,7 @@ const AppState = {
     {
       id: 'story-0',
       category: 'slang',
+      topicTag: 'Cooked',
       author: 'Internet Culture Lab',
       handle: '@culturelore',
       flair: 'r/SlangLore',
@@ -1954,6 +1975,7 @@ const AppState = {
     {
       id: 'story-1',
       category: 'slang',
+      topicTag: 'Brat Summer',
       author: 'Pop Culture Radar',
       handle: '@popradar',
       flair: 'r/AestheticTrends',
@@ -1968,6 +1990,7 @@ const AppState = {
     {
       id: 'story-2',
       category: 'reply',
+      topicTag: 'Boundaries',
       author: 'Corporate & Life Fluency',
       handle: '@careerpolish',
       flair: 'r/WorkplaceHumor',
@@ -1982,6 +2005,7 @@ const AppState = {
     {
       id: 'story-3',
       category: 'tech',
+      topicTag: 'Center Div',
       author: 'Frontend Developers Hub',
       handle: '@webdevlore',
       flair: 'r/ProgrammerHumor',
@@ -1996,6 +2020,7 @@ const AppState = {
     {
       id: 'story-4',
       category: 'icon',
+      topicTag: 'Jensen Huang',
       author: 'Silicon Valley Dossier',
       handle: '@techfoundry',
       flair: 'r/TechTitans',
@@ -2012,6 +2037,7 @@ const AppState = {
     {
       id: 'story-5',
       category: 'slang',
+      topicTag: 'Demure',
       author: 'Viral Trend Archive',
       handle: '@trendpulse',
       flair: 'r/MemeEtiquette',
@@ -2028,6 +2054,7 @@ const AppState = {
     {
       id: 'story-6',
       category: 'slang',
+      topicTag: 'Girl Math',
       author: 'Gen Z Psychology Lab',
       handle: '@humorlogic',
       flair: 'r/Me_IRL',
@@ -2044,6 +2071,7 @@ const AppState = {
     {
       id: 'story-7',
       category: 'tech',
+      topicTag: 'Git Merge',
       author: 'DevOps & Git Survivors',
       handle: '@gitpanic',
       flair: 'r/ProgrammerHumor',
@@ -2058,6 +2086,7 @@ const AppState = {
     {
       id: 'story-8',
       category: 'reply',
+      topicTag: 'Deadlines',
       author: 'Executive Presence Coach',
       handle: '@leadfluent',
       flair: 'r/CareerAdvancement',
@@ -2072,6 +2101,7 @@ const AppState = {
     {
       id: 'story-9',
       category: 'icon',
+      topicTag: 'Sam Altman',
       author: 'AI Horizon Dossier',
       handle: '@aimasters',
       flair: 'r/Singularity',
@@ -2088,6 +2118,7 @@ const AppState = {
     {
       id: 'story-10',
       category: 'slang',
+      topicTag: 'Mewing',
       author: 'Internet Anthropology',
       handle: '@brainrotdecoded',
       flair: 'r/PeterExplains',
@@ -2104,6 +2135,7 @@ const AppState = {
     {
       id: 'story-11',
       category: 'icon',
+      topicTag: 'Real Madrid',
       author: 'Champions League Lore',
       handle: '@uclhistory',
       flair: 'r/Soccer',
@@ -2120,6 +2152,7 @@ const AppState = {
     {
       id: 'story-12',
       category: 'icon',
+      topicTag: 'IShowSpeed',
       author: 'Streaming & Creator Pulse',
       handle: '@streamwire',
       flair: 'r/LivestreamFail',
@@ -2405,7 +2438,7 @@ function initStoriesBar() {
         <div class="story-ring">
           <div class="story-inner">${card.avatarEmoji || icon}</div>
         </div>
-        <span class="story-title">${card.title.split(' ')[0]}</span>
+        <span class="story-title">${card.topicTag || card.title}</span>
       </button>
     `;
   });

@@ -30,6 +30,7 @@ const AppState = {
     {
       id: 'story-0',
       category: 'slang',
+      topicTag: 'Cooked',
       author: 'Internet Culture Lab',
       handle: '@culturelore',
       flair: 'r/SlangLore',
@@ -46,6 +47,7 @@ const AppState = {
     {
       id: 'story-1',
       category: 'slang',
+      topicTag: 'Brat Summer',
       author: 'Pop Culture Radar',
       handle: '@popradar',
       flair: 'r/AestheticTrends',
@@ -60,6 +62,7 @@ const AppState = {
     {
       id: 'story-2',
       category: 'reply',
+      topicTag: 'Boundaries',
       author: 'Corporate & Life Fluency',
       handle: '@careerpolish',
       flair: 'r/WorkplaceHumor',
@@ -74,6 +77,7 @@ const AppState = {
     {
       id: 'story-3',
       category: 'tech',
+      topicTag: 'Center Div',
       author: 'Frontend Developers Hub',
       handle: '@webdevlore',
       flair: 'r/ProgrammerHumor',
@@ -88,6 +92,7 @@ const AppState = {
     {
       id: 'story-4',
       category: 'icon',
+      topicTag: 'Jensen Huang',
       author: 'Silicon Valley Dossier',
       handle: '@techfoundry',
       flair: 'r/TechTitans',
@@ -104,6 +109,7 @@ const AppState = {
     {
       id: 'story-5',
       category: 'slang',
+      topicTag: 'Demure',
       author: 'Viral Trend Archive',
       handle: '@trendpulse',
       flair: 'r/MemeEtiquette',
@@ -120,6 +126,7 @@ const AppState = {
     {
       id: 'story-6',
       category: 'slang',
+      topicTag: 'Girl Math',
       author: 'Gen Z Psychology Lab',
       handle: '@humorlogic',
       flair: 'r/Me_IRL',
@@ -136,6 +143,7 @@ const AppState = {
     {
       id: 'story-7',
       category: 'tech',
+      topicTag: 'Git Merge',
       author: 'DevOps & Git Survivors',
       handle: '@gitpanic',
       flair: 'r/ProgrammerHumor',
@@ -150,6 +158,7 @@ const AppState = {
     {
       id: 'story-8',
       category: 'reply',
+      topicTag: 'Deadlines',
       author: 'Executive Presence Coach',
       handle: '@leadfluent',
       flair: 'r/CareerAdvancement',
@@ -164,6 +173,7 @@ const AppState = {
     {
       id: 'story-9',
       category: 'icon',
+      topicTag: 'Sam Altman',
       author: 'AI Horizon Dossier',
       handle: '@aimasters',
       flair: 'r/Singularity',
@@ -180,6 +190,7 @@ const AppState = {
     {
       id: 'story-10',
       category: 'slang',
+      topicTag: 'Mewing',
       author: 'Internet Anthropology',
       handle: '@brainrotdecoded',
       flair: 'r/PeterExplains',
@@ -196,6 +207,7 @@ const AppState = {
     {
       id: 'story-11',
       category: 'icon',
+      topicTag: 'Real Madrid',
       author: 'Champions League Lore',
       handle: '@uclhistory',
       flair: 'r/Soccer',
@@ -212,6 +224,7 @@ const AppState = {
     {
       id: 'story-12',
       category: 'icon',
+      topicTag: 'IShowSpeed',
       author: 'Streaming & Creator Pulse',
       handle: '@streamwire',
       flair: 'r/LivestreamFail',
@@ -497,7 +510,7 @@ function initStoriesBar() {
         <div class="story-ring">
           <div class="story-inner">${card.avatarEmoji || icon}</div>
         </div>
-        <span class="story-title">${card.title.split(' ')[0]}</span>
+        <span class="story-title">${card.topicTag || card.title}</span>
       </button>
     `;
   });
