@@ -2964,3 +2964,30 @@ body.theme-white-glass .social-bottom-nav {
 .quiz-badge {
   display: none !important;
 }
+
+
+/* ============================================================
+   HIGH-PERFORMANCE RENDERING (content-visibility & GPU Layers)
+   ============================================================ */
+.social-post-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 450px;
+  contain: content;
+}
+
+.titan-card,
+.radar-stream-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 280px;
+  contain: content;
+}
+
+.dynamic-island-capsule,
+.social-bottom-nav {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.timeline-pane {
+  contain: style layout;
+}

@@ -1,14 +1,12 @@
-// Service Worker for DailyPulse PWA
-const CACHE_NAME = 'dailypulse-v14';
+// Service Worker for DailyPulse PWA - High Speed Instant Cache v15
+const CACHE_NAME = 'dailypulse-v15';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
-  './icon.svg',
-  './icon-192.png',
-  './icon-512.png'
+  './icon.svg'
 ];
 
 self.addEventListener('install', (e) => {
@@ -31,21 +29,29 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// Network-First Strategy with Cache Fallback for Offline
+// Stale-While-Revalidate for Instant 0ms Load Times
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
+  // Only handle local origin requests
+  if (!e.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
   e.respondWith(
-    fetch(e.request)
-      .then((networkRes) => {
-        if (networkRes && networkRes.status === 200) {
-          const resClone = networkRes.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, resClone));
-        }
-        return networkRes;
-      })
-      .catch(() => {
-        return caches.match(e.request).then((cachedRes) => cachedRes || caches.match('./index.html'));
-      })
+    caches.match(e.request).then((cachedResponse) => {
+      const fetchPromise = fetch(e.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, responseClone));
+          }
+          return networkResponse;
+        })
+        .catch(() => cachedResponse);
+
+      // Return cached asset immediately in 0ms if present, otherwise fetch
+      return cachedResponse || fetchPromise;
+    })
   );
 });

@@ -7,6 +7,16 @@
 // ==========================================
 // 1. APPLICATION STATE
 // ==========================================
+
+const tabInitialized = {
+  feed: false,
+  titans: false,
+  radar: false,
+  quiz: false,
+  vault: false,
+  ai: false
+};
+
 const AppState = {
   activeTab: 'feed',
   currentCardIndex: 0,
@@ -613,20 +623,24 @@ const AppState = {
 // 2. INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Critical path only: Paint feed immediately (<15ms)
   initUserIdentity();
   initNavigation();
   initCategoryFilters();
   initDeck();
-  initTitansView();
-  initRadar();
-  initPulseAI();
-  initVault();
-  initQuizEngine();
   initSettingsModal();
   initPwaInstaller();
-  updateStreakUI();
-  updateXpUI();
-  fetchLiveRedditPosts();
+  tabInitialized.feed = true;
+
+  // 2. Defer non-critical tabs to browser idle period
+  const idleWarmup = window.requestIdleCallback || ((cb) => setTimeout(cb, 350));
+  idleWarmup(() => {
+    if (!tabInitialized.titans) { initTitansView(); tabInitialized.titans = true; }
+    if (!tabInitialized.radar) { initRadar(); tabInitialized.radar = true; }
+    if (!tabInitialized.quiz) { initQuizEngine(); tabInitialized.quiz = true; }
+    if (!tabInitialized.vault) { initVault(); tabInitialized.vault = true; }
+    if (!tabInitialized.ai) { initPulseAI(); tabInitialized.ai = true; }
+  });
 });
 
 // User Identity & Profile
@@ -705,6 +719,25 @@ function initNavigation() {
 
 function switchTab(tabName) {
   AppState.activeTab = tabName;
+
+  // Ensure target tab is initialized before displaying
+  if (tabName === 'titans' && !tabInitialized.titans) {
+    initTitansView();
+    tabInitialized.titans = true;
+  } else if (tabName === 'radar' && !tabInitialized.radar) {
+    initRadar();
+    tabInitialized.radar = true;
+    fetchLiveRedditPosts();
+  } else if (tabName === 'quiz' && !tabInitialized.quiz) {
+    initQuizEngine();
+    tabInitialized.quiz = true;
+  } else if (tabName === 'vault' && !tabInitialized.vault) {
+    initVault();
+    tabInitialized.vault = true;
+  } else if (tabName === 'ai' && !tabInitialized.ai) {
+    initPulseAI();
+    tabInitialized.ai = true;
+  }
 
   document.querySelectorAll('.timeline-pane').forEach(p => p.classList.remove('active'));
   const targetPane = document.getElementById(`pane-${tabName}`);
@@ -2012,7 +2045,13 @@ function initRadar() {
 
 async function fetchLiveRedditPosts() {
   try {
-    const res = await fetch('https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=4');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2200);
+
+    const res = await fetch('https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=4', {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
     if (!res.ok) return;
     const json = await res.json();
     const children = json.data.children;
