@@ -613,124 +613,61 @@ body {
 }
 
 /* ============================================================
-   INSTAGRAM STORIES BAR (Monochrome Frosted Glass Rings)
+   CLEAN DECK PROGRESS STRIP (Replaces Cluttered Story Bar)
    ============================================================ */
-.ig-stories-bar {
-  display: flex;
-  gap: 16px;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--glass-border);
-  overflow-x: auto;
-  scrollbar-width: none;
-  background: var(--glass-header);
-  backdrop-filter: blur(35px) saturate(200%);
-  -webkit-backdrop-filter: blur(35px) saturate(200%);
-}
-
-.ig-stories-bar::-webkit-scrollbar {
-  display: none;
-}
-
-.story-bubble {
+.deck-progress-strip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.35);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: var(--transition);
-  padding: 2px 4px;
 }
 
-.story-bubble:hover {
-  transform: translateY(-2px);
-}
-
-.story-ring {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  padding: 2.5px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.deck-progress-meta {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.4);
 }
 
-.story-bubble.viewed .story-ring {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: none;
-}
-
-.story-bubble.active-story .story-ring {
-  background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.35), #ffffff);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.9);
-  transform: scale(1.08);
-  animation: whiteRingActiveGlow 2.5s infinite ease-in-out;
-}
-
-@keyframes whiteRingActiveGlow {
-  0%, 100% {
-    box-shadow: 0 0 16px rgba(255, 255, 255, 0.45);
-    border-color: rgba(255, 255, 255, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 32px rgba(255, 255, 255, 0.95);
-    border-color: #ffffff;
-  }
-}
-
-.story-inner {
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(28px) saturate(200%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.45rem;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35);
-}
-
-.story-title {
-  font-size: 0.76rem;
-  color: #ffffff;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  white-space: nowrap;
-  text-align: center;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  transition: var(--transition);
-}
-
-.story-bubble:hover .story-title {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25);
-}
-
-.story-bubble.active-story .story-title {
-  color: #000000;
-  background: #ffffff;
-  border-color: #ffffff;
+.deck-topic-badge {
+  font-size: 0.86rem;
   font-weight: 800;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.85);
-  transform: scale(1.04);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.deck-percent-text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.deck-progress-bar-wrap {
+  width: 100%;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+.deck-progress-bar-fill {
+  height: 100%;
+  background: #ffffff;
+  border-radius: var(--radius-pill);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
 }
 
 /* ============================================================
@@ -805,7 +742,78 @@ body {
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), var(--glass-inset);
 }
 
-/* Post Header */
+/* Card Top Meta Bar (Clean Executive Layout) */
+.card-meta-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.cat-tag-icon {
+  font-size: 0.95rem;
+}
+
+.cat-tag-label {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.card-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-icon-action-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: var(--transition);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.card-icon-action-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.card-icon-action-btn.saved {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffb703;
+  color: #ffb703;
+}
+
+/* Legacy Post Header fallback if referenced */
 .post-author-row {
   display: flex;
   align-items: center;
@@ -1053,6 +1061,76 @@ body {
   font-size: 0.88rem;
   color: var(--text-primary);
   line-height: 1.5;
+}
+
+/* Card Action & Step Navigation Bar (Executive Layout) */
+.card-footer-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 4px;
+}
+
+.footer-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-footer-pill-btn {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: var(--transition);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.card-footer-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.card-footer-pill-btn.liked {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+.card-next-step-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 0.86rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35);
+}
+
+.card-next-step-btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.55);
 }
 
 /* Glass Social Action Bar */
@@ -1726,11 +1804,6 @@ body {
 
       <!-- TIMELINE VIEWPORT -->
       <main class="social-timeline">
-        
-        <!-- INSTAGRAM STORIES BAR -->
-        <div class="ig-stories-bar" id="storiesBar">
-          <!-- Dynamically populated story bubbles -->
-        </div>
 
         <!-- ================= PANE 1: HOME SOCIAL FEED (Daily Deck) ================= -->
         <section class="timeline-pane active" id="pane-feed">
@@ -1738,11 +1811,22 @@ body {
             
             <!-- Category Filter Pills -->
             <div class="category-filter-bar" id="categoryFilterBar">
-              <button class="category-pill active" data-cat="all">🌟 All Categories</button>
-              <button class="category-pill" data-cat="slang">🔥 Slang & Memes</button>
-              <button class="category-pill" data-cat="tech">💻 Tech & Coding</button>
-              <button class="category-pill" data-cat="reply">👔 Workplace English</button>
-              <button class="category-pill" data-cat="icon">👑 Icons & Titans</button>
+              <button class="category-pill active" data-cat="all">🌟 All</button>
+              <button class="category-pill" data-cat="slang">🔥 Slang Lore</button>
+              <button class="category-pill" data-cat="tech">💻 Tech & Code</button>
+              <button class="category-pill" data-cat="reply">👔 Workplace</button>
+              <button class="category-pill" data-cat="icon">👑 Titans</button>
+            </div>
+
+            <!-- Clean Deck Progress Strip (Replaces Cluttered Story Bar) -->
+            <div class="deck-progress-strip" id="deckProgressStrip">
+              <div class="deck-progress-meta">
+                <span class="deck-topic-badge" id="deckTopicBadge">⚡ Story 1 of 13: Cooked</span>
+                <span class="deck-percent-text" id="deckPercentText">8% Completed</span>
+              </div>
+              <div class="deck-progress-bar-wrap">
+                <div class="deck-progress-bar-fill" id="deckProgressBarFill" style="width: 8%;"></div>
+              </div>
             </div>
 
             <!-- Active Social Card Container -->
@@ -2308,7 +2392,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initUserIdentity();
   initNavigation();
   initCategoryFilters();
-  initStoriesBar();
   initDeck();
   initRadar();
   initPulseAI();
@@ -2402,7 +2485,7 @@ function switchTab(tabName) {
 }
 
 // ==========================================
-// 4. INSTAGRAM STORIES BAR & CATEGORY FILTERS
+// 4. CATEGORY FILTERS & DECK PROGRESS
 // ==========================================
 function getFilteredCards() {
   if (AppState.activeCategory === 'all') return AppState.dailyCards;
@@ -2417,53 +2500,48 @@ function initCategoryFilters() {
       pill.classList.add('active');
       AppState.activeCategory = pill.getAttribute('data-cat');
       AppState.currentCardIndex = 0;
-      initStoriesBar();
       renderActiveCard(0);
+      playSyntheticTone(640, 'sine', 0.05);
     });
   });
 }
 
-function initStoriesBar() {
-  const bar = document.getElementById('storiesBar');
-  const cards = getFilteredCards();
-  let html = '';
+function updateDeckProgressUI(index, total, card) {
+  const badge = document.getElementById('deckTopicBadge');
+  const percentText = document.getElementById('deckPercentText');
+  const fill = document.getElementById('deckProgressBarFill');
+  const stepLabel = document.getElementById('stepIndicatorLabel');
+  const prevBtn = document.getElementById('prevCardBtn');
+  const nextBtn = document.getElementById('nextCardBtn');
 
-  const icons = { slang: '🔥', trend: '⚡', reply: '💬', tech: '💻', icon: '👑' };
+  const percent = Math.round(((index + 1) / total) * 100);
+  if (badge) badge.innerHTML = `<span>⚡</span> Story ${index + 1} of ${total}: <strong>${card.topicTag || card.title}</strong>`;
+  if (percentText) percentText.textContent = `${percent}% Completed`;
+  if (fill) fill.style.width = `${percent}%`;
 
-  cards.forEach((card, idx) => {
-    const icon = icons[card.category] || '⚡';
-    const isFirst = idx === AppState.currentCardIndex;
-    html += `
-      <button class="story-bubble ${isFirst ? 'active-story' : ''}" data-idx="${idx}">
-        <div class="story-ring">
-          <div class="story-inner">${card.avatarEmoji || icon}</div>
-        </div>
-        <span class="story-title">${card.topicTag || card.title}</span>
-      </button>
-    `;
-  });
-
-  bar.innerHTML = html;
-
-  bar.querySelectorAll('.story-bubble').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.getAttribute('data-idx'));
-      AppState.currentCardIndex = idx;
-      renderActiveCard(idx);
-    });
-  });
+  if (stepLabel) stepLabel.textContent = `Story ${index + 1} of ${total}`;
+  if (prevBtn) prevBtn.disabled = index === 0;
+  if (nextBtn) nextBtn.textContent = index === total - 1 ? 'Finish Stories 🔥' : 'Next Story →';
 }
 
-function updateStoryRings(activeIdx) {
-  const storyBubbles = document.querySelectorAll('.story-bubble');
-  storyBubbles.forEach((b, idx) => {
-    b.classList.toggle('active-story', idx === activeIdx);
-    if (idx < activeIdx) b.classList.add('viewed');
-  });
+function getCategoryIcon(cat) {
+  const map = { slang: '🔥', trend: '⚡', reply: '💼', tech: '💻', icon: '👑' };
+  return map[cat] || '⚡';
+}
+
+function getCategoryLabel(cat) {
+  const map = {
+    slang: 'Internet Slang & Lore',
+    trend: 'Cultural Trend',
+    reply: 'Workplace Fluency',
+    tech: 'Developer Concept',
+    icon: 'Titan Profile'
+  };
+  return map[cat] || 'Daily Lore';
 }
 
 // ==========================================
-// 5. DAILY DECK FEED (Twitter + Reddit Post)
+// 5. DAILY DECK FEED (Navigation & Render)
 // ==========================================
 function initDeck() {
   const prevBtn = document.getElementById('prevCardBtn');
@@ -2471,24 +2549,28 @@ function initDeck() {
 
   prevBtn?.addEventListener('click', () => {
     if (AppState.currentCardIndex > 0) {
-      AppState.currentCardIndex--;
-      renderActiveCard(AppState.currentCardIndex);
-      playSyntheticTone(480, 'sine', 0.05);
+      navigateCard(AppState.currentCardIndex - 1);
     }
   });
 
   nextBtn?.addEventListener('click', () => {
-    const cards = getFilteredCards();
-    if (AppState.currentCardIndex < cards.length - 1) {
-      AppState.currentCardIndex++;
-      renderActiveCard(AppState.currentCardIndex);
-      playSyntheticTone(560, 'sine', 0.05);
-    } else {
-      completeDailyStories();
-    }
+    navigateCard(AppState.currentCardIndex + 1);
   });
 
   renderActiveCard(0);
+}
+
+function navigateCard(idx) {
+  const cards = getFilteredCards();
+  if (idx < 0) return;
+  if (idx >= cards.length) {
+    completeDailyStories();
+    return;
+  }
+  AppState.currentCardIndex = idx;
+  renderActiveCard(idx);
+  playSyntheticTone(560, 'sine', 0.05);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderActiveCard(index) {
@@ -2497,15 +2579,8 @@ function renderActiveCard(index) {
 
   const card = cards[index] || cards[0];
   const container = document.getElementById('activeSocialCardContainer');
-  const stepLabel = document.getElementById('stepIndicatorLabel');
-  const prevBtn = document.getElementById('prevCardBtn');
-  const nextBtn = document.getElementById('nextCardBtn');
 
-  updateStoryRings(index);
-
-  stepLabel.textContent = `Story ${index + 1} of ${cards.length}`;
-  prevBtn.disabled = index === 0;
-  nextBtn.textContent = index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →';
+  updateDeckProgressUI(index, cards.length, card);
 
   const isSaved = AppState.savedItems.some(i => i.title === card.title);
   const isLiked = AppState.likedCards[card.id] || false;
@@ -2569,65 +2644,58 @@ function renderActiveCard(index) {
   container.innerHTML = `
     <article class="social-post-card">
       
-      <!-- Post Author Row -->
-      <div class="post-author-row">
-        <div class="author-profile-block">
-          <div class="x-avatar" style="width:36px; height:36px; font-size:0.8rem;">${card.author.charAt(0)}</div>
-          <div class="author-meta">
-            <span class="author-name-line">
-              ${card.author} <span class="verified-badge">✓</span>
-            </span>
-            <span class="author-handle-sub">${card.handle} • ${card.time}</span>
-          </div>
+      <!-- Card Top Header Bar -->
+      <div class="card-meta-topbar">
+        <div class="card-category-tag">
+          <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
+          <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
         </div>
-        <span class="reddit-flair-badge">${card.flair}</span>
+        
+        <div class="card-top-actions">
+          <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
+            <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
+          </button>
+          <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
+            <span>🔊 Listen</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Headline -->
+      <!-- Card Title / Headline -->
       <h2 class="post-headline-text">${card.title}</h2>
 
-      <!-- Embed Box -->
+      <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
       ${bodyEmbedHtml}
 
-      <!-- Narrative -->
-      <div class="post-narrative">${card.explanation}</div>
+      <!-- Clean Lore & Guidance Breakdown -->
+      <div class="post-narrative">
+        ${card.explanation}
+      </div>
 
-      <!-- Twitter Style Community Note -->
+      <!-- Pulse AI Context Note -->
       <div class="x-community-note">
         <div class="note-header">
-          <span>🤖 Pulse AI Context Note</span>
+          <span>⚡ Pulse AI Context Note</span>
         </div>
         <div class="note-body">
-          Readers added context: Essential 2026 fluency & cultural lore. Verified by modern internet communities.
+          Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
         </div>
       </div>
 
-      <!-- Social Interaction Bar -->
-      <div class="social-action-bar">
-        
-        <!-- Reddit Vote Pill -->
-        <div class="rd-vote-pill">
-          <button class="vote-arrow-btn" onclick="upvoteCard(${index})">⬆️</button>
-          <span class="vote-number" id="voteCount-${index}">${formatVotes(currentVotes)}</span>
-          <button class="vote-arrow-btn" onclick="downvoteCard(${index})">⬇️</button>
-        </div>
-
-        <!-- Twitter Actions -->
-        <div class="x-interactions">
-          <button class="action-count-btn" onclick="askAiAboutCard('${card.title}')">
-            <span>💬</span> <span>${card.commentsCount}</span>
+      <!-- Card Action & Step Navigation Bar -->
+      <div class="card-footer-action-bar">
+        <div class="footer-left-actions">
+          <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
+            <span>${isLiked ? '❤️' : '🤍'}</span>
+            <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
           </button>
-          <button class="action-count-btn">
-            <span>🔁</span> <span>${card.repostsCount}</span>
-          </button>
-          <button class="action-count-btn like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
-            <span>${isLiked ? '❤️' : '🤍'}</span> <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
-          </button>
-          <button class="action-count-btn bookmark-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="Save to Vault">
-            <span>⭐</span>
+          <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title}')">
+            <span>🤖 Ask AI</span>
           </button>
         </div>
-
+        <button class="card-next-step-btn" onclick="navigateCard(${index + 1})">
+          <span>${index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →'}</span>
+        </button>
       </div>
 
     </article>

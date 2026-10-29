@@ -380,7 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initUserIdentity();
   initNavigation();
   initCategoryFilters();
-  initStoriesBar();
   initDeck();
   initRadar();
   initPulseAI();
@@ -474,7 +473,7 @@ function switchTab(tabName) {
 }
 
 // ==========================================
-// 4. INSTAGRAM STORIES BAR & CATEGORY FILTERS
+// 4. CATEGORY FILTERS & DECK PROGRESS
 // ==========================================
 function getFilteredCards() {
   if (AppState.activeCategory === 'all') return AppState.dailyCards;
@@ -489,53 +488,48 @@ function initCategoryFilters() {
       pill.classList.add('active');
       AppState.activeCategory = pill.getAttribute('data-cat');
       AppState.currentCardIndex = 0;
-      initStoriesBar();
       renderActiveCard(0);
+      playSyntheticTone(640, 'sine', 0.05);
     });
   });
 }
 
-function initStoriesBar() {
-  const bar = document.getElementById('storiesBar');
-  const cards = getFilteredCards();
-  let html = '';
+function updateDeckProgressUI(index, total, card) {
+  const badge = document.getElementById('deckTopicBadge');
+  const percentText = document.getElementById('deckPercentText');
+  const fill = document.getElementById('deckProgressBarFill');
+  const stepLabel = document.getElementById('stepIndicatorLabel');
+  const prevBtn = document.getElementById('prevCardBtn');
+  const nextBtn = document.getElementById('nextCardBtn');
 
-  const icons = { slang: '🔥', trend: '⚡', reply: '💬', tech: '💻', icon: '👑' };
+  const percent = Math.round(((index + 1) / total) * 100);
+  if (badge) badge.innerHTML = `<span>⚡</span> Story ${index + 1} of ${total}: <strong>${card.topicTag || card.title}</strong>`;
+  if (percentText) percentText.textContent = `${percent}% Completed`;
+  if (fill) fill.style.width = `${percent}%`;
 
-  cards.forEach((card, idx) => {
-    const icon = icons[card.category] || '⚡';
-    const isFirst = idx === AppState.currentCardIndex;
-    html += `
-      <button class="story-bubble ${isFirst ? 'active-story' : ''}" data-idx="${idx}">
-        <div class="story-ring">
-          <div class="story-inner">${card.avatarEmoji || icon}</div>
-        </div>
-        <span class="story-title">${card.topicTag || card.title}</span>
-      </button>
-    `;
-  });
-
-  bar.innerHTML = html;
-
-  bar.querySelectorAll('.story-bubble').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.getAttribute('data-idx'));
-      AppState.currentCardIndex = idx;
-      renderActiveCard(idx);
-    });
-  });
+  if (stepLabel) stepLabel.textContent = `Story ${index + 1} of ${total}`;
+  if (prevBtn) prevBtn.disabled = index === 0;
+  if (nextBtn) nextBtn.textContent = index === total - 1 ? 'Finish Stories 🔥' : 'Next Story →';
 }
 
-function updateStoryRings(activeIdx) {
-  const storyBubbles = document.querySelectorAll('.story-bubble');
-  storyBubbles.forEach((b, idx) => {
-    b.classList.toggle('active-story', idx === activeIdx);
-    if (idx < activeIdx) b.classList.add('viewed');
-  });
+function getCategoryIcon(cat) {
+  const map = { slang: '🔥', trend: '⚡', reply: '💼', tech: '💻', icon: '👑' };
+  return map[cat] || '⚡';
+}
+
+function getCategoryLabel(cat) {
+  const map = {
+    slang: 'Internet Slang & Lore',
+    trend: 'Cultural Trend',
+    reply: 'Workplace Fluency',
+    tech: 'Developer Concept',
+    icon: 'Titan Profile'
+  };
+  return map[cat] || 'Daily Lore';
 }
 
 // ==========================================
-// 5. DAILY DECK FEED (Twitter + Reddit Post)
+// 5. DAILY DECK FEED (Navigation & Render)
 // ==========================================
 function initDeck() {
   const prevBtn = document.getElementById('prevCardBtn');
@@ -543,24 +537,28 @@ function initDeck() {
 
   prevBtn?.addEventListener('click', () => {
     if (AppState.currentCardIndex > 0) {
-      AppState.currentCardIndex--;
-      renderActiveCard(AppState.currentCardIndex);
-      playSyntheticTone(480, 'sine', 0.05);
+      navigateCard(AppState.currentCardIndex - 1);
     }
   });
 
   nextBtn?.addEventListener('click', () => {
-    const cards = getFilteredCards();
-    if (AppState.currentCardIndex < cards.length - 1) {
-      AppState.currentCardIndex++;
-      renderActiveCard(AppState.currentCardIndex);
-      playSyntheticTone(560, 'sine', 0.05);
-    } else {
-      completeDailyStories();
-    }
+    navigateCard(AppState.currentCardIndex + 1);
   });
 
   renderActiveCard(0);
+}
+
+function navigateCard(idx) {
+  const cards = getFilteredCards();
+  if (idx < 0) return;
+  if (idx >= cards.length) {
+    completeDailyStories();
+    return;
+  }
+  AppState.currentCardIndex = idx;
+  renderActiveCard(idx);
+  playSyntheticTone(560, 'sine', 0.05);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function renderActiveCard(index) {
@@ -569,15 +567,8 @@ function renderActiveCard(index) {
 
   const card = cards[index] || cards[0];
   const container = document.getElementById('activeSocialCardContainer');
-  const stepLabel = document.getElementById('stepIndicatorLabel');
-  const prevBtn = document.getElementById('prevCardBtn');
-  const nextBtn = document.getElementById('nextCardBtn');
 
-  updateStoryRings(index);
-
-  stepLabel.textContent = `Story ${index + 1} of ${cards.length}`;
-  prevBtn.disabled = index === 0;
-  nextBtn.textContent = index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →';
+  updateDeckProgressUI(index, cards.length, card);
 
   const isSaved = AppState.savedItems.some(i => i.title === card.title);
   const isLiked = AppState.likedCards[card.id] || false;
@@ -641,65 +632,58 @@ function renderActiveCard(index) {
   container.innerHTML = `
     <article class="social-post-card">
       
-      <!-- Post Author Row -->
-      <div class="post-author-row">
-        <div class="author-profile-block">
-          <div class="x-avatar" style="width:36px; height:36px; font-size:0.8rem;">${card.author.charAt(0)}</div>
-          <div class="author-meta">
-            <span class="author-name-line">
-              ${card.author} <span class="verified-badge">✓</span>
-            </span>
-            <span class="author-handle-sub">${card.handle} • ${card.time}</span>
-          </div>
+      <!-- Card Top Header Bar -->
+      <div class="card-meta-topbar">
+        <div class="card-category-tag">
+          <span class="cat-tag-icon">${getCategoryIcon(card.category)}</span>
+          <span class="cat-tag-label">${getCategoryLabel(card.category)}</span>
         </div>
-        <span class="reddit-flair-badge">${card.flair}</span>
+        
+        <div class="card-top-actions">
+          <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
+            <span>${isSaved ? '⭐ Saved' : '☆ Save'}</span>
+          </button>
+          <button class="card-icon-action-btn" onclick="speakText('${(card.pronounceText || card.title).replace(/["']/g, '')}')" title="Listen to Pronunciation">
+            <span>🔊 Listen</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Headline -->
+      <!-- Card Title / Headline -->
       <h2 class="post-headline-text">${card.title}</h2>
 
-      <!-- Embed Box -->
+      <!-- The Centerpiece White Frosted Glass Comparison Box with Animated Glow -->
       ${bodyEmbedHtml}
 
-      <!-- Narrative -->
-      <div class="post-narrative">${card.explanation}</div>
+      <!-- Clean Lore & Guidance Breakdown -->
+      <div class="post-narrative">
+        ${card.explanation}
+      </div>
 
-      <!-- Twitter Style Community Note -->
+      <!-- Pulse AI Context Note -->
       <div class="x-community-note">
         <div class="note-header">
-          <span>🤖 Pulse AI Context Note</span>
+          <span>⚡ Pulse AI Context Note</span>
         </div>
         <div class="note-body">
-          Readers added context: Essential 2026 fluency & cultural lore. Verified by modern internet communities.
+          Essential fluency & cultural lore for 2026. Mastered by native speakers and digital creators.
         </div>
       </div>
 
-      <!-- Social Interaction Bar -->
-      <div class="social-action-bar">
-        
-        <!-- Reddit Vote Pill -->
-        <div class="rd-vote-pill">
-          <button class="vote-arrow-btn" onclick="upvoteCard(${index})">⬆️</button>
-          <span class="vote-number" id="voteCount-${index}">${formatVotes(currentVotes)}</span>
-          <button class="vote-arrow-btn" onclick="downvoteCard(${index})">⬇️</button>
-        </div>
-
-        <!-- Twitter Actions -->
-        <div class="x-interactions">
-          <button class="action-count-btn" onclick="askAiAboutCard('${card.title}')">
-            <span>💬</span> <span>${card.commentsCount}</span>
+      <!-- Card Action & Step Navigation Bar -->
+      <div class="card-footer-action-bar">
+        <div class="footer-left-actions">
+          <button class="card-footer-pill-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
+            <span>${isLiked ? '❤️' : '🤍'}</span>
+            <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
           </button>
-          <button class="action-count-btn">
-            <span>🔁</span> <span>${card.repostsCount}</span>
-          </button>
-          <button class="action-count-btn like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
-            <span>${isLiked ? '❤️' : '🤍'}</span> <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
-          </button>
-          <button class="action-count-btn bookmark-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="Save to Vault">
-            <span>⭐</span>
+          <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title}')">
+            <span>🤖 Ask AI</span>
           </button>
         </div>
-
+        <button class="card-next-step-btn" onclick="navigateCard(${index + 1})">
+          <span>${index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →'}</span>
+        </button>
       </div>
 
     </article>

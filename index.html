@@ -131,11 +131,6 @@
 
       <!-- TIMELINE VIEWPORT -->
       <main class="social-timeline">
-        
-        <!-- INSTAGRAM STORIES BAR -->
-        <div class="ig-stories-bar" id="storiesBar">
-          <!-- Dynamically populated story bubbles -->
-        </div>
 
         <!-- ================= PANE 1: HOME SOCIAL FEED (Daily Deck) ================= -->
         <section class="timeline-pane active" id="pane-feed">
@@ -143,11 +138,22 @@
             
             <!-- Category Filter Pills -->
             <div class="category-filter-bar" id="categoryFilterBar">
-              <button class="category-pill active" data-cat="all">🌟 All Categories</button>
-              <button class="category-pill" data-cat="slang">🔥 Slang & Memes</button>
-              <button class="category-pill" data-cat="tech">💻 Tech & Coding</button>
-              <button class="category-pill" data-cat="reply">👔 Workplace English</button>
-              <button class="category-pill" data-cat="icon">👑 Icons & Titans</button>
+              <button class="category-pill active" data-cat="all">🌟 All</button>
+              <button class="category-pill" data-cat="slang">🔥 Slang Lore</button>
+              <button class="category-pill" data-cat="tech">💻 Tech & Code</button>
+              <button class="category-pill" data-cat="reply">👔 Workplace</button>
+              <button class="category-pill" data-cat="icon">👑 Titans</button>
+            </div>
+
+            <!-- Clean Deck Progress Strip (Replaces Cluttered Story Bar) -->
+            <div class="deck-progress-strip" id="deckProgressStrip">
+              <div class="deck-progress-meta">
+                <span class="deck-topic-badge" id="deckTopicBadge">⚡ Story 1 of 13: Cooked</span>
+                <span class="deck-percent-text" id="deckPercentText">8% Completed</span>
+              </div>
+              <div class="deck-progress-bar-wrap">
+                <div class="deck-progress-bar-fill" id="deckProgressBarFill" style="width: 8%;"></div>
+              </div>
             </div>
 
             <!-- Active Social Card Container -->
