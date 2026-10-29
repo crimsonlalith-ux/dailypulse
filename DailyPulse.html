@@ -1,0 +1,3197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DailyPulse ⚡ - Culture, Trends & Fluency</title>
+  
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <style>
+/* ============================================================
+   DAILYPULSE ⚡ - Black & White Transparent Glassmorphism UI
+   Minimalist, ultra-clean Apple & VisionOS monochrome frosted glass
+   ============================================================ */
+
+:root {
+  /* Default: Black Transparent Glass (Dark Smoke) */
+  --app-bg: #000000;
+  --glass-card: rgba(255, 255, 255, 0.04);
+  --glass-card-hover: rgba(255, 255, 255, 0.08);
+  --glass-card-active: rgba(255, 255, 255, 0.12);
+  --glass-header: rgba(0, 0, 0, 0.75);
+  --glass-nav: rgba(0, 0, 0, 0.85);
+  --glass-embed: rgba(0, 0, 0, 0.6);
+  
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-border-hover: rgba(255, 255, 255, 0.22);
+  --glass-border-strong: rgba(255, 255, 255, 0.35);
+  
+  --glass-blur: blur(32px) saturate(180%);
+  --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  
+  --accent-btn-bg: #ffffff;
+  --accent-btn-text: #000000;
+  --accent-gold: #ffb703;
+  --accent-orange: #ff5722;
+  --accent-emerald: #10b981;
+
+  --font-social: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-pill: 9999px;
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* White Transparent Glass Theme (Frosted Ice / Pearl) */
+body.theme-white-glass {
+  --app-bg: #0a0c10;
+  --glass-card: rgba(255, 255, 255, 0.12);
+  --glass-card-hover: rgba(255, 255, 255, 0.18);
+  --glass-card-active: rgba(255, 255, 255, 0.24);
+  --glass-header: rgba(18, 22, 32, 0.65);
+  --glass-nav: rgba(18, 22, 32, 0.75);
+  --glass-embed: rgba(255, 255, 255, 0.06);
+  
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border-hover: rgba(255, 255, 255, 0.35);
+  --glass-border-strong: rgba(255, 255, 255, 0.5);
+  
+  --glass-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.55);
+}
+
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Pure Minimalist Ambient Monochrome Background */
+body {
+  background-color: var(--app-bg);
+  background-image: 
+    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(255, 255, 255, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text-primary);
+  font-family: var(--font-social);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease;
+}
+
+/* Custom Sleek Transparent Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Main Container Frame */
+.social-app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   TOP BAR (Minimalist Transparent Glass Header)
+   ============================================================ */
+.x-header {
+  height: 60px;
+  background: var(--glass-header);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  flex-shrink: 0;
+}
+
+.x-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.x-brand-logo {
+  font-size: 1.45rem;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.x-brand-sub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.x-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Transparent Download Pill */
+.download-pill-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.76rem;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: var(--glass-inset);
+}
+
+.download-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-1px);
+}
+
+/* Glass XP & Streak Pills */
+.xp-level-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-inset);
+}
+
+.streak-pill-social {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-inset);
+}
+
+.header-icon-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  box-shadow: var(--glass-inset);
+}
+
+.header-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   MAIN GRID & DESKTOP GLASS SIDEBAR
+   ============================================================ */
+.social-main-grid {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.x-desktop-nav {
+  display: none;
+  width: 260px;
+  background: var(--glass-header);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-right: 1px solid var(--glass-border);
+  padding: 18px 14px;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.x-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.x-nav-button {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  text-align: left;
+}
+
+.x-nav-button:hover {
+  background: var(--glass-card-hover);
+  color: #fff;
+  border-color: var(--glass-border);
+}
+
+.x-nav-button.active {
+  background: var(--glass-card-active);
+  border: 1px solid var(--glass-border-hover);
+  color: #fff;
+  box-shadow: var(--glass-inset);
+}
+
+.x-nav-button .nav-badge {
+  margin-left: auto;
+  font-size: 0.68rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+}
+
+.x-nav-button .quiz-badge {
+  margin-left: auto;
+  font-size: 0.68rem;
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+}
+
+.x-profile-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+}
+
+.x-profile-strip:hover {
+  background: var(--glass-card-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.x-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: var(--glass-inset);
+}
+
+.x-user-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.x-user-display {
+  font-weight: 700;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.verified-badge {
+  color: #fff;
+  font-size: 0.85rem;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.x-user-handle {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ============================================================
+   FEED TIMELINE VIEWPORT
+   ============================================================ */
+.social-timeline {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  border-right: 1px solid var(--glass-border);
+}
+
+.timeline-pane {
+  display: none;
+  animation: feedFade 0.22s ease-out;
+}
+
+.timeline-pane.active {
+  display: block;
+}
+
+@keyframes feedFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   INSTAGRAM STORIES BAR (Monochrome Frosted Glass Rings)
+   ============================================================ */
+.ig-stories-bar {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--glass-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--glass-header);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.ig-stories-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.story-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.story-ring {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.story-bubble.viewed .story-ring {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: transparent;
+}
+
+.story-bubble.active-story .story-ring {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  transform: scale(1.08);
+}
+
+.story-inner {
+  width: 100%;
+  height: 100%;
+  background: rgba(14, 16, 22, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.story-title {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  max-width: 65px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.story-bubble.active-story .story-title {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ============================================================
+   DAILY DECK: MONOCHROME GLASS CARDS
+   ============================================================ */
+.deck-feed-stream {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 18px 14px 80px 14px;
+}
+
+/* Category Filter Bar */
+.category-filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 14px;
+  scrollbar-width: none;
+}
+
+.category-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-pill {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  box-shadow: var(--glass-inset);
+}
+
+.category-pill:hover {
+  background: var(--glass-card-hover);
+  color: #fff;
+  border-color: var(--glass-border-hover);
+}
+
+.category-pill.active {
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* The Core Transparent Post Card */
+.social-post-card {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition);
+}
+
+.social-post-card:hover {
+  background: var(--glass-card-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), var(--glass-inset);
+}
+
+/* Post Header */
+.post-author-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-profile-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.author-name-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.96rem;
+  color: #fff;
+}
+
+.author-handle-sub {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.reddit-flair-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid var(--glass-border);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+}
+
+.post-headline-text {
+  font-size: 1.28rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* Transparent Slang vs Formal Embed Box */
+.slang-formal-embed {
+  background: var(--glass-embed);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--glass-inset);
+}
+
+.embed-quote-row {
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.embed-quote-row:first-child {
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.quote-label-tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.quote-label-tag.slang-color { color: rgba(255, 255, 255, 0.7); }
+.quote-label-tag.formal-color { color: #ffffff; }
+
+.quote-phrase-text {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sound-mini-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-primary);
+  flex-shrink: 0;
+  backdrop-filter: blur(8px);
+}
+
+.sound-mini-btn:hover {
+  background: #ffffff;
+  color: #000;
+  border-color: #fff;
+  transform: scale(1.08);
+}
+
+/* Glass Voice Practice Container */
+.voice-practice-container {
+  background: var(--glass-embed);
+  border: 1px dashed var(--glass-border-hover);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  backdrop-filter: blur(14px);
+}
+
+.voice-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.mic-record-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  color: #ffffff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+}
+
+.mic-record-btn.recording {
+  background: #ffffff;
+  color: #000;
+  animation: pulseMic 1.2s infinite ease-in-out;
+}
+
+@keyframes pulseMic {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); }
+  50% { transform: scale(1.12); box-shadow: 0 0 25px rgba(255, 255, 255, 0.9); }
+}
+
+.post-narrative {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.post-narrative strong {
+  color: #fff;
+}
+
+/* Transparent Community Note */
+.x-community-note {
+  background: var(--glass-embed);
+  border-left: 3px solid #ffffff;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--glass-border);
+  border-right: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.note-body {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* Glass Social Action Bar */
+.social-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.rd-vote-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-inset);
+}
+
+.vote-arrow-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.vote-arrow-btn:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.vote-number {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #fff;
+}
+
+.x-interactions {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.action-count-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.action-count-btn:hover {
+  color: #ffffff;
+}
+
+.action-count-btn.like-btn:hover, .action-count-btn.liked {
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+.action-count-btn.bookmark-btn.saved {
+  color: #ffb703;
+  filter: drop-shadow(0 0 6px rgba(255, 183, 3, 0.6));
+}
+
+/* Card Step Switcher (Bottom of Deck) */
+.deck-step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.feed-prev-btn, .feed-next-btn {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  box-shadow: var(--glass-inset);
+}
+
+.feed-prev-btn:hover:not(:disabled) {
+  background: var(--glass-card-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.feed-next-btn {
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+  border-color: #fff;
+  font-weight: 800;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.feed-next-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.feed-prev-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.step-indicator-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* ============================================================
+   TAB 2: RADAR - FROSTED STREAM CARDS
+   ============================================================ */
+.radar-timeline-stream {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 18px 14px 80px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.radar-filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.radar-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.radar-tab-pill {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+  box-shadow: var(--glass-inset);
+}
+
+.radar-tab-pill:hover {
+  background: var(--glass-card-hover);
+  color: #fff;
+  border-color: var(--glass-border-hover);
+}
+
+.radar-tab-pill.active {
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+  border-color: #fff;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.4);
+}
+
+.live-fetch-banner {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glass-inset);
+}
+
+.radar-stream-card {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+  transition: var(--transition);
+}
+
+.radar-stream-card:hover {
+  background: var(--glass-card-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+}
+
+.stream-card-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stream-author-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: #fff;
+}
+
+.stream-platform-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
+}
+
+.stream-title-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #fff;
+}
+
+.stream-body-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.stream-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.btn-ask-ai-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glass-border);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  box-shadow: var(--glass-inset);
+}
+
+.btn-ask-ai-pill:hover {
+  background: #ffffff;
+  color: #000;
+  border-color: #fff;
+}
+
+/* ============================================================
+   TAB 3: DM / PULSE AI TRANSPARENT MESSENGER
+   ============================================================ */
+.dm-chat-view {
+  max-width: 740px;
+  margin: 0 auto;
+  height: calc(100vh - 120px);
+  height: calc(100dvh - 120px);
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+}
+
+.dm-chat-stream {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.dm-bubble {
+  max-width: 82%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  box-shadow: var(--glass-shadow);
+}
+
+.dm-bubble.ai {
+  align-self: flex-start;
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--glass-inset);
+}
+
+.dm-bubble.user {
+  align-self: flex-end;
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  border-bottom-right-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.dm-composer-bar {
+  display: flex;
+  gap: 10px;
+  padding: 12px 0;
+}
+
+.dm-input {
+  flex: 1;
+  background: var(--glass-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: var(--glass-inset);
+  transition: var(--transition);
+}
+
+.dm-input:focus {
+  border-color: var(--glass-border-hover);
+  background: var(--glass-card-hover);
+}
+
+.dm-send-btn {
+  background: var(--accent-btn-bg);
+  color: var(--accent-btn-text);
+  border: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: var(--transition);
+}
+
+.dm-send-btn:hover {
+  transform: scale(1.08);
+}
+
+/* ============================================================
+   TAB 4: DAILY QUIZ TRANSPARENT GLASS CARDS
+   ============================================================ */
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 18px 14px 80px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quiz-card-box {
+  background: var(--glass-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--glass-shadow), var(--glass-inset);
+}
+
+.quiz-option-btn {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  color: #fff;
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: var(--transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--glass-inset);
+}
+
+.quiz-option-btn:hover {
+  border-color: var(--glass-border-hover);
+  background: var(--glass-card-hover);
+  transform: translateX(3px);
+}
+
+.quiz-option-btn.correct {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.quiz-option-btn.wrong {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================================
+   BOTTOM BAR (MOBILE FROSTED GLASS NAVIGATION)
+   ============================================================ */
+.social-bottom-nav {
+  height: 60px;
+  background: var(--glass-nav);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: sticky;
+  bottom: 0;
+  z-index: 200;
+  flex-shrink: 0;
+}
+
+.social-nav-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 6px 14px;
+}
+
+.social-nav-btn .icon {
+  font-size: 1.35rem;
+}
+
+.social-nav-btn.active {
+  color: #ffffff;
+}
+
+.social-nav-btn.active .icon {
+  transform: translateY(-2px);
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* ============================================================
+   SETTINGS MODAL
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.settings-card {
+  background: rgba(10, 12, 16, 0.8);
+  backdrop-filter: blur(35px) saturate(190%);
+  -webkit-backdrop-filter: blur(35px) saturate(190%);
+  border: 1px solid var(--glass-border-hover);
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 480px;
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), var(--glass-inset);
+}
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+/* ============================================================
+   MEDIA QUERIES (LAPTOP VS PHONE)
+   ============================================================ */
+@media (min-width: 900px) {
+  .x-desktop-nav {
+    display: flex;
+  }
+
+  .social-bottom-nav {
+    display: none;
+  }
+
+  .social-timeline {
+    border-left: 1px solid var(--glass-border);
+  }
+}
+
+/* ============================================================
+   INSTALL APP BUTTON & GLASS BANNER
+   ============================================================ */
+.install-pill-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
+}
+
+.install-pill-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+}
+
+.glass-install-banner {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  animation: fadeIn 0.4s ease-out;
+}
+
+.install-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.install-banner-icon {
+  font-size: 1.6rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.install-banner-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.install-banner-sub {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.install-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.banner-install-btn {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.banner-install-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.5);
+}
+
+.banner-close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: var(--transition);
+}
+
+.banner-close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.install-guide-box {
+  background: var(--glass-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+</style>
+</head>
+<body>
+  <div class="social-app-shell">
+    
+    <!-- TOP X-STYLE HEADER -->
+    <header class="x-header">
+      <div class="x-header-brand" id="brandLogoBtn">
+        <span class="x-brand-logo">⚡</span>
+        <div>
+          <span style="font-weight: 900; font-size: 1.15rem; color:#fff;">DailyPulse</span>
+          <span class="x-brand-sub">Trending Now</span>
+        </div>
+      </div>
+
+      <div class="x-header-actions">
+        <!-- Install App Pill Button -->
+        <button class="install-pill-btn" id="installAppBtn" title="Install DailyPulse to Phone Home Screen">
+          <span>📲 Install App</span>
+        </button>
+
+        <!-- 1-Click Download Link -->
+        <a href="DailyPulse-App.zip" download="DailyPulse-App.zip" class="download-pill-btn" title="1-Click Download App Package">
+          <span>📥 Download</span>
+        </a>
+
+        <!-- XP Level Pill -->
+        <div class="xp-level-pill" id="xpPill" title="Your Experience Points & Tier">
+          <span>⚡</span>
+          <span id="xpCount">150 XP</span>
+        </div>
+
+        <!-- Streak Pill -->
+        <div class="streak-pill-social" id="streakBadge" title="Daily Streak">
+          <span>🔥</span>
+          <span id="streakCount">1</span>
+        </div>
+
+        <!-- Audio Toggle -->
+        <button class="header-icon-btn" id="audioToggleBtn" title="Sound Effects & Speech Toggle">
+          <span id="audioIcon">🔊</span>
+        </button>
+
+        <!-- Theme Toggle (Black / White Transparent Glass) -->
+        <button class="header-icon-btn" id="themeToggleBtn" title="Toggle Black / White Glass Theme">
+          <span id="themeIcon">🌓</span>
+        </button>
+
+        <!-- Settings Gear -->
+        <button class="header-icon-btn" id="openSettingsBtn" title="Settings & Customization">
+          <span>⚙️</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN BODY GRID (Twitter Desktop Sidebar + Timeline Feed) -->
+    <div class="social-main-grid">
+      
+      <!-- DESKTOP LEFT NAVIGATION (Twitter / X Style) -->
+      <aside class="x-desktop-nav">
+        <div class="x-nav-menu">
+          <button class="x-nav-button active" data-tab="feed">
+            <span>🏠</span>
+            <span>Home Feed</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="radar">
+            <span>📡</span>
+            <span>Social Radar</span>
+            <span class="nav-badge">LIVE</span>
+          </button>
+
+          <button class="x-nav-button" data-tab="quiz">
+            <span>🎯</span>
+            <span>Daily Quiz</span>
+            <span class="quiz-badge">XP+</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="ai">
+            <span>🤖</span>
+            <span>Pulse AI</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="vault">
+            <span>⭐</span>
+            <span>Saved Lore</span>
+          </button>
+        </div>
+
+        <div class="x-profile-strip" id="profileStrip">
+          <div class="x-avatar" id="userAvatarText">LS</div>
+          <div class="x-user-meta">
+            <span class="x-user-display"><span id="userDisplayName">Lalith Sanjay</span> <span class="verified-badge">✓</span></span>
+            <span class="x-user-handle" id="userDisplayHandle">@lalithsanjay</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- TIMELINE VIEWPORT -->
+      <main class="social-timeline">
+        
+        <!-- INSTAGRAM STORIES BAR -->
+        <div class="ig-stories-bar" id="storiesBar">
+          <!-- Dynamically populated story bubbles -->
+        </div>
+
+        <!-- ================= PANE 1: HOME SOCIAL FEED (Daily Deck) ================= -->
+        <section class="timeline-pane active" id="pane-feed">
+          <div class="deck-feed-stream">
+            
+            <!-- Sleek Glass Install Banner -->
+            <div class="glass-install-banner" id="glassInstallBanner">
+              <div class="install-banner-left">
+                <span class="install-banner-icon">⚡</span>
+                <div>
+                  <div class="install-banner-title">Install DailyPulse App</div>
+                  <div class="install-banner-sub">Open directly from your phone home screen, full-screen 24/7</div>
+                </div>
+              </div>
+              <div class="install-banner-actions">
+                <button class="banner-install-btn" id="bannerInstallBtn">📲 Install</button>
+                <button class="banner-close-btn" id="bannerCloseBtn" title="Dismiss">✕</button>
+              </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="category-filter-bar" id="categoryFilterBar">
+              <button class="category-pill active" data-cat="all">🌟 All Categories</button>
+              <button class="category-pill" data-cat="slang">🔥 Slang & Memes</button>
+              <button class="category-pill" data-cat="tech">💻 Tech & Coding</button>
+              <button class="category-pill" data-cat="reply">👔 Workplace English</button>
+              <button class="category-pill" data-cat="icon">👑 Icons & Titans</button>
+            </div>
+
+            <!-- Active Social Card Container -->
+            <div id="activeSocialCardContainer"></div>
+
+            <!-- Bottom Step Navigator -->
+            <div class="deck-step-footer">
+              <button class="feed-prev-btn" id="prevCardBtn" disabled>← Previous</button>
+              <span class="step-indicator-label" id="stepIndicatorLabel">Story 1 of 5</span>
+              <button class="feed-next-btn" id="nextCardBtn">Next Story →</button>
+            </div>
+
+            <!-- Daily Completed Banner -->
+            <div class="social-post-card hidden" id="dailyCompleteCard" style="text-align: center; margin-top: 20px;">
+              <div style="font-size: 3rem;">🎉🔥</div>
+              <h2 style="font-size: 1.4rem;">Today's Stories Completed!</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                +50 XP Earned! You unlocked today's knowledge, polished your English, and locked in your streak.
+              </p>
+              <div style="margin-top: 14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <button class="feed-next-btn" id="goToQuizFromFeed" style="display:inline-block; padding: 10px 20px;">Take Daily Quiz 🎯 (+100 XP)</button>
+                <button class="feed-prev-btn" id="goToRadarFromFeed" style="display:inline-block; padding: 10px 20px;">Explore Social Radar 📡</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= PANE 2: SOCIAL RADAR STREAM ================= -->
+        <section class="timeline-pane" id="pane-radar">
+          <div class="radar-timeline-stream">
+            
+            <div class="live-fetch-banner">
+              <span>🔴 Live Radar Connected: Tracking Reddit, YouTube & Twitter discussions</span>
+              <button id="refreshRadarBtn" style="background:transparent; border:none; color:#a7f3d0; cursor:pointer; font-weight:700;">🔄 Refresh</button>
+            </div>
+
+            <div class="radar-filter-bar" id="radarFilters">
+              <button class="radar-tab-pill active" data-filter="all">⚡ All Posts</button>
+              <button class="radar-tab-pill" data-filter="youtube">▶️ YouTube</button>
+              <button class="radar-tab-pill" data-filter="reddit">🔴 Reddit (Live)</button>
+              <button class="radar-tab-pill" data-filter="twitter">🐦 Twitter / X</button>
+              <button class="radar-tab-pill" data-filter="news">🌍 World News</button>
+            </div>
+
+            <div id="radarFeedContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+
+          </div>
+        </section>
+
+        <!-- ================= PANE 3: DAILY QUIZ & XP FLASHCARDS ================= -->
+        <section class="timeline-pane" id="pane-quiz">
+          <div class="quiz-container">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h2 style="font-size: 1.4rem;">🎯 Daily Lore & Fluency Quiz</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Test what you learned today and earn up to +150 XP!</p>
+              </div>
+              <span id="quizScoreBadge" style="background:rgba(16,185,129,0.15); color:#10b981; font-weight:800; padding:6px 14px; border-radius:var(--radius-pill); font-size:0.85rem;">0 / 3 Done</span>
+            </div>
+
+            <div id="quizStageBox" class="quiz-card-box">
+              <!-- Dynamically populated quiz question -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANE 4: PULSE AI DIRECT MESSAGES ================= -->
+        <section class="timeline-pane" id="pane-ai">
+          <div class="dm-chat-view">
+            <div style="padding-bottom: 8px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 1.1rem; color: #fff;">Pulse AI <span class="verified-badge">✓</span></h3>
+                <span style="font-size: 0.75rem; color: #10b981;">Online • Trend & English Mentor</span>
+              </div>
+              <button id="clearChatBtn" style="background:transparent; border:1px solid var(--x-border); color:var(--text-muted); padding:4px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor:pointer;">Clear</button>
+            </div>
+
+            <div class="dm-chat-stream" id="chatLog">
+              <div class="dm-bubble ai">
+                <strong>Yo Lalith! 👋 Welcome to Pulse AI.</strong><br>
+                Ask me about any meme, decode internet slang, or paste a sentence and ask me to polish it for professional or casual talk!
+              </div>
+            </div>
+
+            <div class="dm-composer-bar">
+              <input type="text" id="aiInput" class="dm-input" placeholder="Ask about a trend, decode slang, or polish English..." autocomplete="off">
+              <button id="sendAiBtn" class="dm-send-btn" title="Send message">➤</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANE 5: SAVED LORE VAULT ================= -->
+        <section class="timeline-pane" id="pane-vault">
+          <div style="max-width: 680px; margin: 0 auto; padding: 20px 14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 14px;">
+              <div>
+                <h2 style="font-size: 1.4rem;">⭐ Saved Lore & Knowledge</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Phrases and trends you bookmarked.</p>
+              </div>
+              <button id="exportLoreBtn" style="background:rgba(29,155,240,0.12); border:1px solid var(--x-blue); color:var(--x-blue); padding:6px 12px; border-radius:var(--radius-pill); font-size:0.8rem; font-weight:700; cursor:pointer;">📥 Export</button>
+            </div>
+            <div id="vaultList" style="display: flex; flex-direction: column; gap: 10px;"></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav class="social-bottom-nav">
+      <button class="social-nav-btn active" data-tab="feed">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="radar">
+        <span class="icon">📡</span>
+        <span>Radar</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="quiz">
+        <span class="icon">🎯</span>
+        <span>Quiz</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="ai">
+        <span class="icon">🤖</span>
+        <span>AI</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="vault">
+        <span class="icon">⭐</span>
+        <span>Saved</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="settings-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--x-border); padding-bottom:12px;">
+        <h3 style="color:#fff; font-size:1.2rem;">⚙️ App Settings</h3>
+        <button id="closeSettingsBtn" style="background:transparent; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Display Name</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Change your profile name</span>
+        </div>
+        <input type="text" id="settingNameInput" class="dm-input" style="width:160px; padding:6px 12px; font-size:0.85rem;" value="Lalith Sanjay" />
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Sound & Audio Effects</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Hear likes, speech, and chimes</span>
+        </div>
+        <input type="checkbox" id="settingSoundToggle" checked style="width:20px; height:20px; accent-color:var(--x-blue); cursor:pointer;" />
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Audio Pronunciation Speed</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Speech rate for English practice</span>
+        </div>
+        <select id="settingSpeechRate" class="dm-input" style="width:120px; padding:6px; font-size:0.85rem;">
+          <option value="0.8">0.8x (Slow)</option>
+          <option value="0.95" selected>1.0x (Normal)</option>
+          <option value="1.2">1.2x (Fast)</option>
+        </select>
+      </div>
+
+      <div style="border-top:1px solid var(--x-border); padding-top:12px; display:flex; justify-content:flex-end;">
+        <button id="saveSettingsBtn" class="feed-next-btn" style="padding:8px 20px;">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTALL APP MODAL GUIDE -->
+  <div class="modal-backdrop" id="installModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="margin:0; font-size:1.15rem; display:flex; align-items:center; gap:8px;">
+          <span>📲</span> Install DailyPulse on Your Phone
+        </h3>
+        <button class="modal-close" id="closeInstallModal">✕</button>
+      </div>
+
+      <div style="padding:16px 0; display:flex; flex-direction:column; gap:14px;">
+        <!-- Android Chrome Guide -->
+        <div class="install-guide-box">
+          <div style="font-weight:700; font-size:0.95rem; margin-bottom:6px; display:flex; align-items:center; gap:6px; color:#ffffff;">
+            <span>🤖</span> For Android (Google Chrome):
+          </div>
+          <ol style="margin:0; padding-left:20px; font-size:0.86rem; line-height:1.6; color:var(--text-secondary);">
+            <li>Tap the <strong>3 vertical dots (⋮)</strong> in the top-right corner of Chrome.</li>
+            <li>Tap <strong>"Install app"</strong> (or <strong>"Add to Home screen"</strong>).</li>
+            <li>Tap <strong>"Install"</strong> to confirm.</li>
+            <li>DailyPulse is now installed on your phone home screen and opens full-screen!</li>
+          </ol>
+        </div>
+
+        <!-- iPhone Safari Guide -->
+        <div class="install-guide-box">
+          <div style="font-weight:700; font-size:0.95rem; margin-bottom:6px; display:flex; align-items:center; gap:6px; color:#ffffff;">
+            <span>🍎</span> For iPhone (Safari):
+          </div>
+          <ol style="margin:0; padding-left:20px; font-size:0.86rem; line-height:1.6; color:var(--text-secondary);">
+            <li>Tap the <strong>Share</strong> button (box with upward arrow) at the bottom.</li>
+            <li>Scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
+            <li>Tap <strong>"Add"</strong> in the top right.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--glass-border); padding-top:12px; display:flex; justify-content:flex-end;">
+        <button id="gotItInstallBtn" class="feed-next-btn" style="padding:8px 24px;">Got It 👍</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
+  <script>
+/**
+ * DAILYPULSE ⚡ - Complete Interactive Social Engine
+ * Features: 15+ Expanded Cards, Voice Speech Recognition, Live Reddit API,
+ * Daily Quiz & XP Gamification, Web Audio Synthesizer, Settings & Lore Export.
+ */
+
+// ==========================================
+// 1. APPLICATION STATE
+// ==========================================
+const AppState = {
+  activeTab: 'feed',
+  currentCardIndex: 0,
+  activeCategory: 'all',
+  streak: parseInt(localStorage.getItem('dp_streak') || '1'),
+  xp: parseInt(localStorage.getItem('dp_xp') || '150'),
+  lastCompletedDate: localStorage.getItem('dp_last_completed') || '',
+  savedItems: JSON.parse(localStorage.getItem('dp_saved') || '[]'),
+  soundEnabled: localStorage.getItem('dp_sound') !== 'false',
+  speechRate: parseFloat(localStorage.getItem('dp_speech_rate') || '0.95'),
+  userName: localStorage.getItem('dp_user_name') || 'Lalith Sanjay',
+  radarFilter: 'all',
+  glassTheme: localStorage.getItem('dp_glass_theme') || 'black',
+  likedCards: JSON.parse(localStorage.getItem('dp_likes') || '{}'),
+  cardVotes: { 0: 4210, 1: 8940, 2: 3120, 3: 15400, 4: 9820, 5: 6420, 6: 11200, 7: 8400, 8: 5120, 9: 14500, 10: 9300, 11: 18900, 12: 21300 },
+  currentQuizIndex: 0,
+  quizScore: 0,
+
+  // 13 Rich Dynamic Cards across categories
+  dailyCards: [
+    {
+      id: 'story-0',
+      category: 'slang',
+      author: 'Internet Culture Lab',
+      handle: '@culturelore',
+      flair: 'r/SlangLore',
+      time: '3h ago',
+      title: 'Describing Total Exhaustion or Failure',
+      slangPhrase: '"Bro, I am completely cooked."',
+      formalPhrase: '"I am feeling thoroughly overwhelmed and unprepared."',
+      pronounceText: 'I am feeling thoroughly overwhelmed and unprepared',
+      explanation: '<strong>When to use "Cooked":</strong> Popularized by streamers and gaming. Use when something is ruined, hopeless, or when you are mentally exhausted.<br><br><strong>When to use Formal:</strong> Use in professional or academic settings to communicate heavy workload without sounding immature.',
+      commentsCount: 382,
+      repostsCount: '1.4k',
+      likesCount: 5210
+    },
+    {
+      id: 'story-1',
+      category: 'slang',
+      author: 'Pop Culture Radar',
+      handle: '@popradar',
+      flair: 'r/AestheticTrends',
+      time: '5h ago',
+      title: 'Why "Brat Summer" Dominated Modern Aesthetics',
+      pronounceText: 'Brat Summer represents messy, unapologetic confidence',
+      explanation: '<strong>The Core Breakdown:</strong> Started by Charli XCX\'s lime-green album. It rejected the polished "clean-girl" perfection in favor of loud music, messy hair, late nights, and unapologetic self-confidence.<br><br><strong>Key Vocabulary:</strong> <em>Unapologetic</em> (not feeling sorry for being yourself), <em>Aesthetic</em> (visual style or mood).',
+      commentsCount: 940,
+      repostsCount: '4.8k',
+      likesCount: 18400
+    },
+    {
+      id: 'story-2',
+      category: 'reply',
+      author: 'Corporate & Life Fluency',
+      handle: '@careerpolish',
+      flair: 'r/WorkplaceHumor',
+      time: '6h ago',
+      title: 'Polite Workplace Boundary Challenge',
+      scenario: '👉 <strong>Scenario:</strong> A colleague messages you at 8:15 PM asking for a task update. You want to decline politely without working overtime. What would you say?',
+      explanation: '<strong>The Golden Rule:</strong> Never apologize for logging off on time. Acknowledge receipt, set a clear time window for tomorrow, and log off with confidence.',
+      commentsCount: 420,
+      repostsCount: '980',
+      likesCount: 4120
+    },
+    {
+      id: 'story-3',
+      category: 'tech',
+      author: 'Frontend Developers Hub',
+      handle: '@webdevlore',
+      flair: 'r/ProgrammerHumor',
+      time: '8h ago',
+      title: 'Why "Centering a Div" is Computer Science\'s Biggest Meme',
+      pronounceText: 'Centering a div in CSS is easier now with flexbox and grid',
+      explanation: '<strong>The Problem:</strong> Historically in CSS, centering a box both horizontally and vertically required math hacks, negative margins, and position absolute.<br><br><strong>The Modern 2-Line Flex:</strong><br><code>display: grid; place-items: center;</code><br>Put this on the parent box, and the 20-year-old internet joke is solved!',
+      commentsCount: 1640,
+      repostsCount: '6.2k',
+      likesCount: 24900
+    },
+    {
+      id: 'story-4',
+      category: 'icon',
+      author: 'Silicon Valley Dossier',
+      handle: '@techfoundry',
+      flair: 'r/TechTitans',
+      time: '12h ago',
+      title: 'Jensen Huang (The Man Powering Global AI)',
+      role: 'CEO & Co-founder of NVIDIA',
+      avatarEmoji: '🧥',
+      pronounceText: 'Jensen Huang is the CEO of Nvidia, powering modern artificial intelligence',
+      explanation: '<strong>The Profile:</strong> Started Nvidia making chips for 3D PC games. Today, his AI processors (H100, Blackwell) run almost every large language model in the world.<br><br><strong>The Lore:</strong> Wears a black motorcycle leather jacket to every single keynote and press conference on Earth!',
+      commentsCount: 810,
+      repostsCount: '3.1k',
+      likesCount: 14200
+    },
+    {
+      id: 'story-5',
+      category: 'slang',
+      author: 'Viral Trend Archive',
+      handle: '@trendpulse',
+      flair: 'r/MemeEtiquette',
+      time: '14h ago',
+      title: '"Very Demure, Very Mindful" (The Irony Trend)',
+      slangPhrase: '"Notice how I stay calm and cute? Very demure. Very mindful."',
+      formalPhrase: '"I prioritize composure, elegance, and understated professionalism."',
+      pronounceText: 'Very demure, very mindful represents ironical modesty',
+      explanation: '<strong>The Origin:</strong> Started by TikTok creator Jools Lebron. It\'s used ironically to mock people who act overly exaggerated or try too hard to look innocent and modest in everyday chaotic situations.',
+      commentsCount: 520,
+      repostsCount: '2.1k',
+      likesCount: 9400
+    },
+    {
+      id: 'story-6',
+      category: 'slang',
+      author: 'Gen Z Psychology Lab',
+      handle: '@humorlogic',
+      flair: 'r/Me_IRL',
+      time: '16h ago',
+      title: '"Girl Math" vs. "Boy Math" (Irrational Financial Logic)',
+      slangPhrase: '"If I pay with cash, it\'s basically free."',
+      formalPhrase: '"Perceived sunk costs often lead to irrational post-purchase rationalization."',
+      pronounceText: 'Girl math and boy math are hilarious examples of cognitive bias',
+      explanation: '<strong>The Meme:</strong> Humorous viral justifications for spending money. Examples: *"Returning a $50 shirt means I just made $50 profit"* or *"Walking 3 miles in the rain to avoid a $4 parking ticket"* (Boy Math).',
+      commentsCount: 780,
+      repostsCount: '3.9k',
+      likesCount: 16200
+    },
+    {
+      id: 'story-7',
+      category: 'tech',
+      author: 'DevOps & Git Survivors',
+      handle: '@gitpanic',
+      flair: 'r/ProgrammerHumor',
+      time: '18h ago',
+      title: 'The Friday 4:55 PM Git Merge Conflict',
+      pronounceText: 'Git merge conflicts occur when two branches modify the same lines of code',
+      explanation: '<strong>The Panic:</strong> When two developers edit the same file, Git stops and demands human intervention. Senior developers use <code>git stash</code> and <code>git reflog</code> to rescue lost code from catastrophic mistakes.',
+      commentsCount: 1120,
+      repostsCount: '4.1k',
+      likesCount: 19800
+    },
+    {
+      id: 'story-8',
+      category: 'reply',
+      author: 'Executive Presence Coach',
+      handle: '@leadfluent',
+      flair: 'r/CareerAdvancement',
+      time: '20h ago',
+      title: 'How to Ask for a Deadline Extension Professionally',
+      scenario: '👉 <strong>Scenario:</strong> You realize you cannot finish a project report by 5:00 PM today without sacrificing quality. How do you request an extension from your manager?',
+      explanation: '<strong>Key Strategy:</strong> Never make excuses. State the current progress, why quality requires more time, and give a firm, guaranteed completion time for tomorrow.',
+      commentsCount: 310,
+      repostsCount: '890',
+      likesCount: 3800
+    },
+    {
+      id: 'story-9',
+      category: 'icon',
+      author: 'AI Horizon Dossier',
+      handle: '@aimasters',
+      flair: 'r/Singularity',
+      time: '1d ago',
+      title: 'Sam Altman (The Architect of ChatGPT)',
+      role: 'CEO & Co-founder of OpenAI',
+      avatarEmoji: '🤖',
+      pronounceText: 'Sam Altman leads OpenAI in building artificial general intelligence',
+      explanation: '<strong>The Story:</strong> Former president of Y Combinator who launched ChatGPT in late 2022, kicking off the global AI revolution. Famous for his quiet voice, gray t-shirts, and massive ambitions for AGI.',
+      commentsCount: 1450,
+      repostsCount: '5.9k',
+      likesCount: 22100
+    },
+    {
+      id: 'story-10',
+      category: 'slang',
+      author: 'Internet Anthropology',
+      handle: '@brainrotdecoded',
+      flair: 'r/PeterExplains',
+      time: '1d ago',
+      title: '"Mewing" and "Looksmaxxing" Culture',
+      slangPhrase: '"Bro is strictly mewing to mog the entire lecture hall."',
+      formalPhrase: '"He is demonstrating intense facial posture to optimize jawline aesthetics."',
+      pronounceText: 'Mewing is the practice of resting the tongue on the roof of the mouth',
+      explanation: '<strong>The Lore:</strong> Originally an orthodontic tongue posture technique, it became a massive high school and college meme where students put a finger to their lips and point to their jaw to avoid answering questions.',
+      commentsCount: 920,
+      repostsCount: '3.4k',
+      likesCount: 13800
+    },
+    {
+      id: 'story-11',
+      category: 'icon',
+      author: 'Champions League Lore',
+      handle: '@uclhistory',
+      flair: 'r/Soccer',
+      time: '2d ago',
+      title: 'Why Real Madrid Has "Black Magic" in Finals',
+      role: '15-Time European Champions',
+      avatarEmoji: '⚽',
+      pronounceText: 'Real Madrid has won fifteen UEFA Champions League titles',
+      explanation: '<strong>The Lore:</strong> Football fans joke that Real Madrid obeys no laws of physics. They can play terribly for 85 minutes, look completely defeated, and score 2 miracle goals in 3 minutes to steal the trophy. Fans call it "UCL DNA".',
+      commentsCount: 2400,
+      repostsCount: '8.1k',
+      likesCount: 31200
+    },
+    {
+      id: 'story-12',
+      category: 'icon',
+      author: 'Streaming & Creator Pulse',
+      handle: '@streamwire',
+      flair: 'r/LivestreamFail',
+      time: '2d ago',
+      title: 'IShowSpeed (The Chaotic Global Sensation)',
+      role: 'Viral Streamer & YouTube Creator',
+      avatarEmoji: '⚡',
+      pronounceText: 'IShowSpeed is famous for high-energy travel streams and Cristiano Ronaldo fandom',
+      explanation: '<strong>The Phenomenon:</strong> From barking at cameras in his bedroom to traveling through Europe, Asia, and Brazil drawing crowds of 50,000 screaming fans in streets. His wild devotion to Cristiano Ronaldo is an internet institution.',
+      commentsCount: 3100,
+      repostsCount: '12.4k',
+      likesCount: 42100
+    }
+  ],
+
+  // Daily Quiz Questions
+  quizQuestions: [
+    {
+      question: 'What does saying "I am completely cooked" mean in casual internet conversation?',
+      options: [
+        'I just finished eating a heavy meal.',
+        'I am doomed, overwhelmed, or hopeless in this situation.',
+        'I am feeling extremely energetic and motivated.',
+        'I am working as a professional chef.'
+      ],
+      correctIndex: 1,
+      explanation: '"Cooked" is modern slang for being completely done for, ruined, or overwhelmed.'
+    },
+    {
+      question: 'Which modern 2-line CSS code centers a box both horizontally and vertically?',
+      options: [
+        'float: center; margin: auto;',
+        'display: grid; place-items: center;',
+        'text-align: middle; position: absolute;',
+        'align: center; justify: center;'
+      ],
+      correctIndex: 1,
+      explanation: 'CSS Grid with "place-items: center" solves both horizontal and vertical centering simultaneously.'
+    },
+    {
+      question: 'What is the golden rule when a colleague messages you at 8:15 PM?',
+      options: [
+        'Apologize deeply and start working on it immediately.',
+        'Ignore it completely and pretend you never saw it.',
+        'Acknowledge politely, state you will review during morning hours, and log off.',
+        'Reply angrily and block their phone number.'
+      ],
+      correctIndex: 2,
+      explanation: 'Setting a clear, polite boundary without apologizing maintains healthy professionalism.'
+    }
+  ],
+
+  // Radar Posts (Curated + Live Reddit integration)
+  radarFeeds: [
+    {
+      id: 'rad-1',
+      platform: 'youtube',
+      platformIcon: 'yt',
+      platformLabel: 'YouTube',
+      author: 'Fireship',
+      handle: '@Fireship',
+      title: 'The Code Report: New AI Models Shatter Coding Benchmarks',
+      summary: 'A 2-minute meme-filled breakdown of the newest models and why developers are joking about prompt engineering.',
+      metric: '🔥 850K Views • 12h ago',
+      link: 'https://www.youtube.com/@Fireship',
+      aiPrompt: 'Explain what Fireship talks about in The Code Report and what key tech terms I should learn.'
+    },
+    {
+      id: 'rad-2',
+      platform: 'youtube',
+      platformIcon: 'yt',
+      platformLabel: 'YouTube',
+      author: 'Lessons in Meme Culture',
+      handle: '@LessonsInMemeCulture',
+      title: 'Why Everyone on TikTok is Saying "Crash Out"',
+      summary: 'A 4-minute documentary decoding the origins of crashing out, gaming rage, and modern internet reactions.',
+      metric: '🔥 1.2M Views • 1d ago',
+      link: 'https://www.youtube.com/@LessonsInMemeCulture',
+      aiPrompt: 'Explain the phrase crash out, where it came from, and give me 3 examples of using it casually.'
+    },
+    {
+      id: 'rad-3',
+      platform: 'reddit',
+      platformIcon: 'rd',
+      platformLabel: 'Reddit',
+      author: 'r/ProgrammerHumor',
+      handle: 'u/CodeJester',
+      title: 'Senior Dev: "Our architecture is robust." The code: (Holding on with tape)',
+      summary: 'Viral thread with 12,000 upvotes laughing about technical debt and temporary fixes in multi-billion dollar apps.',
+      metric: '⬆️ 12.4k Upvotes • 480 Comments',
+      link: 'https://www.reddit.com/r/ProgrammerHumor/',
+      aiPrompt: 'Explain what technical debt means in software development and why developers joke about duct tape code.'
+    },
+    {
+      id: 'rad-4',
+      platform: 'reddit',
+      platformIcon: 'rd',
+      platformLabel: 'Reddit',
+      author: 'r/me_irl',
+      handle: 'u/NightOwl99',
+      title: 'Me at 11 PM: "I will sleep early." Me at 3 AM reading about ancient Roman water systems:',
+      summary: 'Top relatable post highlighting revenge bedtime procrastination and midnight internet rabbit holes.',
+      metric: '⬆️ 19.8k Upvotes • 620 Comments',
+      link: 'https://www.reddit.com/r/me_irl/',
+      aiPrompt: 'Explain what revenge bedtime procrastination means and why young people joke about this.'
+    },
+    {
+      id: 'rad-5',
+      platform: 'twitter',
+      platformIcon: 'tw',
+      platformLabel: 'Twitter / X',
+      author: 'Pop Base',
+      handle: '@PopBase',
+      title: 'Travis Scott & Billie Eilish Surprise Fans with Collab Rumor',
+      summary: 'Viral tweet with 40,000 quote tweets debating whether a moody alt-pop ballad mixed with heavy trap 808s could work.',
+      metric: '🔁 42k Retweets • 180k Likes',
+      link: 'https://x.com/PopBase',
+      aiPrompt: 'Tell me about Billie Eilish and Travis Scott and what makes their musical styles so contrasting.'
+    },
+    {
+      id: 'rad-6',
+      platform: 'twitter',
+      platformIcon: 'tw',
+      platformLabel: 'Twitter / X',
+      author: 'Context Clowns',
+      handle: '@ContextClowns',
+      title: 'Corporate Brand Gets Savage Community Note After Boasting About 80-Hour Workweeks',
+      summary: 'A founder praised working 18 hours a day, only for Community Notes to link studies showing severe productivity collapse after 50 hours.',
+      metric: '🎯 85k Likes • Ratioed',
+      link: 'https://x.com/',
+      aiPrompt: 'Explain what getting Ratioed and Community Noted means on Twitter/X.'
+    },
+    {
+      id: 'rad-7',
+      platform: 'news',
+      platformIcon: 'nw',
+      platformLabel: 'World News',
+      author: 'Global Tech Wire',
+      handle: '@TechWire',
+      title: 'Next-Gen Quantum & Neural Processors Announced for Mobile Devices',
+      summary: 'Major hardware makers reveal on-device AI processors capable of running heavy speech synthesis and visual comprehension without internet.',
+      metric: '⚡ Real-World Brief',
+      link: 'https://news.google.com',
+      aiPrompt: 'Explain the difference between on-device AI and cloud AI in simple terms for beginners.'
+    }
+  ]
+};
+
+// ==========================================
+// 2. INITIALIZATION
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  initUserIdentity();
+  initNavigation();
+  initCategoryFilters();
+  initStoriesBar();
+  initDeck();
+  initRadar();
+  initPulseAI();
+  initVault();
+  initQuizEngine();
+  initSettingsModal();
+  initPwaInstaller();
+  updateStreakUI();
+  updateXpUI();
+  fetchLiveRedditPosts();
+});
+
+// User Identity & Profile
+function initUserIdentity() {
+  document.getElementById('userDisplayName').textContent = AppState.userName;
+  const handle = '@' + AppState.userName.toLowerCase().replace(/\s+/g, '');
+  document.getElementById('userDisplayHandle').textContent = handle;
+  const initials = AppState.userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  document.getElementById('userAvatarText').textContent = initials;
+}
+
+// ==========================================
+// 3. NAVIGATION (Desktop & Mobile)
+// ==========================================
+function initNavigation() {
+  const allNavButtons = document.querySelectorAll('.x-nav-button, .social-nav-btn');
+
+  allNavButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+
+  document.getElementById('brandLogoBtn')?.addEventListener('click', () => switchTab('feed'));
+  document.getElementById('goToRadarFromFeed')?.addEventListener('click', () => switchTab('radar'));
+  document.getElementById('goToQuizFromFeed')?.addEventListener('click', () => switchTab('quiz'));
+
+  // Audio Toggle
+  const audioBtn = document.getElementById('audioToggleBtn');
+  audioBtn?.addEventListener('click', () => {
+    AppState.soundEnabled = !AppState.soundEnabled;
+    localStorage.setItem('dp_sound', AppState.soundEnabled);
+    document.getElementById('audioIcon').textContent = AppState.soundEnabled ? '🔊' : '🔇';
+    playSyntheticTone(AppState.soundEnabled ? 659.25 : 300, 'sine', 0.1);
+  });
+
+  // Theme Switcher (Black Transparent Glass vs White Transparent Glass)
+  const themeBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  if (AppState.glassTheme === 'white') {
+    document.body.classList.add('theme-white-glass');
+    if (themeIcon) themeIcon.textContent = '❄️';
+  }
+
+  themeBtn?.addEventListener('click', () => {
+    AppState.glassTheme = AppState.glassTheme === 'black' ? 'white' : 'black';
+    localStorage.setItem('dp_glass_theme', AppState.glassTheme);
+    document.body.classList.toggle('theme-white-glass', AppState.glassTheme === 'white');
+    if (themeIcon) themeIcon.textContent = AppState.glassTheme === 'white' ? '❄️' : '🌓';
+    playSyntheticTone(AppState.glassTheme === 'white' ? 880 : 440, 'sine', 0.08);
+  });
+}
+
+function switchTab(tabName) {
+  AppState.activeTab = tabName;
+
+  document.querySelectorAll('.timeline-pane').forEach(p => p.classList.remove('active'));
+  const targetPane = document.getElementById(`pane-${tabName}`);
+  if (targetPane) targetPane.classList.add('active');
+
+  document.querySelectorAll('.x-nav-button, .social-nav-btn').forEach(btn => {
+    if (btn.getAttribute('data-tab') === tabName) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  document.querySelector('.social-timeline').scrollTop = 0;
+  playSyntheticTone(440, 'sine', 0.04);
+}
+
+// ==========================================
+// 4. INSTAGRAM STORIES BAR & CATEGORY FILTERS
+// ==========================================
+function getFilteredCards() {
+  if (AppState.activeCategory === 'all') return AppState.dailyCards;
+  return AppState.dailyCards.filter(c => c.category === AppState.activeCategory);
+}
+
+function initCategoryFilters() {
+  const pills = document.querySelectorAll('.category-pill');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      AppState.activeCategory = pill.getAttribute('data-cat');
+      AppState.currentCardIndex = 0;
+      initStoriesBar();
+      renderActiveCard(0);
+    });
+  });
+}
+
+function initStoriesBar() {
+  const bar = document.getElementById('storiesBar');
+  const cards = getFilteredCards();
+  let html = '';
+
+  const icons = { slang: '🔥', trend: '⚡', reply: '💬', tech: '💻', icon: '👑' };
+
+  cards.forEach((card, idx) => {
+    const icon = icons[card.category] || '⚡';
+    const isFirst = idx === AppState.currentCardIndex;
+    html += `
+      <button class="story-bubble ${isFirst ? 'active-story' : ''}" data-idx="${idx}">
+        <div class="story-ring">
+          <div class="story-inner">${card.avatarEmoji || icon}</div>
+        </div>
+        <span class="story-title">${card.title.split(' ')[0]}</span>
+      </button>
+    `;
+  });
+
+  bar.innerHTML = html;
+
+  bar.querySelectorAll('.story-bubble').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-idx'));
+      AppState.currentCardIndex = idx;
+      renderActiveCard(idx);
+    });
+  });
+}
+
+function updateStoryRings(activeIdx) {
+  const storyBubbles = document.querySelectorAll('.story-bubble');
+  storyBubbles.forEach((b, idx) => {
+    b.classList.toggle('active-story', idx === activeIdx);
+    if (idx < activeIdx) b.classList.add('viewed');
+  });
+}
+
+// ==========================================
+// 5. DAILY DECK FEED (Twitter + Reddit Post)
+// ==========================================
+function initDeck() {
+  const prevBtn = document.getElementById('prevCardBtn');
+  const nextBtn = document.getElementById('nextCardBtn');
+
+  prevBtn?.addEventListener('click', () => {
+    if (AppState.currentCardIndex > 0) {
+      AppState.currentCardIndex--;
+      renderActiveCard(AppState.currentCardIndex);
+      playSyntheticTone(480, 'sine', 0.05);
+    }
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    const cards = getFilteredCards();
+    if (AppState.currentCardIndex < cards.length - 1) {
+      AppState.currentCardIndex++;
+      renderActiveCard(AppState.currentCardIndex);
+      playSyntheticTone(560, 'sine', 0.05);
+    } else {
+      completeDailyStories();
+    }
+  });
+
+  renderActiveCard(0);
+}
+
+function renderActiveCard(index) {
+  const cards = getFilteredCards();
+  if (!cards || cards.length === 0) return;
+
+  const card = cards[index] || cards[0];
+  const container = document.getElementById('activeSocialCardContainer');
+  const stepLabel = document.getElementById('stepIndicatorLabel');
+  const prevBtn = document.getElementById('prevCardBtn');
+  const nextBtn = document.getElementById('nextCardBtn');
+
+  updateStoryRings(index);
+
+  stepLabel.textContent = `Story ${index + 1} of ${cards.length}`;
+  prevBtn.disabled = index === 0;
+  nextBtn.textContent = index === cards.length - 1 ? 'Finish Stories 🔥' : 'Next Story →';
+
+  const isSaved = AppState.savedItems.some(i => i.title === card.title);
+  const isLiked = AppState.likedCards[card.id] || false;
+  const currentVotes = AppState.cardVotes[index] || 1200;
+
+  let bodyEmbedHtml = '';
+
+  if (card.slangPhrase && card.formalPhrase) {
+    bodyEmbedHtml = `
+      <div class="slang-formal-embed">
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag slang-color">Casual / Internet Slang</span>
+            <span class="quote-phrase-text">${card.slangPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+        <div class="embed-quote-row">
+          <div>
+            <span class="quote-label-tag formal-color">Polished / Fluent English</span>
+            <span class="quote-phrase-text">${card.formalPhrase}</span>
+          </div>
+          <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">🔊</button>
+        </div>
+      </div>
+    `;
+  } else if (card.scenario) {
+    bodyEmbedHtml = `
+      <div class="voice-practice-container">
+        <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
+        <div class="voice-input-row">
+          <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
+          <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">🎙️</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">Evaluate Phrasing ✨</button>
+          <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Mic ready</span>
+        </div>
+        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#a7f3d0; background:var(--x-black); padding:10px; border-radius:var(--radius-sm); border:1px solid var(--x-border);"></div>
+      </div>
+    `;
+  } else if (card.category === 'tech') {
+    bodyEmbedHtml = `
+      <div style="background: var(--x-black); border:1px solid var(--x-border); padding: 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.95rem; color:#00f2fe; line-height:1.5;">
+        display: grid;<br>place-items: center;
+      </div>
+    `;
+  } else if (card.category === 'icon') {
+    bodyEmbedHtml = `
+      <div style="display: flex; gap: 14px; align-items:center; background: var(--x-black); padding: 14px; border-radius: var(--radius-md); border:1px solid var(--x-border);">
+        <div style="font-size: 2.5rem; width: 60px; height: 60px; background: rgba(225, 48, 108, 0.15); border-radius: 50%; display:flex; align-items:center; justify-content:center;">${card.avatarEmoji || '👑'}</div>
+        <div>
+          <div style="font-weight: 800; font-size: 1.1rem; color:#fff;">${card.title}</div>
+          <div style="color:var(--x-blue); font-size: 0.85rem; font-weight:600;">${card.role}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = `
+    <article class="social-post-card">
+      
+      <!-- Post Author Row -->
+      <div class="post-author-row">
+        <div class="author-profile-block">
+          <div class="x-avatar" style="width:36px; height:36px; font-size:0.8rem;">${card.author.charAt(0)}</div>
+          <div class="author-meta">
+            <span class="author-name-line">
+              ${card.author} <span class="verified-badge">✓</span>
+            </span>
+            <span class="author-handle-sub">${card.handle} • ${card.time}</span>
+          </div>
+        </div>
+        <span class="reddit-flair-badge">${card.flair}</span>
+      </div>
+
+      <!-- Headline -->
+      <h2 class="post-headline-text">${card.title}</h2>
+
+      <!-- Embed Box -->
+      ${bodyEmbedHtml}
+
+      <!-- Narrative -->
+      <div class="post-narrative">${card.explanation}</div>
+
+      <!-- Twitter Style Community Note -->
+      <div class="x-community-note">
+        <div class="note-header">
+          <span>🤖 Pulse AI Context Note</span>
+        </div>
+        <div class="note-body">
+          Readers added context: Essential 2026 fluency & cultural lore. Verified by modern internet communities.
+        </div>
+      </div>
+
+      <!-- Social Interaction Bar -->
+      <div class="social-action-bar">
+        
+        <!-- Reddit Vote Pill -->
+        <div class="rd-vote-pill">
+          <button class="vote-arrow-btn" onclick="upvoteCard(${index})">⬆️</button>
+          <span class="vote-number" id="voteCount-${index}">${formatVotes(currentVotes)}</span>
+          <button class="vote-arrow-btn" onclick="downvoteCard(${index})">⬇️</button>
+        </div>
+
+        <!-- Twitter Actions -->
+        <div class="x-interactions">
+          <button class="action-count-btn" onclick="askAiAboutCard('${card.title}')">
+            <span>💬</span> <span>${card.commentsCount}</span>
+          </button>
+          <button class="action-count-btn">
+            <span>🔁</span> <span>${card.repostsCount}</span>
+          </button>
+          <button class="action-count-btn like-btn ${isLiked ? 'liked' : ''}" onclick="toggleLikeCard('${card.id}', ${index})">
+            <span>${isLiked ? '❤️' : '🤍'}</span> <span>${card.likesCount + (isLiked ? 1 : 0)}</span>
+          </button>
+          <button class="action-count-btn bookmark-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}')" title="Save to Vault">
+            <span>⭐</span>
+          </button>
+        </div>
+
+      </div>
+
+    </article>
+  `;
+}
+
+// Interactive Likes & Votes
+window.toggleLikeCard = function(cardId, index) {
+  AppState.likedCards[cardId] = !AppState.likedCards[cardId];
+  localStorage.setItem('dp_likes', JSON.stringify(AppState.likedCards));
+  playSyntheticTone(AppState.likedCards[cardId] ? 784 : 440, 'triangle', 0.08);
+  addXp(10);
+  renderActiveCard(index);
+};
+
+window.upvoteCard = function(index) {
+  AppState.cardVotes[index] = (AppState.cardVotes[index] || 1200) + 1;
+  document.getElementById(`voteCount-${index}`).textContent = formatVotes(AppState.cardVotes[index]);
+  playSyntheticTone(659.25, 'sine', 0.06);
+};
+
+window.downvoteCard = function(index) {
+  AppState.cardVotes[index] = (AppState.cardVotes[index] || 1200) - 1;
+  document.getElementById(`voteCount-${index}`).textContent = formatVotes(AppState.cardVotes[index]);
+  playSyntheticTone(329.63, 'sine', 0.06);
+};
+
+function formatVotes(num) {
+  return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+}
+
+// Voice Recognition Implementation
+let isSpeechRecording = false;
+let speechRecognizer = null;
+
+window.toggleSpeechRecording = function() {
+  const micBtn = document.getElementById('micRecordBtn');
+  const statusText = document.getElementById('micStatusText');
+  const input = document.getElementById('userReplyInput');
+
+  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+    statusText.textContent = 'Voice input not supported in this browser';
+    return;
+  }
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (isSpeechRecording) {
+    speechRecognizer.stop();
+    isSpeechRecording = false;
+    micBtn.classList.remove('recording');
+    statusText.textContent = 'Recording stopped';
+    return;
+  }
+
+  speechRecognizer = new SpeechRecognition();
+  speechRecognizer.continuous = false;
+  speechRecognizer.interimResults = true;
+  speechRecognizer.lang = 'en-US';
+
+  speechRecognizer.onstart = () => {
+    isSpeechRecording = true;
+    micBtn.classList.add('recording');
+    statusText.textContent = '🎙️ Listening to your English...';
+    playSyntheticTone(880, 'sine', 0.08);
+  };
+
+  speechRecognizer.onresult = (event) => {
+    const transcript = Array.from(event.results)
+      .map(result => result[0].transcript)
+      .join('');
+    input.value = transcript;
+  };
+
+  speechRecognizer.onerror = (e) => {
+    isSpeechRecording = false;
+    micBtn.classList.remove('recording');
+    statusText.textContent = 'Speech error: ' + e.error;
+  };
+
+  speechRecognizer.onend = () => {
+    isSpeechRecording = false;
+    micBtn.classList.remove('recording');
+    statusText.textContent = 'Voice captured! Tap "Evaluate Phrasing"';
+    addXp(25);
+  };
+
+  speechRecognizer.start();
+};
+
+window.evaluateReplySocial = function() {
+  const input = document.getElementById('userReplyInput');
+  const feedback = document.getElementById('replySocialFeedback');
+  if (!input || !feedback) return;
+  const val = input.value.trim();
+
+  feedback.style.display = 'block';
+  if (!val) {
+    feedback.style.color = '#f87171';
+    feedback.textContent = 'Type or speak a short reply to evaluate your workplace tone!';
+    return;
+  }
+
+  feedback.style.color = '#a7f3d0';
+  feedback.innerHTML = `
+    <strong>Evaluated: 9/10 Polished Tone! 👍</strong><br>
+    Your response is clear and assertive. Here is how a Senior Director would phrase it:<br>
+    <em>"Hi! Thanks for the note. I've logged off for the evening, but I will review this first thing tomorrow morning and update you by 10 AM."</em>
+  `;
+  addXp(35);
+  playSyntheticTone(880, 'sine', 0.12);
+};
+
+// Finish Daily Deck
+function completeDailyStories() {
+  document.getElementById('activeSocialCardContainer').innerHTML = '';
+  document.getElementById('dailyCompleteCard').classList.remove('hidden');
+
+  const today = new Date().toDateString();
+  if (AppState.lastCompletedDate !== today) {
+    AppState.streak++;
+    AppState.lastCompletedDate = today;
+    localStorage.setItem('dp_streak', AppState.streak);
+    localStorage.setItem('dp_last_completed', today);
+    addXp(50);
+  }
+
+  updateStreakUI();
+  launchConfetti();
+  playSyntheticTone(1046.5, 'triangle', 0.4); // C6 celebration
+}
+
+function updateStreakUI() {
+  document.getElementById('streakCount').textContent = AppState.streak;
+}
+
+function updateXpUI() {
+  const xpCount = document.getElementById('xpCount');
+  if (xpCount) xpCount.textContent = `${AppState.xp} XP`;
+}
+
+function addXp(points) {
+  AppState.xp += points;
+  localStorage.setItem('dp_xp', AppState.xp);
+  updateXpUI();
+}
+
+// ==========================================
+// 6. LIVE REDDIT API INTEGRATION & RADAR
+// ==========================================
+function initRadar() {
+  renderRadarStream(AppState.radarFilter);
+
+  const filterButtons = document.querySelectorAll('.radar-tab-pill');
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      AppState.radarFilter = filter;
+      renderRadarStream(filter);
+    });
+  });
+
+  document.getElementById('refreshRadarBtn')?.addEventListener('click', () => {
+    fetchLiveRedditPosts();
+  });
+}
+
+async function fetchLiveRedditPosts() {
+  try {
+    const res = await fetch('https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=4');
+    if (!res.ok) return;
+    const json = await res.json();
+    const children = json.data.children;
+
+    children.forEach((child, idx) => {
+      const data = child.data;
+      if (data.stickied) return;
+
+      const liveItem = {
+        id: 'reddit-live-' + data.id,
+        platform: 'reddit',
+        platformIcon: 'rd',
+        platformLabel: 'Reddit (Live)',
+        author: 'r/ProgrammerHumor',
+        handle: 'u/' + data.author,
+        title: data.title,
+        summary: `🔥 Live trending on Reddit right now with ${data.num_comments} comments and ${(data.ups / 1000).toFixed(1)}k upvotes.`,
+        metric: `⬆️ ${(data.ups / 1000).toFixed(1)}k Upvotes • ${data.num_comments} Comments`,
+        link: 'https://reddit.com' + data.permalink,
+        aiPrompt: `Explain this trending Reddit post from r/ProgrammerHumor: "${data.title}" in simple English.`
+      };
+
+      // Add to radar feeds if not already there
+      const existing = AppState.radarFeeds.findIndex(r => r.id === liveItem.id);
+      if (existing === -1) {
+        AppState.radarFeeds.unshift(liveItem);
+      }
+    });
+
+    renderRadarStream(AppState.radarFilter);
+  } catch (e) {
+    console.log('Using offline curated radar posts (network offline or restricted)');
+  }
+}
+
+function renderRadarStream(filter) {
+  const container = document.getElementById('radarFeedContainer');
+  const filtered = filter === 'all' 
+    ? AppState.radarFeeds 
+    : AppState.radarFeeds.filter(item => item.platform === filter);
+
+  let html = '';
+  filtered.forEach(item => {
+    html += `
+      <article class="radar-stream-card">
+        <div class="stream-card-author">
+          <div class="stream-author-tag">
+            <span class="stream-platform-icon ${item.platformIcon}">
+              ${item.platformIcon === 'yt' ? '▶' : item.platformIcon === 'rd' ? '🔴' : item.platformIcon === 'tw' ? '𝕏' : '🌍'}
+            </span>
+            <span>${item.author}</span>
+            <span style="color:var(--text-muted); font-size:0.8rem; font-weight:400;">${item.handle}</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--text-muted);">${item.metric}</span>
+        </div>
+
+        <h3 class="stream-title-text">${item.title}</h3>
+        <p class="stream-body-text">${item.summary}</p>
+
+        <div class="stream-bottom-row">
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); text-decoration:none; font-size:0.8rem; font-weight:600;">Open on ${item.platformLabel} ↗</a>
+          <button class="btn-ask-ai-pill" onclick="askAiAboutRadar('${encodeURIComponent(item.title)}', '${encodeURIComponent(item.aiPrompt)}')">🤖 Ask AI</button>
+        </div>
+      </article>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+window.askAiAboutRadar = function(encodedTitle, encodedPrompt) {
+  const title = decodeURIComponent(encodedTitle);
+  const prompt = decodeURIComponent(encodedPrompt);
+  switchTab('ai');
+  handleUserAiMessage(prompt, `Analyzing: "${title}"`);
+};
+
+window.askAiAboutCard = function(topic) {
+  switchTab('ai');
+  handleUserAiMessage(`Tell me more about ${topic} and how people use it in conversation.`);
+};
+
+// ==========================================
+// 7. DAILY QUIZ & XP FLASHCARDS
+// ==========================================
+function initQuizEngine() {
+  renderQuizQuestion(AppState.currentQuizIndex);
+}
+
+function renderQuizQuestion(idx) {
+  const box = document.getElementById('quizStageBox');
+  const badge = document.getElementById('quizScoreBadge');
+  const total = AppState.quizQuestions.length;
+
+  if (idx >= total) {
+    box.innerHTML = `
+      <div style="text-align:center; padding: 20px;">
+        <div style="font-size:3rem; margin-bottom:8px;">🏆</div>
+        <h3>Quiz Completed!</h3>
+        <p style="color:var(--text-secondary); margin:8px 0 16px 0;">You earned +150 XP today and proved your fluency mastery!</p>
+        <button class="feed-next-btn" onclick="resetQuiz()">Practice Again</button>
+      </div>
+    `;
+    badge.textContent = `${AppState.quizScore} / ${total} Correct`;
+    return;
+  }
+
+  const q = AppState.quizQuestions[idx];
+  badge.textContent = `Question ${idx + 1} of ${total}`;
+
+  let optionsHtml = '';
+  q.options.forEach((opt, oIdx) => {
+    optionsHtml += `
+      <button class="quiz-option-btn" onclick="checkQuizAnswer(${idx}, ${oIdx})">
+        <span>${opt}</span>
+        <span class="quiz-indicator" id="indicator-${oIdx}"></span>
+      </button>
+    `;
+  });
+
+  box.innerHTML = `
+    <div>
+      <span style="font-size:0.75rem; color:var(--x-blue); font-weight:800; text-transform:uppercase;">Question ${idx + 1} of ${total}</span>
+      <h3 style="font-size:1.15rem; color:#fff; margin-top:4px;">${q.question}</h3>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      ${optionsHtml}
+    </div>
+    <div id="quizExplanation" style="display:none; font-size:0.88rem; padding:12px; border-radius:var(--radius-md); background:var(--x-black); border:1px solid var(--x-border);"></div>
+  `;
+}
+
+window.checkQuizAnswer = function(qIdx, oIdx) {
+  const q = AppState.quizQuestions[qIdx];
+  const buttons = document.querySelectorAll('.quiz-option-btn');
+  const explanation = document.getElementById('quizExplanation');
+
+  buttons.forEach(b => b.disabled = true);
+
+  if (oIdx === q.correctIndex) {
+    buttons[oIdx].classList.add('correct');
+    AppState.quizScore++;
+    addXp(50);
+    playSyntheticTone(880, 'sine', 0.15);
+    explanation.style.color = '#a7f3d0';
+    explanation.innerHTML = `<strong>Correct! 🎉</strong> ${q.explanation}`;
+  } else {
+    buttons[oIdx].classList.add('wrong');
+    buttons[q.correctIndex].classList.add('correct');
+    playSyntheticTone(260, 'sine', 0.18);
+    explanation.style.color = '#fecdd3';
+    explanation.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+  }
+
+  explanation.style.display = 'block';
+
+  setTimeout(() => {
+    AppState.currentQuizIndex++;
+    renderQuizQuestion(AppState.currentQuizIndex);
+  }, 2200);
+};
+
+window.resetQuiz = function() {
+  AppState.currentQuizIndex = 0;
+  AppState.quizScore = 0;
+  renderQuizQuestion(0);
+};
+
+// ==========================================
+// 8. PULSE AI CHAT
+// ==========================================
+function initPulseAI() {
+  const sendBtn = document.getElementById('sendAiBtn');
+  const input = document.getElementById('aiInput');
+
+  sendBtn?.addEventListener('click', () => {
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    handleUserAiMessage(text);
+  });
+
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') sendBtn.click();
+  });
+
+  document.getElementById('clearChatBtn')?.addEventListener('click', () => {
+    document.getElementById('chatLog').innerHTML = `
+      <div class="dm-bubble ai">
+        Conversation cleared! Ask me anything about modern slang, internet trends, or polishing your English.
+      </div>
+    `;
+  });
+}
+
+function handleUserAiMessage(userText, statusNote = '') {
+  const log = document.getElementById('chatLog');
+  
+  const userMsg = document.createElement('div');
+  userMsg.className = 'dm-bubble user';
+  userMsg.textContent = userText;
+  log.appendChild(userMsg);
+
+  const typingId = 'typing-' + Date.now();
+  const typingMsg = document.createElement('div');
+  typingMsg.className = 'dm-bubble ai';
+  typingMsg.id = typingId;
+  typingMsg.innerHTML = `<em>🤖 Pulse AI is thinking${statusNote ? ` (${statusNote})` : ''}...</em>`;
+  log.appendChild(typingMsg);
+  log.scrollTop = log.scrollHeight;
+
+  setTimeout(() => {
+    const aiResponse = generateSmartAiResponse(userText);
+    const typingBox = document.getElementById(typingId);
+    if (typingBox) typingBox.remove();
+
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'dm-bubble ai';
+    aiMsg.innerHTML = aiResponse;
+    log.appendChild(aiMsg);
+    log.scrollTop = log.scrollHeight;
+    playSyntheticTone(600, 'sine', 0.05);
+  }, 600);
+}
+
+function generateSmartAiResponse(query) {
+  const q = query.toLowerCase();
+
+  if (q.includes('cooked') || q.includes('locked in')) {
+    return `<strong>Here is your slang breakdown:</strong><br><br>
+    • <strong>"Cooked":</strong> Means doomed, done for, or completely exhausted.<br>
+    <em>Example:</em> "I studied the wrong chapter for the test, I am cooked."<br><br>
+    • <strong>"Locked in":</strong> Means reaching 100% focus and zero distractions.<br>
+    <em>Example:</em> "Phone on Do Not Disturb, coffee ready—I'm locked in."<br><br>
+    • <strong>Polished Workplace Alternative:</strong> Instead of "I'm cooked", say: <em>"I am at maximum bandwidth today."</em>`;
+  }
+
+  if (q.includes('demure') || q.includes('mindful')) {
+    return `<strong>"Very Demure, Very Mindful" Explained:</strong><br><br>
+    Started by TikTok creator Jools Lebron. It is used with heavy irony to show how classy, understated, and composed someone is behaving.<br><br>
+    <em>Example:</em> "Notice how I don't panic when the production server crashes? Very demure. Very mindful."`;
+  }
+
+  if (q.includes('polish') || q.includes('natural') || q.includes('sick') || q.includes('meeting')) {
+    return `<strong>Here are 2 natural, polite ways to say that:</strong><br><br>
+    1. <strong>Standard Professional:</strong><br>
+    <em>"Good morning team, unfortunately I'm feeling under the weather today and will be unable to attend our scheduled meeting. I'll review any notes afterwards."</em><br><br>
+    2. <strong>Casual / Slack message:</strong><br>
+    <em>"Hey everyone, caught a fever today so I need to step away from calls. Will catch up on messages once I'm feeling better!"</em>`;
+  }
+
+  if (q.includes('centering a div') || q.includes('css')) {
+    return `<strong>Why developers meme about centering a div:</strong><br><br>
+    Historically in CSS, there was no single property to place a box in the dead center. Developers had to calculate negative margins or use table hacks.<br><br>
+    <strong>Today's clean trick:</strong><br>
+    <code>display: grid; place-items: center;</code><br>
+    Put this on the parent container, and any box inside sits dead center!`;
+  }
+
+  if (q.includes('crash out')) {
+    return `<strong>"Crash out" Explained:</strong><br><br>
+    It means completely losing your temper, getting furiously angry, or ruining everything over a small annoyance.<br><br>
+    <em>Casual Example:</em> "If this Wi-Fi disconnects during my ranked match, I'm gonna crash out."<br>
+    <em>Professional Equivalent:</em> "I am reaching my boiling point."`;
+  }
+
+  if (q.includes('speed') || q.includes('ronaldo')) {
+    return `<strong>IShowSpeed & Cristiano Ronaldo:</strong><br><br>
+    IShowSpeed became a global phenomenon through high-energy streams and his intense obsession with football legend Cristiano Ronaldo.<br>
+    His catchphrase "SIUUU" and energetic street streams have made him one of the most recognized figures among Gen Z globally.`;
+  }
+
+  return `<strong>Here is my take on that:</strong><br><br>
+  That's a popular discussion right now! In modern internet culture, things move at lightspeed. The key to sounding fluent and confident is blending concise sentence structure with an understanding of the context.<br><br>
+  Would you like me to show you how to write a comment about this, or decode specific words from it?`;
+}
+
+// ==========================================
+// 9. WEB AUDIO SYNTHESIZER & SPEECH
+// ==========================================
+function playSyntheticTone(freq, type = 'sine', duration = 0.1) {
+  if (!AppState.soundEnabled) return;
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch (e) {}
+}
+
+window.speakText = function(text) {
+  if (!AppState.soundEnabled) return;
+  if (!('speechSynthesis' in window)) return;
+
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = AppState.speechRate;
+  window.speechSynthesis.speak(utterance);
+};
+
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#1d9bf0', '#e1306c', '#ff4500', '#10b981', '#ffb703', '#ffffff'];
+
+  for (let i = 0; i < 90; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.8) * 18,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      rotation: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 10
+    });
+  }
+
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.35;
+      p.rotation += p.vRot;
+      p.alpha -= 0.014;
+      if (p.alpha > 0) {
+        active = true;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      }
+    });
+    if (active) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+// ==========================================
+// 10. VAULT (Saved Lore & Export)
+// ==========================================
+function initVault() {
+  renderVaultList();
+  document.getElementById('exportLoreBtn')?.addEventListener('click', exportLoreFile);
+}
+
+function renderVaultList() {
+  const list = document.getElementById('vaultList');
+  if (!list) return;
+
+  if (AppState.savedItems.length === 0) {
+    list.innerHTML = `
+      <div style="text-align: center; padding: 40px 14px; background: var(--x-bg-card); border: 1px dashed var(--x-border); border-radius: var(--radius-md); color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 8px;">⭐</div>
+        <h3>No saved lore yet</h3>
+        <p style="font-size: 0.85rem;">Tap the star ⭐ on any post or card to bookmark it here!</p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  AppState.savedItems.forEach((item, idx) => {
+    html += `
+      <div style="background:var(--x-bg-card); border:1px solid var(--x-border); border-radius:var(--radius-md); padding:14px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h4 style="color:#fff; font-size:0.95rem;">${item.title}</h4>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Saved from ${item.author} • ${item.date || ''}</span>
+        </div>
+        <button onclick="removeFromVault(${idx})" style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); color:#f43f5e; padding:4px 10px; border-radius:var(--radius-pill); font-size:0.75rem; cursor:pointer;">Remove</button>
+      </div>
+    `;
+  });
+  list.innerHTML = html;
+}
+
+window.toggleSaveItem = function(title, author) {
+  const existingIdx = AppState.savedItems.findIndex(i => i.title === title);
+  if (existingIdx > -1) {
+    AppState.savedItems.splice(existingIdx, 1);
+  } else {
+    AppState.savedItems.push({ title, author, date: new Date().toLocaleDateString() });
+    addXp(15);
+    playSyntheticTone(784, 'triangle', 0.1);
+  }
+  localStorage.setItem('dp_saved', JSON.stringify(AppState.savedItems));
+  renderVaultList();
+  renderActiveCard(AppState.currentCardIndex);
+};
+
+window.removeFromVault = function(idx) {
+  AppState.savedItems.splice(idx, 1);
+  localStorage.setItem('dp_saved', JSON.stringify(AppState.savedItems));
+  renderVaultList();
+};
+
+function exportLoreFile() {
+  if (AppState.savedItems.length === 0) {
+    alert('Your Lore Vault is empty! Bookmark some cards first.');
+    return;
+  }
+  let content = '=== DAILYPULSE LORE VAULT ===\n\n';
+  AppState.savedItems.forEach((item, i) => {
+    content += `${i + 1}. ${item.title}\nSource: ${item.author} (${item.date})\n\n`;
+  });
+  const blob = new Blob([content], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'DailyPulse-Saved-Lore.txt';
+  a.click();
+}
+
+// ==========================================
+// 11. SETTINGS MODAL
+// ==========================================
+function initSettingsModal() {
+  const modal = document.getElementById('settingsModal');
+  const openBtn = document.getElementById('openSettingsBtn');
+  const closeBtn = document.getElementById('closeSettingsBtn');
+  const saveBtn = document.getElementById('saveSettingsBtn');
+  const nameInput = document.getElementById('settingNameInput');
+  const soundToggle = document.getElementById('settingSoundToggle');
+  const speechRate = document.getElementById('settingSpeechRate');
+
+  openBtn?.addEventListener('click', () => {
+    nameInput.value = AppState.userName;
+    soundToggle.checked = AppState.soundEnabled;
+    speechRate.value = AppState.speechRate.toString();
+    modal.classList.add('active');
+  });
+
+  closeBtn?.addEventListener('click', () => modal.classList.remove('active'));
+
+  saveBtn?.addEventListener('click', () => {
+    AppState.userName = nameInput.value.trim() || 'Lalith Sanjay';
+    AppState.soundEnabled = soundToggle.checked;
+    AppState.speechRate = parseFloat(speechRate.value);
+
+    localStorage.setItem('dp_user_name', AppState.userName);
+    localStorage.setItem('dp_sound', AppState.soundEnabled);
+    localStorage.setItem('dp_speech_rate', AppState.speechRate);
+
+    initUserIdentity();
+    modal.classList.remove('active');
+    playSyntheticTone(880, 'sine', 0.1);
+  });
+}
+
+// ==========================================
+// 12. 1-CLICK PWA INSTALLATION & MOBILE GUIDE
+// ==========================================
+let deferredPwaPrompt = null;
+function initPwaInstaller() {
+  const installHeaderBtn = document.getElementById('installAppBtn');
+  const installBanner = document.getElementById('glassInstallBanner');
+  const bannerInstallBtn = document.getElementById('bannerInstallBtn');
+  const bannerCloseBtn = document.getElementById('bannerCloseBtn');
+  const installModal = document.getElementById('installModal');
+  const closeInstallModal = document.getElementById('closeInstallModal');
+  const gotItInstallBtn = document.getElementById('gotItInstallBtn');
+
+  // Check if running in standalone mode (already installed)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone && installBanner) {
+    installBanner.style.display = 'none';
+  }
+
+  // Check if user dismissed banner previously
+  if (localStorage.getItem('dp_hide_install_banner') === 'true' && installBanner) {
+    installBanner.style.display = 'none';
+  }
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW:', err));
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPwaPrompt = e;
+  });
+
+  const triggerInstall = async () => {
+    if (deferredPwaPrompt) {
+      deferredPwaPrompt.prompt();
+      const { outcome } = await deferredPwaPrompt.userChoice;
+      if (outcome === 'accepted') {
+        if (installBanner) installBanner.style.display = 'none';
+        showToast('DailyPulse installed successfully! 🎉');
+      }
+      deferredPwaPrompt = null;
+    } else {
+      // Show modal guide if beforeinstallprompt isn't directly triggered
+      if (installModal) installModal.classList.add('active');
+    }
+  };
+
+  installHeaderBtn?.addEventListener('click', triggerInstall);
+  bannerInstallBtn?.addEventListener('click', triggerInstall);
+
+  bannerCloseBtn?.addEventListener('click', () => {
+    if (installBanner) installBanner.style.display = 'none';
+    localStorage.setItem('dp_hide_install_banner', 'true');
+  });
+
+  closeInstallModal?.addEventListener('click', () => {
+    if (installModal) installModal.classList.remove('active');
+  });
+
+  gotItInstallBtn?.addEventListener('click', () => {
+    if (installModal) installModal.classList.remove('active');
+  });
+
+  installModal?.addEventListener('click', (e) => {
+    if (e.target === installModal) installModal.classList.remove('active');
+  });
+}
+
+</script>
+</body>
+</html>

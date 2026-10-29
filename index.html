@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DailyPulse ⚡ - Culture, Trends & Fluency</title>
+  
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="social-app-shell">
+    
+    <!-- TOP X-STYLE HEADER -->
+    <header class="x-header">
+      <div class="x-header-brand" id="brandLogoBtn">
+        <span class="x-brand-logo">⚡</span>
+        <div>
+          <span style="font-weight: 900; font-size: 1.15rem; color:#fff;">DailyPulse</span>
+          <span class="x-brand-sub">Trending Now</span>
+        </div>
+      </div>
+
+      <div class="x-header-actions">
+        <!-- Install App Pill Button -->
+        <button class="install-pill-btn" id="installAppBtn" title="Install DailyPulse to Phone Home Screen">
+          <span>📲 Install App</span>
+        </button>
+
+        <!-- 1-Click Download Link -->
+        <a href="DailyPulse-App.zip" download="DailyPulse-App.zip" class="download-pill-btn" title="1-Click Download App Package">
+          <span>📥 Download</span>
+        </a>
+
+        <!-- XP Level Pill -->
+        <div class="xp-level-pill" id="xpPill" title="Your Experience Points & Tier">
+          <span>⚡</span>
+          <span id="xpCount">150 XP</span>
+        </div>
+
+        <!-- Streak Pill -->
+        <div class="streak-pill-social" id="streakBadge" title="Daily Streak">
+          <span>🔥</span>
+          <span id="streakCount">1</span>
+        </div>
+
+        <!-- Audio Toggle -->
+        <button class="header-icon-btn" id="audioToggleBtn" title="Sound Effects & Speech Toggle">
+          <span id="audioIcon">🔊</span>
+        </button>
+
+        <!-- Theme Toggle (Black / White Transparent Glass) -->
+        <button class="header-icon-btn" id="themeToggleBtn" title="Toggle Black / White Glass Theme">
+          <span id="themeIcon">🌓</span>
+        </button>
+
+        <!-- Settings Gear -->
+        <button class="header-icon-btn" id="openSettingsBtn" title="Settings & Customization">
+          <span>⚙️</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN BODY GRID (Twitter Desktop Sidebar + Timeline Feed) -->
+    <div class="social-main-grid">
+      
+      <!-- DESKTOP LEFT NAVIGATION (Twitter / X Style) -->
+      <aside class="x-desktop-nav">
+        <div class="x-nav-menu">
+          <button class="x-nav-button active" data-tab="feed">
+            <span>🏠</span>
+            <span>Home Feed</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="radar">
+            <span>📡</span>
+            <span>Social Radar</span>
+            <span class="nav-badge">LIVE</span>
+          </button>
+
+          <button class="x-nav-button" data-tab="quiz">
+            <span>🎯</span>
+            <span>Daily Quiz</span>
+            <span class="quiz-badge">XP+</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="ai">
+            <span>🤖</span>
+            <span>Pulse AI</span>
+          </button>
+          
+          <button class="x-nav-button" data-tab="vault">
+            <span>⭐</span>
+            <span>Saved Lore</span>
+          </button>
+        </div>
+
+        <div class="x-profile-strip" id="profileStrip">
+          <div class="x-avatar" id="userAvatarText">LS</div>
+          <div class="x-user-meta">
+            <span class="x-user-display"><span id="userDisplayName">Lalith Sanjay</span> <span class="verified-badge">✓</span></span>
+            <span class="x-user-handle" id="userDisplayHandle">@lalithsanjay</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- TIMELINE VIEWPORT -->
+      <main class="social-timeline">
+        
+        <!-- INSTAGRAM STORIES BAR -->
+        <div class="ig-stories-bar" id="storiesBar">
+          <!-- Dynamically populated story bubbles -->
+        </div>
+
+        <!-- ================= PANE 1: HOME SOCIAL FEED (Daily Deck) ================= -->
+        <section class="timeline-pane active" id="pane-feed">
+          <div class="deck-feed-stream">
+            
+            <!-- Sleek Glass Install Banner -->
+            <div class="glass-install-banner" id="glassInstallBanner">
+              <div class="install-banner-left">
+                <span class="install-banner-icon">⚡</span>
+                <div>
+                  <div class="install-banner-title">Install DailyPulse App</div>
+                  <div class="install-banner-sub">Open directly from your phone home screen, full-screen 24/7</div>
+                </div>
+              </div>
+              <div class="install-banner-actions">
+                <button class="banner-install-btn" id="bannerInstallBtn">📲 Install</button>
+                <button class="banner-close-btn" id="bannerCloseBtn" title="Dismiss">✕</button>
+              </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="category-filter-bar" id="categoryFilterBar">
+              <button class="category-pill active" data-cat="all">🌟 All Categories</button>
+              <button class="category-pill" data-cat="slang">🔥 Slang & Memes</button>
+              <button class="category-pill" data-cat="tech">💻 Tech & Coding</button>
+              <button class="category-pill" data-cat="reply">👔 Workplace English</button>
+              <button class="category-pill" data-cat="icon">👑 Icons & Titans</button>
+            </div>
+
+            <!-- Active Social Card Container -->
+            <div id="activeSocialCardContainer"></div>
+
+            <!-- Bottom Step Navigator -->
+            <div class="deck-step-footer">
+              <button class="feed-prev-btn" id="prevCardBtn" disabled>← Previous</button>
+              <span class="step-indicator-label" id="stepIndicatorLabel">Story 1 of 5</span>
+              <button class="feed-next-btn" id="nextCardBtn">Next Story →</button>
+            </div>
+
+            <!-- Daily Completed Banner -->
+            <div class="social-post-card hidden" id="dailyCompleteCard" style="text-align: center; margin-top: 20px;">
+              <div style="font-size: 3rem;">🎉🔥</div>
+              <h2 style="font-size: 1.4rem;">Today's Stories Completed!</h2>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                +50 XP Earned! You unlocked today's knowledge, polished your English, and locked in your streak.
+              </p>
+              <div style="margin-top: 14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+                <button class="feed-next-btn" id="goToQuizFromFeed" style="display:inline-block; padding: 10px 20px;">Take Daily Quiz 🎯 (+100 XP)</button>
+                <button class="feed-prev-btn" id="goToRadarFromFeed" style="display:inline-block; padding: 10px 20px;">Explore Social Radar 📡</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= PANE 2: SOCIAL RADAR STREAM ================= -->
+        <section class="timeline-pane" id="pane-radar">
+          <div class="radar-timeline-stream">
+            
+            <div class="live-fetch-banner">
+              <span>🔴 Live Radar Connected: Tracking Reddit, YouTube & Twitter discussions</span>
+              <button id="refreshRadarBtn" style="background:transparent; border:none; color:#a7f3d0; cursor:pointer; font-weight:700;">🔄 Refresh</button>
+            </div>
+
+            <div class="radar-filter-bar" id="radarFilters">
+              <button class="radar-tab-pill active" data-filter="all">⚡ All Posts</button>
+              <button class="radar-tab-pill" data-filter="youtube">▶️ YouTube</button>
+              <button class="radar-tab-pill" data-filter="reddit">🔴 Reddit (Live)</button>
+              <button class="radar-tab-pill" data-filter="twitter">🐦 Twitter / X</button>
+              <button class="radar-tab-pill" data-filter="news">🌍 World News</button>
+            </div>
+
+            <div id="radarFeedContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+
+          </div>
+        </section>
+
+        <!-- ================= PANE 3: DAILY QUIZ & XP FLASHCARDS ================= -->
+        <section class="timeline-pane" id="pane-quiz">
+          <div class="quiz-container">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h2 style="font-size: 1.4rem;">🎯 Daily Lore & Fluency Quiz</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Test what you learned today and earn up to +150 XP!</p>
+              </div>
+              <span id="quizScoreBadge" style="background:rgba(16,185,129,0.15); color:#10b981; font-weight:800; padding:6px 14px; border-radius:var(--radius-pill); font-size:0.85rem;">0 / 3 Done</span>
+            </div>
+
+            <div id="quizStageBox" class="quiz-card-box">
+              <!-- Dynamically populated quiz question -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANE 4: PULSE AI DIRECT MESSAGES ================= -->
+        <section class="timeline-pane" id="pane-ai">
+          <div class="dm-chat-view">
+            <div style="padding-bottom: 8px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 1.1rem; color: #fff;">Pulse AI <span class="verified-badge">✓</span></h3>
+                <span style="font-size: 0.75rem; color: #10b981;">Online • Trend & English Mentor</span>
+              </div>
+              <button id="clearChatBtn" style="background:transparent; border:1px solid var(--x-border); color:var(--text-muted); padding:4px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor:pointer;">Clear</button>
+            </div>
+
+            <div class="dm-chat-stream" id="chatLog">
+              <div class="dm-bubble ai">
+                <strong>Yo Lalith! 👋 Welcome to Pulse AI.</strong><br>
+                Ask me about any meme, decode internet slang, or paste a sentence and ask me to polish it for professional or casual talk!
+              </div>
+            </div>
+
+            <div class="dm-composer-bar">
+              <input type="text" id="aiInput" class="dm-input" placeholder="Ask about a trend, decode slang, or polish English..." autocomplete="off">
+              <button id="sendAiBtn" class="dm-send-btn" title="Send message">➤</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANE 5: SAVED LORE VAULT ================= -->
+        <section class="timeline-pane" id="pane-vault">
+          <div style="max-width: 680px; margin: 0 auto; padding: 20px 14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 14px;">
+              <div>
+                <h2 style="font-size: 1.4rem;">⭐ Saved Lore & Knowledge</h2>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">Phrases and trends you bookmarked.</p>
+              </div>
+              <button id="exportLoreBtn" style="background:rgba(29,155,240,0.12); border:1px solid var(--x-blue); color:var(--x-blue); padding:6px 12px; border-radius:var(--radius-pill); font-size:0.8rem; font-weight:700; cursor:pointer;">📥 Export</button>
+            </div>
+            <div id="vaultList" style="display: flex; flex-direction: column; gap: 10px;"></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- MOBILE BOTTOM NAVIGATION -->
+    <nav class="social-bottom-nav">
+      <button class="social-nav-btn active" data-tab="feed">
+        <span class="icon">🏠</span>
+        <span>Home</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="radar">
+        <span class="icon">📡</span>
+        <span>Radar</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="quiz">
+        <span class="icon">🎯</span>
+        <span>Quiz</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="ai">
+        <span class="icon">🤖</span>
+        <span>AI</span>
+      </button>
+
+      <button class="social-nav-btn" data-tab="vault">
+        <span class="icon">⭐</span>
+        <span>Saved</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="settings-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--x-border); padding-bottom:12px;">
+        <h3 style="color:#fff; font-size:1.2rem;">⚙️ App Settings</h3>
+        <button id="closeSettingsBtn" style="background:transparent; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Display Name</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Change your profile name</span>
+        </div>
+        <input type="text" id="settingNameInput" class="dm-input" style="width:160px; padding:6px 12px; font-size:0.85rem;" value="Lalith Sanjay" />
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Sound & Audio Effects</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Hear likes, speech, and chimes</span>
+        </div>
+        <input type="checkbox" id="settingSoundToggle" checked style="width:20px; height:20px; accent-color:var(--x-blue); cursor:pointer;" />
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">Audio Pronunciation Speed</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Speech rate for English practice</span>
+        </div>
+        <select id="settingSpeechRate" class="dm-input" style="width:120px; padding:6px; font-size:0.85rem;">
+          <option value="0.8">0.8x (Slow)</option>
+          <option value="0.95" selected>1.0x (Normal)</option>
+          <option value="1.2">1.2x (Fast)</option>
+        </select>
+      </div>
+
+      <div style="border-top:1px solid var(--x-border); padding-top:12px; display:flex; justify-content:flex-end;">
+        <button id="saveSettingsBtn" class="feed-next-btn" style="padding:8px 20px;">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTALL APP MODAL GUIDE -->
+  <div class="modal-backdrop" id="installModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="margin:0; font-size:1.15rem; display:flex; align-items:center; gap:8px;">
+          <span>📲</span> Install DailyPulse on Your Phone
+        </h3>
+        <button class="modal-close" id="closeInstallModal">✕</button>
+      </div>
+
+      <div style="padding:16px 0; display:flex; flex-direction:column; gap:14px;">
+        <!-- Android Chrome Guide -->
+        <div class="install-guide-box">
+          <div style="font-weight:700; font-size:0.95rem; margin-bottom:6px; display:flex; align-items:center; gap:6px; color:#ffffff;">
+            <span>🤖</span> For Android (Google Chrome):
+          </div>
+          <ol style="margin:0; padding-left:20px; font-size:0.86rem; line-height:1.6; color:var(--text-secondary);">
+            <li>Tap the <strong>3 vertical dots (⋮)</strong> in the top-right corner of Chrome.</li>
+            <li>Tap <strong>"Install app"</strong> (or <strong>"Add to Home screen"</strong>).</li>
+            <li>Tap <strong>"Install"</strong> to confirm.</li>
+            <li>DailyPulse is now installed on your phone home screen and opens full-screen!</li>
+          </ol>
+        </div>
+
+        <!-- iPhone Safari Guide -->
+        <div class="install-guide-box">
+          <div style="font-weight:700; font-size:0.95rem; margin-bottom:6px; display:flex; align-items:center; gap:6px; color:#ffffff;">
+            <span>🍎</span> For iPhone (Safari):
+          </div>
+          <ol style="margin:0; padding-left:20px; font-size:0.86rem; line-height:1.6; color:var(--text-secondary);">
+            <li>Tap the <strong>Share</strong> button (box with upward arrow) at the bottom.</li>
+            <li>Scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
+            <li>Tap <strong>"Add"</strong> in the top right.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--glass-border); padding-top:12px; display:flex; justify-content:flex-end;">
+        <button id="gotItInstallBtn" class="feed-next-btn" style="padding:8px 24px;">Got It 👍</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
+  <script src="app.js"></script>
+</body>
+</html>
