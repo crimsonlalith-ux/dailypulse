@@ -17,11 +17,42 @@
     
     <!-- TOP X-STYLE HEADER -->
     <header class="x-header">
-      <div class="x-header-brand" id="brandLogoBtn">
-        <span class="x-brand-logo">⚡</span>
-        <div>
-          <span style="font-weight: 900; font-size: 1.15rem; color:#fff;">DailyPulse</span>
-          <span class="x-brand-sub">Trending Now</span>
+      <div class="x-header-brand" id="brandLogoBtn" title="DailyPulse: Global Culture & Fluency">
+        <div class="pulse-brand-emblem">
+          <div class="pulse-radar-halo"></div>
+          <svg class="pulse-svg-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="boltSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="50%" stop-color="#f0f4ff" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+              <filter id="boltGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <!-- Frosted Glass Squircle Base -->
+            <rect x="2" y="2" width="40" height="40" rx="12" class="logo-glass-bg" />
+            <!-- Animated Cardiogram / Sound Pulse Wave -->
+            <path class="logo-ecg-line" d="M 5 23 L 13 23 L 17 14 L 21 32 L 25 17 L 29 23 L 39 23" />
+            <!-- Electric Bolt Hero -->
+            <path class="logo-bolt-icon" d="M 23 7 L 15 22 L 21.5 22 L 19 37 L 30 19 L 22.5 19 Z" filter="url(#boltGlow)" fill="url(#boltSheen)" />
+          </svg>
+        </div>
+        <div class="pulse-brand-text">
+          <div class="pulse-title-wrap">
+            <span class="brand-title-daily">Daily</span><span class="brand-title-pulse">Pulse</span>
+            <span class="pulse-live-beacon" title="Live Frequency"></span>
+          </div>
+          <div class="pulse-sub-row">
+            <span class="x-brand-sub">Culture & Fluency</span>
+            <span class="mini-equalizer" title="Fluency Audio Equalizer">
+              <span class="eq-bar eq-1"></span>
+              <span class="eq-bar eq-2"></span>
+              <span class="eq-bar eq-3"></span>
+            </span>
+          </div>
         </div>
       </div>
 

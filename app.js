@@ -402,7 +402,16 @@ function initNavigation() {
     });
   });
 
-  document.getElementById('brandLogoBtn')?.addEventListener('click', () => switchTab('feed'));
+  document.getElementById('brandLogoBtn')?.addEventListener('click', () => {
+    switchTab('feed');
+    playSyntheticTone(1050, 'sine', 0.08);
+    const emblem = document.querySelector('.pulse-brand-emblem');
+    if (emblem) {
+      emblem.style.transform = 'scale(1.2) rotate(8deg)';
+      setTimeout(() => emblem.style.transform = '', 280);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
   document.getElementById('goToRadarFromFeed')?.addEventListener('click', () => switchTab('radar'));
   document.getElementById('goToQuizFromFeed')?.addEventListener('click', () => switchTab('quiz'));
 
