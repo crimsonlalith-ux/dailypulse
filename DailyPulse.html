@@ -4470,45 +4470,93 @@ function initDeck() {
 
 function initInfiniteScroll() {
   const sentinel = document.getElementById('infiniteScrollSentinel');
-  if (!sentinel) return;
+  const timeline = document.querySelector('.social-timeline');
 
-  if (infiniteScrollObserver) {
-    infiniteScrollObserver.disconnect();
+  // 1. Dual IntersectionObservers: timeline container and window viewport
+  if (sentinel) {
+    if (infiniteScrollObserver) {
+      infiniteScrollObserver.disconnect();
+    }
+
+    if (timeline) {
+      infiniteScrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            triggerInfiniteScrollBatch();
+          }
+        });
+      }, {
+        root: timeline,
+        rootMargin: '800px'
+      });
+      infiniteScrollObserver.observe(sentinel);
+    }
+
+    const windowObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          triggerInfiniteScrollBatch();
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '800px'
+    });
+    windowObserver.observe(sentinel);
   }
 
-  infiniteScrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !isFetchingInfiniteBatch) {
+  // 2. Continuous Scroll Listeners on both Timeline container and Window
+  const handleScrollCheck = () => {
+    if (AppState.activeTab !== 'feed') return;
+
+    if (timeline) {
+      const distanceToBottom = timeline.scrollHeight - timeline.scrollTop - timeline.clientHeight;
+      if (distanceToBottom < 900) {
         triggerInfiniteScrollBatch();
       }
-    });
-  }, {
-    rootMargin: '400px'
-  });
+    }
 
-  infiniteScrollObserver.observe(sentinel);
+    const windowDist = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+    if (windowDist < 900) {
+      triggerInfiniteScrollBatch();
+    }
+  };
+
+  if (timeline) {
+    timeline.addEventListener('scroll', handleScrollCheck, { passive: true });
+  }
+  window.addEventListener('scroll', handleScrollCheck, { passive: true });
 }
 
 function triggerInfiniteScrollBatch() {
+  if (isFetchingInfiniteBatch) return;
   isFetchingInfiniteBatch = true;
+
   const container = document.getElementById('activeSocialCardContainer');
   if (!container) {
     isFetchingInfiniteBatch = false;
     return;
   }
 
-  // Pick next 3 stories from infinite pool
+  // Select matching pool based on active category
+  const activeCat = AppState.activeCategory || 'all';
+  const categoryPool = activeCat === 'all' 
+    ? INFINITE_STORIES_POOL 
+    : (INFINITE_STORIES_POOL.filter(s => s.category === activeCat).length > 0 
+        ? INFINITE_STORIES_POOL.filter(s => s.category === activeCat) 
+        : INFINITE_STORIES_POOL);
+
   const batchSize = 3;
   const newBatch = [];
-  
+
   for (let i = 0; i < batchSize; i++) {
-    const template = INFINITE_STORIES_POOL[infiniteStoryIndex % INFINITE_STORIES_POOL.length];
+    const template = categoryPool[infiniteStoryIndex % categoryPool.length];
     infiniteStoryIndex++;
-    const newId = `story-inf-${Date.now()}-${i}`;
+    const newId = `story-inf-${Date.now()}-${i}-${Math.random().toString(36).substr(2, 5)}`;
     const newCard = {
       ...template,
       id: newId,
-      time: 'Just now'
+      time: 'Live Stream'
     };
     AppState.dailyCards.push(newCard);
     newBatch.push(newCard);
@@ -4516,19 +4564,17 @@ function triggerInfiniteScrollBatch() {
 
   const startIdx = AppState.dailyCards.length - batchSize;
   const htmlChunk = newBatch.map((card, offset) => renderSingleCardHtml(card, startIdx + offset)).join('');
-  
+
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = htmlChunk;
   while (tempDiv.firstChild) {
     container.appendChild(tempDiv.firstChild);
   }
 
-  
-  updateReadingProgressStrip();
-
+  // Rapid debounce release for smooth uninterrupted infinite scrolling
   setTimeout(() => {
     isFetchingInfiniteBatch = false;
-  }, 350);
+  }, 180);
 }
 
 function renderCardAestheticVisual(card) {
@@ -5020,10 +5066,6 @@ function renderContinuousFeed() {
   }
 
   container.innerHTML = cards.map((card, idx) => renderSingleCardHtml(card, idx)).join('');
-  updateReadingProgressStrip();
-}
-
-  updateReadingProgressStrip();
 }
 
 // Interactive Likes directly in place (no page jump)
