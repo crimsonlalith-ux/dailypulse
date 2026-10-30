@@ -1,3 +1,47 @@
+// ============================================================
+// SECURITY & DEFENSIVE HARDENING UTILITIES
+// ============================================================
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function escapeJsString(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '');
+}
+
+function sanitizeAppUrl(url) {
+  if (!url || typeof url !== 'string') return '';
+  const trimmed = url.trim();
+  // Strictly allow only safe HTTPS and HTTP protocols (no javascript:, data:, vbscript:)
+  if (/^https?:\/\/[a-zA-Z0-9\-._~:\/?#\[\]@!$&'()*+,;=%]+$/i.test(trimmed)) {
+    return trimmed;
+  }
+  return '';
+}
+
+function safeGetStoredJson(key, defaultVal) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return defaultVal;
+    const parsed = JSON.parse(raw);
+    return parsed !== null && parsed !== undefined ? parsed : defaultVal;
+  } catch (e) {
+    return defaultVal;
+  }
+}
+
 // Fast Live Tech Radar Fetching from real-world APIs
 async function fetchLiveTechRadarPosts() {
   try {
@@ -25,23 +69,27 @@ async function fetchLiveTechRadarPosts() {
     stories.filter(Boolean).forEach(story => {
       const cardId = `live-hn-${story.id}`;
       if (!AppState.dailyCards.some(c => c.id === cardId)) {
+        const cleanTitle = escapeHtml(story.title || 'Breaking Tech Story');
+        const cleanBy = escapeHtml(story.by ? `@${story.by}` : '@techradar');
+        const cleanUrl = sanitizeAppUrl(story.url || `https://news.ycombinator.com/item?id=${story.id}`);
+
         AppState.dailyCards.unshift({
           id: cardId,
           category: 'ai',
           isXPost: true,
           topicTag: '⚡ Breaking Tech Signal',
-          author: story.by ? `@${story.by}` : 'Tech Radar',
-          handle: story.by ? `@${story.by}` : '@techradar',
+          author: cleanBy,
+          handle: cleanBy,
           time: 'Just now',
-          title: story.title,
-          xTweetText: `${story.title} — Live discussion with ${story.score || 1} points and ${story.descendants || 0} comments on Hacker News.`,
-          sourceUrl: story.url || `https://news.ycombinator.com/item?id=${story.id}`,
+          title: cleanTitle,
+          xTweetText: `${cleanTitle} — Live discussion with ${Number(story.score) || 1} points and ${Number(story.descendants) || 0} comments on Hacker News.`,
+          sourceUrl: cleanUrl,
           sourceOutlet: 'Hacker News (Live Wire)',
-          explanation: `<strong>In Simple Everyday Words:</strong> Real-time trending tech discussion: <em>"${story.title}"</em>.<br><br><strong>Key Takeaway:</strong> High-signal engineering discussion from founders and practitioners worldwide.`,
-          pronounceText: story.title,
-          commentsCount: story.descendants || 12,
+          explanation: `<strong>In Simple Everyday Words:</strong> Real-time trending tech discussion: <em>"${cleanTitle}"</em>.<br><br><strong>Key Takeaway:</strong> High-signal engineering discussion from founders and practitioners worldwide.`,
+          pronounceText: cleanTitle,
+          commentsCount: Number(story.descendants) || 12,
           repostsCount: '1.2k',
-          likesCount: story.score || 180
+          likesCount: Number(story.score) || 180
         });
       }
     });
@@ -1467,6 +1515,13 @@ window.openRealApp = function(event, url, platform) {
     if (typeof event.preventDefault === 'function') event.preventDefault();
   }
   if (!url) return;
+
+  // Strict URL Sanitization & Protocol Validation (Block javascript: and data: exploits)
+  const targetUrl = sanitizeAppUrl(url);
+  if (!targetUrl) {
+    console.warn('Blocked untrusted or malicious URL protocol:', url);
+    return;
+  }
   
   // Auditory tactile feedback
   try {
@@ -1475,7 +1530,6 @@ window.openRealApp = function(event, url, platform) {
 
   const ua = navigator.userAgent || '';
   const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
-  const targetUrl = url.trim();
 
   // 1. Twitter / 𝕏 Deep-Linking
   if (platform === 'x' || /x\.com|twitter\.com/i.test(targetUrl)) {
@@ -2156,18 +2210,22 @@ async function fetchLiveRedditPosts() {
     const stories = await Promise.all(storyPromises);
 
     stories.filter(Boolean).forEach((story) => {
+      const cleanTitle = escapeHtml(story.title || 'Trending Technology Signal');
+      const cleanAuthor = escapeHtml(story.by ? 'u/' + story.by : 'Hacker News');
+      const cleanLink = sanitizeAppUrl(story.url || `https://news.ycombinator.com/item?id=${story.id}`);
+
       const liveItem = {
         id: 'hn-live-' + story.id,
         platform: 'hn',
         platformIcon: 'hn',
         platformLabel: 'Hacker News (Live)',
-        author: story.by ? 'u/' + story.by : 'Hacker News',
+        author: cleanAuthor,
         handle: '@hackernews',
-        title: story.title,
-        summary: `Breaking live discussion with ${story.descendants || 0} comments and ${story.score || 1} points.`,
-        metric: `▲ ${story.score || 1} Points • ${story.descendants || 0} Comments`,
-        link: story.url || `https://news.ycombinator.com/item?id=${story.id}`,
-        aiPrompt: `Explain this trending technology story: "${story.title}" in simple, accessible English.`
+        title: cleanTitle,
+        summary: `Breaking live discussion with ${Number(story.descendants) || 0} comments and ${Number(story.score) || 1} points.`,
+        metric: `▲ ${Number(story.score) || 1} Points • ${Number(story.descendants) || 0} Comments`,
+        link: cleanLink,
+        aiPrompt: `Explain this trending technology story: "${cleanTitle}" in simple, accessible English.`
       };
 
       const existing = AppState.radarFeeds.findIndex(r => r.id === liveItem.id);
@@ -2354,7 +2412,7 @@ function handleUserAiMessage(userText, statusNote = '') {
   const typingMsg = document.createElement('div');
   typingMsg.className = 'dm-bubble ai';
   typingMsg.id = typingId;
-  typingMsg.innerHTML = `<em>✦ Analyzing inquiry and synthesizing editorial breakdown${statusNote ? ` (${statusNote})` : ''}...</em>`;
+  typingMsg.innerHTML = `<em>✦ Analyzing inquiry and synthesizing editorial breakdown${statusNote ? ` (${escapeHtml(statusNote)})` : ''}...</em>`;
   log.appendChild(typingMsg);
   log.scrollTop = log.scrollHeight;
 
@@ -2563,8 +2621,9 @@ function generateSmartAiResponse(query) {
     );
   }
 
-  // 14. Fallback: Friendly, Welcoming 1st-Year College Guide for ANY query
-  const cleanTitle = query.length > 50 ? query.slice(0, 47) + '...' : query;
+  // 14. Fallback: Friendly, Welcoming 1st-Year College Guide for ANY query (HTML-escaped)
+  const rawTitle = query.length > 50 ? query.slice(0, 47) + '...' : query;
+  const cleanTitle = escapeHtml(rawTitle);
   return collegeCard(
     `Decoding: "${cleanTitle}"`,
     '✨',
@@ -2578,9 +2637,13 @@ function generateSmartAiResponse(query) {
 window.speakText = function(text) {
   if (!AppState.soundEnabled) return;
   if (!('speechSynthesis' in window)) return;
+  if (!text || typeof text !== 'string') return;
+
+  // Security & Stability: limit speech length to 350 chars to prevent memory/speech buffer DOS
+  const cleanSpeech = text.slice(0, 350).replace(/<[^>]*>/g, '');
 
   window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
+  const utterance = new SpeechSynthesisUtterance(cleanSpeech);
   utterance.lang = 'en-US';
   utterance.rate = AppState.speechRate;
   window.speechSynthesis.speak(utterance);
@@ -2661,11 +2724,14 @@ function renderVaultList() {
 
   let html = '';
   AppState.savedItems.forEach((item, idx) => {
+    const safeTitle = escapeHtml(item.title);
+    const safeAuthor = escapeHtml(item.author);
+    const safeDate = escapeHtml(item.date || '');
     html += `
       <div style="background:var(--x-bg-card); border:1px solid var(--x-border); border-radius:var(--radius-md); padding:14px; display:flex; justify-content:space-between; align-items:center;">
         <div>
-          <h4 style="color:#fff; font-size:0.95rem;">${item.title}</h4>
-          <span style="color:var(--text-muted); font-size:0.8rem;">Saved from ${item.author} • ${item.date || ''}</span>
+          <h4 style="color:#fff; font-size:0.95rem;">${safeTitle}</h4>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Saved from ${safeAuthor} • ${safeDate}</span>
         </div>
         <button onclick="removeFromVault(${idx})" style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); color:#f43f5e; padding:4px 10px; border-radius:var(--radius-pill); font-size:0.75rem; cursor:pointer;">Remove</button>
       </div>
@@ -2710,11 +2776,13 @@ function exportLoreFile() {
   AppState.savedItems.forEach((item, i) => {
     content += `${i + 1}. ${item.title}\nSource: ${item.author} (${item.date})\n\n`;
   });
-  const blob = new Blob([content], { type: 'text/plain' });
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
+  const blobUrl = URL.createObjectURL(blob);
+  a.href = blobUrl;
   a.download = 'DailyPulse-Saved-Lore.txt';
   a.click();
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
 }
 
 // ==========================================

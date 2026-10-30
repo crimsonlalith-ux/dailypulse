@@ -1,10 +1,10 @@
 // Service Worker for DailyPulse PWA - High Speed Instant Cache v28
-const CACHE_NAME = 'dailypulse-v28';
+const CACHE_NAME = 'dailypulse-v29';
 const ASSETS = [
   './',
   './index.html',
-  './styles.css?v=28',
-  './app.js?v=28',
+  './styles.css?v=29',
+  './app.js?v=29',
   './manifest.json',
   './icon.svg'
 ];
