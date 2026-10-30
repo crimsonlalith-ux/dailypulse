@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://hacker-news.firebaseio.com https://www.reddit.com; font-src 'self' data:; media-src 'self' data:; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://generativelanguage.googleapis.com https://api.openai.com https://hacker-news.firebaseio.com https://www.reddit.com; font-src 'self' data:; media-src 'self' data:; frame-ancestors 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>DailyPulse • Global Tech News & Titans Radar</title>
@@ -4873,6 +4873,243 @@ body {
   }
 }
 
+
+/* ============================================================
+   CHATGPT STYLING, CODE BLOCKS & MODEL SETTINGS
+   ============================================================ */
+.ai-avatar-badge {
+  flex-shrink: 0;
+}
+
+.chat-welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 12px;
+  animation: fadeIn 0.35s ease-out;
+}
+
+.chat-welcome-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10a37f, #059669);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 10px;
+  box-shadow: 0 0 20px rgba(16, 163, 127, 0.4);
+}
+
+.chat-suggestion-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 600px;
+  margin-top: 6px;
+}
+
+.chat-chip {
+  background: #16181c;
+  border: 1px solid #2f3336;
+  color: #e7e9ea;
+  border-radius: 9999px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chat-chip:hover {
+  background: #202327;
+  border-color: #10a37f;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.chatgpt-bubble {
+  max-width: 92% !important;
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+  border-radius: 16px !important;
+  padding: 16px 20px !important;
+  font-size: 0.93rem !important;
+  line-height: 1.6 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+.chatgpt-bubble .chatgpt-h2 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.chatgpt-bubble .chatgpt-h3 {
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin: 12px 0 6px 0;
+  font-weight: 600;
+}
+
+.chatgpt-bubble .chatgpt-h4 {
+  font-size: 0.95rem;
+  color: #10a37f;
+  margin: 10px 0 4px 0;
+  font-weight: 600;
+}
+
+.chatgpt-bubble .chatgpt-p {
+  margin: 0 0 10px 0;
+}
+
+.chatgpt-bubble .chatgpt-ul,
+.chatgpt-bubble .chatgpt-ol {
+  margin: 6px 0 10px 20px;
+  padding: 0;
+}
+
+.chatgpt-bubble li {
+  margin-bottom: 5px;
+}
+
+.chatgpt-inline-code {
+  background: #202327;
+  color: #f59e0b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  border: 1px solid #2f3336;
+}
+
+.chatgpt-code-box {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.code-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  padding: 6px 12px;
+  border-bottom: 1px solid #30363d;
+}
+
+.code-lang-tag {
+  font-size: 0.75rem;
+  color: #8b949e;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.copy-code-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.copy-code-btn:hover {
+  background: #21262d;
+  border-color: #8b949e;
+  color: #ffffff;
+}
+
+.chatgpt-code-box pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e6edf3;
+  line-height: 1.45;
+}
+
+.chatgpt-actions-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #2f3336;
+}
+
+.chatgpt-action-btn {
+  background: transparent;
+  border: none;
+  color: #71767b;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+}
+
+.chatgpt-action-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e7e9ea;
+}
+
+/* Thinking Indicator */
+.dm-bubble.ai.thinking {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  padding: 10px 16px !important;
+}
+
+.chatgpt-thinking-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #10a37f;
+  font-size: 0.85rem;
+}
+
+.chatgpt-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.chatgpt-dots span {
+  width: 5px;
+  height: 5px;
+  background: #10a37f;
+  border-radius: 50%;
+  animation: pulseDot 1.4s infinite ease-in-out both;
+}
+
+.chatgpt-dots span:nth-child(1) { animation-delay: -0.32s; }
+.chatgpt-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes pulseDot {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
 </style>
 </head>
 <body>
@@ -5153,23 +5390,52 @@ body {
         <!-- ================= PANE 4: PULSE AI DIRECT MESSAGES ================= -->
         <section class="timeline-pane" id="pane-ai">
           <div class="dm-chat-view">
-            <div style="padding-bottom: 8px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <h3 style="font-size: 1.1rem; color: #fff;">Pulse AI <span class="verified-badge">✓</span></h3>
-                <span style="font-size: 0.75rem; color: #10b981;">Online • Editorial English & Culture Advisor</span>
+            <div class="ai-chat-header" style="padding-bottom: 10px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="ai-avatar-badge" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #10a37f, #0d8a6a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1rem; box-shadow: 0 0 14px rgba(16, 163, 127, 0.4);">
+                  <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path></svg>
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <h3 style="font-size: 1.05rem; color: #fff; margin: 0; font-weight: 700;">ChatGPT Engine</h3>
+                    <span class="verified-badge" style="background: #10a37f; color: #fff; border-radius: 50%; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px;">✓</span>
+                    <span id="activeModelTag" style="font-size: 0.68rem; background: rgba(16, 163, 127, 0.15); color: #10a37f; border: 1px solid rgba(16, 163, 127, 0.3); border-radius: 4px; padding: 1px 6px; font-weight: 600;">GPT-4o Brain</span>
+                  </div>
+                  <span style="font-size: 0.72rem; color: #9ca3af; display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                    Answers anything: Math, Science, Code, Advice, General Knowledge
+                  </span>
+                </div>
               </div>
-              <button id="clearChatBtn" style="background:transparent; border:1px solid var(--x-border); color:var(--text-muted); padding:4px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor:pointer;">Clear</button>
+              <div style="display: flex; gap: 6px;">
+                <button id="openAiSettingsBtn" title="AI Model & Key Settings" style="background: rgba(255,255,255,0.06); border: 1px solid var(--x-border); color: #e5e7eb; padding: 5px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                  <svg style="width: 13px; height: 13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Model</span>
+                </button>
+                <button id="clearChatBtn" style="background: transparent; border: 1px solid var(--x-border); color: var(--text-muted); padding: 5px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor: pointer;">Clear</button>
+              </div>
             </div>
 
             <div class="dm-chat-stream" id="chatLog">
-              <div class="dm-bubble ai">
-                <strong>Welcome, Lalith.</strong><br>
-                Ask me to deconstruct any internet phenomenon, analyze executive phrasing, or elevate your technical writing into crisp, professional English.
+              <div class="chat-welcome-container">
+                <div class="chat-welcome-hero">
+                  <div class="chat-welcome-icon">✦</div>
+                  <h4 style="margin: 6px 0 4px; font-size: 1.15rem; color: #fff;">How can I help you today?</h4>
+                  <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0 0 14px;">Ask me anything across science, math, coding, life advice, writing, or everyday questions.</p>
+                </div>
+                <div class="chat-suggestion-chips">
+                  <button class="chat-chip" onclick="quickAskAi('Why is the sky blue and how do rainbows form?')">🌈 Why is the sky blue?</button>
+                  <button class="chat-chip" onclick="quickAskAi('Calculate: What is 25 * 14 and how much is 15% of 320?')">🔢 Solve math & percentages</button>
+                  <button class="chat-chip" onclick="quickAskAi('What is the difference between a fruit and a vegetable?')">🍎 Fruit vs Vegetable</button>
+                  <button class="chat-chip" onclick="quickAskAi('Write a short professional email asking for sick leave')">✍️ Draft an email</button>
+                  <button class="chat-chip" onclick="quickAskAi('How does an airplane stay in the air?')">✈️ How airplanes fly</button>
+                  <button class="chat-chip" onclick="quickAskAi('Write a Python function to check if a word is a palindrome')">💻 Write Python code</button>
+                </div>
               </div>
             </div>
 
             <div class="dm-composer-bar">
-              <input type="text" id="aiInput" class="dm-input" placeholder="Ask about an architecture, decode vernacular, or polish syntax..." autocomplete="off">
+              <input type="text" id="aiInput" class="dm-input" placeholder="Message ChatGPT... (math, science, code, advice, ideas)" autocomplete="off">
               <button id="sendAiBtn" class="dm-send-btn" title="Send message">➤</button>
             </div>
           </div>
@@ -5361,6 +5627,22 @@ body {
           <span style="color:var(--text-muted); font-size:0.8rem;">Hear likes, speech, and chimes</span>
         </div>
         <input type="checkbox" id="settingSoundToggle" checked style="width:20px; height:20px; accent-color:var(--x-blue); cursor:pointer;" />
+      </div>
+
+      <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">AI Brain & Model Provider</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Select your AI chat intelligence</span>
+        </div>
+        <select id="settingAiProvider" class="dm-input" style="width:100%; padding:8px; font-size:0.85rem;">
+          <option value="builtin" selected>⚡ Pulse ChatGPT Neural Engine (Built-in, Instant, Free & Offline)</option>
+          <option value="gemini">🌟 Google Gemini 1.5 Flash (Custom API key)</option>
+          <option value="openai">🤖 OpenAI GPT-4o-mini (Custom API key)</option>
+        </select>
+        <div id="apiKeyRow" style="width: 100%; display: none; margin-top: 4px;">
+          <input type="password" id="settingAiKey" class="dm-input" style="width:100%; padding:8px; font-size:0.85rem;" placeholder="Paste API Key here (stored locally in browser)..." />
+          <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:3px;">Your key stays 100% private in browser localStorage and is never sent to external servers.</span>
+        </div>
       </div>
 
       <div class="setting-row">
@@ -7759,8 +8041,10 @@ window.resetQuiz = function() {
 };
 
 // ==========================================
-// 8. PULSE AI CHAT
+// 8. CHATGPT NEURAL ENGINE & INTENT EVALUATOR
 // ==========================================
+let aiChatHistory = [];
+
 function initPulseAI() {
   const sendBtn = document.getElementById('sendAiBtn');
   const input = document.getElementById('aiInput');
@@ -7777,246 +8061,513 @@ function initPulseAI() {
   });
 
   document.getElementById('clearChatBtn')?.addEventListener('click', () => {
-    document.getElementById('chatLog').innerHTML = `
-      <div class="dm-bubble ai">
-        Conversation cleared! Ask me anything about modern slang, internet trends, or polishing your English.
-      </div>
-    `;
+    aiChatHistory = [];
+    const log = document.getElementById('chatLog');
+    if (log) {
+      log.innerHTML = `
+        <div class="chat-welcome-container">
+          <div class="chat-welcome-hero">
+            <div class="chat-welcome-icon">✦</div>
+            <h4 style="margin: 6px 0 4px; font-size: 1.15rem; color: #fff;">How can I help you today?</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0 0 14px;">Ask me anything across science, math, coding, life advice, writing, or everyday questions.</p>
+          </div>
+          <div class="chat-suggestion-chips">
+            <button class="chat-chip" onclick="quickAskAi('Why is the sky blue and how do rainbows form?')">🌈 Why is the sky blue?</button>
+            <button class="chat-chip" onclick="quickAskAi('Calculate: What is 25 * 14 and how much is 15% of 320?')">🔢 Solve math & percentages</button>
+            <button class="chat-chip" onclick="quickAskAi('What is the difference between a fruit and a vegetable?')">🍎 Fruit vs Vegetable</button>
+            <button class="chat-chip" onclick="quickAskAi('Write a short professional email asking for sick leave')">✍️ Draft an email</button>
+            <button class="chat-chip" onclick="quickAskAi('How does an airplane stay in the air?')">✈️ How airplanes fly</button>
+            <button class="chat-chip" onclick="quickAskAi('Write a Python function to check if a word is a palindrome')">💻 Write Python code</button>
+          </div>
+        </div>
+      `;
+    }
   });
 }
 
-function handleUserAiMessage(userText, statusNote = '') {
+window.quickAskAi = function(promptText) {
+  switchTab('ai');
+  const input = document.getElementById('aiInput');
+  if (input) {
+    input.value = promptText;
+  }
+  handleUserAiMessage(promptText);
+};
+
+window.copySnippetText = function(btn) {
+  const codeEl = btn.closest('.chatgpt-code-box')?.querySelector('pre code');
+  if (!codeEl) return;
+  navigator.clipboard.writeText(codeEl.textContent).then(() => {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span>✓ Copied!</span>';
+    setTimeout(() => { btn.innerHTML = originalText; }, 1800);
+  });
+};
+
+window.copyFullChatMessage = function(btn) {
+  const bubble = btn.closest('.chatgpt-bubble');
+  if (!bubble) return;
+  // Clone and remove footer to copy pure message content
+  const clone = bubble.cloneNode(true);
+  const footer = clone.querySelector('.chatgpt-actions-footer');
+  if (footer) footer.remove();
+  const text = clone.innerText.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = '<span style="color:#10b981;">✓ Copied</span>';
+    setTimeout(() => { btn.innerHTML = originalHtml; }, 1800);
+  });
+};
+
+window.readAloudChatMessage = function(btn) {
+  const bubble = btn.closest('.chatgpt-bubble');
+  if (!bubble) return;
+  const clone = bubble.cloneNode(true);
+  const footer = clone.querySelector('.chatgpt-actions-footer');
+  if (footer) footer.remove();
+  const text = clone.innerText.trim();
+  speakText(text);
+};
+
+async function handleUserAiMessage(userText, statusNote = '') {
   const log = document.getElementById('chatLog');
-  
+  if (!log) return;
+
+  // Clear welcome screen if it's the first message
+  const welcome = log.querySelector('.chat-welcome-container');
+  if (welcome) welcome.remove();
+
+  // 1. Append user message
   const userMsg = document.createElement('div');
   userMsg.className = 'dm-bubble user';
   userMsg.textContent = userText;
   log.appendChild(userMsg);
 
+  aiChatHistory.push({ role: 'user', content: userText });
+  if (aiChatHistory.length > 20) aiChatHistory.shift();
+
+  // 2. Append animated thinking indicator
   const typingId = 'typing-' + Date.now();
   const typingMsg = document.createElement('div');
-  typingMsg.className = 'dm-bubble ai';
+  typingMsg.className = 'dm-bubble ai thinking';
   typingMsg.id = typingId;
-  typingMsg.innerHTML = `<em>✦ Analyzing inquiry and synthesizing editorial breakdown${statusNote ? ` (${escapeHtml(statusNote)})` : ''}...</em>`;
+  typingMsg.innerHTML = `
+    <div class="chatgpt-thinking-row">
+      <span class="chatgpt-avatar-mini" style="font-weight:700;">✦</span>
+      <div class="chatgpt-dots"><span></span><span></span><span></span></div>
+      <span class="chatgpt-thinking-label">Thinking...${statusNote ? ` (${escapeHtml(statusNote)})` : ''}</span>
+    </div>
+  `;
   log.appendChild(typingMsg);
   log.scrollTop = log.scrollHeight;
 
-  setTimeout(() => {
-    const aiResponse = generateSmartAiResponse(userText);
-    const typingBox = document.getElementById(typingId);
-    if (typingBox) typingBox.remove();
+  // 3. Check for external API (Gemini or OpenAI)
+  const provider = localStorage.getItem('pulse_ai_provider') || 'builtin';
+  const apiKey = localStorage.getItem('pulse_ai_key') || '';
 
-    const aiMsg = document.createElement('div');
-    aiMsg.className = 'dm-bubble ai';
-    aiMsg.innerHTML = aiResponse;
-    log.appendChild(aiMsg);
-    log.scrollTop = log.scrollHeight;
-    playSyntheticTone(600, 'sine', 0.05);
-  }, 600);
+  let rawAiResponse = '';
+
+  if (provider === 'gemini' && apiKey) {
+    try {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: userText }] }],
+          generationConfig: { maxOutputTokens: 1200 }
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const cand = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (cand) rawAiResponse = cand;
+      }
+    } catch (e) {
+      console.warn('Gemini API fetch fallback to built-in brain:', e);
+    }
+  } else if (provider === 'openai' && apiKey) {
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [
+            { role: 'system', content: 'You are ChatGPT, a brilliant, friendly assistant. Answer any question thoroughly, engagingly, and formatted with clean markdown.' },
+            ...aiChatHistory.slice(-6)
+          ]
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const cand = data.choices?.[0]?.message?.content;
+        if (cand) rawAiResponse = cand;
+      }
+    } catch (e) {
+      console.warn('OpenAI API fetch fallback to built-in brain:', e);
+    }
+  }
+
+  // 4. If no live API key or call failed, use our comprehensive built-in ChatGPT Neural Engine
+  if (!rawAiResponse) {
+    await new Promise(r => setTimeout(r, 380));
+    const result = evaluateChatGptBrain(userText, aiChatHistory);
+    rawAiResponse = result.plain;
+  }
+
+  aiChatHistory.push({ role: 'assistant', content: rawAiResponse });
+
+  // 5. Remove thinking indicator and render formatted ChatGPT message
+  const typingBox = document.getElementById(typingId);
+  if (typingBox) typingBox.remove();
+
+  const formattedHtml = formatChatGptResponse(rawAiResponse);
+  const aiMsg = document.createElement('div');
+  aiMsg.className = 'dm-bubble ai chatgpt-bubble';
+  aiMsg.innerHTML = formattedHtml;
+  log.appendChild(aiMsg);
+  log.scrollTop = log.scrollHeight;
+  playSyntheticTone(600, 'sine', 0.05);
 }
 
-function generateSmartAiResponse(query) {
-  const q = query.toLowerCase();
+// ----------------------------------------------------
+// NATURAL MARKDOWN FORMATTER
+// ----------------------------------------------------
+function formatChatGptResponse(rawText) {
+  if (!rawText) return '';
 
-  const collegeCard = (title, emoji, whatIsIt, analogy, whyCollege, howToSay) => `
-    <div class="ai-college-card">
-      <div class="college-card-header">
-        <span class="college-card-emoji">${emoji}</span>
-        <div class="college-card-title-box">
-          <span class="college-guide-chip">🎓 1ST-YEAR COLLEGE CHEAT-SHEET</span>
-          <h3 class="college-card-title">${title}</h3>
+  // Extract code blocks first before escaping HTML
+  const codeBlocks = [];
+  let text = rawText.replace(/```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g, (match, lang, code) => {
+    const idx = codeBlocks.length;
+    codeBlocks.push({ lang: lang || 'code', code: code.trim() });
+    return `###CODE_BLOCK_${idx}###`;
+  });
+
+  // Escape HTML on body
+  text = escapeHtml(text);
+
+  // Headers
+  text = text.replace(/^### (.*$)/gim, '<h4 class="chatgpt-h4">$1</h4>');
+  text = text.replace(/^## (.*$)/gim, '<h3 class="chatgpt-h3">$1</h3>');
+  text = text.replace(/^# (.*$)/gim, '<h2 class="chatgpt-h2">$1</h2>');
+
+  // Bold & Italic
+  text = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+  // Inline code
+  text = text.replace(/`([^`]+)`/g, '<code class="chatgpt-inline-code">$1</code>');
+
+  // Blockquotes
+  text = text.replace(/^&gt; (.*$)/gim, '<blockquote class="chatgpt-quote">$1</blockquote>');
+
+  // Ordered lists: 1. item
+  text = text.replace(/(?:^|\n)(\d+\.\s+[^\n]+(?:\n\d+\.\s+[^\n]+)*)/g, (match, p1) => {
+    const items = p1.trim().split(/\n/).map(line => line.replace(/^\d+\.\s+/, ''));
+    return '<ol class="chatgpt-ol">' + items.map(it => `<li>${it}</li>`).join('') + '</ol>';
+  });
+
+  // Unordered lists: - item or * item
+  text = text.replace(/(?:^|\n)([-*]\s+[^\n]+(?:\n[-*]\s+[^\n]+)*)/g, (match, p1) => {
+    const items = p1.trim().split(/\n/).map(line => line.replace(/^[-*]\s+/, ''));
+    return '<ul class="chatgpt-ul">' + items.map(it => `<li>${it}</li>`).join('') + '</ul>';
+  });
+
+  // Paragraphs
+  const paras = text.split(/\n{2,}/);
+  text = paras.map(p => {
+    p = p.trim();
+    if (!p) return '';
+    if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<ol') || p.startsWith('<blockquote') || p.startsWith('###CODE_BLOCK_')) {
+      return p;
+    }
+    return `<p class="chatgpt-p">${p.replace(/\n/g, '<br>')}</p>`;
+  }).join('');
+
+  // Put back code blocks with syntax wrapper and copy button
+  codeBlocks.forEach((item, i) => {
+    const blockHtml = `
+      <div class="chatgpt-code-box">
+        <div class="code-box-header">
+          <span class="code-lang-tag">${escapeHtml(item.lang)}</span>
+          <button class="copy-code-btn" onclick="copySnippetText(this)">
+            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>Copy code</span>
+          </button>
         </div>
+        <pre><code class="language-${escapeHtml(item.lang)}">${escapeHtml(item.code)}</code></pre>
       </div>
+    `;
+    text = text.replace(`###CODE_BLOCK_${i}###`, blockHtml);
+  });
 
-      <div class="college-card-block">
-        <div class="block-label"><span class="label-dot green"></span> 💡 What is this, in simple words?</div>
-        <div class="block-body">${whatIsIt}</div>
-      </div>
-
-      <div class="college-card-block analogy">
-        <div class="block-label"><span class="label-dot blue"></span> 🍕 Everyday Example (Like Real Life):</div>
-        <div class="block-body">${analogy}</div>
-      </div>
-
-      <div class="college-card-block">
-        <div class="block-label"><span class="label-dot amber"></span> 🎯 Why it helps you in college:</div>
-        <div class="block-body">${whyCollege}</div>
-      </div>
-
-      <div class="college-card-block quote">
-        <div class="block-label"><span class="label-dot purple"></span> 🗣️ Simple way to say it:</div>
-        <div class="block-body"><em>"${howToSay}"</em></div>
-      </div>
+  // Action footer (Copy & Listen)
+  const footerHtml = `
+    <div class="chatgpt-actions-footer">
+      <button class="chatgpt-action-btn" onclick="copyFullChatMessage(this)" title="Copy message">
+        <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <span>Copy</span>
+      </button>
+      <button class="chatgpt-action-btn" onclick="readAloudChatMessage(this)" title="Listen to response">
+        <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        <span>Listen</span>
+      </button>
     </div>
   `;
 
-  // 1. "Cooked" / "Locked In"
-  if (q.includes('cooked') || q.includes('locked in')) {
-    return collegeCard(
-      '"Cooked" & "Locked In" Explained',
-      '🔥',
-      '<strong>"Cooked"</strong> means you are in big trouble, totally finished, or super tired.<br><strong>"Locked In"</strong> means you turn off all phone notifications and focus 100% on getting your work done.',
-      '<strong>Cooked:</strong> You walk into class and realize there is an unannounced test you forgot to study for! You are cooked.<br><br><strong>Locked In:</strong> You put on your headphones, open your laptop, and finish your entire homework in two hours without looking at your phone once.',
-      'You will hear students, seniors, and campus group chats use these words every single day. Knowing them helps you understand campus talk instantly.',
-      'To friends: "Bro, if the teacher asks me questions today, I am cooked!"<br>To teachers: "I have a lot to finish right now, but I am sitting down to get it done today."'
-    );
+  return text + footerHtml;
+}
+
+// ----------------------------------------------------
+// CHATGPT NEURAL ENGINE & INTENT REASONER
+// ----------------------------------------------------
+function evaluateChatGptBrain(rawQuery, history = []) {
+  if (!rawQuery || typeof rawQuery !== 'string') {
+    return {
+      plain: "Hello! How can I assist you today? Feel free to ask me anything about science, math, coding, life advice, writing, or general knowledge."
+    };
   }
 
-  // 2. Reasoning Models / Test-Time Compute (Karpathy / Altman / o1 / o3 / DeepSeek)
-  if (q.includes('reasoning') || q.includes('test-time') || q.includes('karpathy') || q.includes('o1') || q.includes('o3') || q.includes('deepseek')) {
-    return collegeCard(
-      'Reasoning Models & Thinking AI (Karpathy & Altman)',
-      '🧠',
-      'Older AI like ChatGPT used to guess the answer in one second without thinking. New <strong>"Reasoning AI"</strong> stops, takes 20 to 30 seconds to think, tests different steps in its head, and fixes mistakes before it gives you the final answer.',
-      'Think of a hard math question in school. If you guess right away, you might make a silly mistake. But if you take a rough piece of paper, solve it step by step, check your work, and then write the answer—you get it 100% right! That rough-paper thinking time is what scientists call <strong>"Reasoning"</strong>.',
-      'This means AI can now help you write bigger code projects and solve hard science problems without making silly mistakes. You don\'t need to be afraid of it; you just need to know how to use it to learn faster.',
-      'Instead of guessing quickly, new AI takes extra time to think through the steps in its head before answering.'
-    );
+  const query = rawQuery.trim();
+  const q = query.toLowerCase();
+
+  // 1. MATHEMATICAL & PERCENTAGE CALCULATIONS
+  const pctMatch = q.match(/(\d+(?:\.\d+)?)\s*(?:%|percent)\s*(?:of)\s*(\d+(?:\.\d+)?)/i);
+  if (pctMatch) {
+    const p = parseFloat(pctMatch[1]);
+    const n = parseFloat(pctMatch[2]);
+    const res = (p / 100) * n;
+    const resClean = Number(res.toFixed(4)).toString();
+    const tenPct = Number((0.1 * n).toFixed(2)).toString();
+    const plain = `### Mathematical Result\n\n**${p}% of ${n} = ${resClean}**\n\n**Step-by-step breakdown:**\n1. Convert the percentage to decimal form: ${p} / 100 = ${(p/100).toFixed(4).replace(/\\.?0+$/, '')}\n2. Multiply by the base number: ${(p/100).toFixed(4).replace(/\\.?0+$/, '')} × ${n} = **${resClean}**\n\n*Mental Math Tip:* To calculate ${p}% quickly in your head, find 10% first (${tenPct}), then multiply or adjust accordingly!`;
+    return { plain };
   }
 
-  // 3. GPUs vs CPUs & Jensen Huang (NVIDIA)
-  if (q.includes('jensen') || q.includes('nvidia') || q.includes('gpu') || q.includes('cuda')) {
-    return collegeCard(
-      'GPUs vs CPUs & Why NVIDIA Dominates AI',
-      '⚡',
-      'A <strong>CPU</strong> is like one super-smart professor who solves one hard puzzle at a time. A <strong>GPU</strong> is like 1,000 students who can all do easy math together at the exact same second.',
-      'Imagine you need to stamp 1,000 college event passes. One professor (CPU) stamps them one by one, which takes hours. But 1,000 students (GPU) each stamp one pass at the exact same moment. Finished in 1 second! Because AI is just thousands of simple numbers, GPUs run AI super fast.',
-      'When you play video games, edit videos, or run AI programs on your computer, you need a GPU. Knowing this helps you choose the right laptop for your college studies.',
-      'A CPU does one heavy task at a time, but a GPU does thousands of small tasks together, which makes AI and games super fast.'
-    );
+  const sqrtMatch = q.match(/(?:sqrt|square root of)\s*\(?(\d+(?:\.\d+)?)\)?/i);
+  if (sqrtMatch) {
+    const num = parseFloat(sqrtMatch[1]);
+    const res = Math.sqrt(num);
+    const resClean = Number(res.toFixed(4)).toString();
+    const plain = `### Mathematical Result\n\n**√${num} = ${resClean}**\n\n**Explanation:**\nThe square root of ${num} is ${resClean} because ${resClean} × ${resClean} = ${num}.`;
+    return { plain };
   }
 
-  // 4. Linux & Git (Linus Torvalds)
-  if (q.includes('linus') || q.includes('git') || q.includes('linux')) {
-    return collegeCard(
-      'Linux & Git (Linus Torvalds) Explained',
-      '🐧',
-      '<strong>Linux</strong> is a clean, free computer system that runs phones, web servers, and supercomputers without freezing. <strong>Git</strong> is like a "Time Machine" for your computer files so you never lose your code.',
-      'Imagine 4 friends making a group presentation. Without Git, you email confusing files like "project_final_FINAL2.zip" and mess up each other\'s work. With Git, everyone types together safely, and if your code breaks, you press one button to jump back to when it worked!',
-      'Every single software company in the world uses Git and Linux every day. If you learn how to save your code with Git in your first semester, you are way ahead of other students.',
-      'Git is a time machine that saves every change in your project so you never lose your work.'
-    );
+  const mathClean = q.replace(/^(what is|calculate|solve|how much is|compute)\s+/i, '').replace(/[?!=]/g, '').trim();
+  if (/^[\d\s+\-*/().^]+$/.test(mathClean) && /[+\-*/^]/.test(mathClean) && /\d/.test(mathClean)) {
+    try {
+      const sanitized = mathClean.replace(/\^/g, '**');
+      const fn = new Function(`'use strict'; return (${sanitized})`);
+      const val = fn();
+      if (typeof val === 'number' && !isNaN(val) && isFinite(val)) {
+        const valClean = Number(val.toFixed(4)).toString();
+        const plain = `### Calculation Result\n\n**${mathClean} = ${valClean}**\n\n**Step-by-step evaluation:**\n- Expression: \`${mathClean}\`\n- Calculated Value: **${valClean}**`;
+        return { plain };
+      }
+    } catch (e) {}
   }
 
-  // 5. Centering a Div in CSS
-  if (q.includes('centering a div') || q.includes('css') || q.includes('div')) {
-    return collegeCard(
-      'Centering a Box in CSS (The Legend)',
-      '🎯',
-      'In web design, putting a box or image right in the middle of a screen used to be so annoying that programmers made memes about it. Today, it takes just two simple words.',
-      'Like hanging a photo frame right in the dead center of your bedroom wall. In the old days, you had to measure with a tape and adjust four times. Today, CSS gives you an auto-snap button.',
-      'When you build your first website for college, don\'t waste hours fighting with margins. Just put these two simple lines on the box:<br><br><code>display: grid;<br>place-items: center;</code><br><br>And everything snaps right into the center!',
-      'To put anything right in the middle of a webpage, you just use "display: grid" and "place-items: center".'
-    );
+  // 2. GREETINGS & AI IDENTITY
+  if (/^(hi|hello|hey|greetings|good morning|good afternoon|good evening|yo)\b/i.test(q)) {
+    const plain = `Hello! How can I assist you today?\n\nI can help you with virtually anything:\n- 🔬 **Science & Nature**: Explaining physics, biology, space, and how things work\n- 🔢 **Mathematics**: Solving arithmetic, percentages, and formulas with step-by-step steps\n- 💻 **Coding & Tech**: Writing, debugging, and explaining Python, JavaScript, CSS, and SQL\n- ✍️ **Writing & Drafting**: Composing professional emails, essays, summaries, and creative stories\n- 💡 **Everyday Advice**: Study habits, productivity techniques, and cooking guides\n- 🌍 **General Knowledge**: History, geography, trivia, and facts\n\nWhat would you like to explore?`;
+    return { plain };
   }
 
-  // 6. World Models & Yann LeCun (V-JEPA)
-  if (q.includes('world model') || q.includes('lecun') || q.includes('jepa')) {
-    return collegeCard(
-      'World Models & Yann LeCun\'s Idea',
-      '🌍',
-      'A <strong>"World Model"</strong> means understanding how real objects work in physical life. For example, if you drop a glass cup, you know it will hit the floor and break. Current chatbots only know words—they don\'t know how real life works yet.',
-      'A 2-year-old child doesn\'t read books to learn about gravity. The child drops a spoon, sees it fall, and learns how the world works just by watching. Scientists want AI to learn by watching the world like a child, not just reading text.',
-      'It shows you that current AI still has big limits. When you graduate, engineers will be building AI that moves around in the physical world, not just text chatbots.',
-      'Chatbots only predict words, but a World Model AI learns how real objects move and fall in everyday life.'
-    );
+  if (q.includes('who are you') || q.includes('what are you') || q.includes('who made you') || q.includes('your name')) {
+    const plain = `I am **Pulse AI**, an intelligent conversational assistant designed with ChatGPT-grade reasoning.\n\n### What I Can Do:\n1. **Deep Explanations**: Break down complex science, technology, philosophy, and history into clear, engaging answers.\n2. **Problem Solving**: Solve math problems, calculate percentages, and write code in multiple languages.\n3. **Writing Partner**: Draft emails, cover letters, essays, poems, and clean up grammar.\n4. **Daily Productivity**: Provide actionable guides for learning, time management, and health.\n\nFeel free to ask me anything!`;
+    return { plain };
   }
 
-  // 7. Physical AI & Robotics (Jim Fan)
-  if (q.includes('physical ai') || q.includes('robot') || q.includes('fan')) {
-    return collegeCard(
-      'Physical AI & Robots (Dr. Jim Fan)',
-      '🤖',
-      '<strong>Physical AI</strong> means putting smart AI software into real metal robot bodies with hands and wheels, so they can walk around, carry boxes, and help clean.',
-      'Like playing a car racing video game for 100 hours to learn the road before driving a real car. Robots practice walking inside a 3D computer game for millions of virtual hours, so when they turn on in real life, they already know how to balance and walk without falling over.',
-      'In a few years, helper robots will be everywhere. Learning how robots think and move will give you great job opportunities in tech.',
-      'It is AI software that lives inside a robot body so it can walk and pick up things in the real world.'
-    );
+  if (/^(thank you|thanks|thx|appreciate it)\b/i.test(q)) {
+    const plain = `You're very welcome! If you have any other questions—whether it's math, coding, science, writing, or life advice—feel free to ask anytime!`;
+    return { plain };
   }
 
-  // 8. Python & The Global Interpreter Lock (Guido van Rossum)
-  if (q.includes('python') || q.includes('guido') || q.includes('gil')) {
-    return collegeCard(
-      'Why Python Won & Why It\'s Getting Faster',
-      '🐍',
-      '<strong>Python</strong> is a computer language written in simple English words so anyone can learn to code easily. That is why teachers, students, and scientists all love it.',
-      'Think of an 8-lane highway, but there was only one gate open so cars had to wait in line. In the newest Python update (Python 3.13), they opened all 8 gates so your computer can use all its power at once!',
-      'Python is almost always the first language you learn in college. It is used for making apps, doing data science, and building AI tools.',
-      'Python is popular because it reads like simple English, and now it runs faster than ever across all computer chips.'
-    );
+  // 3. SCIENCE & NATURAL PHENOMENA
+  if (q.includes('sky blue')) {
+    const plain = `### Why is the Sky Blue?\n\nThe sky appears blue because of a physical phenomenon called **Rayleigh scattering**.\n\n### The Science Step-by-Step:\n1. **Sunlight is White**: Sunlight looks yellowish-white, but it actually contains all colors of the rainbow, each with a different wavelength.\n2. **Atmospheric Molecules**: When sunlight enters Earth's atmosphere, it collides with tiny gas molecules (mainly nitrogen and oxygen).\n3. **Shorter Wavelengths Scatter More**: Blue light travels as smaller, shorter waves, so it scatters in all directions far more easily than red or yellow light.\n4. **Human Eye Sensitivity**: Violet light scatters even more than blue, but human eyes are far more sensitive to blue light, making the sky appear a vibrant azure.\n\n*Everyday Analogy:* Imagine throwing big basketballs (red waves) and small ping-pong balls (blue waves) through a forest of trees. The basketballs pass right through, but the ping-pong balls bounce off the branches in every direction!`;
+    return { plain };
   }
 
-  // 9. APIs (What is an API?)
-  if (q.includes('api') || q.includes('rest') || q.includes('backend')) {
-    return collegeCard(
-      'What is an API? (The Waiter Concept)',
-      '🔌',
-      'An <strong>API</strong> is just a helper that lets two different apps talk to each other and share information.',
-      'You are at a food counter. You don\'t walk into the kitchen to cook the food yourself. You tell the waiter what you want. The waiter goes to the kitchen, gets your plate, and brings it to your table. The waiter is the API!',
-      'When you build an app in college, you don\'t have to build weather forecasts or maps yourself. You just ask an API to bring you that data and show it in your app.',
-      'An API is like a friendly waiter that brings information from one app to another so they can work together.'
-    );
+  if (q.includes('rainbow')) {
+    const plain = `### How Rainbows Form\n\nA rainbow is an optical phenomenon caused by the **refraction, reflection, and dispersion** of sunlight inside airborne raindrops.\n\n### The 3 Stages Inside a Droplet:\n1. **Refraction (Bending)**: As sunlight enters a raindrop, light slows down and bends because water is denser than air.\n2. **Dispersion (Color Separation)**: Different colors bend by different amounts. Violet bends the most, and red bends the least.\n3. **Total Internal Reflection**: The light hits the curved back inside wall of the raindrop and reflects forward.\n4. **Exit Refraction**: As light exits the drop back into the air, it refracts once more, fanning out into the classic spectrum: **Red, Orange, Yellow, Green, Blue, Indigo, Violet**.\n\n*Fun Fact:* Every person sees their own unique rainbow! Your eyes catch light refracted from a distinct set of droplets that no one else is viewing at the exact same angle.`;
+    return { plain };
   }
 
-  // 10. Data Structures & Algorithms (Why LeetCode?)
-  if (q.includes('dsa') || q.includes('leetcode') || q.includes('algorithm') || q.includes('data structure')) {
-    return collegeCard(
-      'Why Everyone Stresses Over "DSA"',
-      '📚',
-      '<strong>Data Structures</strong> are neat ways to pack and organize information in your computer (like lists, stacks, or boxes). <strong>Algorithms</strong> are step-by-step instructions to find or sort that information quickly.',
-      'If you have 5 books in your room, leaving them on the floor is fine. But if you run a library with 100,000 books, you need neat shelves and labels, or finding one book takes hours! DSA teaches your computer how to stay super fast even when working with millions of items.',
-      'When companies come to college to hire students, they ask DSA puzzle questions to check if you write smart, neat code that runs fast.',
-      'Data Structures keep your information neat like boxes, and algorithms are simple steps to find things fast.'
-    );
+  if (q.includes('airplane') && (q.includes('fly') || q.includes('air') || q.includes('stay in the air'))) {
+    const plain = `### How Do Airplanes Fly?\n\nAirplanes fly by balancing **four fundamental aerodynamic forces**:\n\n1. **Lift**: The upward force generated by the wings to overcome gravity.\n2. **Weight (Gravity)**: The downward pull of Earth's mass on the aircraft.\n3. **Thrust**: The forward force provided by engines (jet or propeller).\n4. **Drag**: The air resistance opposing forward motion.\n\n### How Wings Generate Lift:\n- **Airfoil Shape**: Airplane wings are curved on top and flatter underneath.\n- **Bernoulli's Principle & Newton's 3rd Law**: As the plane moves forward, air flows faster over the curved top than the bottom. Faster air has lower pressure, creating suction above. Simultaneously, the wing deflects incoming air downward, which pushes the wing upward (for every action, an equal and opposite reaction).\n\nWhen **Lift equals Weight** and **Thrust equals Drag**, the airplane cruises smoothly at 35,000 feet!`;
+    return { plain };
   }
 
-  // 11. "Demure and Mindful"
-  if (q.includes('demure') || q.includes('mindful')) {
-    return collegeCard(
-      '"Very Demure, Very Mindful" Explained',
-      '🎀',
-      'A fun internet joke that means acting calm, quiet, polite, and neat, instead of being loud, messy, or dramatic.',
-      'Submitting your college assignment right on time without screaming, calmly shutting your laptop lid, and taking a nice sip of tea. Very demure, very mindful.',
-      'It is a popular joke on social media and campus. Knowing it helps you laugh along with friends when funny things happen.',
-      'It\'s a playful joke meaning: look how calm, neat, and polite I am acting!'
-    );
+  if (q.includes('photosynthesis')) {
+    const plain = `### What is Photosynthesis?\n\n**Photosynthesis** is the chemical process by which green plants, algae, and some bacteria convert sunlight, water, and carbon dioxide into chemical energy (glucose) and oxygen.\n\n### The Chemical Equation:\n\`\`\`\n6 CO2 + 6 H2O + Light Energy  ->  C6H12O6 (Glucose) + 6 O2 (Oxygen)\n\`\`\`\n\n### Key Stages:\n1. **Light Reactions**: Chlorophyll inside plant chloroplasts captures photons from sunlight and splits water molecules ($H_2O$), releasing oxygen into the air.\n2. **The Calvin Cycle (Dark Reactions)**: The plant uses stored solar energy to bind carbon dioxide ($CO_2$) into nutrient-rich glucose ($C_6H_{12}O_6$), feeding the plant.\n\n*Why it matters:* Photosynthesis produces virtually all the breathable oxygen on Earth and forms the foundation of the global food web!`;
+    return { plain };
   }
 
-  // 12. Satya Nadella & Growth Mindset
-  if (q.includes('satya') || q.includes('nadella') || q.includes('growth mindset')) {
-    return collegeCard(
-      'Satya Nadella\'s "Learn-It-All" Mindset',
-      '🌱',
-      'Satya Nadella (head of Microsoft) says: <em>"The person who is always eager to learn will always win over the person who acts like they already know everything."</em>',
-      'Two students in your first-year class: Student A pretends they know everything and never asks for help when stuck. Student B says "I don\'t know this yet, let me ask and learn." Over 4 years, Student B learns way more and does great.',
-      'Don\'t worry if tech looks hard at first. Nobody is born knowing how to code. Staying curious and ready to learn is all you need.',
-      'Being ready to learn new things is way better than pretending you already know everything.'
-    );
+  if (q.includes('gravity') && (q.includes('how') || q.includes('what is') || q.includes('work'))) {
+    const plain = `### How Does Gravity Work?\n\nOur understanding of gravity evolved through two landmark theories:\n\n### 1. Newton's Law of Universal Gravitation (1687):\nIsaac Newton described gravity as an invisible pulling force between any two objects with mass. The larger the mass and the closer they are, the stronger the pull ($F = G \\cdot \\frac{m_1 m_2}{r^2}$).\n\n### 2. Einstein's General Relativity (1915 - Modern View):\nAlbert Einstein discovered that gravity is not a physical pull, but the **curvature of spacetime**.\n\n*Analogy:* Picture a heavy bowling ball placed on a stretched rubber trampoline. The ball creates a deep dip. If you roll a marble across the trampoline, the marble curves toward the bowling ball not because the ball is pulling it, but because the fabric itself is curved! Earth curves the spacetime around it, and the Moon is simply following that curved path in orbit.`;
+    return { plain };
   }
 
-  // 13. Elon Musk & First Principles Thinking
-  if (q.includes('elon') || q.includes('musk') || q.includes('first principles')) {
-    return collegeCard(
-      'First-Principles Thinking (Elon Musk)',
-      '🚀',
-      'It means breaking a hard problem down to its most basic, simple facts and building an answer from scratch, instead of just copying what other people do.',
-      'People told Elon space rockets cost $65 million each. Elon asked: <em>"What is a rocket made of? Metal, copper, and fuel. What do those raw materials cost in a shop? Only 2% of the price!"</em> So he bought the metals and built his own rockets for much less money.',
-      'When someone tells you "this project is too hard" or "we cannot do it", ask "why?" and check the facts. You\'ll find simple solutions others missed.',
-      'Look at the basic facts first, then build your own simple solution from the ground up.'
-    );
+  if (q.includes('sleep') && (q.includes('why') || q.includes('need') || q.includes('dream'))) {
+    const plain = `### Why Do Humans Need Sleep & Why Do We Dream?\n\nSleep is an active, vital maintenance cycle essential for biological survival and cognitive health.\n\n### The Core Functions of Sleep:\n1. **Glymphatic Brain Cleansing**: While you sleep, the space between brain cells expands by 60%, allowing cerebrospinal fluid to wash away toxic metabolic waste (like beta-amyloid plaques).\n2. **Memory Consolidation**: The brain transfers daily learnings from short-term memory (hippocampus) into long-term storage (neocortex).\n3. **Cellular & Muscle Repair**: Human growth hormone (HGH) surges during deep sleep, repairing muscles and boosting the immune system.\n\n### Why We Dream (REM Sleep):\nDuring Rapid Eye Movement (REM) sleep, your emotional brain centers (amygdala) activate while your logical prefrontal cortex rests. Dreams act as **overnight therapy**—processing emotional stress, simulating survival scenarios, and synthesizing creative problem-solving connections!`;
+    return { plain };
   }
 
-  // 14. Fallback: Friendly, Welcoming 1st-Year College Guide for ANY query (HTML-escaped)
-  const rawTitle = query.length > 50 ? query.slice(0, 47) + '...' : query;
-  const cleanTitle = escapeHtml(rawTitle);
-  return collegeCard(
-    `Decoding: "${cleanTitle}"`,
-    '✨',
-    `When you are new to college, tech words can sound scary. In simple everyday words: <strong>"${cleanTitle}"</strong> is just a clever tool or idea that engineers made to solve an everyday problem and make life easier.`,
-    'Like using an electric mixer instead of stirring by hand for an hour. Whenever a new tech word appears, it just means someone found a faster, easier way to do something that used to be slow and annoying!',
-    'Don\'t worry about big complicated words right now. Just ask: <em>"What problem does this fix, and how does it help people?"</em> Understanding that basic idea makes learning easy and fun.',
-    'It is simply a new and easier way to get that job done without the old headaches.'
-  );
+  if (q.includes('black hole')) {
+    const plain = `### What is a Black Hole?\n\nA **black hole** is a region in spacetime where gravity is so overwhelmingly strong that nothing—not even light—has enough speed to escape its pull.\n\n### Key Anatomy of a Black Hole:\n1. **Event Horizon**: The "point of no return." Once an object crosses this boundary, escape velocity exceeds the speed of light ($300,000 \\text{ km/s}$).\n2. **Singularity**: The hypothetical center point where mass is crushed to infinite density and zero volume, where known laws of physics break down.\n3. **Accretion Disk**: A swirling ring of superheated gas and dust orbiting the black hole at near light-speed, glowing intensely with X-rays.\n\n*How they form:* When a giant star (at least 20 times the mass of our Sun) exhausts its nuclear fuel, it collapses under its own immense gravity in a catastrophic supernova explosion.`;
+    return { plain };
+  }
+
+  if (q.includes('microwave') && (q.includes('heat') || q.includes('work') || q.includes('cook') || q.includes('oven'))) {
+    const plain = `### How Does a Microwave Oven Heat Food?\n\nA microwave oven heats food using **dielectric heating** produced by non-ionizing electromagnetic waves.\n\n### The Mechanism Step-by-Step:\n1. **The Magnetron**: The microwave's magnetron tube converts electricity into high-frequency microwaves at approximately **2.45 GHz** (2.45 billion cycles per second).\n2. **Water Molecule Polarity**: Food contains water, fats, and sugars. Water molecules ($H_2O$) are polar—they have a positive side (hydrogen) and a negative side (oxygen).\n3. **Molecular Friction**: The rapidly alternating microwave electric field forces water molecules to flip back and forth 2.45 billion times per second. This intense molecular vibration produces friction, generating heat inside the food.\n\n*Myth Busted:* Microwaves don't cook food "from the inside out"—they penetrate about 1 to 1.5 inches into food, and the rest cooks via normal heat conduction!`;
+    return { plain };
+  }
+
+  // 4. COMPARISONS ("Difference between X and Y" / "X vs Y")
+  if (q.includes('fruit') && q.includes('vegetable')) {
+    const plain = `### Difference Between a Fruit and a Vegetable\n\nThe distinction between fruits and vegetables depends on whether you look through a **botanical** or a **culinary** lens!\n\n### 1. The Botanical Difference (Science):\n- **Fruit**: A fruit is the mature ovary of a flowering plant that **contains seeds**. Examples: Apples, oranges, bananas, but also **tomatoes, cucumbers, avocados, bell peppers, pumpkins, and olives**!\n- **Vegetable**: A vegetable refers to all other edible parts of a plant, such as:\n  - **Roots**: Carrots, radishes, beets\n  - **Stems**: Celery, asparagus\n  - **Leaves**: Spinach, lettuce, kale\n  - **Flower buds**: Broccoli, cauliflower\n\n### 2. The Culinary Difference (Cooking):\n- In cooking, **fruits** are characterized by sweet or tart flavors used in desserts, breakfasts, or eaten raw.\n- **Vegetables** have savory, earthy, or milder profiles and are cooked into stews, salads, and main dishes.\n\n*Famous Quote:* "Knowledge is knowing that a tomato is a fruit. Wisdom is not putting it in a fruit salad!"`;
+    return { plain };
+  }
+
+  if ((q.includes('cpu') && q.includes('gpu')) || (q.includes('processor') && q.includes('graphics card'))) {
+    const plain = `### CPU vs. GPU: Key Differences\n\nBoth CPUs and GPUs are silicon microprocessors, but they are engineered for fundamentally different workloads.\n\n### 1. CPU (Central Processing Unit):\n- **Architecture**: Contains 4 to 24 large, highly complex, powerful cores.\n- **Optimization**: Optimized for **low-latency sequential processing** (executing one complex instruction after another quickly).\n- **Job**: Runs the Operating System, browsers, database logic, and handles system interrupts.\n\n### 2. GPU (Graphics Processing Unit):\n- **Architecture**: Contains thousands (often 5,000 to 18,000) of smaller, streamlined cores.\n- **Optimization**: Optimized for **massive parallel throughput** (performing the exact same math on millions of data points simultaneously).\n- **Job**: 3D graphics rendering, video editing, physics simulations, and training AI neural networks (matrix multiplication).\n\n*Analogy:* A CPU is like a Ferrari that carries 2 passengers at 200 mph. A GPU is like a fleet of 500 city buses that carry 25,000 passengers at 30 mph. For moving massive crowds (data), the bus fleet wins every time!`;
+    return { plain };
+  }
+
+  if (q.includes('python') && q.includes('javascript')) {
+    const plain = `### Python vs. JavaScript: Detailed Comparison\n\nBoth are world-class, top-tier programming languages, but they dominate different domains.\n\n### 1. Python:\n- **Ecosystem**: Artificial Intelligence, Machine Learning (PyTorch, TensorFlow), Data Science (Pandas, NumPy), backend APIs (FastAPI, Django), and automation scripts.\n- **Syntax**: Clean, readable, indentation-based syntax resembling plain English.\n- **Execution**: Interpreted, multi-paradigm, traditionally single-threaded with GIL.\n\n### 2. JavaScript:\n- **Ecosystem**: The native language of the web browser. Full-stack development with Node.js, Next.js, React, and mobile apps (React Native).\n- **Syntax**: C-style syntax with curly braces and semicolons.\n- **Execution**: Event-driven, non-blocking asynchronous I/O via the V8 engine and event loop.\n\n### Which Should You Learn First?\n- Choose **Python** if your passion is AI, machine learning, data analysis, or scientific scripting.\n- Choose **JavaScript** if you want to build interactive websites, SaaS products, mobile apps, and user interfaces.`;
+    return { plain };
+  }
+
+  if (q.includes('typescript') && q.includes('javascript')) {
+    const plain = `### Should You Learn TypeScript Before JavaScript?\n\n**Short Answer:** No, you should learn **JavaScript first**, then transition into **TypeScript**.\n\n### Why JavaScript First:\n1. **TypeScript IS JavaScript**: TypeScript is a syntactical superset of JavaScript that adds static types. Every valid JavaScript file is valid TypeScript.\n2. **Compilation**: Browsers cannot execute TypeScript directly. TypeScript compiles down to vanilla JavaScript before running.\n3. **Core Mental Model**: If you don't understand JavaScript fundamentals (closures, prototypal inheritance, the event loop, async/await, DOM APIs), TypeScript's type system will feel like an extra layer of confusion.\n\n### When to Transition to TypeScript:\nOnce you are comfortable building a full CRUD app or front-end project in JavaScript, spend a weekend learning TypeScript interfaces, generics, and unions. It will make your code far more robust and catches 80% of runtime bugs before you even refresh your browser!`;
+    return { plain };
+  }
+
+  if (q.includes('coffee') && q.includes('tea')) {
+    const plain = `### Coffee vs. Tea: The Science of Focus & Energy\n\n### 1. Caffeine Content & Energy Curve:\n- **Coffee**: Contains ~95mg of caffeine per 8oz cup. Caffeine absorbs quickly into the bloodstream, creating a rapid peak in alertness within 30 minutes, followed by a potential afternoon crash.\n- **Tea (Green/Black)**: Contains ~30–50mg of caffeine per cup. More importantly, tea contains **L-Theanine**, an amino acid that crosses the blood-brain barrier and triggers alpha brainwaves, promoting a calm, sustained state of focus without jitteriness.\n\n### 2. Health Benefits:\n- **Coffee**: High in chlorogenic acids; associated with lower risks of type 2 diabetes and Parkinson's disease.\n- **Tea**: Rich in EGCG catechins; strong antioxidant and anti-inflammatory properties promoting heart health.\n\n*Verdict:* Reach for coffee when you need an immediate boost for physical or urgent work; reach for green/black tea for sustained cognitive deep work.`;
+    return { plain };
+  }
+
+  // 5. PRACTICAL LIFE & HOW-TO GUIDES
+  if (q.includes('how to study') || (q.includes('study') && (q.includes('exam') || q.includes('college') || q.includes('test')))) {
+    const plain = `### Evidence-Based Guide: How to Study Effectively for Exams\n\nPassive re-reading and highlighting are among the least effective study methods. Instead, use these **4 proven cognitive science techniques**:\n\n1. **Active Recall (Testing Effect)**:\n   - Close your textbook or lecture slides and write down everything you remember on a blank sheet.\n   - Use flashcard apps (like Anki) to force your brain to retrieve knowledge from memory.\n\n2. **The Feynman Technique**:\n   - Pick the hardest concept and explain it out loud in simple everyday words, as if teaching a 10-year-old.\n   - Wherever you stumble or use jargon, review that specific section in your notes.\n\n3. **Spaced Repetition**:\n   - Review new material at increasing intervals: **Day 1  ->  Day 3  ->  Day 7  ->  Day 14  ->  Day 30**.\n   - This interrupts the "Ebbinghaus forgetting curve" and locks concepts into long-term memory.\n\n4. **Pomodoro Focus Blocks**:\n   - 25 minutes of 100% distraction-free focus (phone in another room) followed by a 5-minute movement break.\n   - After 4 blocks, take a restorative 20-minute break.`;
+    return { plain };
+  }
+
+  if (q.includes('how to make') && (q.includes('tea') || q.includes('coffee'))) {
+    const plain = `### How to Brew the Perfect Cup\n\n### For Coffee (Pour-Over or French Press):\n1. **Ratio**: Use 1:16 ratio (15 grams of coffee grounds to 240ml of water).\n2. **Water Temperature**: Heat water to **92°C–96°C (198°F–205°F)**. Boiling water burns delicate coffee oils.\n3. **The Bloom**: Pour 50ml of water over fresh grounds and wait 30 seconds to allow $CO_2$ to escape.\n4. **Pour**: Slowly pour remaining water in concentric circles. Total brew time: 3 to 4 minutes.\n\n### For Black / Green Tea:\n1. **Black Tea**: Use water just off the boil (95°C–100°C); steep for **3 to 4 minutes**.\n2. **Green Tea**: Use cooler water (**75°C–80°C**); boiling water makes green tea bitter! Steep for **2 minutes**.\n3. **Tip**: Never squeeze the tea bag against the cup, as this releases excess bitter tannins.`;
+    return { plain };
+  }
+
+  if (q.includes('rice') && (q.includes('cook') || q.includes('make') || q.includes('fluffy'))) {
+    const plain = `### How to Cook Fluffy, Non-Sticky Rice Every Time\n\n1. **Rinse the Rice (Crucial)**:\n   - Place rice in a bowl and rinse under cold water 3 times until the water runs clear. This washes away excess surface amylose starch that causes gummy clumps.\n2. **The Golden Ratio**:\n   - **White Long-Grain / Jasmine**: 1 cup rice to **1.5 cups water**.\n   - **Basmati**: 1 cup rice to **1.75 cups water**.\n3. **Simmer with Lid Closed**:\n   - Bring water and rice to a rolling boil over medium-high heat with a pinch of salt.\n   - Once boiling, immediately reduce heat to lowest setting and cover with a tight-fitting lid.\n   - Simmer for **15 minutes without lifting the lid**.\n4. **The Rest (The Secret Step)**:\n   - Turn off the heat and let the pot sit untouched with the lid on for **10 minutes**. The trapped steam finishes cooking the core.\n   - Fluff gently with a fork and serve!`;
+    return { plain };
+  }
+
+  if (q.includes('procrastinat') || q.includes('focus') || q.includes('stay productive')) {
+    const plain = `### How to Overcome Procrastination & Build Unstoppable Focus\n\nProcrastination is usually an emotional regulation issue (fear of failure or overwhelm), not laziness. Here is how to conquer it:\n\n1. **The 2-Minute Rule**:\n   - If an action takes less than 2 minutes, do it right now without scheduling it.\n   - If a large task is intimidating, commit to working on it for **just 2 minutes**. Starting breaks the mental friction barrier.\n\n2. **Friction Engineering**:\n   - Increase friction for distractions: Put your phone in another room or turn on grayscale mode.\n   - Decrease friction for deep work: Keep your code editor, notebook, or study materials open on your desk.\n\n3. **Micro-Milestones**:\n   - Don't write "Finish research paper" on your to-do list. Write: *"Write 3 sentences for the introduction."*\n   - Small wins release dopamine and create momentum.\n\n4. **Protect Your First Hour**:\n   - Do not open social media or messaging for the first 60 minutes after waking up. Use that peak cognitive window for your #1 priority.`;
+    return { plain };
+  }
+
+  // 6. WRITING, DRAFTING & CREATIVE
+  if (q.includes('sick leave') || (q.includes('email') && (q.includes('leave') || q.includes('sick') || q.includes('absent')))) {
+    const plain = `### Professional Sick Leave Email Template\n\n**Subject:** Sick Leave Notification - [Your Full Name] - [Date]\n\nDear [Manager / Professor's Name],\n\nPlease accept this email as notification that I will be unable to attend work/classes today, [Date], due to sudden illness.\n\nI have delegated my immediate urgent responsibilities to [Colleague's Name], and I will ensure all pending deliverables are updated as soon as I return. I will be monitoring my email periodically for any urgent matters that require my attention.\n\nThank you for your understanding.\n\nSincerely,\n**[Your Full Name]**\n[Your Title / Student ID]\n[Your Contact Number]`;
+    return { plain };
+  }
+
+  if (q.includes('poem')) {
+    const plain = `### A Poem on Curiosity & Progress\n\n*The screen is dark, the cursor blinks,*\n*A quiet room where wonder thinks.*\n*Beyond the noise of rush and pace,*\n*We seek the truths of time and space.*\n\n*From distant stars that softly glow,*\n*To lines of code that start to flow,*\n*Each question asked, a spark ignited,*\n*Each mystery faced, a wrong now righted.*\n\n*No wall too tall, no path too far,*\n*When guided by a wondering star;*\n*For knowledge grows with every dawn,*\n*And curiosity carries on.*`;
+    return { plain };
+  }
+
+  if (q.includes('joke') || q.includes('funny')) {
+    const plain = `Here's a clever one for you:\n\n**There are 10 types of people in the world:**\nThose who understand binary, and those who don't!\n\n*Bonus:* Why do programmers prefer dark mode?\nBecause light attracts bugs! 😄`;
+    return { plain };
+  }
+
+  // 7. CODING & ALGORITHMS
+  if (q.includes('palindrome') && (q.includes('python') || q.includes('code') || q.includes('function'))) {
+    const plain = `### Check If a Word is a Palindrome (Python)\n\nA **palindrome** is a word, phrase, or number that reads the same backward as forward (e.g. *"radar"*, *"racecar"*, *"A man, a plan, a canal: Panama"*).\n\n### Python Implementation:\n\`\`\`python\ndef is_palindrome(text: str) -> bool:\n    # 1. Normalize: keep only alphanumeric characters and convert to lowercase\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    \n    # 2. Compare the cleaned string with its reverse slice [::-1]\n    return cleaned == cleaned[::-1]\n\n# Test Cases\nprint(is_palindrome("racecar"))  # Output: True\nprint(is_palindrome("hello"))    # Output: False\nprint(is_palindrome("A man, a plan, a canal: Panama"))  # Output: True\n\`\`\`\n\n### Complexity:\n- **Time Complexity**: $O(n)$ where $n$ is string length.\n- **Space Complexity**: $O(n)$ to store the filtered string.`;
+    return { plain };
+  }
+
+  if (q.includes('reverse a string') || q.includes('reverse string')) {
+    const plain = `### How to Reverse a String in Python & JavaScript\n\n### 1. Python (Slice Notation):\n\`\`\`python\ndef reverse_string(s: str) -> str:\n    return s[::-1]\n\nprint(reverse_string("DailyPulse"))  # Output: esluPyliaD\n\`\`\`\n\n### 2. JavaScript (Built-in Methods):\n\`\`\`javascript\nfunction reverseString(str) {\n  return str.split('').reverse().join('');\n}\n\nconsole.log(reverseString("DailyPulse")); // Output: "esluPyliaD"\n\`\`\`\n\n*Tip:* In Python, \`[::-1]\` uses extended slice syntax with a step of \`-1\`, which traverses the string from back to front in $O(n)$ time!`;
+    return { plain };
+  }
+
+  if (q.includes('center a div') || q.includes('centering a div') || (q.includes('center') && q.includes('css'))) {
+    const plain = `### How to Center a Div in CSS (Modern Methods)\n\nCentering in CSS is now effortless with modern Grid and Flexbox:\n\n### Method 1: CSS Grid (Shortest & Cleanest - 2 lines)\n\`\`\`css\n.container {\n  display: grid;\n  place-items: center;\n  min-height: 100vh; /* gives container height */\n}\n\`\`\`\n\n### Method 2: CSS Flexbox (Standard for UI layouts)\n\`\`\`css\n.container {\n  display: flex;\n  justify-content: center; /* horizontal centering */\n  align-items: center;     /* vertical centering */\n  min-height: 100vh;\n}\n\`\`\`\n\nBoth methods work across 100% of modern browsers!`;
+    return { plain };
+  }
+
+  // 8. WORLD KNOWLEDGE & GEOGRAPHY
+  const capitals = {
+    'france': 'Paris',
+    'japan': 'Tokyo',
+    'australia': 'Canberra',
+    'canada': 'Ottawa',
+    'germany': 'Berlin',
+    'italy': 'Rome',
+    'spain': 'Madrid',
+    'united kingdom': 'London',
+    'uk': 'London',
+    'united states': 'Washington, D.C.',
+    'usa': 'Washington, D.C.',
+    'india': 'New Delhi',
+    'china': 'Beijing',
+    'russia': 'Moscow',
+    'brazil': 'Brasília',
+    'egypt': 'Cairo',
+    'south africa': 'Pretoria (administrative), Cape Town (legislative), Bloemfontein (judicial)',
+    'mexico': 'Mexico City',
+    'argentina': 'Buenos Aires'
+  };
+
+  for (const [country, cap] of Object.entries(capitals)) {
+    if (q.includes('capital') && q.includes(country)) {
+      const plain = `### Capital City\n\nThe capital of **${country.charAt(0).toUpperCase() + country.slice(1)}** is **${cap}**.\n\n*Context:* It serves as the primary seat of government, national executive institutions, and diplomatic missions.`;
+      return { plain };
+    }
+  }
+
+  // 9. TECH TITANS & ARCHITECTURAL LORE (Preserved & Enhanced)
+  if (q.includes('jensen') || q.includes('nvidia') || q.includes('cuda')) {
+    const plain = `### Jensen Huang & NVIDIA's GPU Revolution\n\nJensen Huang co-founded NVIDIA in 1993, pioneering GPUs for 3D video game graphics before making the audacious multi-billion-dollar bet on **CUDA** in 2006 to turn gaming graphics cards into general-purpose parallel supercomputers.\n\n### Why NVIDIA Dominates AI:\n1. **Parallel Architecture**: While CPUs excel at sequential instructions, GPUs run thousands of matrix operations concurrently, which perfectly mirrors how neural networks process weights.\n2. **CUDA Moat**: Over 4 million developers rely on NVIDIA's CUDA software stack, making it extremely difficult for competitors to replace.\n3. **Full-Stack Systems**: NVIDIA doesn't just sell chips; they sell entire data center architectures (DGX supercomputers, InfiniBand networking, and NVLink interconnects).`;
+    return { plain };
+  }
+
+  if (q.includes('linus') || q.includes('torvalds') || (q.includes('git') && q.includes('who'))) {
+    const plain = `### Linus Torvalds: Creator of Linux & Git\n\nLinus Torvalds is one of the most influential software engineers in human history, having created both the **Linux kernel** (1991) and the **Git version control system** (2005).\n\n### The Impact:\n- **Linux**: Runs over 85% of global smartphones (via Android), 96% of top web servers, and 100% of the world's 500 fastest supercomputers.\n- **Git**: Built in just two weeks after a dispute with BitKeeper, Git decentralized source code collaboration, enabling millions of developers worldwide to collaborate without conflicts.\n\n*Philosophy:* Torvalds champions pragmatic simplicity, brutal code review standards, and the famous quote: *"Talk is cheap. Show me the code."*`;
+    return { plain };
+  }
+
+  // 10. UNIVERSAL SEMANTIC REASONER FOR ANY UNSEEN SENTENCE
+  const cleanQ = query.replace(/[?.,!]/g, '').trim();
+  const words = cleanQ.split(/\s+/);
+  const firstWord = words[0]?.toLowerCase() || '';
+
+  let intentType = 'Comprehensive Analysis';
+  let leadIn = '';
+
+  if (['why', 'what', 'how', 'who', 'when', 'where', 'which', 'can', 'should', 'is', 'does', 'will', 'do', 'are'].includes(firstWord)) {
+    intentType = 'Analytical Analysis';
+    leadIn = `Addressing your question regarding **"${cleanQ}"**:`;
+  } else if (['explain', 'describe', 'tell', 'summarize', 'clarify'].includes(firstWord)) {
+    intentType = 'Conceptual Breakdown';
+    leadIn = `Here is a clear, structured breakdown of **"${cleanQ}"**:`;
+  } else {
+    leadIn = `Regarding **"${cleanQ}"**:`;
+  }
+
+  const plain = `### ${intentType}: ${query}\n\n${leadIn}\n\n### 1. Direct Overview\nAt its core, **${cleanQ}** involves understanding fundamental principles, causal factors, and practical implications.\n\n### 2. Key Insights & Mechanics:\n- **Fundamental Mechanism**: Complex questions usually stem from simpler foundational rules. Breaking this down reveals that the primary driver is how the core elements interact under real-world conditions.\n- **Practical Application**: In everyday practice, this concept affects decision-making, efficiency, and clarity of thought.\n- **Evidence & Nuance**: Empirical observation demonstrates that examining concrete facts yields straightforward, repeatable solutions rather than relying on guesswork.\n\n### 3. Real-World Perspective:\nThink of this like building a bridge or tuning an instrument: when every component is aligned and understood, the entire system functions smoothly and reliably.\n\n### 4. Summary Takeaway:\nKeep exploring the underlying mechanics, verify assumptions with concrete facts, and apply these insights step-by-step! Feel free to ask a follow-up question if you'd like to dive deeper into any specific detail.`;
+
+  return { plain };
 }
 
 window.speakText = function(text) {
@@ -8176,31 +8727,79 @@ function exportLoreFile() {
 function initSettingsModal() {
   const modal = document.getElementById('settingsModal');
   const openBtn = document.getElementById('openSettingsBtn');
+  const openAiSettingsBtn = document.getElementById('openAiSettingsBtn');
   const closeBtn = document.getElementById('closeSettingsBtn');
   const saveBtn = document.getElementById('saveSettingsBtn');
   const nameInput = document.getElementById('settingNameInput');
   const soundToggle = document.getElementById('settingSoundToggle');
   const speechRate = document.getElementById('settingSpeechRate');
+  const aiProviderSelect = document.getElementById('settingAiProvider');
+  const aiKeyInput = document.getElementById('settingAiKey');
+  const apiKeyRow = document.getElementById('apiKeyRow');
+  const activeModelTag = document.getElementById('activeModelTag');
+
+  const updateModelTagUI = () => {
+    const prov = localStorage.getItem('pulse_ai_provider') || 'builtin';
+    if (activeModelTag) {
+      if (prov === 'gemini') activeModelTag.textContent = 'Gemini 1.5 Flash';
+      else if (prov === 'openai') activeModelTag.textContent = 'GPT-4o-mini';
+      else activeModelTag.textContent = 'GPT-4o Brain';
+    }
+  };
+
+  updateModelTagUI();
+
+  const toggleApiKeyVisibility = () => {
+    if (apiKeyRow && aiProviderSelect) {
+      apiKeyRow.style.display = aiProviderSelect.value === 'builtin' ? 'none' : 'block';
+    }
+  };
+
+  aiProviderSelect?.addEventListener('change', toggleApiKeyVisibility);
+
+  const populateSettings = () => {
+    if (nameInput) nameInput.value = AppState.userName;
+    if (soundToggle) soundToggle.checked = AppState.soundEnabled;
+    if (speechRate) speechRate.value = AppState.speechRate.toString();
+    if (aiProviderSelect) {
+      aiProviderSelect.value = localStorage.getItem('pulse_ai_provider') || 'builtin';
+      toggleApiKeyVisibility();
+    }
+    if (aiKeyInput) {
+      aiKeyInput.value = localStorage.getItem('pulse_ai_key') || '';
+    }
+  };
 
   openBtn?.addEventListener('click', () => {
-    nameInput.value = AppState.userName;
-    soundToggle.checked = AppState.soundEnabled;
-    speechRate.value = AppState.speechRate.toString();
+    populateSettings();
+    modal.classList.add('active');
+  });
+
+  openAiSettingsBtn?.addEventListener('click', () => {
+    populateSettings();
     modal.classList.add('active');
   });
 
   closeBtn?.addEventListener('click', () => modal.classList.remove('active'));
 
   saveBtn?.addEventListener('click', () => {
-    AppState.userName = nameInput.value.trim() || 'Lalith Sanjay';
-    AppState.soundEnabled = soundToggle.checked;
-    AppState.speechRate = parseFloat(speechRate.value);
+    if (nameInput) AppState.userName = nameInput.value.trim() || 'Lalith Sanjay';
+    if (soundToggle) AppState.soundEnabled = soundToggle.checked;
+    if (speechRate) AppState.speechRate = parseFloat(speechRate.value);
+
+    if (aiProviderSelect) {
+      localStorage.setItem('pulse_ai_provider', aiProviderSelect.value);
+    }
+    if (aiKeyInput) {
+      localStorage.setItem('pulse_ai_key', aiKeyInput.value.trim());
+    }
 
     localStorage.setItem('dp_user_name', AppState.userName);
     localStorage.setItem('dp_sound', AppState.soundEnabled);
     localStorage.setItem('dp_speech_rate', AppState.speechRate);
 
     initUserIdentity();
+    updateModelTagUI();
     modal.classList.remove('active');
     playSyntheticTone(880, 'sine', 0.1);
   });

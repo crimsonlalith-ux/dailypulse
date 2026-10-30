@@ -6,16 +6,16 @@
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://hacker-news.firebaseio.com https://www.reddit.com; font-src 'self' data:; media-src 'self' data:; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://generativelanguage.googleapis.com https://api.openai.com https://hacker-news.firebaseio.com https://www.reddit.com; font-src 'self' data:; media-src 'self' data:; frame-ancestors 'none';">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>DailyPulse • Global Tech News & Titans Radar</title>
   
-    <link rel="preload" href="styles.css?v=30" as="style">
-  <link rel="preload" href="app.js?v=30" as="script">
+    <link rel="preload" href="styles.css?v=31" as="style">
+  <link rel="preload" href="app.js?v=31" as="script">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=30">
+  <link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body>
   <div class="social-app-shell">
@@ -295,23 +295,52 @@
         <!-- ================= PANE 4: PULSE AI DIRECT MESSAGES ================= -->
         <section class="timeline-pane" id="pane-ai">
           <div class="dm-chat-view">
-            <div style="padding-bottom: 8px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <h3 style="font-size: 1.1rem; color: #fff;">Pulse AI <span class="verified-badge">✓</span></h3>
-                <span style="font-size: 0.75rem; color: #10b981;">Online • Editorial English & Culture Advisor</span>
+            <div class="ai-chat-header" style="padding-bottom: 10px; border-bottom: 1px solid var(--x-border); display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="ai-avatar-badge" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #10a37f, #0d8a6a); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1rem; box-shadow: 0 0 14px rgba(16, 163, 127, 0.4);">
+                  <svg style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"></path></svg>
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <h3 style="font-size: 1.05rem; color: #fff; margin: 0; font-weight: 700;">ChatGPT Engine</h3>
+                    <span class="verified-badge" style="background: #10a37f; color: #fff; border-radius: 50%; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 9px;">✓</span>
+                    <span id="activeModelTag" style="font-size: 0.68rem; background: rgba(16, 163, 127, 0.15); color: #10a37f; border: 1px solid rgba(16, 163, 127, 0.3); border-radius: 4px; padding: 1px 6px; font-weight: 600;">GPT-4o Brain</span>
+                  </div>
+                  <span style="font-size: 0.72rem; color: #9ca3af; display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                    Answers anything: Math, Science, Code, Advice, General Knowledge
+                  </span>
+                </div>
               </div>
-              <button id="clearChatBtn" style="background:transparent; border:1px solid var(--x-border); color:var(--text-muted); padding:4px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor:pointer;">Clear</button>
+              <div style="display: flex; gap: 6px;">
+                <button id="openAiSettingsBtn" title="AI Model & Key Settings" style="background: rgba(255,255,255,0.06); border: 1px solid var(--x-border); color: #e5e7eb; padding: 5px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; gap: 4px;">
+                  <svg style="width: 13px; height: 13px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Model</span>
+                </button>
+                <button id="clearChatBtn" style="background: transparent; border: 1px solid var(--x-border); color: var(--text-muted); padding: 5px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; cursor: pointer;">Clear</button>
+              </div>
             </div>
 
             <div class="dm-chat-stream" id="chatLog">
-              <div class="dm-bubble ai">
-                <strong>Welcome, Lalith.</strong><br>
-                Ask me to deconstruct any internet phenomenon, analyze executive phrasing, or elevate your technical writing into crisp, professional English.
+              <div class="chat-welcome-container">
+                <div class="chat-welcome-hero">
+                  <div class="chat-welcome-icon">✦</div>
+                  <h4 style="margin: 6px 0 4px; font-size: 1.15rem; color: #fff;">How can I help you today?</h4>
+                  <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0 0 14px;">Ask me anything across science, math, coding, life advice, writing, or everyday questions.</p>
+                </div>
+                <div class="chat-suggestion-chips">
+                  <button class="chat-chip" onclick="quickAskAi('Why is the sky blue and how do rainbows form?')">🌈 Why is the sky blue?</button>
+                  <button class="chat-chip" onclick="quickAskAi('Calculate: What is 25 * 14 and how much is 15% of 320?')">🔢 Solve math & percentages</button>
+                  <button class="chat-chip" onclick="quickAskAi('What is the difference between a fruit and a vegetable?')">🍎 Fruit vs Vegetable</button>
+                  <button class="chat-chip" onclick="quickAskAi('Write a short professional email asking for sick leave')">✍️ Draft an email</button>
+                  <button class="chat-chip" onclick="quickAskAi('How does an airplane stay in the air?')">✈️ How airplanes fly</button>
+                  <button class="chat-chip" onclick="quickAskAi('Write a Python function to check if a word is a palindrome')">💻 Write Python code</button>
+                </div>
               </div>
             </div>
 
             <div class="dm-composer-bar">
-              <input type="text" id="aiInput" class="dm-input" placeholder="Ask about an architecture, decode vernacular, or polish syntax..." autocomplete="off">
+              <input type="text" id="aiInput" class="dm-input" placeholder="Message ChatGPT... (math, science, code, advice, ideas)" autocomplete="off">
               <button id="sendAiBtn" class="dm-send-btn" title="Send message">➤</button>
             </div>
           </div>
@@ -505,6 +534,22 @@
         <input type="checkbox" id="settingSoundToggle" checked style="width:20px; height:20px; accent-color:var(--x-blue); cursor:pointer;" />
       </div>
 
+      <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+        <div>
+          <strong style="display:block; font-size:0.95rem;">AI Brain & Model Provider</strong>
+          <span style="color:var(--text-muted); font-size:0.8rem;">Select your AI chat intelligence</span>
+        </div>
+        <select id="settingAiProvider" class="dm-input" style="width:100%; padding:8px; font-size:0.85rem;">
+          <option value="builtin" selected>⚡ Pulse ChatGPT Neural Engine (Built-in, Instant, Free & Offline)</option>
+          <option value="gemini">🌟 Google Gemini 1.5 Flash (Custom API key)</option>
+          <option value="openai">🤖 OpenAI GPT-4o-mini (Custom API key)</option>
+        </select>
+        <div id="apiKeyRow" style="width: 100%; display: none; margin-top: 4px;">
+          <input type="password" id="settingAiKey" class="dm-input" style="width:100%; padding:8px; font-size:0.85rem;" placeholder="Paste API Key here (stored locally in browser)..." />
+          <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-top:3px;">Your key stays 100% private in browser localStorage and is never sent to external servers.</span>
+        </div>
+      </div>
+
       <div class="setting-row">
         <div>
           <strong style="display:block; font-size:0.95rem;">Audio Pronunciation Speed</strong>
@@ -524,6 +569,6 @@
   </div>
 
   <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999;"></canvas>
-  <script src="app.js?v=30"></script>
+  <script src="app.js?v=31"></script>
 </body>
 </html>
