@@ -2046,35 +2046,42 @@ function initRadar() {
 async function fetchLiveRedditPosts() {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2200);
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-    const res = await fetch('https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=4', {
+    const res = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json', {
       signal: controller.signal
     });
     clearTimeout(timeoutId);
     if (!res.ok) return;
-    const json = await res.json();
-    const children = json.data.children;
+    const ids = await res.json();
+    const topIds = ids.slice(0, 4);
 
-    children.forEach((child, idx) => {
-      const data = child.data;
-      if (data.stickied) return;
+    const storyPromises = topIds.map(async (id) => {
+      try {
+        const itemRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+        return await itemRes.json();
+      } catch (err) {
+        return null;
+      }
+    });
 
+    const stories = await Promise.all(storyPromises);
+
+    stories.filter(Boolean).forEach((story) => {
       const liveItem = {
-        id: 'reddit-live-' + data.id,
-        platform: 'reddit',
-        platformIcon: 'rd',
-        platformLabel: 'Reddit (Live)',
-        author: 'r/ProgrammerHumor',
-        handle: 'u/' + data.author,
-        title: data.title,
-        summary: `Live trending on Reddit right now with ${data.num_comments} comments and ${(data.ups / 1000).toFixed(1)}k upvotes.`,
-        metric: `⬆️ ${(data.ups / 1000).toFixed(1)}k Upvotes • ${data.num_comments} Comments`,
-        link: 'https://reddit.com' + data.permalink,
-        aiPrompt: `Explain this trending Reddit post from r/ProgrammerHumor: "${data.title}" in simple English.`
+        id: 'hn-live-' + story.id,
+        platform: 'hn',
+        platformIcon: 'hn',
+        platformLabel: 'Hacker News (Live)',
+        author: story.by ? 'u/' + story.by : 'Hacker News',
+        handle: '@hackernews',
+        title: story.title,
+        summary: `Breaking live discussion with ${story.descendants || 0} comments and ${story.score || 1} points.`,
+        metric: `▲ ${story.score || 1} Points • ${story.descendants || 0} Comments`,
+        link: story.url || `https://news.ycombinator.com/item?id=${story.id}`,
+        aiPrompt: `Explain this trending technology story: "${story.title}" in simple, accessible English.`
       };
 
-      // Add to radar feeds if not already there
       const existing = AppState.radarFeeds.findIndex(r => r.id === liveItem.id);
       if (existing === -1) {
         AppState.radarFeeds.unshift(liveItem);
@@ -2602,6 +2609,16 @@ function initSettingsModal() {
 // ==========================================
 function initPwaInstaller() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW:', err));
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      reg.update();
+    }).catch(err => console.log('SW:', err));
+
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
   }
 }

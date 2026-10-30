@@ -1,10 +1,10 @@
-// Service Worker for DailyPulse PWA - High Speed Instant Cache v15
-const CACHE_NAME = 'dailypulse-v17';
+// Service Worker for DailyPulse PWA - High Speed Instant Cache v21
+const CACHE_NAME = 'dailypulse-v22';
 const ASSETS = [
   './',
   './index.html',
-  './styles.css',
-  './app.js',
+  './styles.css?v=22',
+  './app.js?v=22',
   './manifest.json',
   './icon.svg'
 ];
@@ -12,7 +12,7 @@ const ASSETS = [
 self.addEventListener('install', (e) => {
   self.skipWaiting();
   e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)).catch(() => {})
   );
 });
 
@@ -29,28 +29,40 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// Stale-While-Revalidate for Instant 0ms Load Times
+// Network-First for Navigation (HTML) & Stale-While-Revalidate for Assets
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+  if (!e.request.url.startsWith(self.location.origin)) return;
 
-  // Only handle local origin requests
-  if (!e.request.url.startsWith(self.location.origin)) {
+  // 1. Navigation requests (HTML pages): ALWAYS try network first so live updates reflect instantly!
+  if (e.request.mode === 'navigate') {
+    e.respondWith(
+      fetch(e.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(e.request) || caches.match('./index.html'))
+    );
     return;
   }
 
+  // 2. Static Assets: Stale-While-Revalidate with immediate background refresh
   e.respondWith(
     caches.match(e.request).then((cachedResponse) => {
       const fetchPromise = fetch(e.request)
         .then((networkResponse) => {
           if (networkResponse && networkResponse.status === 200) {
-            const responseClone = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, responseClone));
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
           }
           return networkResponse;
         })
         .catch(() => cachedResponse);
 
-      // Return cached asset immediately in 0ms if present, otherwise fetch
       return cachedResponse || fetchPromise;
     })
   );

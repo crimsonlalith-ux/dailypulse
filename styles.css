@@ -3158,8 +3158,66 @@ body.theme-white-glass .dynamic-island-capsule::after {
   box-shadow: none !important;
 }
 
-/* 4. Active Navigation Indicator Pearl Sheen */
+/* 4. Executive Navigation Precision Indicator (Zero Fuzzy Neon Glow) */
 .social-nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  width: 18px;
+  height: 2px;
   background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 14px rgba(224, 242, 254, 0.6);
+  border-radius: 2px;
+  box-shadow: none !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* Brand Emblem & Logo Glyphs (Minimalist Monolithic Twitter/X Aesthetic) */
+.x-brand-emblem {
+  position: relative !important;
+  width: 38px;
+  height: 38px;
+  background: rgba(14, 16, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden !important;
+}
+
+.x-brand-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.x-brand-svg path {
+  fill: #ffffff;
+}
+
+.island-logo-emblem {
+  position: relative !important;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden !important;
+}
+
+.island-brand-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.island-brand-svg path {
+  fill: #ffffff;
 }

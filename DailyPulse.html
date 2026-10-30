@@ -8,9 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>DailyPulse • Global Systems & Fluency Engine</title>
   
-    <link rel="preload" href="styles.css" as="style">
-  <link rel="preload" href="app.js" as="script">
-  <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
   <style>
 /* ============================================================
@@ -3173,10 +3171,68 @@ body.theme-white-glass .dynamic-island-capsule::after {
   box-shadow: none !important;
 }
 
-/* 4. Active Navigation Indicator Pearl Sheen */
+/* 4. Executive Navigation Precision Indicator (Zero Fuzzy Neon Glow) */
 .social-nav-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  width: 18px;
+  height: 2px;
   background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 14px rgba(224, 242, 254, 0.6);
+  border-radius: 2px;
+  box-shadow: none !important;
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* Brand Emblem & Logo Glyphs (Minimalist Monolithic Twitter/X Aesthetic) */
+.x-brand-emblem {
+  position: relative !important;
+  width: 38px;
+  height: 38px;
+  background: rgba(14, 16, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden !important;
+}
+
+.x-brand-svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.x-brand-svg path {
+  fill: #ffffff;
+}
+
+.island-logo-emblem {
+  position: relative !important;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden !important;
+}
+
+.island-brand-svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+.island-brand-svg path {
+  fill: #ffffff;
 }
 
 </style>
@@ -3191,26 +3247,9 @@ body.theme-white-glass .dynamic-island-capsule::after {
       <aside class="x-desktop-nav">
         <!-- Sidebar Top Brand Header -->
         <div class="sidebar-brand-box" id="sidebarBrandBtn" title="DailyPulse: Global Culture & Fluency">
-          <div class="pulse-brand-emblem">
-            <div class="pulse-radar-halo"></div>
-            <svg class="pulse-svg-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="boltSheen" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="50%" stop-color="#f0f4ff" />
-                  <stop offset="100%" stop-color="#ffffff" />
-                </linearGradient>
-                <filter id="boltGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="2.5" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-              <!-- Frosted Glass Squircle Base -->
-              <rect x="2" y="2" width="40" height="40" rx="12" class="logo-glass-bg" />
-              <!-- Animated Cardiogram / Sound Pulse Wave -->
-              <path class="logo-ecg-line" d="M 5 23 L 13 23 L 17 14 L 21 32 L 25 17 L 29 23 L 39 23" />
-              <!-- Electric Bolt Hero -->
-              <path class="logo-bolt-icon" d="M 23 7 L 15 22 L 21.5 22 L 19 37 L 30 19 L 22.5 19 Z" filter="url(#boltGlow)" fill="url(#boltSheen)" />
+          <div class="x-brand-emblem">
+            <svg class="x-brand-svg" viewBox="0 0 24 24" fill="none">
+              <path d="M13 2 L3 14 H12 L10 22 L21 10 H12 L13 2 Z" fill="#ffffff" />
             </svg>
           </div>
           <div class="pulse-brand-text">
@@ -3220,11 +3259,6 @@ body.theme-white-glass .dynamic-island-capsule::after {
             </div>
             <div class="pulse-sub-row">
               <span class="x-brand-sub">Culture & Fluency</span>
-              <span class="mini-equalizer" title="Fluency Audio Equalizer">
-                <span class="eq-bar eq-1"></span>
-                <span class="eq-bar eq-2"></span>
-                <span class="eq-bar eq-3"></span>
-              </span>
             </div>
           </div>
         </div>
@@ -5743,35 +5777,42 @@ function initRadar() {
 async function fetchLiveRedditPosts() {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2200);
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-    const res = await fetch('https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=4', {
+    const res = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json', {
       signal: controller.signal
     });
     clearTimeout(timeoutId);
     if (!res.ok) return;
-    const json = await res.json();
-    const children = json.data.children;
+    const ids = await res.json();
+    const topIds = ids.slice(0, 4);
 
-    children.forEach((child, idx) => {
-      const data = child.data;
-      if (data.stickied) return;
+    const storyPromises = topIds.map(async (id) => {
+      try {
+        const itemRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+        return await itemRes.json();
+      } catch (err) {
+        return null;
+      }
+    });
 
+    const stories = await Promise.all(storyPromises);
+
+    stories.filter(Boolean).forEach((story) => {
       const liveItem = {
-        id: 'reddit-live-' + data.id,
-        platform: 'reddit',
-        platformIcon: 'rd',
-        platformLabel: 'Reddit (Live)',
-        author: 'r/ProgrammerHumor',
-        handle: 'u/' + data.author,
-        title: data.title,
-        summary: `Live trending on Reddit right now with ${data.num_comments} comments and ${(data.ups / 1000).toFixed(1)}k upvotes.`,
-        metric: `⬆️ ${(data.ups / 1000).toFixed(1)}k Upvotes • ${data.num_comments} Comments`,
-        link: 'https://reddit.com' + data.permalink,
-        aiPrompt: `Explain this trending Reddit post from r/ProgrammerHumor: "${data.title}" in simple English.`
+        id: 'hn-live-' + story.id,
+        platform: 'hn',
+        platformIcon: 'hn',
+        platformLabel: 'Hacker News (Live)',
+        author: story.by ? 'u/' + story.by : 'Hacker News',
+        handle: '@hackernews',
+        title: story.title,
+        summary: `Breaking live discussion with ${story.descendants || 0} comments and ${story.score || 1} points.`,
+        metric: `▲ ${story.score || 1} Points • ${story.descendants || 0} Comments`,
+        link: story.url || `https://news.ycombinator.com/item?id=${story.id}`,
+        aiPrompt: `Explain this trending technology story: "${story.title}" in simple, accessible English.`
       };
 
-      // Add to radar feeds if not already there
       const existing = AppState.radarFeeds.findIndex(r => r.id === liveItem.id);
       if (existing === -1) {
         AppState.radarFeeds.unshift(liveItem);
@@ -6299,7 +6340,17 @@ function initSettingsModal() {
 // ==========================================
 function initPwaInstaller() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW:', err));
+    navigator.serviceWorker.register('sw.js').then((reg) => {
+      reg.update();
+    }).catch(err => console.log('SW:', err));
+
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
   }
 }
 

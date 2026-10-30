@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>DailyPulse • Global Systems & Fluency Engine</title>
   
-    <link rel="preload" href="styles.css" as="style">
-  <link rel="preload" href="app.js" as="script">
+    <link rel="preload" href="styles.css?v=22" as="style">
+  <link rel="preload" href="app.js?v=22" as="script">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
   <div class="social-app-shell">
@@ -24,26 +24,9 @@
       <aside class="x-desktop-nav">
         <!-- Sidebar Top Brand Header -->
         <div class="sidebar-brand-box" id="sidebarBrandBtn" title="DailyPulse: Global Culture & Fluency">
-          <div class="pulse-brand-emblem">
-            <div class="pulse-radar-halo"></div>
-            <svg class="pulse-svg-logo" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="boltSheen" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="50%" stop-color="#f0f4ff" />
-                  <stop offset="100%" stop-color="#ffffff" />
-                </linearGradient>
-                <filter id="boltGlow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="2.5" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-              <!-- Frosted Glass Squircle Base -->
-              <rect x="2" y="2" width="40" height="40" rx="12" class="logo-glass-bg" />
-              <!-- Animated Cardiogram / Sound Pulse Wave -->
-              <path class="logo-ecg-line" d="M 5 23 L 13 23 L 17 14 L 21 32 L 25 17 L 29 23 L 39 23" />
-              <!-- Electric Bolt Hero -->
-              <path class="logo-bolt-icon" d="M 23 7 L 15 22 L 21.5 22 L 19 37 L 30 19 L 22.5 19 Z" filter="url(#boltGlow)" fill="url(#boltSheen)" />
+          <div class="x-brand-emblem">
+            <svg class="x-brand-svg" viewBox="0 0 24 24" fill="none">
+              <path d="M13 2 L3 14 H12 L10 22 L21 10 H12 L13 2 Z" fill="#ffffff" />
             </svg>
           </div>
           <div class="pulse-brand-text">
@@ -53,11 +36,6 @@
             </div>
             <div class="pulse-sub-row">
               <span class="x-brand-sub">Culture & Fluency</span>
-              <span class="mini-equalizer" title="Fluency Audio Equalizer">
-                <span class="eq-bar eq-1"></span>
-                <span class="eq-bar eq-2"></span>
-                <span class="eq-bar eq-3"></span>
-              </span>
             </div>
           </div>
         </div>
@@ -527,6 +505,6 @@
   </div>
 
   <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
-  <script src="app.js"></script>
+  <script src="app.js?v=22"></script>
 </body>
 </html>
