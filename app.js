@@ -25,6 +25,7 @@ const AppState = {
   xp: parseInt(localStorage.getItem('dp_xp') || '150'),
   lastCompletedDate: localStorage.getItem('dp_last_completed') || '',
   savedItems: JSON.parse(localStorage.getItem('dp_saved') || '[]'),
+  seenPosts: new Set(JSON.parse(localStorage.getItem('dp_seen_posts') || '[]')),
   soundEnabled: localStorage.getItem('dp_sound') !== 'false',
   speechRate: parseFloat(localStorage.getItem('dp_speech_rate') || '0.95'),
   userName: localStorage.getItem('dp_user_name') || 'Lalith Sanjay',
@@ -247,6 +248,96 @@ const AppState = {
 
   // 13 Rich Dynamic Cards across categories
   dailyCards: [
+    {
+      id: 'story-xt-1',
+      category: 'tech',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Reasoning Models',
+      author: 'Andrej Karpathy',
+      handle: '@karpathy',
+      time: '2h ago',
+      title: 'Andrej Karpathy on Reasoning LLMs: The Shift to Test-Time Compute',
+      xTweetText: 'Deep dive on reasoning models (o1/o3/DeepSeek-R1): The paradigm is shifting from pre-training compute to inference test-time compute. A model spending 2 minutes thinking before answering is fundamentally an agent searching through chain-of-thought tokens using reinforcement learning with verifiable rewards.',
+      sourceUrl: 'https://x.com/karpathy',
+      sourceOutlet: '𝕏 (formerly Twitter)',
+      explanation: '<strong>The Paradigm Shift:</strong> Andrej Karpathy (ex-Tesla AI Director, OpenAI founding scientist) explains that scaling model parameters is giving way to test-time search. Instead of spitting out the first plausible token, models explore alternative solution paths.<br><br><strong>Student Takeaway:</strong> Modern AI engineers must understand search algorithms, tree search, and reward models, not just transformer prompt engineering.',
+      pronounceText: 'The paradigm is shifting from pre-training compute to inference test-time compute',
+      commentsCount: 940,
+      repostsCount: '6.2k',
+      likesCount: 28400
+    },
+    {
+      id: 'story-xt-2',
+      category: 'tech',
+      isXPost: true,
+      topicTag: '𝕏 Tech: AI Infrastructure',
+      author: 'Sam Altman',
+      handle: '@sama',
+      time: '4h ago',
+      title: 'Sam Altman on The Next Frontier: Gigawatt Clusters & Physical Power Grids',
+      xTweetText: 'The compute trajectory is unprecedented. Building gigawatt-class AI clusters requires rewriting how power grids, cooling infrastructure, and optical interconnects operate. The next frontier isn\'t just software—it\'s physical infrastructure, nuclear power, and silicon co-design.',
+      sourceUrl: 'https://x.com/sama',
+      sourceOutlet: '𝕏 (formerly Twitter)',
+      explanation: '<strong>The Hardware Wall:</strong> Sam Altman highlights that frontier AI progress is bottlenecked by physical electricity grids and cooling. Training future foundation models demands multi-gigawatt power, prompting partnerships with nuclear energy and custom silicon fabs.<br><br><strong>Student Takeaway:</strong> Infrastructure, electrical engineering, and systems optimization are just as critical as machine learning algorithms.',
+      pronounceText: 'Building gigawatt class AI clusters requires rewriting how power grids and cooling operate',
+      commentsCount: 1420,
+      repostsCount: '9.8k',
+      likesCount: 42100
+    },
+    {
+      id: 'story-xt-3',
+      category: 'tech',
+      isXPost: true,
+      topicTag: '𝕏 Tech: World Models',
+      author: 'Yann LeCun',
+      handle: '@ylecun',
+      time: '6h ago',
+      title: 'Yann LeCun on Why LLMs Need World Models (V-JEPA & Objective-Driven AI)',
+      xTweetText: 'Autoregressive LLMs cannot achieve human-level intelligence alone because they lack world models and common-sense physics. They predict words, not reality. We need Joint Embedding Predictive Architectures (JEPA) that predict in abstract representation space, not pixel space.',
+      sourceUrl: 'https://x.com/ylecun',
+      sourceOutlet: '𝕏 (formerly Twitter)',
+      explanation: '<strong>The Core Debate:</strong> Meta Chief AI Scientist Yann LeCun argues that simply predicting the next token cannot solve physical reasoning or plan long horizons. Meta\'s V-JEPA architecture learns by watching video and predicting abstract representations rather than generating raw pixels.<br><br><strong>Student Takeaway:</strong> Don\'t treat LLMs as the final architecture; self-supervised world models and non-generative representations are the future.',
+      pronounceText: 'Autoregressive models cannot achieve human level intelligence alone because they lack world models',
+      commentsCount: 880,
+      repostsCount: '4.1k',
+      likesCount: 19500
+    },
+    {
+      id: 'story-xt-4',
+      category: 'tech',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Physical AI',
+      author: 'Dr. Jim Fan',
+      handle: '@DrJimFan',
+      time: '8h ago',
+      title: 'Jim Fan on Physical AI: Humanoid Robotics Translating Sim-to-Real',
+      xTweetText: '2026 is the year of Physical AI. Translating internet-scale video into robot motor policies using simulation-to-real reinforcement learning (Omniverse + Isaac Lab). Robots are learning dexterous manipulation via foundation models that generalize across zero-shot environments.',
+      sourceUrl: 'https://x.com/DrJimFan',
+      sourceOutlet: '𝕏 (formerly Twitter)',
+      explanation: '<strong>Embodied Intelligence:</strong> NVIDIA AI Research Lead Jim Fan describes how foundation models are moving from screens into physical robots. Using physics-accurate GPU simulation (Omniverse), robots practice thousands of years of trial-and-error in hours before deploying to physical hardware.<br><br><strong>Student Takeaway:</strong> Robotics is entering its "ImageNet moment", where generalized neural policies replace rigid hand-coded kinematics.',
+      pronounceText: 'Translating internet scale video into robot motor policies using simulation to real reinforcement learning',
+      commentsCount: 650,
+      repostsCount: '3.4k',
+      likesCount: 16800
+    },
+    {
+      id: 'story-xt-5',
+      category: 'tech',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Python Systems',
+      author: 'Guido van Rossum',
+      handle: '@gvanrossum',
+      time: '12h ago',
+      title: 'Guido van Rossum on Python 3.13: The No-GIL Free-Threaded Epoch',
+      xTweetText: 'Python 3.13 marks a historic milestone: PEP 703 enables free-threaded execution without the Global Interpreter Lock (GIL), unlocking true multi-core CPU parallelism for scientific computing, web workers, and AI data pipelines with zero thread contention.',
+      sourceUrl: 'https://x.com/gvanrossum',
+      sourceOutlet: '𝕏 (formerly Twitter)',
+      explanation: '<strong>Multithreading Unlocked:</strong> Python creator Guido van Rossum celebrates the removal of the 30-year-old Global Interpreter Lock (GIL). Previously, Python could only run one OS thread at a time per process. Now, machine learning preprocessing and data pipelines run in true parallel multi-core mode.<br><br><strong>Student Takeaway:</strong> Understanding GIL elimination, thread safety, and memory management makes you a top-tier Python systems engineer.',
+      pronounceText: 'PEP 703 enables free-threaded execution without the Global Interpreter Lock unlocking true multicore parallelism',
+      commentsCount: 1100,
+      repostsCount: '7.9k',
+      likesCount: 31200
+    },
     {
       id: 'story-0',
       category: 'slang',
@@ -758,9 +849,222 @@ function switchTab(tabName) {
 // ==========================================
 // 4. CATEGORY FILTERS & DECK PROGRESS
 // ==========================================
+
+// ==========================================
+// SEEN POSTS PERSISTENCE & DEDUPLICATION
+// ==========================================
+function markPostSeen(title) {
+  if (!title) return;
+  if (!AppState.seenPosts.has(title)) {
+    AppState.seenPosts.add(title);
+    try {
+      localStorage.setItem('dp_seen_posts', JSON.stringify(Array.from(AppState.seenPosts)));
+    } catch (e) {}
+  }
+}
+
+window.resetSeenPosts = function() {
+  AppState.seenPosts.clear();
+  try {
+    localStorage.removeItem('dp_seen_posts');
+  } catch (e) {}
+  playSyntheticTone(880, 'sine', 0.1);
+  renderContinuousFeed();
+};
+
+let seenIntersectionObserver = null;
+function observePostsForSeen() {
+  if (seenIntersectionObserver) {
+    seenIntersectionObserver.disconnect();
+  }
+
+  const cardElements = document.querySelectorAll('.social-post-card[data-post-title]');
+  if (!cardElements || cardElements.length === 0) return;
+
+  seenIntersectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.45) {
+        const title = entry.target.getAttribute('data-post-title');
+        if (title) {
+          markPostSeen(title);
+        }
+      }
+    });
+  }, {
+    threshold: 0.45
+  });
+
+  cardElements.forEach(el => seenIntersectionObserver.observe(el));
+}
+
+// ==========================================
+// MOBILE PULL-TO-REFRESH (PTR) ENGINE
+// ==========================================
+let isRefreshingFeed = false;
+
+function initPullToRefresh() {
+  const timeline = document.querySelector('.social-timeline');
+  const indicator = document.getElementById('pullRefreshIndicator');
+  const icon = document.getElementById('pullRefreshIcon');
+  const text = document.getElementById('pullRefreshText');
+  const refreshBtn = document.getElementById('refreshFeedBtn');
+
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      triggerFeedRefresh();
+    });
+  }
+
+  if (!timeline || !indicator) return;
+
+  let startY = 0;
+  let currentY = 0;
+  let isDragging = false;
+  const PULL_THRESHOLD = 60;
+
+  const handleTouchStart = (e) => {
+    if (timeline.scrollTop <= 2 && !isRefreshingFeed) {
+      startY = e.touches[0].clientY;
+      isDragging = true;
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging || isRefreshingFeed) return;
+    currentY = e.touches[0].clientY;
+    const deltaY = currentY - startY;
+
+    if (deltaY > 0 && timeline.scrollTop <= 2) {
+      // Damped rubber-band pull
+      const pullDist = Math.min(deltaY * 0.42, 85);
+      indicator.style.height = `${pullDist}px`;
+      indicator.style.opacity = Math.min(pullDist / 40, 1).toString();
+
+      if (pullDist >= PULL_THRESHOLD) {
+        if (text) text.textContent = 'Release to refresh feed ↻';
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      } else {
+        if (text) text.textContent = 'Pull down to refresh feed';
+        if (icon) icon.style.transform = `rotate(${pullDist * 3}deg)`;
+      }
+
+      if (e.cancelable && deltaY > 10) {
+        e.preventDefault();
+      }
+    } else {
+      indicator.style.height = '0px';
+      indicator.style.opacity = '0';
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    const deltaY = currentY - startY;
+    const pullDist = Math.min(deltaY * 0.42, 85);
+
+    if (pullDist >= PULL_THRESHOLD && !isRefreshingFeed) {
+      triggerFeedRefresh(true);
+    } else {
+      indicator.style.height = '0px';
+      indicator.style.opacity = '0';
+    }
+  };
+
+  timeline.addEventListener('touchstart', handleTouchStart, { passive: true });
+  timeline.addEventListener('touchmove', handleTouchMove, { passive: false });
+  timeline.addEventListener('touchend', handleTouchEnd, { passive: true });
+}
+
+window.triggerFeedRefresh = function(fromPull = false) {
+  if (isRefreshingFeed) return;
+  isRefreshingFeed = true;
+
+  const indicator = document.getElementById('pullRefreshIndicator');
+  const icon = document.getElementById('pullRefreshIcon');
+  const text = document.getElementById('pullRefreshText');
+  const refreshBtn = document.getElementById('refreshFeedBtn');
+
+  if (refreshBtn) {
+    refreshBtn.style.transform = 'rotate(360deg)';
+    refreshBtn.style.transition = 'transform 0.6s ease';
+  }
+
+  if (indicator) {
+    indicator.style.height = '52px';
+    indicator.style.opacity = '1';
+  }
+  if (icon) {
+    icon.classList.add('spinning');
+  }
+  if (text) {
+    text.textContent = 'Refreshing live 𝕏 Tech & stories...';
+  }
+
+  playSyntheticTone(920, 'sine', 0.08);
+
+  // Fetch real-time live tech radar and re-render feed
+  fetchLiveTechRadarPosts();
+
+  setTimeout(() => {
+    renderContinuousFeed();
+    isRefreshingFeed = false;
+
+    if (indicator) {
+      indicator.style.height = '0px';
+      indicator.style.opacity = '0';
+    }
+    if (icon) {
+      icon.classList.remove('spinning');
+      icon.style.transform = '';
+    }
+    if (text) {
+      text.textContent = 'Pull down to refresh feed';
+    }
+    if (refreshBtn) {
+      setTimeout(() => {
+        refreshBtn.style.transform = '';
+        refreshBtn.style.transition = '';
+      }, 300);
+    }
+    playSyntheticTone(1046, 'sine', 0.07);
+  }, 650);
+};
+
 function getFilteredCards() {
-  if (AppState.activeCategory === 'all') return AppState.dailyCards;
-  return AppState.dailyCards.filter(c => c.category === AppState.activeCategory);
+  let pool = AppState.dailyCards;
+  
+  if (AppState.activeCategory !== 'all') {
+    if (AppState.activeCategory === 'xtech') {
+      pool = pool.filter(c => c.isXPost || c.category === 'tech');
+    } else {
+      pool = pool.filter(c => c.category === AppState.activeCategory);
+    }
+  }
+
+  // Filter out posts already seen by the user
+  const unseenCards = pool.filter(c => !AppState.seenPosts.has(c.title));
+
+  // If fewer than 4 unseen cards, pull unseen items from INFINITE_STORIES_POOL
+  if (unseenCards.length < 4) {
+    const infiniteUnseen = INFINITE_STORIES_POOL.filter(s => {
+      const matchCat = (AppState.activeCategory === 'all') || 
+                       (AppState.activeCategory === 'xtech' && (s.isXPost || s.category === 'tech')) ||
+                       (s.category === AppState.activeCategory);
+      return matchCat && !AppState.seenPosts.has(s.title) && !unseenCards.some(u => u.title === s.title);
+    });
+
+    const needed = Math.min(8 - unseenCards.length, infiniteUnseen.length);
+    for (let i = 0; i < needed; i++) {
+      const item = infiniteUnseen[i];
+      unseenCards.push({
+        ...item,
+        id: `story-fresh-${Date.now()}-${i}-${Math.random().toString(36).substr(2, 4)}`
+      });
+    }
+  }
+
+  return unseenCards;
 }
 
 function initCategoryFilters() {
@@ -821,6 +1125,40 @@ let infiniteStoryIndex = 0;
 
 // High-Yield Infinite Stories Pool
 const INFINITE_STORIES_POOL = [
+  {
+    topicTag: '𝕏 Tech: GPU Clusters',
+    category: 'tech',
+    isXPost: true,
+    author: 'Greg Brockman',
+    handle: '@gdb',
+    time: '1d ago',
+    title: 'Greg Brockman on Cluster Resilience: Training Across 100k GPUs Without Downtime',
+    xTweetText: 'When you run distributed training across 100,000 GPUs, hardware failures are continuous. Our infrastructure team solved zero-downtime hot-swapping of nodes and sub-second asynchronous checkpointing directly to NVMe fabric. Systems engineering is what turns theory into models.',
+    sourceUrl: 'https://x.com/gdb',
+    sourceOutlet: '𝕏 (formerly Twitter)',
+    explanation: '<strong>Distributed Reliability:</strong> OpenAI President Greg Brockman explains that hardware MTBF (Mean Time Between Failures) at massive cluster scale means GPUs fail every few hours. Transparent node failover and fast checkpointing prevent weeks of wasted compute.<br><br><strong>Student Takeaway:</strong> High-performance distributed systems, NCCL communication, and fault tolerance are among the most lucrative engineering skills today.',
+    pronounceText: 'Systems engineering is what turns machine learning theory into working foundation models',
+    commentsCount: 790,
+    repostsCount: '4.8k',
+    likesCount: 22400
+  },
+  {
+    topicTag: '𝕏 Tech: Founder Velocity',
+    category: 'tech',
+    isXPost: true,
+    author: 'Paul Graham',
+    handle: '@paulg',
+    time: '1d ago',
+    title: 'Paul Graham on Why Technical Founders Who Code Build the Strongest AI Companies',
+    xTweetText: 'In AI today, the technology changes so rapidly that non-technical CEOs cannot make product decisions fast enough. The strongest founders are the engineers who understand model weights, latency, and context limits directly and can ship prototypes over a weekend.',
+    sourceUrl: 'https://x.com/paulg',
+    sourceOutlet: '𝕏 (formerly Twitter)',
+    explanation: '<strong>Technical Velocity:</strong> Y Combinator co-founder Paul Graham stresses that AI startup founders must write code themselves to feel the edges of what models can and cannot do.<br><br><strong>Student Takeaway:</strong> Deep technical mastery coupled with shipping speed is the ultimate superpower in modern tech.',
+    pronounceText: 'The strongest founders are the engineers who understand model weights latency and context limits directly',
+    commentsCount: 1350,
+    repostsCount: '8.2k',
+    likesCount: 38900
+  },
   {
     topicTag: 'DeepSeek V3',
     category: 'tech',
@@ -993,6 +1331,7 @@ const INFINITE_STORIES_POOL = [
 function initDeck() {
   renderContinuousFeed();
   initInfiniteScroll();
+  initPullToRefresh();
 
   const timeline = document.querySelector('.social-timeline');
   if (timeline) {
@@ -1074,25 +1413,32 @@ function triggerInfiniteScrollBatch() {
     return;
   }
 
-  // Select matching pool based on active category
+  // Select matching unseen pool based on active category
   const activeCat = AppState.activeCategory || 'all';
-  const categoryPool = activeCat === 'all' 
-    ? INFINITE_STORIES_POOL 
-    : (INFINITE_STORIES_POOL.filter(s => s.category === activeCat).length > 0 
-        ? INFINITE_STORIES_POOL.filter(s => s.category === activeCat) 
-        : INFINITE_STORIES_POOL);
+  let categoryPool = INFINITE_STORIES_POOL;
+  if (activeCat !== 'all') {
+    if (activeCat === 'xtech') {
+      categoryPool = categoryPool.filter(s => s.isXPost || s.category === 'tech');
+    } else {
+      categoryPool = categoryPool.filter(s => s.category === activeCat);
+    }
+  }
+
+  // Filter only stories not yet seen by the user!
+  const unseenPool = categoryPool.filter(s => !AppState.seenPosts.has(s.title));
+  const poolToUse = unseenPool.length > 0 ? unseenPool : categoryPool;
 
   const batchSize = 3;
   const newBatch = [];
 
-  for (let i = 0; i < batchSize; i++) {
-    const template = categoryPool[infiniteStoryIndex % categoryPool.length];
+  for (let i = 0; i < batchSize && i < poolToUse.length; i++) {
+    const template = poolToUse[infiniteStoryIndex % poolToUse.length];
     infiniteStoryIndex++;
     const newId = `story-inf-${Date.now()}-${i}-${Math.random().toString(36).substr(2, 5)}`;
     const newCard = {
       ...template,
       id: newId,
-      time: 'Live Stream'
+      time: template.time || 'Live Stream'
     };
     AppState.dailyCards.push(newCard);
     newBatch.push(newCard);
@@ -1106,6 +1452,7 @@ function triggerInfiniteScrollBatch() {
   while (tempDiv.firstChild) {
     container.appendChild(tempDiv.firstChild);
   }
+  observePostsForSeen();
 
   // Rapid debounce release for smooth uninterrupted infinite scrolling
   setTimeout(() => {
@@ -1114,6 +1461,47 @@ function triggerInfiniteScrollBatch() {
 }
 
 function renderCardAestheticVisual(card) {
+  // 0. Twitter / 𝕏 Tech News Post Embed
+  if (card.isXPost) {
+    const initials = (card.author || 'X').split(' ').map(n => n[0]).join('').slice(0, 2);
+    return `
+      <div class="x-tweet-card-embed">
+        <div class="x-tweet-header-row">
+          <div class="x-tweet-author-box">
+            <div class="x-tweet-avatar-ring">
+              <span class="x-tweet-initials">${initials}</span>
+            </div>
+            <div class="x-tweet-names">
+              <div class="x-tweet-name-line">
+                <strong class="x-tweet-author-name">${card.author}</strong>
+                <svg class="x-verified-badge" viewBox="0 0 24 24" fill="#1d9bf0" title="Verified Account">
+                  <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6c-1.58 0-2.95.875-3.6 2.148-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5c0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238.65 1.273 2.02 2.148 3.6 2.148 1.58 0 2.95-.875 3.6-2.148.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.28 4.22l-4.22-4.22 1.41-1.41 2.81 2.81 6.39-6.39 1.41 1.41-7.8 7.8z"/>
+                </svg>
+              </div>
+              <span class="x-tweet-handle">${card.handle || '@tech'} • ${card.time || 'Live'}</span>
+            </div>
+          </div>
+          <div class="x-source-brand-pill">
+            <svg class="x-source-svg" viewBox="0 0 24 24" fill="#ffffff" style="width:13px; height:13px;">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span>Post on 𝕏</span>
+          </div>
+        </div>
+
+        <div class="x-tweet-body-text">
+          ${card.xTweetText || card.explanation}
+        </div>
+
+        <div class="x-tweet-metrics-row">
+          <span class="x-metric-item"><svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 23l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg> ${card.repostsCount || '3.5k'} Reposts</span>
+          <span class="x-metric-item"><svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> ${card.likesCount ? (card.likesCount > 1000 ? (card.likesCount / 1000).toFixed(1) + 'k' : card.likesCount) : '18k'} Likes</span>
+          <span class="x-metric-item"><svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> Bookmark</span>
+        </div>
+      </div>
+    `;
+  }
+
   const soundBtn = (text, color = '#ffffff') => `
     <button class="sound-mini-btn" style="border-color:${color}; color:${color};" onclick="speakText('${(text || card.title).replace(/["']/g, '')}')" title="Listen">
       <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
@@ -1510,7 +1898,7 @@ function renderSingleCardHtml(card, idx) {
   const bodyEmbedHtml = renderCardAestheticVisual(card);
 
   return `
-    <article class="social-post-card" id="card-${card.id}">
+    <article class="social-post-card" id="card-${card.id}" data-post-title="${(card.title || '').replace(/"/g, '&quot;')}">
       
       <!-- Card Top Header Bar -->
       <div class="card-meta-topbar">
@@ -1594,14 +1982,32 @@ function renderContinuousFeed() {
 
   if (!cards || cards.length === 0) {
     container.innerHTML = `
-      <div class="social-post-card" style="text-align:center; padding:30px;">
-        <h3 style="color:#fff;">No Stories in this category</h3>
+      <div class="social-post-card all-caught-up-banner">
+        <div class="caught-up-badge-sheen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" style="width:26px; height:26px;">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+        </div>
+        <h3 style="color:#fff; font-size:1.3rem; margin-bottom:8px;">You're All Caught Up!</h3>
+        <p style="color:var(--text-secondary); font-size:0.92rem; max-width:440px; margin:0 auto 20px auto; line-height:1.5;">
+          You have seen every post in this feed. Pull down to refresh for breaking updates, or reset seen history to discover stories again.
+        </p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <button onclick="triggerFeedRefresh()" class="feed-next-btn" style="padding:10px 22px;">
+            <span>↻ Check for Live 𝕏 Tech News</span>
+          </button>
+          <button onclick="resetSeenPosts()" class="feed-prev-btn" style="padding:10px 22px;">
+            <span>Clear Seen History & Review</span>
+          </button>
+        </div>
       </div>
     `;
     return;
   }
 
   container.innerHTML = cards.map((card, idx) => renderSingleCardHtml(card, idx)).join('');
+  observePostsForSeen();
 }
 
 // Interactive Likes directly in place (no page jump)
