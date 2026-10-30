@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>DailyPulse • Global Systems & Fluency Engine</title>
+  <title>DailyPulse • Global Tech News & Titans Radar</title>
   
     <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
@@ -4300,6 +4300,404 @@ body.theme-twitter-dim {
   border-color: #536471 !important;
 }
 
+
+/* ============================================================
+   DAILYPULSE v28: 100% TECH, SHARP OLED BLACK & iOS FLUIDITY
+   - Razor-sharp 1px #2f3336 borders & zero blurry gradients
+   - Edge-to-edge screen-filling layout on mobile & desktop
+   - Apple iOS spring curves & buttery micro-press haptics
+   - Twitter (X) & Reddit radar layers (Up & Down structure)
+   ============================================================ */
+
+/* 1. Global Reset & Pure OLED Black */
+html, body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #e7e9ea !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  letter-spacing: -0.012em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth !important;
+}
+
+body::before, body::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 2. Apple iOS Spring Curves & Tactile Micro-Press States */
+:root {
+  --ios-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ios-fast: cubic-bezier(0.2, 0, 0, 1);
+  --x-border: #2f3336;
+  --x-border-subtle: #202327;
+  --x-blue: #1d9bf0;
+  --x-text-main: #e7e9ea;
+  --x-text-muted: #71767b;
+}
+
+button, .card-footer-pill-btn, .category-pill, .social-nav-btn, .x-nav-button, .clickable-pill, .feed-next-btn, .feed-prev-btn, .island-icon-btn {
+  transition: transform 0.16s var(--ios-spring), opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button:active, .card-footer-pill-btn:active, .category-pill:active, .social-nav-btn:active, .x-nav-button:active, .clickable-pill:active {
+  transform: scale(0.97) !important;
+  opacity: 0.88 !important;
+}
+
+/* 3. Screen Edge-to-Edge Architecture: No Letterboxing, No Gaps */
+.social-app-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-x: hidden !important;
+}
+
+.social-main-grid {
+  width: 100% !important;
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  background: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Timeline & Feed Stream */
+.social-timeline {
+  background: #000000 !important;
+  flex: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  position: relative !important;
+}
+
+.deck-feed-stream {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 75px 0 !important;
+}
+
+/* 4. The Up Look (Header & Category Tab Layer) */
+.floating-island-container {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 53px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 350 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid #2f3336 !important;
+  border-radius: 0 !important;
+  pointer-events: auto !important;
+}
+
+.dynamic-island-capsule {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.dynamic-island-capsule:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.island-ticker-wrapper {
+  flex: 1 !important;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
+}
+
+.island-icon-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.island-icon-btn:hover {
+  background: rgba(239, 243, 244, 0.1) !important;
+  color: #ffffff !important;
+  border-color: #536471 !important;
+}
+
+/* Category Filter Bar (Twitter Tabs Look) */
+.category-filter-bar {
+  position: sticky !important;
+  top: 53px !important;
+  z-index: 340 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid #2f3336 !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+.category-filter-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.category-pill {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: #71767b !important;
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.category-pill:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+  color: #e7e9ea !important;
+}
+
+.category-pill.active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+}
+
+/* 5. Stream Cards: Full-Bleed Flush Cards Divided by Clean 1px Lines */
+.social-post-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #2f3336 !important;
+  padding: 16px 18px !important;
+  background: #000000 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background 0.15s ease !important;
+}
+
+.social-post-card:hover {
+  background: rgba(255, 255, 255, 0.015) !important;
+  border-color: #2f3336 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.post-headline-text {
+  font-size: 1.18rem !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.015em !important;
+  margin: 4px 0 10px 0 !important;
+}
+
+/* Tweet & Radar Embed Box */
+.x-tweet-card-embed {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  margin: 10px 0 !important;
+}
+
+.x-tweet-card-embed:hover {
+  border-color: #536471 !important;
+}
+
+.x-tweet-body-text {
+  color: #e7e9ea !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+}
+
+/* 6. The Down Look (Fixed Mobile Bottom Navigation) */
+.social-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 53px !important;
+  background: rgba(0, 0, 0, 0.94) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-top: 1px solid #2f3336 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  padding: 0 0 env(safe-area-inset-bottom) 0 !important;
+  margin: 0 !important;
+  z-index: 400 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+}
+
+.social-nav-btn {
+  flex: 1 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  color: #71767b !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.social-nav-btn .nav-svg-icon {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #71767b !important;
+  transition: stroke 0.15s ease, transform 0.15s var(--ios-spring) !important;
+}
+
+.social-nav-btn:hover {
+  color: #ffffff !important;
+}
+
+.social-nav-btn:hover .nav-svg-icon {
+  stroke: #ffffff !important;
+}
+
+.social-nav-btn.active {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.social-nav-btn.active .nav-svg-icon {
+  stroke: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 7. Responsive Desktop (>= 900px) Layout */
+@media (min-width: 900px) {
+  .social-main-grid {
+    max-width: 1225px !important;
+    margin: 0 auto !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+  }
+
+  .x-desktop-nav {
+    display: flex !important;
+    width: 275px !important;
+    border-right: 1px solid #2f3336 !important;
+    background: #000000 !important;
+    padding: 18px 14px !important;
+  }
+
+  .social-timeline {
+    width: 600px !important;
+    max-width: 600px !important;
+    flex: none !important;
+    border-right: 1px solid #2f3336 !important;
+    border-left: none !important;
+  }
+
+  .x-right-sidebar {
+    display: block !important;
+    width: 350px !important;
+    flex-shrink: 0 !important;
+    background: #000000 !important;
+    padding: 16px 20px !important;
+    overflow-y: auto !important;
+  }
+
+  .social-bottom-nav {
+    display: none !important;
+  }
+
+  .deck-feed-stream {
+    padding-bottom: 30px !important;
+  }
+}
+
+/* 8. Mobile Edge-to-Edge (< 900px) Overrides */
+@media (max-width: 899px) {
+  .x-desktop-nav, .x-right-sidebar {
+    display: none !important;
+  }
+
+  .social-timeline {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+  }
+
+  .deck-feed-stream {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0 75px 0 !important;
+  }
+
+  .social-post-card {
+    padding: 14px 16px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -4323,7 +4721,7 @@ body.theme-twitter-dim {
               <span class="pulse-live-beacon" title="Live Frequency"></span>
             </div>
             <div class="pulse-sub-row">
-              <span class="x-brand-sub">Culture & Fluency</span>
+              <span class="x-brand-sub">Tech News & Titans</span>
             </div>
           </div>
         </div>
@@ -4412,25 +4810,21 @@ body.theme-twitter-dim {
             <!-- Center Animated Live Culture Marquee Ticker -->
             <div class="island-ticker-wrapper" title="Live Breaking Culture & Tech Radar">
               <div class="island-ticker-track">
-                <span class="ticker-item"><span class="ticker-cat-pill">HARDWARE</span> Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SILICON</span> Jensen Huang: Blackwell B200 208B Transistors & 10TB/s NVLink</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">CULTURE</span> Charli XCX: Brat Summer Word of the Year</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> Andrej Karpathy: Reasoning LLMs Shift to Test-Time Compute</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">SPORTS</span> Real Madrid: 15× Champions of Europe</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SYSTEMS</span> Guido van Rossum: Python 3.13 No-GIL Multi-Core Execution</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> OpenAI o3: Test-Time Reasoning Epoch</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">KERNEL</span> Linus Torvalds: Linux 6.12 & Rust Infrastructure</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">STANDARDS</span> Modern CSS Grid: Centering Standardized</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SCIENCE</span> Demis Hassabis: AlphaFold 3 Chemistry Nobel Prize</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">HARDWARE</span> Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">CLUSTERS</span> Elon Musk: Colossus 100k Liquid-Cooled H100s in 122 Days</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">CULTURE</span> Charli XCX: Brat Summer Word of the Year</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">OPEN WEIGHTS</span> Mark Zuckerberg: LLaMA 3.3 Winning Local AI</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">SPORTS</span> Real Madrid: 15× Champions of Europe</span>
-                <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> OpenAI o3: Test-Time Reasoning Epoch</span>
-                <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">STANDARDS</span> Modern CSS Grid: Centering Standardized</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">POWER</span> Sam Altman: Gigawatt Clusters & Physical Power Grids</span>
               </div>
             </div>
 
@@ -4467,12 +4861,12 @@ body.theme-twitter-dim {
             
             <!-- Category Filter Pills (Executive Editorial Pills) -->
             <div class="category-filter-bar" id="categoryFilterBar">
-              <button class="category-pill active" data-cat="all">All Stories</button>
-              <button class="category-pill" data-cat="slang">Culture & Slang</button>
-              <button class="category-pill" data-cat="tech">Tech & Systems</button>
-              <button class="category-pill" data-cat="xtech">𝕏 Tech News</button>
-              <button class="category-pill" data-cat="reply">Executive English</button>
-              <button class="category-pill" data-cat="icon">World Leaders</button>
+              <button class="category-pill active" data-cat="all">All Tech</button>
+              <button class="category-pill" data-cat="ai">Frontier AI</button>
+              <button class="category-pill" data-cat="silicon">Silicon & Hardware</button>
+              <button class="category-pill" data-cat="systems">Systems & Dev</button>
+              <button class="category-pill" data-cat="leaders">Tech Titans</button>
+              <button class="category-pill" data-cat="radar">Reddit & 𝕏 Radar</button>
             </div>
 
                         <!-- Mobile Pull-to-Refresh Interactive Indicator -->
@@ -4495,7 +4889,7 @@ body.theme-twitter-dim {
             <div id="infiniteScrollSentinel" class="infinite-scroll-sentinel">
               <div class="infinite-scroll-loader">
                 <div class="infinite-spinner-ring"></div>
-                <span>Streaming live global culture & tech radar...</span>
+                <span>Streaming live frontier tech radar & titans...</span>
               </div>
             </div>
 
@@ -4637,66 +5031,66 @@ body.theme-twitter-dim {
             </div>
 
             <div class="news-sources-list">
-              <a href="https://www.theguardian.com/music/article/2024/jul/20/brat-summer-charli-xcx" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">The Guardian</div>
-                  <div class="source-item-topic">Charli XCX Brat Summer Phenomenon</div>
+                  <div class="source-item-outlet">Reddit • r/MachineLearning</div>
+                  <div class="source-item-topic">Frontier AI Research & ArXiv Papers</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.bbc.com/news/technology-68593478" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">BBC News</div>
-                  <div class="source-item-topic">NVIDIA Blackwell B200 208B Transistors</div>
+                  <div class="source-item-outlet">Reddit • r/LocalLLaMA</div>
+                  <div class="source-item-topic">DeepSeek-R1, Quantization & Open Weights</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.businessinsider.com/sam-altman-openai-chatgpt-agi-timeline-2024" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/hardware/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Business Insider</div>
-                  <div class="source-item-topic">Sam Altman: o1 & o3 Frontier Reasoning</div>
+                  <div class="source-item-outlet">Reddit • r/Hardware</div>
+                  <div class="source-item-topic">NVIDIA Blackwell B200 & TSMC 2nm GAA</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.goal.com/en/news/real-madrid-champions-league-dominance-dna/blt123456789" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/Python/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Goal.com</div>
-                  <div class="source-item-topic">Real Madrid 15× Champions of Europe</div>
+                  <div class="source-item-outlet">Reddit • r/Python</div>
+                  <div class="source-item-topic">Python 3.13 Free-Threaded (No-GIL) Benchmarks</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://time.com/7010777/demure-mindful-tiktok-trend-jools-lebron/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/rust/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">TIME Magazine</div>
-                  <div class="source-item-topic">Very Demure, Very Mindful Workplace Lore</div>
+                  <div class="source-item-outlet">Reddit • r/rust</div>
+                  <div class="source-item-topic">Linux 6.12 Kernel Rust Abstractions</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/place-items" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/karpathy" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">MDN Web Docs</div>
-                  <div class="source-item-topic">Modern CSS Grid Centering Standards</div>
+                  <div class="source-item-outlet">𝕏 • @karpathy</div>
+                  <div class="source-item-topic">Andrej Karpathy: Test-Time Compute RL</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://hbr.org/2023/11/how-to-say-no-at-work-without-damaging-relationships" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/sama" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Harvard Business Review</div>
-                  <div class="source-item-topic">Executive Boundaries & Saying No</div>
+                  <div class="source-item-outlet">𝕏 • @sama</div>
+                  <div class="source-item-topic">Sam Altman: Gigawatt Clusters & Power</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.dexerto.com/entertainment/who-is-ishowspeed-youtube-streamer-viral-2035222/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/ylecun" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Dexerto</div>
-                  <div class="source-item-topic">IShowSpeed Global Tours & 2.5B Views</div>
+                  <div class="source-item-outlet">𝕏 • @ylecun</div>
+                  <div class="source-item-topic">Yann LeCun: World Models & V-JEPA</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
@@ -4705,7 +5099,7 @@ body.theme-twitter-dim {
 
           <!-- Quick Actions -->
           <div class="sidebar-news-panel" style="background:rgba(255,255,255,0.02);">
-            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">Infinite Culture Radar</div>
+            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">Live Tech & Titans Radar</div>
             <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.4; margin-bottom:12px;">Stories load infinitely as you scroll. Click any news link to view the verified primary article.</p>
             <div style="display:flex; gap:6px;">
               <button onclick="switchTab('quiz')" style="flex:1; background:#ffffff; color:#000; border:none; padding:6px 12px; border-radius:var(--radius-pill); font-size:0.75rem; font-weight:800; cursor:pointer;">Quiz</button>
@@ -4814,6 +5208,60 @@ body.theme-twitter-dim {
 
   <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
   <script>
+// Fast Live Tech Radar Fetching from real-world APIs
+async function fetchLiveTechRadarPosts() {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
+    const res = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json', {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
+    if (!res.ok) return;
+
+    const ids = await res.json();
+    const topIds = ids.slice(0, 3);
+
+    const stories = await Promise.all(topIds.map(async (id) => {
+      try {
+        const itemRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+        return await itemRes.json();
+      } catch (e) {
+        return null;
+      }
+    }));
+
+    stories.filter(Boolean).forEach(story => {
+      const cardId = `live-hn-${story.id}`;
+      if (!AppState.dailyCards.some(c => c.id === cardId)) {
+        AppState.dailyCards.unshift({
+          id: cardId,
+          category: 'ai',
+          isXPost: true,
+          topicTag: '⚡ Breaking Tech Signal',
+          author: story.by ? `@${story.by}` : 'Tech Radar',
+          handle: story.by ? `@${story.by}` : '@techradar',
+          time: 'Just now',
+          title: story.title,
+          xTweetText: `${story.title} — Live discussion with ${story.score || 1} points and ${story.descendants || 0} comments on Hacker News.`,
+          sourceUrl: story.url || `https://news.ycombinator.com/item?id=${story.id}`,
+          sourceOutlet: 'Hacker News (Live Wire)',
+          explanation: `<strong>In Simple Everyday Words:</strong> Real-time trending tech discussion: <em>"${story.title}"</em>.<br><br><strong>Key Takeaway:</strong> High-signal engineering discussion from founders and practitioners worldwide.`,
+          pronounceText: story.title,
+          commentsCount: story.descendants || 12,
+          repostsCount: '1.2k',
+          likesCount: story.score || 180
+        });
+      }
+    });
+  } catch (err) {
+    // Graceful offline fallback
+    console.log('Live tech radar fast fallback');
+  }
+}
+
+
 /**
  * DAILYPULSE • Complete Interactive Social Engine
  * Features: 15+ Expanded Cards, Voice Speech Recognition, Live Reddit API,
@@ -5062,11 +5510,11 @@ const AppState = {
     }
   ],
 
-  // 13 Rich Dynamic Cards across categories
+  // 14 Pure Frontier Tech Stories & Industry Titans
   dailyCards: [
     {
-      id: 'story-xt-1',
-      category: 'tech',
+      id: 'story-tech-1',
+      category: 'ai',
       isXPost: true,
       topicTag: '𝕏 Tech: Reasoning Models',
       author: 'Andrej Karpathy',
@@ -5075,16 +5523,16 @@ const AppState = {
       title: 'Andrej Karpathy on Reasoning LLMs: The Shift to Test-Time Compute',
       xTweetText: 'Deep dive on reasoning models (o1/o3/DeepSeek-R1): The paradigm is shifting from pre-training compute to inference test-time compute. A model spending 2 minutes thinking before answering is fundamentally an agent searching through chain-of-thought tokens using reinforcement learning with verifiable rewards.',
       sourceUrl: 'https://x.com/karpathy',
-      sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>In Simple Everyday Words:</strong> Andrej Karpathy (top AI scientist) explains that instead of rushing to blurt out an answer in one second, new AI stops to think through the steps in its head, like working on a rough sheet of paper.<br><br><strong>Why It Helps You:</strong> In college, AI can now help you solve tricky programming and math problems by checking its own logic before giving you the final answer.',
+      sourceOutlet: '𝕏 • @karpathy',
+      explanation: '<strong>In Simple Everyday Words:</strong> Andrej Karpathy (legendary AI educator & founding scientist at OpenAI) explains that instead of rushing to blurt out an answer in one second, new AI stops to think through the steps in its head, like working on a rough sheet of paper before answering an exam question.<br><br><strong>Why It Matters for You:</strong> In college, AI can now solve tricky programming and math bugs by checking its own logic step-by-step rather than hallucinating.',
       pronounceText: 'The paradigm is shifting from pre-training compute to inference test-time compute',
       commentsCount: 940,
       repostsCount: '6.2k',
       likesCount: 28400
     },
     {
-      id: 'story-xt-2',
-      category: 'tech',
+      id: 'story-tech-2',
+      category: 'ai',
       isXPost: true,
       topicTag: '𝕏 Tech: AI Infrastructure',
       author: 'Sam Altman',
@@ -5093,16 +5541,16 @@ const AppState = {
       title: 'Sam Altman on The Next Frontier: Gigawatt Clusters & Physical Power Grids',
       xTweetText: 'The compute trajectory is unprecedented. Building gigawatt-class AI clusters requires rewriting how power grids, cooling infrastructure, and optical interconnects operate. The next frontier isn\'t just software—it\'s physical infrastructure, nuclear power, and silicon co-design.',
       sourceUrl: 'https://x.com/sama',
-      sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>In Simple Everyday Words:</strong> Sam Altman (head of OpenAI) explains that building future AI needs massive amounts of electricity and cooling systems, not just smart code.<br><br><strong>Why It Helps You:</strong> Power grids, electrical engineering, and computer chips are just as important as software for the future of AI.',
+      sourceOutlet: '𝕏 • @sama',
+      explanation: '<strong>In Simple Everyday Words:</strong> OpenAI CEO Sam Altman explains that building future AI needs massive amounts of electricity, nuclear reactors, and water cooling systems—not just smart code lines on a screen.<br><br><strong>Why It Matters for You:</strong> Electrical engineering, power grids, and thermal physics are becoming just as crucial as coding to power the AI revolution.',
       pronounceText: 'Building gigawatt class AI clusters requires rewriting how power grids and cooling operate',
       commentsCount: 1420,
       repostsCount: '9.8k',
       likesCount: 42100
     },
     {
-      id: 'story-xt-3',
-      category: 'tech',
+      id: 'story-tech-3',
+      category: 'ai',
       isXPost: true,
       topicTag: '𝕏 Tech: World Models',
       author: 'Yann LeCun',
@@ -5111,16 +5559,34 @@ const AppState = {
       title: 'Yann LeCun on Why LLMs Need World Models (V-JEPA & Objective-Driven AI)',
       xTweetText: 'Autoregressive LLMs cannot achieve human-level intelligence alone because they lack world models and common-sense physics. They predict words, not reality. We need Joint Embedding Predictive Architectures (JEPA) that predict in abstract representation space, not pixel space.',
       sourceUrl: 'https://x.com/ylecun',
-      sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>In Simple Everyday Words:</strong> Meta AI chief Yann LeCun explains that chatbots only guess words. True AI needs to understand real life, like knowing that dropping a glass cup breaks it on the floor.<br><br><strong>Why It Helps You:</strong> Current AI still has big limits. In college, your generation will build AI that understands the real physical world.',
+      sourceOutlet: '𝕏 • @ylecun',
+      explanation: '<strong>In Simple Everyday Words:</strong> Meta Chief AI Scientist Yann LeCun explains that today\'s chatbots only guess words. True human intelligence requires understanding how the physical world works—like knowing that dropping a glass cup shatters it.<br><br><strong>Why It Matters for You:</strong> Current LLMs still have huge limitations. In college, your generation will build AI architectures that truly comprehend physical cause-and-effect.',
       pronounceText: 'Autoregressive models cannot achieve human level intelligence alone because they lack world models',
       commentsCount: 880,
       repostsCount: '4.1k',
       likesCount: 19500
     },
     {
-      id: 'story-xt-4',
-      category: 'tech',
+      id: 'story-tech-4',
+      category: 'silicon',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Silicon & Hardware',
+      author: 'Jensen Huang',
+      handle: '@nvidia',
+      time: '7h ago',
+      title: 'Jensen Huang on Blackwell B200: 208 Billion Transistors Powering Global Compute',
+      xTweetText: 'Blackwell is not just a GPU; it is a full-stack data center engine. Packaging 208 billion transistors across a dual-die chip connected via a 10 TB/s NVLink interconnect. Silicon co-design is the new industrial revolution powering generative AI at scale.',
+      sourceUrl: 'https://x.com/nvidia',
+      sourceOutlet: '𝕏 • @nvidia',
+      explanation: '<strong>In Simple Everyday Words:</strong> NVIDIA CEO Jensen Huang explains how they fused two massive silicon computer chips together so tightly that they act as one single supercomputer chip, transferring data 10 times faster than anything ever made.<br><br><strong>Why It Matters for You:</strong> High-bandwidth computer architecture and chip hardware are among the highest-paid engineering specialties on Earth.',
+      pronounceText: 'Packaging two hundred and eight billion transistors across a dual die package with ten terabytes per second interconnect',
+      commentsCount: 1250,
+      repostsCount: '7.8k',
+      likesCount: 35600
+    },
+    {
+      id: 'story-tech-5',
+      category: 'ai',
       isXPost: true,
       topicTag: '𝕏 Tech: Physical AI',
       author: 'Dr. Jim Fan',
@@ -5129,16 +5595,16 @@ const AppState = {
       title: 'Jim Fan on Physical AI: Humanoid Robotics Translating Sim-to-Real',
       xTweetText: '2026 is the year of Physical AI. Translating internet-scale video into robot motor policies using simulation-to-real reinforcement learning (Omniverse + Isaac Lab). Robots are learning dexterous manipulation via foundation models that generalize across zero-shot environments.',
       sourceUrl: 'https://x.com/DrJimFan',
-      sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>In Simple Everyday Words:</strong> NVIDIA scientist Jim Fan explains how AI is moving into metal robot bodies so they can walk, balance, and carry objects.<br><br><strong>Why It Helps You:</strong> Robots practice inside computer games for millions of hours before walking in the real world. Robotics will be a huge career in a few years.',
+      sourceOutlet: '𝕏 • @DrJimFan',
+      explanation: '<strong>In Simple Everyday Words:</strong> NVIDIA robotics director Jim Fan explains how AI is moving out of software into metal robot bodies so they can walk, balance, open doors, and pick up objects.<br><br><strong>Why It Matters for You:</strong> Robots practice inside virtual video game simulations for millions of hours before walking in the real world. Robotics is the next massive tech boom.',
       pronounceText: 'Translating internet scale video into robot motor policies using simulation to real reinforcement learning',
       commentsCount: 650,
       repostsCount: '3.4k',
       likesCount: 16800
     },
     {
-      id: 'story-xt-5',
-      category: 'tech',
+      id: 'story-tech-6',
+      category: 'systems',
       isXPost: true,
       topicTag: '𝕏 Tech: Python Systems',
       author: 'Guido van Rossum',
@@ -5147,286 +5613,203 @@ const AppState = {
       title: 'Guido van Rossum on Python 3.13: The No-GIL Free-Threaded Epoch',
       xTweetText: 'Python 3.13 marks a historic milestone: PEP 703 enables free-threaded execution without the Global Interpreter Lock (GIL), unlocking true multi-core CPU parallelism for scientific computing, web workers, and AI data pipelines with zero thread contention.',
       sourceUrl: 'https://x.com/gvanrossum',
-      sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>In Simple Everyday Words:</strong> Python creator Guido van Rossum shares that Python now uses all your computer cores at once, making it much faster.<br><br><strong>Why It Helps You:</strong> Python is the first language most college students learn. Now your Python code can run faster than ever without getting stuck.',
+      sourceOutlet: '𝕏 • @gvanrossum',
+      explanation: '<strong>In Simple Everyday Words:</strong> Python creator Guido van Rossum shares that Python can now use all your computer processor cores simultaneously, making CPU-heavy programs run much faster without waiting for a single lock.<br><br><strong>Why It Matters for You:</strong> Python is the first programming language most college students learn. Now your Python data science and machine learning code can run at full hardware speeds.',
       pronounceText: 'PEP 703 enables free-threaded execution without the Global Interpreter Lock unlocking true multicore parallelism',
       commentsCount: 1100,
       repostsCount: '7.9k',
       likesCount: 31200
     },
     {
-      id: 'story-0',
-      category: 'slang',
-      topicTag: 'Cooked',
-      author: 'Internet Culture Lab',
-      handle: '@culturelore',
-      flair: 'r/SlangLore',
-      time: '3h ago',
-      title: 'Describing Total Exhaustion or Failure',
-      slangPhrase: '"Bro, I am completely cooked."',
-      formalPhrase: '"I am feeling thoroughly overwhelmed and unprepared."',
-      pronounceText: 'I am feeling thoroughly overwhelmed and unprepared',
-      sourceUrl: 'https://knowyourmeme.com/memes/let-him-cook',
-      sourceOutlet: 'Know Your Meme',
-      explanation: '<strong>When to use "Cooked":</strong> Popularized by streamers and gaming. Use when something is ruined, hopeless, or when you are mentally exhausted.<br><br><strong>When to use Formal:</strong> Use in professional or academic settings to communicate heavy workload without sounding immature.',
-      commentsCount: 382,
-      repostsCount: '1.4k',
-      likesCount: 5210
-    },
-    {
-      id: 'story-1',
-      category: 'slang',
-      topicTag: 'Brat Summer',
-      author: 'Pop Culture Radar',
-      handle: '@popradar',
-      flair: 'r/AestheticTrends',
-      time: '5h ago',
-      title: 'Why "Brat Summer" Dominated Modern Aesthetics',
-      pronounceText: 'Brat Summer represents messy, unapologetic confidence',
-      sourceUrl: 'https://www.theguardian.com/music/article/2024/jul/23/brat-summer-charli-xcx-kamala-harris',
-      sourceOutlet: 'The Guardian',
-      explanation: '<strong>The Core Breakdown:</strong> Started by Charli XCX\'s lime-green album. It rejected the polished "clean-girl" perfection in favor of loud music, messy hair, late nights, and unapologetic self-confidence.<br><br><strong>Key Vocabulary:</strong> <em>Unapologetic</em> (not feeling sorry for being yourself), <em>Aesthetic</em> (visual style or mood).',
-      commentsCount: 940,
-      repostsCount: '4.8k',
-      likesCount: 18400
-    },
-    {
-      id: 'story-2',
-      category: 'reply',
-      topicTag: 'Boundaries',
-      author: 'Corporate & Life Fluency',
-      handle: '@careerpolish',
-      flair: 'r/WorkplaceHumor',
-      time: '6h ago',
-      title: 'Polite Workplace Boundary Challenge',
-      scenario: '<strong>Scenario Analysis:</strong> A colleague messages you at 8:15 PM requesting a project status update after business hours. You want to decline politely without working overtime. What would you say?',
-      sourceUrl: 'https://hbr.org/2021/04/how-to-set-boundaries-when-the-lines-are-blurred',
-      sourceOutlet: 'Harvard Business Review',
-      explanation: '<strong>The Golden Rule:</strong> Never apologize for logging off on time. Acknowledge receipt, set a clear time window for tomorrow, and log off with confidence.',
-      commentsCount: 420,
-      repostsCount: '980',
-      likesCount: 4120
-    },
-    {
-      id: 'story-3',
-      category: 'tech',
-      topicTag: 'Center Div',
-      author: 'Frontend Developers Hub',
-      handle: '@webdevlore',
-      flair: 'r/ProgrammerHumor',
-      time: '8h ago',
-      title: 'Why "Centering a Div" is Computer Science\'s Biggest Meme',
-      pronounceText: 'Centering a div in CSS is easier now with flexbox and grid',
-      sourceUrl: 'https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Centering_things',
-      sourceOutlet: 'MDN Web Docs',
-      explanation: '<strong>The Problem:</strong> Historically in CSS, centering a box both horizontally and vertically required math hacks, negative margins, and position absolute.<br><br><strong>The Modern 2-Line Flex:</strong><br><code>display: grid; place-items: center;</code><br>Put this on the parent box, and the 20-year-old internet joke is solved!',
-      commentsCount: 1640,
-      repostsCount: '6.2k',
-      likesCount: 24900
-    },
-    {
-      id: 'story-4',
-      category: 'icon',
-      topicTag: 'Jensen Huang',
-      author: 'Silicon Valley Dossier',
-      handle: '@techfoundry',
-      flair: 'r/TechTitans',
-      time: '12h ago',
-      title: 'Jensen Huang (The Man Powering Global AI)',
-      role: 'CEO & Co-founder of NVIDIA',
-      
-      pronounceText: 'Jensen Huang is the CEO of Nvidia, powering modern artificial intelligence',
-      sourceUrl: 'https://www.businessinsider.com/jensen-huang-nvidia-ceo-leather-jackets-wardrobe-explained-2024-3',
-      sourceOutlet: 'Business Insider',
-      explanation: '<strong>The Profile:</strong> Started Nvidia making chips for 3D PC games. Today, his AI processors (H100, Blackwell) run almost every large language model in the world.<br><br><strong>The Lore:</strong> Wears a black motorcycle leather jacket to every single keynote and press conference on Earth!',
-      commentsCount: 810,
-      repostsCount: '3.1k',
-      likesCount: 14200
-    },
-    {
-      id: 'story-5',
-      category: 'slang',
-      topicTag: 'Demure',
-      author: 'Viral Trend Archive',
-      handle: '@trendpulse',
-      flair: 'r/MemeEtiquette',
+      id: 'story-tech-7',
+      category: 'systems',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Linux & Rust',
+      author: 'Linus Torvalds',
+      handle: '@torvalds',
       time: '14h ago',
-      title: '"Very Demure, Very Mindful" (The Irony Trend)',
-      slangPhrase: '"Notice how I stay calm and cute? Very demure. Very mindful."',
-      formalPhrase: '"I prioritize composure, elegance, and understated professionalism."',
-      pronounceText: 'Very demure, very mindful represents ironical modesty',
-      sourceUrl: 'https://time.com/7011889/very-demure-very-mindful-tiktok-trend-jools-lebron/',
-      sourceOutlet: 'TIME Magazine',
-      explanation: '<strong>The Origin:</strong> Started by TikTok creator Jools Lebron. It\'s used ironically to mock people who act overly exaggerated or try too hard to look innocent and modest in everyday chaotic situations.',
-      commentsCount: 520,
-      repostsCount: '2.1k',
-      likesCount: 9400
+      title: 'Linus Torvalds on Linux 6.12 & Expanding Rust in Kernel Infrastructure',
+      xTweetText: 'Memory safety bugs have plagued C codebases for four decades. Rust integration in the Linux kernel is progressing pragmatically. We want safe memory abstractions without compromising zero-cost performance or low-level hardware control.',
+      sourceUrl: 'https://x.com/torvalds',
+      sourceOutlet: '𝕏 • @torvalds',
+      explanation: '<strong>In Simple Everyday Words:</strong> Linux & Git creator Linus Torvalds explains that adding the Rust language to the Linux operating system prevents accidental memory crashes and security holes while keeping everything blazingly fast.<br><br><strong>Why It Matters for You:</strong> Almost every server, cloud data center, and Android phone runs on Linux. Understanding memory safety gives you a huge advantage in engineering interviews.',
+      pronounceText: 'Rust integration in the Linux kernel provides memory safety without compromising zero cost performance',
+      commentsCount: 1350,
+      repostsCount: '8.4k',
+      likesCount: 37400
     },
     {
-      id: 'story-6',
-      category: 'slang',
-      topicTag: 'Girl Math',
-      author: 'Gen Z Psychology Lab',
-      handle: '@humorlogic',
-      flair: 'r/Me_IRL',
+      id: 'story-tech-8',
+      category: 'leaders',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Chemistry Nobel',
+      author: 'Demis Hassabis',
+      handle: '@demishassabis',
       time: '16h ago',
-      title: '"Girl Math" vs. "Boy Math" (Irrational Financial Logic)',
-      slangPhrase: '"If I pay with cash, it\'s basically free."',
-      formalPhrase: '"Perceived sunk costs often lead to irrational post-purchase rationalization."',
-      pronounceText: 'Girl math and boy math are hilarious examples of cognitive bias',
-      sourceUrl: 'https://www.businessinsider.com/what-is-girl-math-explained-tiktok-spending-trend-2023-9',
-      sourceOutlet: 'Business Insider',
-      explanation: '<strong>The Meme:</strong> Humorous viral justifications for spending money. Examples: *"Returning a $50 shirt means I just made $50 profit"* or *"Walking 3 miles in the rain to avoid a $4 parking ticket"* (Boy Math).',
-      commentsCount: 780,
-      repostsCount: '3.9k',
-      likesCount: 16200
+      title: 'Demis Hassabis on AlphaFold 3 & AI Solving Science Grand Challenges',
+      xTweetText: 'AlphaFold 3 predicts the structures and chemical interactions of all life molecules—proteins, DNA, RNA, and ligands. AI is moving from digital chatbots to accelerating biology, medicine, and clean materials discovery by decades.',
+      sourceUrl: 'https://x.com/demishassabis',
+      sourceOutlet: '𝕏 • @demishassabis',
+      explanation: '<strong>In Simple Everyday Words:</strong> DeepMind founder & Nobel Prize laureate Demis Hassabis shows how AI can accurately predict the shape of 200 million biological molecules, helping doctors design life-saving medicines in days rather than years.<br><br><strong>Why It Matters for You:</strong> AI is far more than generative text—it is revolutionizing biology, medicine, and fundamental scientific discovery.',
+      pronounceText: 'AlphaFold three predicts the structures and interactions of all life molecules',
+      commentsCount: 1540,
+      repostsCount: '9.2k',
+      likesCount: 41200
     },
     {
-      id: 'story-7',
-      category: 'tech',
-      topicTag: 'Git Merge',
-      author: 'DevOps & Git Survivors',
-      handle: '@gitpanic',
-      flair: 'r/ProgrammerHumor',
+      id: 'story-tech-9',
+      category: 'leaders',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Safe Superintelligence',
+      author: 'Ilya Sutskever',
+      handle: '@ilyasut',
       time: '18h ago',
-      title: 'The Friday 4:55 PM Git Merge Conflict',
-      pronounceText: 'Git merge conflicts occur when two branches modify the same lines of code',
-      sourceUrl: 'https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging#_basic_merge_conflicts',
-      sourceOutlet: 'Git Official SCM',
-      explanation: '<strong>The Panic:</strong> When two developers edit the same file, Git stops and demands human intervention. Senior developers use <code>git stash</code> and <code>git reflog</code> to rescue lost code from catastrophic mistakes.',
-      commentsCount: 1120,
-      repostsCount: '4.1k',
-      likesCount: 19800
+      title: 'Ilya Sutskever on Safe Superintelligence: Scaling Beyond Pre-Training Ceilings',
+      xTweetText: 'The next mountain to climb is safe superintelligence (SSI). Pre-training scaling on web text is hitting data ceilings. The future belongs to synthetic reasoning, recursive self-improvement, and mathematical safety proofs.',
+      sourceUrl: 'https://x.com/ilyasut',
+      sourceOutlet: '𝕏 • @ilyasut',
+      explanation: '<strong>In Simple Everyday Words:</strong> Legendary AI scientist Ilya Sutskever explains that AI has already read the whole internet. To become truly smarter, AI must now practice solving difficult puzzles on its own, just like a student working through tough homework problems.<br><br><strong>Why It Matters for You:</strong> The next era of AI isn\'t just scraping web articles—it\'s teaching AI to invent new logic and verify its own work.',
+      pronounceText: 'The future of artificial intelligence belongs to synthetic reasoning and mathematical safety proofs',
+      commentsCount: 1180,
+      repostsCount: '6.9k',
+      likesCount: 29800
     },
     {
-      id: 'story-8',
-      category: 'reply',
-      topicTag: 'Deadlines',
-      author: 'Executive Presence Coach',
-      handle: '@leadfluent',
-      flair: 'r/CareerAdvancement',
+      id: 'story-tech-10',
+      category: 'ai',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Open Weights',
+      author: 'Mark Zuckerberg',
+      handle: '@zuck',
       time: '20h ago',
-      title: 'How to Ask for a Deadline Extension Professionally',
-      scenario: '<strong>Scenario Analysis:</strong> You realize you cannot finish a project report by 5:00 PM today without sacrificing quality. How do you request an extension from your manager?',
-      sourceUrl: 'https://www.forbes.com/sites/carolinecastrillon/2023/04/30/how-to-professionally-ask-for-a-deadline-extension/',
-      sourceOutlet: 'Forbes',
-      explanation: '<strong>Key Strategy:</strong> Never make excuses. State the current progress, why quality requires more time, and give a firm, guaranteed completion time for tomorrow.',
-      commentsCount: 310,
-      repostsCount: '890',
-      likesCount: 3800
-    },
-    {
-      id: 'story-9',
-      category: 'icon',
-      topicTag: 'Sam Altman',
-      author: 'AI Horizon Dossier',
-      handle: '@aimasters',
-      flair: 'r/Singularity',
-      time: '1d ago',
-      title: 'Sam Altman (The Architect of ChatGPT)',
-      role: 'CEO & Co-founder of OpenAI',
-      
-      pronounceText: 'Sam Altman leads OpenAI in building artificial general intelligence',
-      sourceUrl: 'https://time.com/collection/100-most-influential-people-2023/6269986/sam-altman/',
-      sourceOutlet: 'TIME 100',
-      explanation: '<strong>The Story:</strong> Former president of Y Combinator who launched ChatGPT in late 2022, kicking off the global AI revolution. Famous for his quiet voice, gray t-shirts, and massive ambitions for AGI.',
-      commentsCount: 1450,
-      repostsCount: '5.9k',
-      likesCount: 22100
-    },
-    {
-      id: 'story-10',
-      category: 'slang',
-      topicTag: 'Mewing',
-      author: 'Internet Anthropology',
-      handle: '@brainrotdecoded',
-      flair: 'r/PeterExplains',
-      time: '1d ago',
-      title: '"Mewing" and "Looksmaxxing" Culture',
-      slangPhrase: '"Bro is strictly mewing to mog the entire lecture hall."',
-      formalPhrase: '"He is demonstrating intense facial posture to optimize jawline aesthetics."',
-      pronounceText: 'Mewing is the practice of resting the tongue on the roof of the mouth',
-      sourceUrl: 'https://www.nytimes.com/2024/03/01/style/mewing-jawline-tiktok.html',
-      sourceOutlet: 'The New York Times',
-      explanation: '<strong>The Lore:</strong> Originally an orthodontic tongue posture technique, it became a massive high school and college meme where students put a finger to their lips and point to their jaw to avoid answering questions.',
-      commentsCount: 920,
-      repostsCount: '3.4k',
-      likesCount: 13800
-    },
-    {
-      id: 'story-11',
-      category: 'icon',
-      topicTag: 'Real Madrid',
-      author: 'Champions League Lore',
-      handle: '@uclhistory',
-      flair: 'r/Soccer',
-      time: '2d ago',
-      title: 'Why Real Madrid Has "Black Magic" in Finals',
-      role: '15-Time European Champions',
-      
-      pronounceText: 'Real Madrid has won fifteen UEFA Champions League titles',
-      sourceUrl: 'https://www.goal.com/en/lists/real-madrid-champions-league-dna-explained/',
-      sourceOutlet: 'Goal.com',
-      explanation: '<strong>The Lore:</strong> Football fans joke that Real Madrid obeys no laws of physics. They can play terribly for 85 minutes, look completely defeated, and score 2 miracle goals in 3 minutes to steal the trophy. Fans call it "UCL DNA".',
-      commentsCount: 2400,
+      title: 'Mark Zuckerberg on LLaMA 3.3: Why Open Weights Will Win AI Infrastructure',
+      xTweetText: 'Open source is the right path for AI. LLaMA models are running locally on millions of developer machines and enterprise clusters. When every developer can inspect, fine-tune, and self-host model weights, innovation accelerates exponentially.',
+      sourceUrl: 'https://x.com/zuck',
+      sourceOutlet: '𝕏 • @zuck',
+      explanation: '<strong>In Simple Everyday Words:</strong> Meta CEO Mark Zuckerberg explains that giving away AI model weights for free allows students and programmers worldwide to run advanced AI right on their laptops without paying API fees to cloud giants.<br><br><strong>Why It Matters for You:</strong> You don\'t need a multimillion-dollar budget to build AI applications. You can download and fine-tune open-weight models on your personal machine.',
+      pronounceText: 'Open source is the right path for artificial intelligence infrastructure',
+      commentsCount: 1420,
       repostsCount: '8.1k',
-      likesCount: 31200
+      likesCount: 36200
     },
     {
-      id: 'story-12',
-      category: 'icon',
-      topicTag: 'IShowSpeed',
-      author: 'Streaming & Creator Pulse',
-      handle: '@streamwire',
-      flair: 'r/LivestreamFail',
+      id: 'story-tech-11',
+      category: 'leaders',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Autonomous Agents',
+      author: 'Satya Nadella',
+      handle: '@satyanadella',
+      time: '22h ago',
+      title: 'Satya Nadella on Autonomous Agents: AI Becoming the Operating System',
+      xTweetText: 'Every application will be reimagined as an agentic system. Autonomous agents will collaborate across workflows, manage databases, write code, and execute multi-step business logic with humans in the loop.',
+      sourceUrl: 'https://x.com/satyanadella',
+      sourceOutlet: '𝕏 • @satyanadella',
+      explanation: '<strong>In Simple Everyday Words:</strong> Microsoft CEO Satya Nadella shares that future computer programs won\'t just sit there waiting for you to click buttons—AI agents will proactively carry out entire multi-step projects for you like an assistant.<br><br><strong>Why It Matters for You:</strong> Instead of writing single isolated scripts, college software engineers are learning to architect autonomous agent teams that build software collaboratively.',
+      pronounceText: 'Every application will be reimagined as an agentic collaborative system',
+      commentsCount: 960,
+      repostsCount: '5.3k',
+      likesCount: 24700
+    },
+    {
+      id: 'story-tech-12',
+      category: 'silicon',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Colossus Supercluster',
+      author: 'Elon Musk',
+      handle: '@elonmusk',
+      time: '1d ago',
+      title: 'Elon Musk on Colossus: 100,000 Liquid-Cooled H100s Online in 122 Days',
+      xTweetText: 'xAI Colossus is the most powerful AI training cluster in the world. 100,000 liquid-cooled Nvidia H100 GPUs brought from empty warehouse to online training in 122 days. Massive parallel networking over flat RoCE Ethernet.',
+      sourceUrl: 'https://x.com/elonmusk',
+      sourceOutlet: '𝕏 • @elonmusk',
+      explanation: '<strong>In Simple Everyday Words:</strong> Elon Musk explains how their engineering team connected 100,000 of the world\'s fastest AI chips together with liquid cooling tubes in just 4 months to train cutting-edge models like Grok 3.<br><br><strong>Why It Matters for You:</strong> Supercomputing, high-speed fiber optic networking, and liquid cooling systems are just as important as code to run large models.',
+      pronounceText: 'Colossus connects one hundred thousand liquid cooled GPUs over flat RoCE Ethernet',
+      commentsCount: 3200,
+      repostsCount: '14.5k',
+      likesCount: 68400
+    },
+    {
+      id: 'story-tech-13',
+      category: 'systems',
+      isXPost: true,
+      topicTag: '𝕏 Tech: GPU Clusters',
+      author: 'Greg Brockman',
+      handle: '@gdb',
+      time: '1d ago',
+      title: 'Greg Brockman on Cluster Resilience: Training Across 100k GPUs Zero-Downtime',
+      xTweetText: 'When you run distributed training across 100,000 GPUs, hardware failures are continuous. Our infrastructure team solved zero-downtime hot-swapping of nodes and sub-second asynchronous checkpointing directly to NVMe fabric. Systems engineering turns theory into models.',
+      sourceUrl: 'https://x.com/gdb',
+      sourceOutlet: '𝕏 • @gdb',
+      explanation: '<strong>In Simple Everyday Words:</strong> OpenAI President Greg Brockman explains that when thousands of computer chips work together, pieces break every couple of hours. Smart engineers write code that hot-swaps broken chips without stopping the training job.<br><br><strong>Why It Matters for You:</strong> Writing fault-tolerant code that survives hardware failures is the backbone of all modern cloud and AI infrastructure.',
+      pronounceText: 'Systems engineering turns machine learning theory into working foundation models',
+      commentsCount: 790,
+      repostsCount: '4.8k',
+      likesCount: 22400
+    },
+    {
+      id: 'story-tech-14',
+      category: 'leaders',
+      isXPost: true,
+      topicTag: '𝕏 Tech: Founder Velocity',
+      author: 'Paul Graham',
+      handle: '@paulg',
       time: '2d ago',
-      title: 'IShowSpeed (The Chaotic Global Sensation)',
-      role: 'Viral Streamer & YouTube Creator',
-      
-      pronounceText: 'IShowSpeed is famous for high-energy travel streams and Cristiano Ronaldo fandom',
-      sourceUrl: 'https://www.dexerto.com/entertainment/who-is-ishowspeed-youtube-streamer-viral-2035222/',
-      sourceOutlet: 'Dexerto',
-      explanation: '<strong>The Phenomenon:</strong> From barking at cameras in his bedroom to traveling through Europe, Asia, and Brazil drawing crowds of 50,000 screaming fans in streets. His wild devotion to Cristiano Ronaldo is an internet institution.',
-      commentsCount: 3100,
-      repostsCount: '12.4k',
-      likesCount: 42100
+      title: 'Paul Graham on Why Technical Founders Who Code Build the Strongest AI Companies',
+      xTweetText: 'In AI today, the technology changes so rapidly that non-technical CEOs cannot make product decisions fast enough. The strongest founders are the engineers who understand model weights, latency, and context limits directly and can ship prototypes over a weekend.',
+      sourceUrl: 'https://x.com/paulg',
+      sourceOutlet: '𝕏 • @paulg',
+      explanation: '<strong>In Simple Everyday Words:</strong> Y Combinator startup founder Paul Graham explains that leaders who know how to code build the fastest-growing tech companies because they can test and ship their own ideas over a weekend without waiting for anyone else.<br><br><strong>Why It Matters for You:</strong> Deep programming and systems mastery gives you the power to invent, build, and launch your own startups directly.',
+      pronounceText: 'The strongest founders are the engineers who understand model weights latency and context limits directly',
+      commentsCount: 1350,
+      repostsCount: '8.2k',
+      likesCount: 38900
     }
   ],
 
-  // Daily Quiz Questions
   quizQuestions: [
     {
-      question: 'What does saying "I am completely cooked" mean in casual internet conversation?',
+      question: 'What does "Test-Time Compute" mean in frontier reasoning models like o3 and DeepSeek-R1?',
       options: [
-        'I just finished eating a heavy meal.',
-        'I am doomed, overwhelmed, or hopeless in this situation.',
-        'I am feeling extremely energetic and motivated.',
-        'I am working as a professional chef.'
+        'The time it takes to download weights over Wi-Fi.',
+        'The model stops to generate and verify chain-of-thought thinking steps on a "rough sheet" before answering.',
+        'The temperature of the GPU heat sink during testing.',
+        'The speed of typing characters on a keyboard.'
       ],
       correctIndex: 1,
-      explanation: '"Cooked" is modern slang for being completely done for, ruined, or overwhelmed.'
+      explanation: 'Test-time compute allows models to search, backtrack, and verify reasoning steps using reinforcement learning before outputting the final answer.'
     },
     {
-      question: 'Which modern 2-line CSS code centers a box both horizontally and vertically?',
+      question: 'What revolutionary architectural change did Python 3.13 introduce under PEP 703?',
       options: [
-        'float: center; margin: auto;',
-        'display: grid; place-items: center;',
-        'text-align: middle; position: absolute;',
-        'align: center; justify: center;'
+        'It removed all loops and functions from the language.',
+        'It introduced free-threaded mode without the Global Interpreter Lock (GIL) for true multi-core CPU execution.',
+        'It restricted Python to running only inside web browsers.',
+        'It changed Python code into assembly language automatically.'
       ],
       correctIndex: 1,
-      explanation: 'CSS Grid with "place-items: center" solves both horizontal and vertical centering simultaneously.'
+      explanation: 'PEP 703 enables free-threaded execution without the Global Interpreter Lock, allowing multiple CPU cores to run Python threads simultaneously.'
     },
     {
-      question: 'What is the golden rule when a colleague messages you at 8:15 PM?',
+      question: 'Why are the Linux Kernel, CISA, and White House adopting memory-safe languages like Rust?',
       options: [
-        'Apologize deeply and start working on it immediately.',
-        'Ignore it completely and pretend you never saw it.',
-        'Acknowledge politely, state you will review during morning hours, and log off.',
-        'Reply angrily and block their phone number.'
+        'Because Rust files take up less hard drive space.',
+        'Over 70% of historical critical cybersecurity vulnerabilities in C/C++ stem from memory bugs like buffer overflows.',
+        'Because older languages cannot run on computers built after 2024.',
+        'Because Rust is owned by the United Nations.'
       ],
-      correctIndex: 2,
-      explanation: 'Setting a clear, polite boundary without apologizing maintains healthy professionalism.'
+      correctIndex: 1,
+      explanation: 'Memory safety guarantees at compile time prevent buffer overflows, dangling pointers, and unauthorized RAM access exploits.'
+    },
+    {
+      question: 'What is unique about NVIDIA\'s Blackwell B200 chip architecture?',
+      options: [
+        'It is made out of plastic and doesn\'t use electricity.',
+        'It packages 208 billion transistors across two dies acting as one giant unified GPU with 10 TB/s NVLink interconnect.',
+        'It can only play 16-bit video games from 1995.',
+        'It requires no cooling and runs at sub-zero temperatures naturally.'
+      ],
+      correctIndex: 1,
+      explanation: 'Blackwell packages 208 billion transistors across two dies unified by a 10 TB/s chip-to-chip NVLink connection.'
     }
   ],
 
@@ -5851,24 +6234,25 @@ window.triggerFeedRefresh = function(fromPull = false) {
 
 function getFilteredCards() {
   let pool = AppState.dailyCards;
+  const cat = AppState.activeCategory;
   
-  if (AppState.activeCategory !== 'all') {
-    if (AppState.activeCategory === 'xtech') {
-      pool = pool.filter(c => c.isXPost || c.category === 'tech');
+  if (cat !== 'all') {
+    if (cat === 'radar') {
+      pool = pool.filter(c => c.isRadar || c.platform === 'reddit' || c.isXPost);
+    } else if (cat === 'leaders') {
+      pool = pool.filter(c => c.category === 'leaders' || c.isLeader || c.category === 'icon');
     } else {
-      pool = pool.filter(c => c.category === AppState.activeCategory);
+      pool = pool.filter(c => c.category === cat);
     }
   }
 
-  // Filter out posts already seen by the user
   const unseenCards = pool.filter(c => !AppState.seenPosts.has(c.title));
 
-  // If fewer than 4 unseen cards, pull unseen items from INFINITE_STORIES_POOL
   if (unseenCards.length < 4) {
     const infiniteUnseen = INFINITE_STORIES_POOL.filter(s => {
-      const matchCat = (AppState.activeCategory === 'all') || 
-                       (AppState.activeCategory === 'xtech' && (s.isXPost || s.category === 'tech')) ||
-                       (s.category === AppState.activeCategory);
+      const matchCat = (cat === 'all') || 
+                       (cat === 'leaders' && (s.category === 'leaders' || s.isLeader)) ||
+                       (s.category === cat);
       return matchCat && !AppState.seenPosts.has(s.title) && !unseenCards.some(u => u.title === s.title);
     });
 
@@ -5893,11 +6277,6 @@ function initCategoryFilters() {
       pill.classList.add('active');
       const cat = pill.getAttribute('data-cat');
       
-      if (cat === 'icon') {
-        switchTab('titans');
-        return;
-      }
-
       AppState.activeCategory = cat;
       renderContinuousFeed();
       playSyntheticTone(640, 'sine', 0.05);
@@ -5914,24 +6293,24 @@ function updateReadingProgressStrip() {
 
 function getCategoryIcon(cat) {
   const map = {
-    slang: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`,
-    trend: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
-    reply: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
-    tech: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
-    icon: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>`
+    ai: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`,
+    silicon: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="15" x2="23" y2="15"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="15" x2="4" y2="15"></line></svg>`,
+    systems: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+    leaders: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"></path><path d="M5 20h14"></path></svg>`,
+    radar: `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`
   };
-  return map[cat] || `<svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`;
+  return map[cat] || map.ai;
 }
 
 function getCategoryLabel(cat) {
   const map = {
-    slang: 'Internet Slang & Lore',
-    trend: 'Cultural Trend',
-    reply: 'Workplace Fluency',
-    tech: 'Developer Concept',
-    icon: 'Titan Profile'
+    ai: 'Frontier AI',
+    silicon: 'Silicon & Hardware',
+    systems: 'Systems & Dev',
+    leaders: 'Tech Titan',
+    radar: 'Social Radar'
   };
-  return map[cat] || 'Daily Lore';
+  return map[cat] || 'Tech News';
 }
 
 // ==========================================
@@ -5944,205 +6323,140 @@ let infiniteStoryIndex = 0;
 // High-Yield Infinite Stories Pool
 const INFINITE_STORIES_POOL = [
   {
-    topicTag: '𝕏 Tech: GPU Clusters',
-    category: 'tech',
+    topicTag: 'DeepSeek R1',
+    category: 'ai',
     isXPost: true,
-    author: 'Greg Brockman',
-    handle: '@gdb',
-    time: '1d ago',
-    title: 'Greg Brockman on Cluster Resilience: Training Across 100k GPUs Without Downtime',
-    xTweetText: 'When you run distributed training across 100,000 GPUs, hardware failures are continuous. Our infrastructure team solved zero-downtime hot-swapping of nodes and sub-second asynchronous checkpointing directly to NVMe fabric. Systems engineering is what turns theory into models.',
-    sourceUrl: 'https://x.com/gdb',
-    sourceOutlet: '𝕏 (formerly Twitter)',
-    explanation: '<strong>Distributed Reliability:</strong> OpenAI President Greg Brockman explains that hardware MTBF (Mean Time Between Failures) at massive cluster scale means GPUs fail every few hours. Transparent node failover and fast checkpointing prevent weeks of wasted compute.<br><br><strong>Student Takeaway:</strong> High-performance distributed systems, NCCL communication, and fault tolerance are among the most lucrative engineering skills today.',
-    pronounceText: 'Systems engineering is what turns machine learning theory into working foundation models',
-    commentsCount: 790,
-    repostsCount: '4.8k',
-    likesCount: 22400
-  },
-  {
-    topicTag: '𝕏 Tech: Founder Velocity',
-    category: 'tech',
-    isXPost: true,
-    author: 'Paul Graham',
-    handle: '@paulg',
-    time: '1d ago',
-    title: 'Paul Graham on Why Technical Founders Who Code Build the Strongest AI Companies',
-    xTweetText: 'In AI today, the technology changes so rapidly that non-technical CEOs cannot make product decisions fast enough. The strongest founders are the engineers who understand model weights, latency, and context limits directly and can ship prototypes over a weekend.',
-    sourceUrl: 'https://x.com/paulg',
-    sourceOutlet: '𝕏 (formerly Twitter)',
-    explanation: '<strong>Technical Velocity:</strong> Y Combinator co-founder Paul Graham stresses that AI startup founders must write code themselves to feel the edges of what models can and cannot do.<br><br><strong>Student Takeaway:</strong> Deep technical mastery coupled with shipping speed is the ultimate superpower in modern tech.',
-    pronounceText: 'The strongest founders are the engineers who understand model weights latency and context limits directly',
-    commentsCount: 1350,
-    repostsCount: '8.2k',
-    likesCount: 38900
-  },
-  {
-    topicTag: 'DeepSeek V3',
-    category: 'tech',
-    author: 'AI Open Source Watch',
+    author: 'DeepSeek AI Lab',
     handle: '@deepseeknews',
-    flair: 'r/MachineLearning',
     time: 'Live',
-    title: 'DeepSeek-V3: The Open-Weights Architecture Shaking Global Tech',
-    sourceUrl: 'https://www.reuters.com/technology/artificial-intelligence/deepseek-ai-model-open-source-2025/',
-    sourceOutlet: 'Reuters & MIT Tech Review',
-    explanation: '<strong>The Breakthrough:</strong> DeepSeek launched V3 with Multi-head Latent Attention (MLA) and DeepSeekMoE architecture, delivering GPT-4o tier reasoning at a fraction of training compute.<br><br><strong>Key Vocabulary:</strong> <em>"Compute efficiency"</em> means achieving maximum machine intelligence using minimal electricity and GPU cycles.',
-    pronounceText: 'DeepSeek V3 achieves frontier reasoning efficiency with open weights architecture',
-    commentsCount: 1840,
-    repostsCount: '6.8k',
-    likesCount: 28400
-  },
-  {
-    topicTag: 'Rust Mandate',
-    category: 'tech',
-    author: 'Systems Engineering Pulse',
-    handle: '@systems_core',
-    flair: 'r/rust',
-    time: '4h ago',
-    title: 'White House & CISA Urge Developers to Transition to Memory-Safe Languages (Rust)',
-    sourceUrl: 'https://arstechnica.com/information-technology/2024/02/white-house-urges-developers-to-dump-c-and-c-for-memory-safe-languages/',
-    sourceOutlet: 'Ars Technica',
-    explanation: '<strong>Why It Matters:</strong> Over 70% of historical cybersecurity vulnerabilities in C and C++ stem from buffer overflows and dangling pointers. The White House and CISA officially recommended memory-safe languages like Rust.<br><br><strong>Fluency Tip:</strong> <em>"Memory safety"</em> refers to programming languages preventing code from accessing invalid RAM addresses.',
-    pronounceText: 'The White House urges software engineers to adopt memory safe languages like Rust',
-    commentsCount: 920,
-    repostsCount: '3.1k',
-    likesCount: 14200
-  },
-  {
-    topicTag: 'AlphaFold Nobel',
-    category: 'icon',
-    author: 'Scientific Breakthroughs',
-    handle: '@nobelradar',
-    flair: 'r/science',
-    time: '6h ago',
-    title: 'Demis Hassabis & John Jumper Awarded Nobel Prize in Chemistry for AlphaFold',
-    sourceUrl: 'https://www.nobelprize.org/prizes/chemistry/2024/summary/',
-    sourceOutlet: 'The Nobel Prize Official & Nature',
-    explanation: '<strong>The 50-Year Grand Challenge:</strong> Demis Hassabis and John Jumper at Google DeepMind solved the 50-year protein folding problem with AlphaFold, predicting 200 million protein structures.<br><br><strong>Student Insight:</strong> Combines computational graph neural networks with biophysics, accelerating drug discovery from decades to seconds.',
-    pronounceText: 'Demis Hassabis received the Nobel Prize in Chemistry for AlphaFold protein structure prediction',
-    commentsCount: 2400,
-    repostsCount: '8.9k',
-    likesCount: 39500
-  },
-  {
-    topicTag: 'Python 3.13 No-GIL',
-    category: 'tech',
-    author: 'Python Core Developers',
-    handle: '@pythontrend',
-    flair: 'r/python',
-    time: '1d ago',
-    title: 'Python 3.13 Officially Introduces Free-Threaded Mode (No-GIL)',
-    sourceUrl: 'https://www.infoworld.com/article/3715560/python-3-13-preview-free-threading-comes-to-python.html',
-    sourceOutlet: 'InfoWorld & Python Software Foundation',
-    explanation: '<strong>The 30-Year Barrier:</strong> For decades, the Global Interpreter Lock (GIL) prevented Python threads from running concurrently on multiple CPU cores. Python 3.13 enables free-threaded execution.<br><br><strong>Term to Know:</strong> <em>"True parallelism"</em> means CPU threads executing simultaneously on separate physical processor cores.',
-    pronounceText: 'Python three point thirteen introduces free threaded execution without the global interpreter lock',
-    commentsCount: 1120,
-    repostsCount: '4.2k',
-    likesCount: 18700
-  },
-  {
-    topicTag: 'Touch Grass',
-    category: 'slang',
-    author: 'Digital Wellness & Lore',
-    handle: '@modernslang',
-    flair: 'r/OutOfTheLoop',
-    time: 'Live',
-    title: '"Touch Grass": The Universal Cultural Call to Disconnect from the Screen',
-    slangPhrase: '"Bro, you have been arguing on Reddit for 8 hours. Go touch grass."',
-    formalPhrase: '"I suggest stepping away from your screen and re-engaging with the physical world."',
-    pronounceText: 'I suggest stepping away from your screen and re-engaging with the physical world',
-    sourceUrl: 'https://knowyourmeme.com/memes/touch-grass',
-    sourceOutlet: 'Know Your Meme',
-    explanation: '<strong>Cultural Lore:</strong> Originated as gaming slang used to mock players who spend all day indoors. Now recognized in mainstream dictionaries as a phrase for digital mindfulness and mental grounding.',
-    commentsCount: 640,
-    repostsCount: '2.4k',
-    likesCount: 12400
-  },
-  {
-    topicTag: 'Negotiating Salary',
-    category: 'reply',
-    author: 'Executive Career Mentor',
-    handle: '@careeredge',
-    flair: 'r/careerguidance',
-    time: '3h ago',
-    title: 'How to Professionally Counter an Initial Job Offer',
-    scenario: 'You received a software engineering offer of $90,000, but market rate for your skillset is $105,000. How do you counter with confidence?',
-    slangPhrase: '"Nah that offer is way too low, you gotta pay me more."',
-    formalPhrase: '"Thank you for the offer. Based on my research and the specific impact I will bring, I was expecting a range closer to $105,000. Is there flexibility here?"',
-    pronounceText: 'Thank you for the offer. Based on my research and the specific impact I will bring, I was expecting a range closer to one hundred and five thousand dollars.',
-    sourceUrl: 'https://hbr.org/2014/04/15-rules-for-negotiating-a-job-offer',
-    sourceOutlet: 'Harvard Business Review',
-    explanation: '<strong>Professional Etiquette:</strong> Always express gratitude first, cite market benchmark data rather than personal expenses, and ask open questions about compensation flexibility.',
-    commentsCount: 880,
-    repostsCount: '3.7k',
-    likesCount: 16800
+    title: 'DeepSeek-R1: Open-Weights Frontier Reasoning Shaking Global AI',
+    xTweetText: 'DeepSeek-R1 achieves reasoning parity with o1 using pure reinforcement learning without supervised fine-tuning. Multi-head Latent Attention (MLA) and DeepSeekMoE deliver breakthrough compute efficiency for open science.',
+    sourceUrl: 'https://github.com/deepseek-ai/DeepSeek-R1',
+    sourceOutlet: 'GitHub • DeepSeek Official',
+    explanation: '<strong>In Simple Everyday Words:</strong> DeepSeek launched an open AI model that matches top closed models in math and coding while using a fraction of the computing cost.<br><br><strong>Why It Matters:</strong> Demonstrates that open-source code and smart math can compete with trillion-dollar labs.',
+    pronounceText: 'DeepSeek achieves frontier reasoning efficiency with open weights architecture',
+    commentsCount: 2840,
+    repostsCount: '12.4k',
+    likesCount: 54100
   },
   {
     topicTag: 'Claude 3.5 Sonnet',
-    category: 'tech',
-    author: 'Frontier AI Laboratory',
-    handle: '@anthropicnews',
-    flair: 'r/artificial',
+    category: 'ai',
+    isXPost: true,
+    author: 'Anthropic',
+    handle: '@AnthropicAI',
+    time: '3h ago',
+    title: 'Anthropic Claude 3.5 Sonnet: Autonomous Computer Use & GUI Navigation',
+    xTweetText: 'Claude 3.5 Sonnet is the first frontier model capable of directly controlling desktop computers: moving the cursor, clicking buttons, and typing across standard desktop software with vision feedback.',
+    sourceUrl: 'https://www.anthropic.com/news/3-5-models-and-computer-use',
+    sourceOutlet: 'Anthropic Research',
+    explanation: '<strong>In Simple Everyday Words:</strong> Anthropic built an AI that can move your mouse, click buttons, and fill in forms on your screen just like a human using a PC.<br><br><strong>Why It Matters:</strong> Bridges the gap between chatting with an AI and having an AI do real computer work for you.',
+    pronounceText: 'Claude three point five Sonnet operates desktop computers with autonomous vision feedback',
+    commentsCount: 1650,
+    repostsCount: '6.8k',
+    likesCount: 29800
+  },
+  {
+    topicTag: 'TSMC 2nm GAA',
+    category: 'silicon',
+    isXPost: true,
+    author: 'Semiconductor Engineering',
+    handle: '@semi_analysis',
     time: '5h ago',
-    title: 'Anthropic Launches Claude 3.5 Sonnet with Computer Use Capability',
-    sourceUrl: 'https://techcrunch.com/2024/10/22/anthropic-claude-3-5-sonnet-computer-use/',
-    sourceOutlet: 'TechCrunch',
-    explanation: '<strong>Autonomous GUI Agents:</strong> Claude 3.5 Sonnet became the first frontier model capable of directly controlling desktop computers by moving the mouse, clicking buttons, and typing text across web applications.<br><br><strong>Engineering Term:</strong> <em>"Action space"</em> represents the set of possible actions (clicks, keypresses) an AI model can take in an environment.',
-    pronounceText: 'Anthropic launched Claude three point five Sonnet with autonomous computer use capabilities',
-    commentsCount: 1540,
-    repostsCount: '5.9k',
-    likesCount: 26100
+    title: 'TSMC 2nm GAA: Gate-All-Around Nanosheets & Backside Power Delivery',
+    xTweetText: 'TSMC\'s N2 process node transitions from FinFET to Gate-All-Around (GAA) nanosheets with backside power delivery (Super Power Rail), reducing IR drop and boosting transistor density by 15%.',
+    sourceUrl: 'https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm',
+    sourceOutlet: 'TSMC Semiconductor Wire',
+    explanation: '<strong>In Simple Everyday Words:</strong> TSMC is manufacturing computer chips with transistors so small that microscopic wires wrap all the way around them, letting chips run faster while using less battery.<br><br><strong>Why It Matters:</strong> Powers the next generation of smartphones and AI data center chips.',
+    pronounceText: 'TSMC transitions from FinFET to Gate All Around nanosheets with backside power delivery',
+    commentsCount: 820,
+    repostsCount: '3.9k',
+    likesCount: 17400
   },
   {
-    topicTag: 'Roman Empire',
-    category: 'slang',
-    author: 'Viral Trend Tracker',
-    handle: '@historiclore',
-    flair: 'r/tiktoktrends',
-    time: '12h ago',
-    title: '"How Often Do You Think About the Roman Empire?"',
-    slangPhrase: '"That concept has become my personal Roman Empire."',
-    formalPhrase: '"That particular subject occupies my thoughts on a remarkably frequent basis."',
-    pronounceText: 'That particular subject occupies my thoughts on a remarkably frequent basis',
-    sourceUrl: 'https://www.washingtonpost.com/lifestyle/2023/09/14/roman-empire-trend-tiktok-women-men/',
-    sourceOutlet: 'The Washington Post',
-    explanation: '<strong>The Viral Lore:</strong> A global social experiment where women asked men how often they think about ancient Rome, discovering millions think about it daily. Now used as slang for any topic you are quietly obsessed with.',
-    commentsCount: 2200,
-    repostsCount: '9.4k',
-    likesCount: 34200
-  },
-  {
-    topicTag: 'xAI Colossus',
-    category: 'icon',
-    author: 'Silicon Supercomputers',
-    handle: '@elonwire',
-    flair: 'r/hardware',
+    topicTag: 'WebGPU Standard',
+    category: 'systems',
+    isXPost: true,
+    author: 'W3C GPU Web Group',
+    handle: '@browsergpu',
     time: '8h ago',
-    title: 'Elon Musk Activates 100,000 Liquid-Cooled H100 GPU Cluster in Memphis (Colossus)',
-    sourceUrl: 'https://www.tomshardware.com/tech-industry/artificial-intelligence/elon-musk-reveals-xai-100k-gpu-colossus-cluster-brought-online-in-just-122-days',
-    sourceOutlet: 'Tom\'s Hardware & CNBC',
-    explanation: '<strong>122 Days to Deployment:</strong> Built in Memphis, Tennessee in just 122 days, Colossus connects 100,000 liquid-cooled Nvidia H100 GPUs via a flat RoCE Ethernet fabric to train Grok 3.<br><br><strong>Student Relevance:</strong> Demonstrates high-performance computing infrastructure at hyperscale.',
-    pronounceText: 'Elon Musk brought the one hundred thousand liquid cooled GPU Colossus cluster online in Memphis',
-    commentsCount: 1980,
-    repostsCount: '7.3k',
-    likesCount: 31200
-  },
-  {
-    topicTag: 'WebGPU',
-    category: 'tech',
-    author: 'Web Standards Group',
-    handle: '@browsertech',
-    flair: 'r/webdev',
-    time: '2d ago',
-    title: 'WebGPU Replaces WebGL: Delivering Native Graphics & On-Device ML to Browsers',
+    title: 'WebGPU Delivering Native Metal, Vulkan & DirectX 12 Speeds to Browsers',
+    xTweetText: 'WebGPU brings low-overhead access to modern GPU hardware pipelines directly from JavaScript and WebAssembly, enabling 7B LLMs and ray tracing to run client-side in browser tabs with zero install.',
     sourceUrl: 'https://developer.chrome.com/docs/web-platform/webgpu',
     sourceOutlet: 'Chrome Developers & W3C',
-    explanation: '<strong>The New Web Standard:</strong> WebGPU provides modern low-overhead access to Vulkan, Metal, and DirectX 12 hardware APIs from JavaScript, enabling local LLMs and neural rendering to run inside browsers with zero installation.<br><br><strong>Student Takeaway:</strong> Bridges the performance gap between native desktop software and web applications.',
-    pronounceText: 'WebGPU brings native hardware graphics and in browser neural machine learning to web applications',
-    commentsCount: 840,
-    repostsCount: '2.9k',
-    likesCount: 13500
+    explanation: '<strong>In Simple Everyday Words:</strong> WebGPU lets web pages talk directly to your laptop graphics card, so you can run games and AI models right in your browser with zero download.<br><br><strong>Why It Matters:</strong> Makes web apps run as fast as native desktop software.',
+    pronounceText: 'WebGPU provides low overhead hardware access to modern GPU pipelines from web browsers',
+    commentsCount: 940,
+    repostsCount: '4.2k',
+    likesCount: 19100
+  },
+  {
+    topicTag: 'PyTorch 2.5',
+    category: 'systems',
+    isXPost: true,
+    author: 'PyTorch Foundation',
+    handle: '@PyTorch',
+    time: '12h ago',
+    title: 'PyTorch 2.5: Torch.compile Graph Capture with Triton GPU Kernels',
+    xTweetText: 'PyTorch 2.5 extends torch.compile with full AOTAutograd and Inductor code generation, synthesizing optimized OpenAI Triton GPU kernels directly from Python syntax with 2.2x speedups.',
+    sourceUrl: 'https://pytorch.org/blog/pytorch-2-5/',
+    sourceOutlet: 'PyTorch Foundation Blog',
+    explanation: '<strong>In Simple Everyday Words:</strong> PyTorch now automatically inspects your Python AI code and converts it into custom machine code tailored for GPU chips, making model training more than twice as fast.<br><br><strong>Why It Matters:</strong> The standard library used in 90% of AI machine learning research papers worldwide.',
+    pronounceText: 'PyTorch two point five extends torch compile with Triton kernel generation',
+    commentsCount: 710,
+    repostsCount: '3.1k',
+    likesCount: 14800
+  },
+  {
+    topicTag: 'Mojo Systems',
+    category: 'systems',
+    isXPost: true,
+    author: 'Chris Lattner (Modular)',
+    handle: '@clattner_llvm',
+    time: '14h ago',
+    title: 'Mojo Language: Combining Python Ergonomics with C & Rust Performance',
+    xTweetText: 'Mojo bridges the gap between Python\'s expressiveness and hardware-level performance. Full memory ownership, MLIR compiler integration, and automatic vectorization across CPUs, GPUs, and TPUs.',
+    sourceUrl: 'https://www.modular.com/max/mojo',
+    sourceOutlet: 'Modular Systems News',
+    explanation: '<strong>In Simple Everyday Words:</strong> LLVM and Swift creator Chris Lattner built a new language that reads as simple as Python but runs as fast as C and Rust for AI chips.<br><br><strong>Why It Matters:</strong> Unifies high-level AI model coding and low-level hardware performance into one language.',
+    pronounceText: 'Mojo combines Python expressiveness with hardware level compilation and memory safety',
+    commentsCount: 880,
+    repostsCount: '4.5k',
+    likesCount: 21300
+  },
+  {
+    topicTag: 'Apple M4 Max',
+    category: 'silicon',
+    isXPost: true,
+    author: 'Apple Silicon Architecture',
+    handle: '@apple',
+    time: '1d ago',
+    title: 'Apple M4 Max: 546 GB/s Unified Memory Bandwidth for Local LLMs',
+    xTweetText: 'Apple M4 Max features 16 CPU cores, 40 GPU cores, and a massive 546 GB/s unified memory subsystem. Developers can load and run 70B parameter models entirely in unified RAM on a laptop.',
+    sourceUrl: 'https://www.apple.com/newsroom/2024/10/apple-introduces-m4-pro-and-m4-max/',
+    sourceOutlet: 'Apple Newsroom',
+    explanation: '<strong>In Simple Everyday Words:</strong> Apple\'s M4 Max chip shares ultra-fast memory between the CPU and GPU, letting developers run massive 70-billion-parameter AI models right on their MacBook without an internet connection.<br><br><strong>Why It Matters:</strong> High memory bandwidth is the #1 bottleneck for local AI inference.',
+    pronounceText: 'Apple M4 Max delivers five hundred and forty six gigabytes per second unified memory bandwidth',
+    commentsCount: 1420,
+    repostsCount: '6.7k',
+    likesCount: 33200
+  },
+  {
+    topicTag: 'RISC-V Open Silicon',
+    category: 'silicon',
+    isXPost: true,
+    author: 'RISC-V International',
+    handle: '@risc_v',
+    time: '2d ago',
+    title: 'RISC-V International: Open Standard Silicon Surpassing 10 Billion Cores',
+    xTweetText: 'RISC-V has officially crossed 10 billion deployed processor cores worldwide. Open instruction set architectures (ISA) are democratizing silicon design across aerospace, automotive, and AI accelerators.',
+    sourceUrl: 'https://riscv.org/about/',
+    sourceOutlet: 'RISC-V International Wire',
+    explanation: '<strong>In Simple Everyday Words:</strong> Just like Linux made operating system software open and free for everyone, RISC-V makes the design instructions of computer chips open and free.<br><br><strong>Why It Matters:</strong> Anyone can design and build their own computer processor without paying licensing fees.',
+    pronounceText: 'RISC-V democratizes silicon processor design with an open instruction set architecture',
+    commentsCount: 620,
+    repostsCount: '2.8k',
+    likesCount: 12900
   }
 ];
 
@@ -6279,7 +6593,7 @@ function triggerInfiniteScrollBatch() {
 }
 
 function renderCardAestheticVisual(card) {
-  // 0. Twitter / 𝕏 Tech News Post Embed
+  // Twitter / 𝕏 Tech News Post Embed
   if (card.isXPost) {
     const initials = (card.author || 'X').split(' ').map(n => n[0]).join('').slice(0, 2);
     return `
@@ -6299,7 +6613,7 @@ function renderCardAestheticVisual(card) {
               <span class="x-tweet-handle">${card.handle || '@tech'} • ${card.time || 'Live'}</span>
             </div>
           </div>
-          <button class="x-source-brand-pill clickable-pill" onclick="openRealApp(event, '${(card.sourceUrl || ('https://x.com/' + (card.handle ? card.handle.replace('@','') : ''))).replace(/'/g, "\\'")}', 'x')" title="Open post directly in 𝕏 app">
+          <button class="x-source-brand-pill clickable-pill" onclick="openRealApp(event, '${(card.sourceUrl || ('https://x.com/' + (card.handle ? card.handle.replace('@','') : ''))).replace(/'/g, "\'")}', 'x')" title="Open post directly in 𝕏 app">
             <svg class="x-source-svg" viewBox="0 0 24 24" fill="#ffffff" style="width:13px; height:13px;">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
@@ -6327,387 +6641,33 @@ function renderCardAestheticVisual(card) {
     </button>
   `;
 
-  // 1. Charli XCX Brat Summer
-  if (card.id === 'story-1' || card.topicTag === 'Brat Summer') {
-    return `
-      <div class="aesthetic-visual-banner art-brat-summer" style="background: radial-gradient(circle at 50% 40%, rgba(138, 206, 0, 0.22) 0%, rgba(12, 18, 5, 0.95) 100%); border: 1px solid rgba(138, 206, 0, 0.4);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(138,206,0,0.15); border-color:rgba(138,206,0,0.5); color:#8ace00;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <span>VIRAL AESTHETIC • PANTONE 3507 C</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Charli XCX</span>
-        </div>
-        
-        <div class="art-vector-card" style="background: rgba(138,206,0,0.06); border: 1px solid rgba(138,206,0,0.25); height: 90px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <text x="160" y="44" fill="#8ace00" font-size="34" font-weight="900" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" letter-spacing="-2px">brat</text>
-            <path d="M20 62 Q 90 48, 160 62 T 300 62" stroke="#8ace00" stroke-width="1.8" fill="none" opacity="0.6"/>
-            <path d="M40 68 Q 100 56, 160 68 T 280 68" stroke="#ffffff" stroke-width="1" stroke-dasharray="2 3" fill="none" opacity="0.4"/>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(138,206,0,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Collins Dictionary Word of the Year</span>
-          ${soundBtn(card.pronounceText, '#8ace00')}
-        </div>
+  // Sharp Tech Vector Card
+  return `
+    <div class="aesthetic-visual-banner" style="background:#000000; border:1px solid #2f3336;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span class="art-meta-tag" style="background:#16181c; border-color:#2f3336; color:#1d9bf0;">
+          <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>${card.topicTag || 'TECH DISPATCH'}</span>
+        </span>
+        <span style="font-size:0.75rem; color:#71767b; font-weight:700;">${card.author || 'DailyPulse Radar'}</span>
       </div>
-    `;
-  }
 
-  // 2. Jensen Huang NVIDIA Blackwell
-  if (card.id === 'story-4' || card.topicTag === 'Jensen Huang') {
-    return `
-      <div class="aesthetic-visual-banner art-jensen-nvidia" style="background: radial-gradient(circle at 80% 20%, rgba(118, 185, 0, 0.25) 0%, rgba(8, 12, 6, 0.95) 100%); border: 1px solid rgba(118, 185, 0, 0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(118,185,0,0.15); border-color:rgba(118,185,0,0.5); color:#76b900;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <span>NVIDIA BLACKWELL B200 • 208B TRANSISTORS</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">GTC Global Keynote</span>
-        </div>
-        
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.7); border: 1px solid rgba(118,185,0,0.3); height: 95px; margin: 12px 0;">
-          <svg viewBox="0 0 320 90" fill="none" style="width:100%; height:90px;">
-            <rect x="25" y="8" width="270" height="74" rx="6" stroke="rgba(118,185,0,0.4)" stroke-width="1.2" fill="rgba(8,16,6,0.85)"/>
-            <rect x="40" y="16" width="105" height="58" rx="4" stroke="#76b900" stroke-width="1.8" fill="rgba(118,185,0,0.15)"/>
-            <text x="92" y="38" fill="#ffffff" font-size="10" font-weight="800" text-anchor="middle" font-family="system-ui">B200 MONOLITH A</text>
-            <text x="92" y="54" fill="#76b900" font-size="8" font-weight="700" text-anchor="middle" font-family="monospace">104B TRANSISTORS</text>
-            <rect x="152" y="24" width="16" height="42" rx="2" stroke="#ffffff" stroke-width="1.2" fill="rgba(255,255,255,0.1)"/>
-            <line x1="155" y1="32" x2="165" y2="32" stroke="#ffffff" stroke-width="1.2"/>
-            <line x1="155" y1="39" x2="165" y2="39" stroke="#ffffff" stroke-width="1.2"/>
-            <line x1="155" y1="46" x2="165" y2="46" stroke="#ffffff" stroke-width="1.2"/>
-            <line x1="155" y1="53" x2="165" y2="53" stroke="#ffffff" stroke-width="1.2"/>
-            <rect x="175" y="16" width="105" height="58" rx="4" stroke="#76b900" stroke-width="1.8" fill="rgba(118,185,0,0.15)"/>
-            <text x="227" y="38" fill="#ffffff" font-size="10" font-weight="800" text-anchor="middle" font-family="system-ui">B200 MONOLITH B</text>
-            <text x="227" y="54" fill="#76b900" font-size="8" font-weight="700" text-anchor="middle" font-family="monospace">104B TRANSISTORS</text>
-          </svg>
-        </div>
-
-        <div style="font-size:0.92rem; font-weight:700; color:#ffffff; line-height:1.35; margin-bottom:8px;">
-          "Domain expertise and problem-solving is the new coding syntax."
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(118,185,0,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Powering Frontier AI Superclusters</span>
-          ${soundBtn(card.pronounceText, '#76b900')}
-        </div>
+      <div class="art-vector-card" style="background:#080808; border:1px solid #2f3336; height:80px; margin:10px 0;">
+        <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
+          <rect x="20" y="15" width="280" height="50" rx="8" stroke="#2f3336" stroke-width="1.2" fill="#0c0d0e"/>
+          <circle cx="45" cy="40" r="10" stroke="#1d9bf0" stroke-width="2" fill="none"/>
+          <line x1="65" y1="35" x2="180" y2="35" stroke="#e7e9ea" stroke-width="2" stroke-linecap="round"/>
+          <line x1="65" y1="45" x2="140" y2="45" stroke="#71767b" stroke-width="2" stroke-linecap="round"/>
+          <text x="250" y="44" fill="#1d9bf0" font-size="10" font-weight="800" font-family="monospace">VERIFIED</text>
+        </svg>
       </div>
-    `;
-  }
 
-  // 3. Real Madrid Champions League
-  if (card.id === 'story-11' || card.topicTag === 'Real Madrid') {
-    return `
-      <div class="aesthetic-visual-banner art-real-madrid" style="background: radial-gradient(circle at 50% 30%, rgba(234, 179, 8, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%); border: 1px solid rgba(234, 179, 8, 0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(234,179,8,0.15); border-color:rgba(234,179,8,0.5); color:#facc15;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-            <span>15× CHAMPIONS OF EUROPE • UCL DNA</span>
-          </span>
-          <span style="font-size:0.75rem; color:#facc15; font-weight:800; letter-spacing:0.04em;">XV TROPHIES</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(234,179,8,0.3); height: 95px; margin: 12px 0;">
-          <svg viewBox="0 0 320 90" fill="none" style="width:100%; height:90px;">
-            <circle cx="160" cy="45" r="36" stroke="rgba(234,179,8,0.4)" stroke-width="1.5" />
-            <path d="M142 28 L178 28 L172 58 C172 66 148 66 148 58 Z" stroke="#facc15" stroke-width="2" fill="rgba(250,204,21,0.2)" />
-            <path d="M136 34 C124 34 124 48 143 51" stroke="#facc15" stroke-width="1.8" fill="none" />
-            <path d="M184 34 C196 34 196 48 177 51" stroke="#facc15" stroke-width="1.8" fill="none" />
-            <line x1="154" y1="64" x2="166" y2="64" stroke="#facc15" stroke-width="2" />
-            <line x1="148" y1="72" x2="172" y2="72" stroke="#facc15" stroke-width="2.5" />
-            <line x1="160" y1="64" x2="160" y2="72" stroke="#facc15" stroke-width="2" />
-            <text x="60" y="48" fill="rgba(255,255,255,0.75)" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui">SANTIAGO BERNABÉU</text>
-            <text x="260" y="48" fill="rgba(255,255,255,0.75)" font-size="9" font-weight="700" text-anchor="middle" font-family="system-ui">MIRACLE MINUTES</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Unmatched European Football Dominance</span>
-          ${soundBtn(card.pronounceText, '#facc15')}
-        </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #2f3336; padding-top:10px;">
+        <span style="font-size:0.75rem; color:#71767b; font-weight:600;">Verified Technical Publication</span>
+        ${soundBtn(card.pronounceText, '#1d9bf0')}
       </div>
-    `;
-  }
-
-  // 4. IShowSpeed High Voltage Broadcast
-  if (card.id === 'story-12' || card.topicTag === 'IShowSpeed') {
-    return `
-      <div class="aesthetic-visual-banner art-ishowspeed" style="background: radial-gradient(circle at 50% 50%, rgba(234,179,8,0.18), rgba(126,34,206,0.25) 50%, rgba(0,0,0,0.95) 100%); border: 1px solid rgba(234,179,8,0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.5); color:#facc15;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            <span>LIVE IRL STREAMING • 2.5B VIEWS</span>
-          </span>
-          <span style="font-size:0.75rem; color:#facc15; font-weight:800; font-family:monospace;">BROADCAST 4K</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(168,85,247,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <circle cx="36" cy="40" r="14" stroke="#facc15" stroke-width="1.8" />
-            <polygon points="32,32 44,40 32,48" fill="#facc15" />
-            <path d="M65 40 L85 40 L95 18 L105 62 L115 28 L125 50 L135 40 L160 40 L170 22 L180 58 L190 32 L200 46 L210 40 L245 40" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <text x="280" y="44" fill="#facc15" font-size="9" font-weight="800" font-family="monospace">IRL FEED</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">High-Voltage Global Creator Tours</span>
-          ${soundBtn(card.pronounceText, '#facc15')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 5. Sam Altman / OpenAI o3 Reasoning
-  if (card.id === 'story-9' || card.topicTag === 'Sam Altman') {
-    return `
-      <div class="aesthetic-visual-banner art-sam-altman" style="background: radial-gradient(circle at 50% 40%, rgba(6, 182, 212, 0.22) 0%, rgba(124, 58, 237, 0.2) 60%, rgba(0, 0, 0, 0.95) 100%); border: 1px solid rgba(6, 182, 212, 0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(6,182,212,0.18); border-color:rgba(6,182,212,0.5); color:#22d3ee;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c0 4.5-3.5 8-8 8 4.5 0 8 3.5 8 8 0-4.5 3.5-8 8-8-4.5 0-8-3.5-8-8z"></path></svg>
-            <span>FRONTIER REASONING • o1 & o3 AGI</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">OpenAI Architecture</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(6,182,212,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <circle cx="36" cy="40" r="9" stroke="#22d3ee" stroke-width="1.8" fill="rgba(34,211,238,0.2)" />
-            <text x="36" y="44" fill="#ffffff" font-size="8.5" font-weight="800" text-anchor="middle">IN</text>
-            <path d="M46 40 L84 24 M46 40 L84 56" stroke="rgba(34,211,238,0.5)" stroke-width="1.5" />
-            <circle cx="95" cy="24" r="8" stroke="#38bdf8" stroke-width="1.5" fill="rgba(56,189,248,0.2)" />
-            <circle cx="95" cy="56" r="8" stroke="#38bdf8" stroke-width="1.5" fill="rgba(56,189,248,0.2)" />
-            <path d="M104 24 L150 34 M104 56 L150 46" stroke="rgba(34,211,238,0.5)" stroke-width="1.5" />
-            <circle cx="162" cy="40" r="10" stroke="#c084fc" stroke-width="2" fill="rgba(192,132,252,0.2)" />
-            <text x="162" y="44" fill="#ffffff" font-size="7.5" font-weight="800" text-anchor="middle">DELIB</text>
-            <path d="M173 40 L220 40" stroke="#22d3ee" stroke-width="1.8" stroke-dasharray="3 3" />
-            <circle cx="235" cy="40" r="11" stroke="#4ade80" stroke-width="2" fill="rgba(74,222,128,0.2)" />
-            <text x="235" y="44" fill="#ffffff" font-size="8" font-weight="800" text-anchor="middle">VERIF</text>
-            <text x="282" y="44" fill="#22d3ee" font-size="9.5" font-weight="800" font-family="monospace">o3 AGI</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(6,182,212,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Test-Time Deliberation & Proof Search</span>
-          ${soundBtn(card.pronounceText, '#22d3ee')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 6. Centering a Div CSS Pattern
-  if (card.id === 'story-3' || card.topicTag === 'Center Div') {
-    return `
-      <div class="aesthetic-visual-banner art-center-div" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.2);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(255,255,255,0.08); color:#ffffff;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-            <span>MODERN CSS GRID PATTERN</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.6); font-family:monospace;">display: grid;</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.18); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <rect x="25" y="8" width="270" height="64" stroke="rgba(255,255,255,0.25)" stroke-width="1.2" stroke-dasharray="4 4" fill="rgba(255,255,255,0.02)"/>
-            <line x1="25" y1="40" x2="295" y2="40" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <line x1="160" y1="8" x2="160" y2="72" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <rect x="105" y="25" width="110" height="30" rx="4" stroke="#ffffff" stroke-width="1.8" fill="rgba(255,255,255,0.12)"/>
-            <text x="160" y="44" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle" font-family="monospace">place-items: center;</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.15); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:600;">The 2-Line CSS Perfection Standard</span>
-          ${soundBtn(card.pronounceText, '#ffffff')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 7. DeepSeek V3 Architecture
-  if (card.topicTag === 'DeepSeek V3') {
-    return `
-      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(6,182,212,0.22), rgba(99,102,241,0.15), rgba(0,0,0,0.95)); border: 1px solid rgba(6,182,212,0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(6,182,212,0.18); border-color:rgba(6,182,212,0.5); color:#22d3ee;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c0 4.5-3.5 8-8 8 4.5 0 8 3.5 8 8 0-4.5 3.5-8 8-8-4.5 0-8-3.5-8-8z"></path></svg>
-            <span>MULTI-HEAD LATENT ATTENTION (MLA)</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">671B MoE Model</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(6,182,212,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <rect x="25" y="10" width="70" height="60" rx="4" stroke="#22d3ee" stroke-width="1.5" fill="rgba(34,211,238,0.15)"/>
-            <text x="60" y="36" fill="#ffffff" font-size="8.5" font-weight="800" text-anchor="middle">MLA KV</text>
-            <text x="60" y="50" fill="#22d3ee" font-size="7.5" font-weight="700" text-anchor="middle">COMPRESS</text>
-            <path d="M96 40 L140 22 M96 40 L140 40 M96 40 L140 58" stroke="rgba(34,211,238,0.5)" stroke-width="1.5"/>
-            <rect x="145" y="12" width="60" height="18" rx="2" stroke="#818cf8" stroke-width="1.2" fill="rgba(129,140,248,0.15)"/>
-            <rect x="145" y="31" width="60" height="18" rx="2" stroke="#818cf8" stroke-width="1.2" fill="rgba(129,140,248,0.15)"/>
-            <rect x="145" y="50" width="60" height="18" rx="2" stroke="#818cf8" stroke-width="1.2" fill="rgba(129,140,248,0.15)"/>
-            <text x="175" y="24" fill="#ffffff" font-size="7" font-weight="800" text-anchor="middle">ROUTER A</text>
-            <text x="175" y="43" fill="#ffffff" font-size="7" font-weight="800" text-anchor="middle">ROUTER B</text>
-            <text x="175" y="62" fill="#ffffff" font-size="7" font-weight="800" text-anchor="middle">ROUTER C</text>
-            <path d="M206 40 L240 40" stroke="#4ade80" stroke-width="1.8"/>
-            <rect x="245" y="16" width="55" height="48" rx="4" stroke="#4ade80" stroke-width="1.5" fill="rgba(74,222,128,0.15)"/>
-            <text x="272" y="38" fill="#ffffff" font-size="8" font-weight="800" text-anchor="middle">8/256</text>
-            <text x="272" y="50" fill="#4ade80" font-size="7" font-weight="700" text-anchor="middle">EXPERTS</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(6,182,212,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Open-Weights Engineering Breakthrough</span>
-          ${soundBtn(card.pronounceText, '#22d3ee')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 8. Memory Safety & Rust
-  if (card.topicTag === 'Rust Memory Safety') {
-    return `
-      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(249,115,22,0.22), rgba(220,38,38,0.15), rgba(0,0,0,0.95)); border: 1px solid rgba(249,115,22,0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(249,115,22,0.18); border-color:rgba(249,115,22,0.5); color:#fb923c;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <span>MEMORY SAFETY MANDATE • CISA STANDARDS</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Systems Code</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(249,115,22,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <path d="M160 12 L195 24 L190 56 L160 70 L130 56 L125 24 Z" stroke="#fb923c" stroke-width="2" fill="rgba(249,115,22,0.2)"/>
-            <polyline points="148 40 156 48 174 30" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <text x="60" y="44" fill="rgba(255,255,255,0.75)" font-size="8.5" font-weight="700" text-anchor="middle" font-family="monospace">0× BUFFER OVERFLOW</text>
-            <text x="260" y="44" fill="rgba(255,255,255,0.75)" font-size="8.5" font-weight="700" text-anchor="middle" font-family="monospace">COMPILE-TIME BORROW</text>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(249,115,22,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Systems Engineering Gold Standard</span>
-          ${soundBtn(card.pronounceText, '#fb923c')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 9. AlphaFold Nobel Prize
-  if (card.topicTag === 'AlphaFold Nobel') {
-    return `
-      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(234,179,8,0.25), rgba(16,185,129,0.18), rgba(0,0,0,0.95)); border: 1px solid rgba(234,179,8,0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(234,179,8,0.18); border-color:rgba(234,179,8,0.5); color:#facc15;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
-            <span>NOBEL PRIZE IN CHEMISTRY • 200M PROTEINS</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Google DeepMind</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(234,179,8,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <path d="M40 20 Q 90 60, 140 20 T 240 20 T 300 20" stroke="#10b981" stroke-width="2" fill="none"/>
-            <path d="M40 60 Q 90 20, 140 60 T 240 60 T 300 60" stroke="#3b82f6" stroke-width="2" fill="none"/>
-            <line x1="90" y1="36" x2="90" y2="44" stroke="#facc15" stroke-width="1.8"/>
-            <line x1="140" y1="20" x2="140" y2="60" stroke="#facc15" stroke-width="1.8"/>
-            <line x1="190" y1="36" x2="190" y2="44" stroke="#facc15" stroke-width="1.8"/>
-            <line x1="240" y1="20" x2="240" y2="60" stroke="#facc15" stroke-width="1.8"/>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(234,179,8,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Transforming Global Molecular Medicine</span>
-          ${soundBtn(card.pronounceText, '#facc15')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 10. Claude 3.5 Sonnet Computer Use
-  if (card.topicTag === 'Claude 3.5 Sonnet') {
-    return `
-      <div class="aesthetic-visual-banner" style="background: radial-gradient(circle at top right, rgba(217,119,6,0.25), rgba(244,63,94,0.15), rgba(0,0,0,0.95)); border: 1px solid rgba(217,119,6,0.45);">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <span class="art-meta-tag" style="background:rgba(217,119,6,0.18); border-color:rgba(217,119,6,0.5); color:#fbbf24;">
-            <svg class="cat-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            <span>AUTONOMOUS COMPUTER USE • AGENT API</span>
-          </span>
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.7); font-weight:700;">Anthropic</span>
-        </div>
-
-        <div class="art-vector-card" style="background: rgba(0,0,0,0.6); border: 1px solid rgba(217,119,6,0.3); height: 85px; margin: 12px 0;">
-          <svg viewBox="0 0 320 80" fill="none" style="width:100%; height:80px;">
-            <rect x="25" y="8" width="270" height="64" rx="4" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" fill="rgba(15,15,18,0.9)"/>
-            <circle cx="38" cy="18" r="2.5" fill="#ef4444"/>
-            <circle cx="46" cy="18" r="2.5" fill="#facc15"/>
-            <circle cx="54" cy="18" r="2.5" fill="#22c55e"/>
-            <text x="36" y="38" fill="#4ade80" font-size="8" font-family="monospace">$ claude-agent execute --task "deploy"</text>
-            <text x="36" y="52" fill="rgba(255,255,255,0.8)" font-size="8" font-family="monospace">→ Cursor moved to (x:840, y:520), clicked [Merge]</text>
-            <polygon points="215,48 225,56 220,57 222,62 219,63 217,58 213,60" fill="#ffffff" stroke="#000000" stroke-width="0.8"/>
-          </svg>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(217,119,6,0.25); padding-top:10px;">
-          <span style="font-size:0.75rem; color:rgba(255,255,255,0.75); font-weight:600;">Autonomous Human-Like Screen Navigation</span>
-          ${soundBtn(card.pronounceText, '#fbbf24')}
-        </div>
-      </div>
-    `;
-  }
-
-  // 11. Slang vs Formal Comparison Embed
-  if (card.slangPhrase && card.formalPhrase) {
-    return `
-      <div class="slang-formal-embed">
-        <div class="embed-quote-row">
-          <div>
-            <span class="quote-label-tag slang-color">Casual / Vernacular</span>
-            <span class="quote-phrase-text">${card.slangPhrase}</span>
-          </div>
-          <button class="sound-mini-btn" onclick="speakText('${card.slangPhrase.replace(/["']/g, '')}')" title="Listen">
-            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-            <span>Listen</span>
-          </button>
-        </div>
-        <div class="embed-quote-row">
-          <div>
-            <span class="quote-label-tag formal-color">Executive / Fluent English</span>
-            <span class="quote-phrase-text">${card.formalPhrase}</span>
-          </div>
-          <button class="sound-mini-btn" onclick="speakText('${card.formalPhrase.replace(/["']/g, '')}')" title="Listen">
-            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-            <span>Listen</span>
-          </button>
-        </div>
-      </div>
-    `;
-  }
-
-  // 12. Scenario / Voice Practice
-  if (card.scenario) {
-    return `
-      <div class="voice-practice-container">
-        <div style="color:#d1fae5; font-size:0.92rem;">${card.scenario}</div>
-        <div class="voice-input-row">
-          <input type="text" id="userReplyInput" class="dm-input" placeholder="Type or click the microphone to speak..." />
-          <button class="mic-record-btn" id="micRecordBtn" onclick="toggleSpeechRecording()" title="Speak aloud in English">
-            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-          </button>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-          <button onclick="evaluateReplySocial()" style="background:var(--x-blue); color:#fff; border:none; padding:8px 18px; border-radius:var(--radius-pill); font-weight:700; cursor:pointer;">
-            Evaluate Phrasing
-          </button>
-          <span id="micStatusText" style="font-size:0.75rem; color:var(--text-muted);">Microphone ready</span>
-        </div>
-        <div id="replySocialFeedback" style="display:none; font-size:0.88rem; color:#ffffff; background:rgba(255,255,255,0.08); padding:12px; border-radius:var(--radius-sm); border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(20px);"></div>
-      </div>
-    `;
-  }
-
-  return '';
+    </div>
+  `;
 }
 
 // Native Real-App Deep Linking Engine (Mobile twitter://, reddit:// & Universal Fallback)

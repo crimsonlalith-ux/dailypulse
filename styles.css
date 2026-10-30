@@ -4286,3 +4286,401 @@ body.theme-twitter-dim {
   background: #16181c !important;
   border-color: #536471 !important;
 }
+
+
+/* ============================================================
+   DAILYPULSE v28: 100% TECH, SHARP OLED BLACK & iOS FLUIDITY
+   - Razor-sharp 1px #2f3336 borders & zero blurry gradients
+   - Edge-to-edge screen-filling layout on mobile & desktop
+   - Apple iOS spring curves & buttery micro-press haptics
+   - Twitter (X) & Reddit radar layers (Up & Down structure)
+   ============================================================ */
+
+/* 1. Global Reset & Pure OLED Black */
+html, body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #e7e9ea !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  letter-spacing: -0.012em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth !important;
+}
+
+body::before, body::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 2. Apple iOS Spring Curves & Tactile Micro-Press States */
+:root {
+  --ios-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ios-fast: cubic-bezier(0.2, 0, 0, 1);
+  --x-border: #2f3336;
+  --x-border-subtle: #202327;
+  --x-blue: #1d9bf0;
+  --x-text-main: #e7e9ea;
+  --x-text-muted: #71767b;
+}
+
+button, .card-footer-pill-btn, .category-pill, .social-nav-btn, .x-nav-button, .clickable-pill, .feed-next-btn, .feed-prev-btn, .island-icon-btn {
+  transition: transform 0.16s var(--ios-spring), opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button:active, .card-footer-pill-btn:active, .category-pill:active, .social-nav-btn:active, .x-nav-button:active, .clickable-pill:active {
+  transform: scale(0.97) !important;
+  opacity: 0.88 !important;
+}
+
+/* 3. Screen Edge-to-Edge Architecture: No Letterboxing, No Gaps */
+.social-app-shell {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-x: hidden !important;
+}
+
+.social-main-grid {
+  width: 100% !important;
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  background: #000000 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Timeline & Feed Stream */
+.social-timeline {
+  background: #000000 !important;
+  flex: 1 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
+  position: relative !important;
+}
+
+.deck-feed-stream {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 75px 0 !important;
+}
+
+/* 4. The Up Look (Header & Category Tab Layer) */
+.floating-island-container {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 53px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 350 !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid #2f3336 !important;
+  border-radius: 0 !important;
+  pointer-events: auto !important;
+}
+
+.dynamic-island-capsule {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 16px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+.dynamic-island-capsule:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.island-ticker-wrapper {
+  flex: 1 !important;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
+}
+
+.island-icon-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  border-radius: 50% !important;
+  width: 34px !important;
+  height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+}
+
+.island-icon-btn:hover {
+  background: rgba(239, 243, 244, 0.1) !important;
+  color: #ffffff !important;
+  border-color: #536471 !important;
+}
+
+/* Category Filter Bar (Twitter Tabs Look) */
+.category-filter-bar {
+  position: sticky !important;
+  top: 53px !important;
+  z-index: 340 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 48px !important;
+  margin: 0 !important;
+  padding: 0 12px !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-bottom: 1px solid #2f3336 !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+.category-filter-bar::-webkit-scrollbar {
+  display: none !important;
+}
+
+.category-pill {
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: #71767b !important;
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.category-pill:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+  color: #e7e9ea !important;
+}
+
+.category-pill.active {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+}
+
+/* 5. Stream Cards: Full-Bleed Flush Cards Divided by Clean 1px Lines */
+.social-post-card {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid #2f3336 !important;
+  padding: 16px 18px !important;
+  background: #000000 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: background 0.15s ease !important;
+}
+
+.social-post-card:hover {
+  background: rgba(255, 255, 255, 0.015) !important;
+  border-color: #2f3336 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.post-headline-text {
+  font-size: 1.18rem !important;
+  font-weight: 800 !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.015em !important;
+  margin: 4px 0 10px 0 !important;
+}
+
+/* Tweet & Radar Embed Box */
+.x-tweet-card-embed {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 14px !important;
+  padding: 14px 16px !important;
+  margin: 10px 0 !important;
+}
+
+.x-tweet-card-embed:hover {
+  border-color: #536471 !important;
+}
+
+.x-tweet-body-text {
+  color: #e7e9ea !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+}
+
+/* 6. The Down Look (Fixed Mobile Bottom Navigation) */
+.social-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 53px !important;
+  background: rgba(0, 0, 0, 0.94) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+  border-top: 1px solid #2f3336 !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  padding: 0 0 env(safe-area-inset-bottom) 0 !important;
+  margin: 0 !important;
+  z-index: 400 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+}
+
+.social-nav-btn {
+  flex: 1 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  color: #71767b !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.social-nav-btn .nav-svg-icon {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #71767b !important;
+  transition: stroke 0.15s ease, transform 0.15s var(--ios-spring) !important;
+}
+
+.social-nav-btn:hover {
+  color: #ffffff !important;
+}
+
+.social-nav-btn:hover .nav-svg-icon {
+  stroke: #ffffff !important;
+}
+
+.social-nav-btn.active {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.social-nav-btn.active .nav-svg-icon {
+  stroke: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 7. Responsive Desktop (>= 900px) Layout */
+@media (min-width: 900px) {
+  .social-main-grid {
+    max-width: 1225px !important;
+    margin: 0 auto !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+  }
+
+  .x-desktop-nav {
+    display: flex !important;
+    width: 275px !important;
+    border-right: 1px solid #2f3336 !important;
+    background: #000000 !important;
+    padding: 18px 14px !important;
+  }
+
+  .social-timeline {
+    width: 600px !important;
+    max-width: 600px !important;
+    flex: none !important;
+    border-right: 1px solid #2f3336 !important;
+    border-left: none !important;
+  }
+
+  .x-right-sidebar {
+    display: block !important;
+    width: 350px !important;
+    flex-shrink: 0 !important;
+    background: #000000 !important;
+    padding: 16px 20px !important;
+    overflow-y: auto !important;
+  }
+
+  .social-bottom-nav {
+    display: none !important;
+  }
+
+  .deck-feed-stream {
+    padding-bottom: 30px !important;
+  }
+}
+
+/* 8. Mobile Edge-to-Edge (< 900px) Overrides */
+@media (max-width: 899px) {
+  .x-desktop-nav, .x-right-sidebar {
+    display: none !important;
+  }
+
+  .social-timeline {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+  }
+
+  .deck-feed-stream {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 0 75px 0 !important;
+  }
+
+  .social-post-card {
+    padding: 14px 16px !important;
+  }
+}

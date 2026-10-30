@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>DailyPulse • Global Systems & Fluency Engine</title>
+  <title>DailyPulse • Global Tech News & Titans Radar</title>
   
-    <link rel="preload" href="styles.css?v=27" as="style">
-  <link rel="preload" href="app.js?v=27" as="script">
+    <link rel="preload" href="styles.css?v=28" as="style">
+  <link rel="preload" href="app.js?v=28" as="script">
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=27">
+  <link rel="stylesheet" href="styles.css?v=28">
 </head>
 <body>
   <div class="social-app-shell">
@@ -35,7 +35,7 @@
               <span class="pulse-live-beacon" title="Live Frequency"></span>
             </div>
             <div class="pulse-sub-row">
-              <span class="x-brand-sub">Culture & Fluency</span>
+              <span class="x-brand-sub">Tech News & Titans</span>
             </div>
           </div>
         </div>
@@ -124,25 +124,21 @@
             <!-- Center Animated Live Culture Marquee Ticker -->
             <div class="island-ticker-wrapper" title="Live Breaking Culture & Tech Radar">
               <div class="island-ticker-track">
-                <span class="ticker-item"><span class="ticker-cat-pill">HARDWARE</span> Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SILICON</span> Jensen Huang: Blackwell B200 208B Transistors & 10TB/s NVLink</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">CULTURE</span> Charli XCX: Brat Summer Word of the Year</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> Andrej Karpathy: Reasoning LLMs Shift to Test-Time Compute</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">SPORTS</span> Real Madrid: 15× Champions of Europe</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SYSTEMS</span> Guido van Rossum: Python 3.13 No-GIL Multi-Core Execution</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> OpenAI o3: Test-Time Reasoning Epoch</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">KERNEL</span> Linus Torvalds: Linux 6.12 & Rust Infrastructure</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">STANDARDS</span> Modern CSS Grid: Centering Standardized</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">SCIENCE</span> Demis Hassabis: AlphaFold 3 Chemistry Nobel Prize</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">HARDWARE</span> Jensen Huang: Blackwell B200 208B Transistors</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">CLUSTERS</span> Elon Musk: Colossus 100k Liquid-Cooled H100s in 122 Days</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">CULTURE</span> Charli XCX: Brat Summer Word of the Year</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">OPEN WEIGHTS</span> Mark Zuckerberg: LLaMA 3.3 Winning Local AI</span>
                 <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">SPORTS</span> Real Madrid: 15× Champions of Europe</span>
-                <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">FRONTIER AI</span> OpenAI o3: Test-Time Reasoning Epoch</span>
-                <span class="ticker-dot">•</span>
-                <span class="ticker-item"><span class="ticker-cat-pill">STANDARDS</span> Modern CSS Grid: Centering Standardized</span>
+                <span class="ticker-item"><span class="ticker-cat-pill">POWER</span> Sam Altman: Gigawatt Clusters & Physical Power Grids</span>
               </div>
             </div>
 
@@ -179,12 +175,12 @@
             
             <!-- Category Filter Pills (Executive Editorial Pills) -->
             <div class="category-filter-bar" id="categoryFilterBar">
-              <button class="category-pill active" data-cat="all">All Stories</button>
-              <button class="category-pill" data-cat="slang">Culture & Slang</button>
-              <button class="category-pill" data-cat="tech">Tech & Systems</button>
-              <button class="category-pill" data-cat="xtech">𝕏 Tech News</button>
-              <button class="category-pill" data-cat="reply">Executive English</button>
-              <button class="category-pill" data-cat="icon">World Leaders</button>
+              <button class="category-pill active" data-cat="all">All Tech</button>
+              <button class="category-pill" data-cat="ai">Frontier AI</button>
+              <button class="category-pill" data-cat="silicon">Silicon & Hardware</button>
+              <button class="category-pill" data-cat="systems">Systems & Dev</button>
+              <button class="category-pill" data-cat="leaders">Tech Titans</button>
+              <button class="category-pill" data-cat="radar">Reddit & 𝕏 Radar</button>
             </div>
 
                         <!-- Mobile Pull-to-Refresh Interactive Indicator -->
@@ -207,7 +203,7 @@
             <div id="infiniteScrollSentinel" class="infinite-scroll-sentinel">
               <div class="infinite-scroll-loader">
                 <div class="infinite-spinner-ring"></div>
-                <span>Streaming live global culture & tech radar...</span>
+                <span>Streaming live frontier tech radar & titans...</span>
               </div>
             </div>
 
@@ -349,66 +345,66 @@
             </div>
 
             <div class="news-sources-list">
-              <a href="https://www.theguardian.com/music/article/2024/jul/20/brat-summer-charli-xcx" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">The Guardian</div>
-                  <div class="source-item-topic">Charli XCX Brat Summer Phenomenon</div>
+                  <div class="source-item-outlet">Reddit • r/MachineLearning</div>
+                  <div class="source-item-topic">Frontier AI Research & ArXiv Papers</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.bbc.com/news/technology-68593478" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">BBC News</div>
-                  <div class="source-item-topic">NVIDIA Blackwell B200 208B Transistors</div>
+                  <div class="source-item-outlet">Reddit • r/LocalLLaMA</div>
+                  <div class="source-item-topic">DeepSeek-R1, Quantization & Open Weights</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.businessinsider.com/sam-altman-openai-chatgpt-agi-timeline-2024" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/hardware/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Business Insider</div>
-                  <div class="source-item-topic">Sam Altman: o1 & o3 Frontier Reasoning</div>
+                  <div class="source-item-outlet">Reddit • r/Hardware</div>
+                  <div class="source-item-topic">NVIDIA Blackwell B200 & TSMC 2nm GAA</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.goal.com/en/news/real-madrid-champions-league-dominance-dna/blt123456789" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/Python/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Goal.com</div>
-                  <div class="source-item-topic">Real Madrid 15× Champions of Europe</div>
+                  <div class="source-item-outlet">Reddit • r/Python</div>
+                  <div class="source-item-topic">Python 3.13 Free-Threaded (No-GIL) Benchmarks</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://time.com/7010777/demure-mindful-tiktok-trend-jools-lebron/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://www.reddit.com/r/rust/" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">TIME Magazine</div>
-                  <div class="source-item-topic">Very Demure, Very Mindful Workplace Lore</div>
+                  <div class="source-item-outlet">Reddit • r/rust</div>
+                  <div class="source-item-topic">Linux 6.12 Kernel Rust Abstractions</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/place-items" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/karpathy" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">MDN Web Docs</div>
-                  <div class="source-item-topic">Modern CSS Grid Centering Standards</div>
+                  <div class="source-item-outlet">𝕏 • @karpathy</div>
+                  <div class="source-item-topic">Andrej Karpathy: Test-Time Compute RL</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://hbr.org/2023/11/how-to-say-no-at-work-without-damaging-relationships" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/sama" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Harvard Business Review</div>
-                  <div class="source-item-topic">Executive Boundaries & Saying No</div>
+                  <div class="source-item-outlet">𝕏 • @sama</div>
+                  <div class="source-item-topic">Sam Altman: Gigawatt Clusters & Power</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
 
-              <a href="https://www.dexerto.com/entertainment/who-is-ishowspeed-youtube-streamer-viral-2035222/" target="_blank" rel="noopener noreferrer" class="source-item-row">
+              <a href="https://x.com/ylecun" target="_blank" rel="noopener noreferrer" class="source-item-row">
                 <div>
-                  <div class="source-item-outlet">Dexerto</div>
-                  <div class="source-item-topic">IShowSpeed Global Tours & 2.5B Views</div>
+                  <div class="source-item-outlet">𝕏 • @ylecun</div>
+                  <div class="source-item-topic">Yann LeCun: World Models & V-JEPA</div>
                 </div>
                 <span class="source-item-arrow">↗</span>
               </a>
@@ -417,7 +413,7 @@
 
           <!-- Quick Actions -->
           <div class="sidebar-news-panel" style="background:rgba(255,255,255,0.02);">
-            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">Infinite Culture Radar</div>
+            <div style="font-size:0.85rem; font-weight:800; color:#ffffff; margin-bottom:6px;">Live Tech & Titans Radar</div>
             <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.4; margin-bottom:12px;">Stories load infinitely as you scroll. Click any news link to view the verified primary article.</p>
             <div style="display:flex; gap:6px;">
               <button onclick="switchTab('quiz')" style="flex:1; background:#ffffff; color:#000; border:none; padding:6px 12px; border-radius:var(--radius-pill); font-size:0.75rem; font-weight:800; cursor:pointer;">Quiz</button>
@@ -525,6 +521,6 @@
   </div>
 
   <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100vw; height:100vh; pointer-events:none; z-index:9999;"></canvas>
-  <script src="app.js?v=27"></script>
+  <script src="app.js?v=28"></script>
 </body>
 </html>
