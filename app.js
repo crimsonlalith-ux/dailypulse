@@ -260,7 +260,7 @@ const AppState = {
       xTweetText: 'Deep dive on reasoning models (o1/o3/DeepSeek-R1): The paradigm is shifting from pre-training compute to inference test-time compute. A model spending 2 minutes thinking before answering is fundamentally an agent searching through chain-of-thought tokens using reinforcement learning with verifiable rewards.',
       sourceUrl: 'https://x.com/karpathy',
       sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>The Paradigm Shift:</strong> Andrej Karpathy (ex-Tesla AI Director, OpenAI founding scientist) explains that scaling model parameters is giving way to test-time search. Instead of spitting out the first plausible token, models explore alternative solution paths.<br><br><strong>Student Takeaway:</strong> Modern AI engineers must understand search algorithms, tree search, and reward models, not just transformer prompt engineering.',
+      explanation: '<strong>In Simple Everyday Words:</strong> Andrej Karpathy (top AI scientist) explains that instead of rushing to blurt out an answer in one second, new AI stops to think through the steps in its head, like working on a rough sheet of paper.<br><br><strong>Why It Helps You:</strong> In college, AI can now help you solve tricky programming and math problems by checking its own logic before giving you the final answer.',
       pronounceText: 'The paradigm is shifting from pre-training compute to inference test-time compute',
       commentsCount: 940,
       repostsCount: '6.2k',
@@ -278,7 +278,7 @@ const AppState = {
       xTweetText: 'The compute trajectory is unprecedented. Building gigawatt-class AI clusters requires rewriting how power grids, cooling infrastructure, and optical interconnects operate. The next frontier isn\'t just software—it\'s physical infrastructure, nuclear power, and silicon co-design.',
       sourceUrl: 'https://x.com/sama',
       sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>The Hardware Wall:</strong> Sam Altman highlights that frontier AI progress is bottlenecked by physical electricity grids and cooling. Training future foundation models demands multi-gigawatt power, prompting partnerships with nuclear energy and custom silicon fabs.<br><br><strong>Student Takeaway:</strong> Infrastructure, electrical engineering, and systems optimization are just as critical as machine learning algorithms.',
+      explanation: '<strong>In Simple Everyday Words:</strong> Sam Altman (head of OpenAI) explains that building future AI needs massive amounts of electricity and cooling systems, not just smart code.<br><br><strong>Why It Helps You:</strong> Power grids, electrical engineering, and computer chips are just as important as software for the future of AI.',
       pronounceText: 'Building gigawatt class AI clusters requires rewriting how power grids and cooling operate',
       commentsCount: 1420,
       repostsCount: '9.8k',
@@ -296,7 +296,7 @@ const AppState = {
       xTweetText: 'Autoregressive LLMs cannot achieve human-level intelligence alone because they lack world models and common-sense physics. They predict words, not reality. We need Joint Embedding Predictive Architectures (JEPA) that predict in abstract representation space, not pixel space.',
       sourceUrl: 'https://x.com/ylecun',
       sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>The Core Debate:</strong> Meta Chief AI Scientist Yann LeCun argues that simply predicting the next token cannot solve physical reasoning or plan long horizons. Meta\'s V-JEPA architecture learns by watching video and predicting abstract representations rather than generating raw pixels.<br><br><strong>Student Takeaway:</strong> Don\'t treat LLMs as the final architecture; self-supervised world models and non-generative representations are the future.',
+      explanation: '<strong>In Simple Everyday Words:</strong> Meta AI chief Yann LeCun explains that chatbots only guess words. True AI needs to understand real life, like knowing that dropping a glass cup breaks it on the floor.<br><br><strong>Why It Helps You:</strong> Current AI still has big limits. In college, your generation will build AI that understands the real physical world.',
       pronounceText: 'Autoregressive models cannot achieve human level intelligence alone because they lack world models',
       commentsCount: 880,
       repostsCount: '4.1k',
@@ -314,7 +314,7 @@ const AppState = {
       xTweetText: '2026 is the year of Physical AI. Translating internet-scale video into robot motor policies using simulation-to-real reinforcement learning (Omniverse + Isaac Lab). Robots are learning dexterous manipulation via foundation models that generalize across zero-shot environments.',
       sourceUrl: 'https://x.com/DrJimFan',
       sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>Embodied Intelligence:</strong> NVIDIA AI Research Lead Jim Fan describes how foundation models are moving from screens into physical robots. Using physics-accurate GPU simulation (Omniverse), robots practice thousands of years of trial-and-error in hours before deploying to physical hardware.<br><br><strong>Student Takeaway:</strong> Robotics is entering its "ImageNet moment", where generalized neural policies replace rigid hand-coded kinematics.',
+      explanation: '<strong>In Simple Everyday Words:</strong> NVIDIA scientist Jim Fan explains how AI is moving into metal robot bodies so they can walk, balance, and carry objects.<br><br><strong>Why It Helps You:</strong> Robots practice inside computer games for millions of hours before walking in the real world. Robotics will be a huge career in a few years.',
       pronounceText: 'Translating internet scale video into robot motor policies using simulation to real reinforcement learning',
       commentsCount: 650,
       repostsCount: '3.4k',
@@ -332,7 +332,7 @@ const AppState = {
       xTweetText: 'Python 3.13 marks a historic milestone: PEP 703 enables free-threaded execution without the Global Interpreter Lock (GIL), unlocking true multi-core CPU parallelism for scientific computing, web workers, and AI data pipelines with zero thread contention.',
       sourceUrl: 'https://x.com/gvanrossum',
       sourceOutlet: '𝕏 (formerly Twitter)',
-      explanation: '<strong>Multithreading Unlocked:</strong> Python creator Guido van Rossum celebrates the removal of the 30-year-old Global Interpreter Lock (GIL). Previously, Python could only run one OS thread at a time per process. Now, machine learning preprocessing and data pipelines run in true parallel multi-core mode.<br><br><strong>Student Takeaway:</strong> Understanding GIL elimination, thread safety, and memory management makes you a top-tier Python systems engineer.',
+      explanation: '<strong>In Simple Everyday Words:</strong> Python creator Guido van Rossum shares that Python now uses all your computer cores at once, making it much faster.<br><br><strong>Why It Helps You:</strong> Python is the first language most college students learn. Now your Python code can run faster than ever without getting stuck.',
       pronounceText: 'PEP 703 enables free-threaded execution without the Global Interpreter Lock unlocking true multicore parallelism',
       commentsCount: 1100,
       repostsCount: '7.9k',
@@ -2660,7 +2660,7 @@ window.askAiAboutRadar = function(encodedTitle, encodedPrompt) {
 
 window.askAiAboutCard = function(topic) {
   switchTab('ai');
-  handleUserAiMessage(`Tell me more about ${topic} and how people use it in conversation.`);
+  handleUserAiMessage(`Explain "${topic}" in simple everyday words so it is easy to understand.`);
 };
 
 // ==========================================
@@ -2820,22 +2820,22 @@ function generateSmartAiResponse(query) {
       </div>
 
       <div class="college-card-block">
-        <div class="block-label"><span class="label-dot green"></span> 💡 What is that, basically?</div>
+        <div class="block-label"><span class="label-dot green"></span> 💡 What is this, in simple words?</div>
         <div class="block-body">${whatIsIt}</div>
       </div>
 
       <div class="college-card-block analogy">
-        <div class="block-label"><span class="label-dot blue"></span> 🍕 Everyday Real-World Analogy:</div>
+        <div class="block-label"><span class="label-dot blue"></span> 🍕 Everyday Example (Like Real Life):</div>
         <div class="block-body">${analogy}</div>
       </div>
 
       <div class="college-card-block">
-        <div class="block-label"><span class="label-dot amber"></span> 🎯 Why does this matter to you in college?</div>
+        <div class="block-label"><span class="label-dot amber"></span> 🎯 Why it helps you in college:</div>
         <div class="block-body">${whyCollege}</div>
       </div>
 
       <div class="college-card-block quote">
-        <div class="block-label"><span class="label-dot purple"></span> 🗣️ How to explain it confidently:</div>
+        <div class="block-label"><span class="label-dot purple"></span> 🗣️ Simple way to say it:</div>
         <div class="block-body"><em>"${howToSay}"</em></div>
       </div>
     </div>
@@ -2846,22 +2846,22 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       '"Cooked" & "Locked In" Explained',
       '🔥',
-      '<strong>"Cooked"</strong> is modern campus and internet slang meaning you are totally doomed, exhausted, or unprepared.<br><strong>"Locked In"</strong> means reaching 100% laser focus with zero phone distractions.',
-      '<strong>Cooked:</strong> Walking into an exam hall and realizing you prepared Unit 1 when the question paper is entirely from Unit 4. You are completely cooked!<br><br><strong>Locked In:</strong> Putting your phone on Do Not Disturb, putting on noise-canceling headphones, and coding through the night before project submission.',
-      'You will hear your batchmates, seniors, and Discord servers use this 50 times a day in your hostel. Knowing it helps you fit into college culture immediately.',
-      'Casual: "Bro, if the professor checks the code line by line, I am cooked."<br>Professional in Viva/Email: "I am currently at maximum capacity and will prioritize this deliverable tomorrow."'
+      '<strong>"Cooked"</strong> means you are in big trouble, totally finished, or super tired.<br><strong>"Locked In"</strong> means you turn off all phone notifications and focus 100% on getting your work done.',
+      '<strong>Cooked:</strong> You walk into class and realize there is an unannounced test you forgot to study for! You are cooked.<br><br><strong>Locked In:</strong> You put on your headphones, open your laptop, and finish your entire homework in two hours without looking at your phone once.',
+      'You will hear students, seniors, and campus group chats use these words every single day. Knowing them helps you understand campus talk instantly.',
+      'To friends: "Bro, if the teacher asks me questions today, I am cooked!"<br>To teachers: "I have a lot to finish right now, but I am sitting down to get it done today."'
     );
   }
 
   // 2. Reasoning Models / Test-Time Compute (Karpathy / Altman / o1 / o3 / DeepSeek)
   if (q.includes('reasoning') || q.includes('test-time') || q.includes('karpathy') || q.includes('o1') || q.includes('o3') || q.includes('deepseek')) {
     return collegeCard(
-      'Reasoning Models & Test-Time Compute (Karpathy & Altman)',
+      'Reasoning Models & Thinking AI (Karpathy & Altman)',
       '🧠',
-      'Older AI (like ChatGPT-3.5) was like a student blurting out the first word that comes to mind without thinking. <strong>Reasoning models</strong> (like OpenAI o1/o3 or DeepSeek-R1) pause for 20 to 60 seconds, write "rough work" in their head, check their own logic, test alternative ideas, and fix mistakes before giving you the final answer.',
-      'Imagine your college math exam. Instead of instantly guessing an answer in 1 second, you take rough scratch paper, solve it step-by-step, verify the calculation, cross out mistakes, and then write the final clean answer. That rough paper thinking time is what scientists call <strong>"Test-Time Compute"</strong>.',
-      'As a 1st-year student, this changes everything. AI won\'t just write simple 5-line homework scripts; it can design complex software architectures. Your job as a future software engineer is learning how to direct, verify, and orchestrate these reasoning agents.',
-      'Instead of just training bigger models on more text, we give models extra compute during inference time so they can search and think through chain-of-thought tokens.'
+      'Older AI like ChatGPT used to guess the answer in one second without thinking. New <strong>"Reasoning AI"</strong> stops, takes 20 to 30 seconds to think, tests different steps in its head, and fixes mistakes before it gives you the final answer.',
+      'Think of a hard math question in school. If you guess right away, you might make a silly mistake. But if you take a rough piece of paper, solve it step by step, check your work, and then write the answer—you get it 100% right! That rough-paper thinking time is what scientists call <strong>"Reasoning"</strong>.',
+      'This means AI can now help you write bigger code projects and solve hard science problems without making silly mistakes. You don\'t need to be afraid of it; you just need to know how to use it to learn faster.',
+      'Instead of guessing quickly, new AI takes extra time to think through the steps in its head before answering.'
     );
   }
 
@@ -2870,10 +2870,10 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       'GPUs vs CPUs & Why NVIDIA Dominates AI',
       '⚡',
-      'A <strong>CPU</strong> is like 1 university math professor who can solve any complex, tricky equation one step at a time. A <strong>GPU</strong> is like 5,000 school students who can all do simple arithmetic at the exact same millisecond in parallel.',
-      'Imagine stamping 10,000 college festival passes. 1 genius professor (CPU) stamps them one-by-one. 5,000 students (GPU) each stamp two passes simultaneously and finish in 2 seconds. Because AI neural networks are millions of simple multiplications, GPUs run AI 100x faster than CPUs.',
-      'In college, whether you take machine learning courses, play games, or train deep learning models in PyTorch, you will be using GPUs and CUDA (NVIDIA\'s software language). Knowing how memory bandwidth and parallel cores work will make you stand out in campus placements.',
-      'CPUs excel at complex single-threaded tasks, while GPUs dominate parallel matrix math which makes modern generative AI possible.'
+      'A <strong>CPU</strong> is like one super-smart professor who solves one hard puzzle at a time. A <strong>GPU</strong> is like 1,000 students who can all do easy math together at the exact same second.',
+      'Imagine you need to stamp 1,000 college event passes. One professor (CPU) stamps them one by one, which takes hours. But 1,000 students (GPU) each stamp one pass at the exact same moment. Finished in 1 second! Because AI is just thousands of simple numbers, GPUs run AI super fast.',
+      'When you play video games, edit videos, or run AI programs on your computer, you need a GPU. Knowing this helps you choose the right laptop for your college studies.',
+      'A CPU does one heavy task at a time, but a GPU does thousands of small tasks together, which makes AI and games super fast.'
     );
   }
 
@@ -2882,58 +2882,58 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       'Linux & Git (Linus Torvalds) Explained',
       '🐧',
-      '<strong>Linux</strong> is the underlying engine (operating system) that runs without Windows bloat. It runs 96% of web servers, Android phones, and supercomputers.<br><strong>Git</strong> is a "Time Machine" for your code files created by Linus in 2005.',
-      'Imagine a 4-person college group project. Without Git, people email files named <code>project_v2_final_FINAL.zip</code> and accidentally overwrite each other\'s work. With Git, everyone codes simultaneously in separate branches, merges them cleanly, and if code breaks, you press one button to travel back in time.',
-      'Git and the Linux command line (bash, ssh, terminal commands) are the <strong>#1 foundational skill</strong> every software company expects on Day 1 of internships. Learn Git in your 1st semester!',
-      'Git is our distributed version control system that tracks every commit, while Linux is the core OS powering modern cloud deployments.'
+      '<strong>Linux</strong> is a clean, free computer system that runs phones, web servers, and supercomputers without freezing. <strong>Git</strong> is like a "Time Machine" for your computer files so you never lose your code.',
+      'Imagine 4 friends making a group presentation. Without Git, you email confusing files like "project_final_FINAL2.zip" and mess up each other\'s work. With Git, everyone types together safely, and if your code breaks, you press one button to jump back to when it worked!',
+      'Every single software company in the world uses Git and Linux every day. If you learn how to save your code with Git in your first semester, you are way ahead of other students.',
+      'Git is a time machine that saves every change in your project so you never lose your work.'
     );
   }
 
   // 5. Centering a Div in CSS
   if (q.includes('centering a div') || q.includes('css') || q.includes('div')) {
     return collegeCard(
-      'Centering a Div in CSS (The Legend)',
+      'Centering a Box in CSS (The Legend)',
       '🎯',
-      'In web development, putting a box in the dead center of a webpage (vertically and horizontally) was historically so painful that it became the most famous programming meme on the internet.',
-      'Think of hanging a picture frame on your hostel wall. In the old days, you had to measure margins, use negative offsets, and pray it didn\'t slide off. Modern CSS gave us an instant laser-level tool.',
-      'You\'ll build your first HTML/CSS personal portfolio website this year. Instead of fighting with confusing margins, write these 2 lines on the parent container:<br><br><code>display: grid;<br>place-items: center;</code><br><br>Boom! Whatever is inside sits in the exact dead center.',
-      'In modern CSS, centering any element takes just two lines: display grid and place-items center.'
+      'In web design, putting a box or image right in the middle of a screen used to be so annoying that programmers made memes about it. Today, it takes just two simple words.',
+      'Like hanging a photo frame right in the dead center of your bedroom wall. In the old days, you had to measure with a tape and adjust four times. Today, CSS gives you an auto-snap button.',
+      'When you build your first website for college, don\'t waste hours fighting with margins. Just put these two simple lines on the box:<br><br><code>display: grid;<br>place-items: center;</code><br><br>And everything snaps right into the center!',
+      'To put anything right in the middle of a webpage, you just use "display: grid" and "place-items: center".'
     );
   }
 
   // 6. World Models & Yann LeCun (V-JEPA)
   if (q.includes('world model') || q.includes('lecun') || q.includes('jepa')) {
     return collegeCard(
-      'World Models & Yann LeCun\'s Critique of LLMs',
+      'World Models & Yann LeCun\'s Idea',
       '🌍',
-      'A <strong>"World Model"</strong> is having a mental simulation of how the physical world works. If a glass rolls off a desk, you instinctively know it will fall down and smash on the floor. Current text models don\'t know that—they only predict the next word in a sentence.',
-      'A 1-year-old baby doesn\'t read 10,000 encyclopedia articles about gravity. The baby watches the world, pushes objects, and builds an intuitive visual model of physics. Yann LeCun (Turing Award winner) says AI must learn from video and abstract representations, not just text tokens.',
-      'Helps you realize that current LLMs are not the end of AI—they have big blindspots. Your generation in college will be the engineers who build real world models for robotics and autonomous systems.',
-      'Autoregressive language models predict words, but true physical intelligence requires world models that understand cause and effect in abstract space.'
+      'A <strong>"World Model"</strong> means understanding how real objects work in physical life. For example, if you drop a glass cup, you know it will hit the floor and break. Current chatbots only know words—they don\'t know how real life works yet.',
+      'A 2-year-old child doesn\'t read books to learn about gravity. The child drops a spoon, sees it fall, and learns how the world works just by watching. Scientists want AI to learn by watching the world like a child, not just reading text.',
+      'It shows you that current AI still has big limits. When you graduate, engineers will be building AI that moves around in the physical world, not just text chatbots.',
+      'Chatbots only predict words, but a World Model AI learns how real objects move and fall in everyday life.'
     );
   }
 
   // 7. Physical AI & Robotics (Jim Fan)
   if (q.includes('physical ai') || q.includes('robot') || q.includes('fan')) {
     return collegeCard(
-      'Physical AI & Humanoid Robotics (Dr. Jim Fan)',
+      'Physical AI & Robots (Dr. Jim Fan)',
       '🤖',
-      '<strong>Physical AI</strong> means taking artificial intelligence out of computer screens and putting it into physical bodies—humanoid robots, robotic arms, and autonomous machines that navigate the real world.',
-      'Learning to drive in a realistic video game simulator for 1,000 hours before sitting in a real car. In Physical AI, robots practice in super-fast GPU physics simulations (NVIDIA Omniverse) for 10,000 virtual years, learning how to walk and grasp objects before touching physical hardware.',
-      'When you graduate college in 3-4 years, robotics and embodied AI will be at the exact stage smartphones were in 2010. Understanding robotic simulation and motor policies will be a massive career track.',
-      'Physical AI uses sim-to-real reinforcement learning to let foundation models control robot actuators directly.'
+      '<strong>Physical AI</strong> means putting smart AI software into real metal robot bodies with hands and wheels, so they can walk around, carry boxes, and help clean.',
+      'Like playing a car racing video game for 100 hours to learn the road before driving a real car. Robots practice walking inside a 3D computer game for millions of virtual hours, so when they turn on in real life, they already know how to balance and walk without falling over.',
+      'In a few years, helper robots will be everywhere. Learning how robots think and move will give you great job opportunities in tech.',
+      'It is AI software that lives inside a robot body so it can walk and pick up things in the real world.'
     );
   }
 
   // 8. Python & The Global Interpreter Lock (Guido van Rossum)
   if (q.includes('python') || q.includes('guido') || q.includes('gil')) {
     return collegeCard(
-      'Why Python Won AI & What is the "GIL"?',
+      'Why Python Won & Why It\'s Getting Faster',
       '🐍',
-      'Python creator Guido van Rossum designed Python to read like plain, friendly English sentences rather than cryptic machine code. Because it\'s so clean, AI researchers used Python as the control dashboard for deep learning.',
-      'Imagine an 8-lane highway (your 8 CPU cores), but a single toll booth operator (the GIL - Global Interpreter Lock) only allows 1 car through at a time. In Python 3.13, they eliminated that toll booth, allowing all CPU cores to drive at full speed together!',
-      'Python is almost certainly your first programming language in college. It\'s the language of data science, AI, web servers, and automation. Knowing that Python 3.13 now supports true multi-threaded CPU speed makes you look super sharp in class.',
-      'Python prioritized human readability, and with Python 3.13\'s free-threaded execution, it removes the GIL to unlock multi-core parallel computing.'
+      '<strong>Python</strong> is a computer language written in simple English words so anyone can learn to code easily. That is why teachers, students, and scientists all love it.',
+      'Think of an 8-lane highway, but there was only one gate open so cars had to wait in line. In the newest Python update (Python 3.13), they opened all 8 gates so your computer can use all its power at once!',
+      'Python is almost always the first language you learn in college. It is used for making apps, doing data science, and building AI tools.',
+      'Python is popular because it reads like simple English, and now it runs faster than ever across all computer chips.'
     );
   }
 
@@ -2942,22 +2942,22 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       'What is an API? (The Waiter Concept)',
       '🔌',
-      '<strong>API</strong> stands for Application Programming Interface. It\'s simply a digital bridge that lets two different software programs talk to each other and share data.',
-      'You are sitting at a restaurant table. The kitchen has the food (the database/server). You don\'t walk into the kitchen yourself—you give your order to the <strong>waiter (the API)</strong>. The waiter tells the kitchen, gets your food, and brings it back to your table. That\'s an API!',
-      'In your 1st-year college mini-projects, you won\'t build everything from scratch. You will connect your frontend app to third-party APIs (Weather API, Gemini AI API, Google Maps API, Spotify API).',
-      'An API is a standardized interface that allows our frontend application to request and receive structured data from a backend server.'
+      'An <strong>API</strong> is just a helper that lets two different apps talk to each other and share information.',
+      'You are at a food counter. You don\'t walk into the kitchen to cook the food yourself. You tell the waiter what you want. The waiter goes to the kitchen, gets your plate, and brings it to your table. The waiter is the API!',
+      'When you build an app in college, you don\'t have to build weather forecasts or maps yourself. You just ask an API to bring you that data and show it in your app.',
+      'An API is like a friendly waiter that brings information from one app to another so they can work together.'
     );
   }
 
   // 10. Data Structures & Algorithms (Why LeetCode?)
   if (q.includes('dsa') || q.includes('leetcode') || q.includes('algorithm') || q.includes('data structure')) {
     return collegeCard(
-      'Why Everyone in College Stresses Over "DSA"',
+      'Why Everyone Stresses Over "DSA"',
       '📚',
-      '<strong>Data Structures</strong> are simply ways to organize data in computer memory (like arrays, stacks, queues, hash maps). <strong>Algorithms</strong> are step-by-step recipe instructions to solve a problem with that data.',
-      'If you have 10 books in your hostel room, throwing them on the floor in a messy pile is fine. But if you are managing a university library with 1,000,000 books, you need an alphabetized catalog system or finding one book will take 3 weeks. DSA teaches you how to keep software fast when data grows huge.',
-      'Every major tech company (Google, Microsoft, Amazon, startups) uses DSA coding problems during campus placements to test if you write clean, efficient code that won\'t crash their servers.',
-      'Data structures organize memory, while algorithms minimize time and space complexity so software scales efficiently.'
+      '<strong>Data Structures</strong> are neat ways to pack and organize information in your computer (like lists, stacks, or boxes). <strong>Algorithms</strong> are step-by-step instructions to find or sort that information quickly.',
+      'If you have 5 books in your room, leaving them on the floor is fine. But if you run a library with 100,000 books, you need neat shelves and labels, or finding one book takes hours! DSA teaches your computer how to stay super fast even when working with millions of items.',
+      'When companies come to college to hire students, they ask DSA puzzle questions to check if you write smart, neat code that runs fast.',
+      'Data Structures keep your information neat like boxes, and algorithms are simple steps to find things fast.'
     );
   }
 
@@ -2966,10 +2966,10 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       '"Very Demure, Very Mindful" Explained',
       '🎀',
-      'A viral internet phrase coined by creator Jools Lebron. It is used humorously to describe acting polite, classy, modest, and composed instead of being loud or dramatic.',
-      'Submitting your college assignment at 11:59 PM with 30 seconds left on the clock, quietly closing your laptop lid, and taking a calm sip of water. See how I don\'t panic? Very demure. Very mindful.',
-      'Modern workplace English loves irony and subtle humor. Understanding cultural phrases helps you connect naturally with international teams on Slack and LinkedIn.',
-      'It\'s an ironic, playful way to highlight being understated, considerate, and professional in any situation.'
+      'A fun internet joke that means acting calm, quiet, polite, and neat, instead of being loud, messy, or dramatic.',
+      'Submitting your college assignment right on time without screaming, calmly shutting your laptop lid, and taking a nice sip of tea. Very demure, very mindful.',
+      'It is a popular joke on social media and campus. Knowing it helps you laugh along with friends when funny things happen.',
+      'It\'s a playful joke meaning: look how calm, neat, and polite I am acting!'
     );
   }
 
@@ -2978,10 +2978,10 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       'Satya Nadella\'s "Learn-It-All" Mindset',
       '🌱',
-      'When Satya took over Microsoft, he replaced company arrogance with a simple philosophy: <em>"The learn-it-all will always beat the know-it-all in the long run."</em>',
-      'Think of two students in your 1st-year coding class. Student A thinks they already know everything and refuses to ask for help when stuck. Student B admits when they don\'t know, asks questions, reads documentation, and improves every single day. By 4th year, Student B is miles ahead.',
-      'Tech frameworks change every 2-3 years. The most valuable skill you can build in college isn\'t memorizing a syntax textbook—it\'s learning how to learn new technologies without feeling intimidated.',
-      'Technology shifts constantly, so having the curiosity to be a continuous learner is far more valuable than trying to be a know-it-all.'
+      'Satya Nadella (head of Microsoft) says: <em>"The person who is always eager to learn will always win over the person who acts like they already know everything."</em>',
+      'Two students in your first-year class: Student A pretends they know everything and never asks for help when stuck. Student B says "I don\'t know this yet, let me ask and learn." Over 4 years, Student B learns way more and does great.',
+      'Don\'t worry if tech looks hard at first. Nobody is born knowing how to code. Staying curious and ready to learn is all you need.',
+      'Being ready to learn new things is way better than pretending you already know everything.'
     );
   }
 
@@ -2990,10 +2990,10 @@ function generateSmartAiResponse(query) {
     return collegeCard(
       'First-Principles Thinking (Elon Musk)',
       '🚀',
-      '<strong>First-Principles Thinking</strong> means boiling a problem down to fundamental physical truths and building up a solution from scratch, rather than copying what everyone else is doing (reasoning by analogy).',
-      'Everyone told Elon that space rockets cost $65M because that was the industry price. Elon asked: <em>"What is a rocket physically made of? Aerospace-grade aluminum, titanium, copper, and carbon fiber. What do those raw metals cost on the London exchange? Only 2% of the rocket\'s price!"</em> So SpaceX built their own rockets from scratch at 1/10th the cost.',
-      'In engineering college, whenever a senior or professor says "that\'s impossible" or "we\'ve always done it this way", break it down into fundamental facts. That\'s how you build standout hackathon projects.',
-      'First-principles thinking strips away conventional assumptions and builds innovative solutions from fundamental truths.'
+      'It means breaking a hard problem down to its most basic, simple facts and building an answer from scratch, instead of just copying what other people do.',
+      'People told Elon space rockets cost $65 million each. Elon asked: <em>"What is a rocket made of? Metal, copper, and fuel. What do those raw materials cost in a shop? Only 2% of the price!"</em> So he bought the metals and built his own rockets for much less money.',
+      'When someone tells you "this project is too hard" or "we cannot do it", ask "why?" and check the facts. You\'ll find simple solutions others missed.',
+      'Look at the basic facts first, then build your own simple solution from the ground up.'
     );
   }
 
@@ -3002,10 +3002,10 @@ function generateSmartAiResponse(query) {
   return collegeCard(
     `Decoding: "${cleanTitle}"`,
     '✨',
-    `When you're in 1st year, tech jargon can feel like an alien language. In plain English: <strong>"${cleanTitle}"</strong> is a concept where engineers or digital creators are solving a real problem to make software, communication, or workflows faster and smarter.`,
-    'Think of your college campus or hostel. Everyone is looking for the cleanest shortcut to get good results without wasting energy. Whenever a new trend, library, or tool appears, it exists because someone got tired of doing things the slow, painful way!',
-    'As a 1st-year student, you don\'t need to stress over memorizing every tiny detail right now. Focus on understanding <strong>the big picture</strong>—what problem does this solve, and why do people care? Having that conceptual clarity will put you in the top 10% of your class.',
-    `It's basically a modern, clean approach to solving that challenge more efficiently than traditional methods.`
+    `When you are new to college, tech words can sound scary. In simple everyday words: <strong>"${cleanTitle}"</strong> is just a clever tool or idea that engineers made to solve an everyday problem and make life easier.`,
+    'Like using an electric mixer instead of stirring by hand for an hour. Whenever a new tech word appears, it just means someone found a faster, easier way to do something that used to be slow and annoying!',
+    'Don\'t worry about big complicated words right now. Just ask: <em>"What problem does this fix, and how does it help people?"</em> Understanding that basic idea makes learning easy and fun.',
+    'It is simply a new and easier way to get that job done without the old headaches.'
   );
 }
 
