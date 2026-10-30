@@ -3434,6 +3434,136 @@ body.theme-white-glass .dynamic-island-capsule::after {
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
 }
 
+
+/* ============================================================
+   1ST-YEAR COLLEGE STUDENT MENTOR AI EXPLANATION CARDS
+   ============================================================ */
+.dm-bubble.ai {
+  max-width: 94% !important;
+  padding: 16px 20px !important;
+}
+
+.ai-college-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.college-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  padding-bottom: 12px;
+}
+
+.college-card-emoji {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.college-card-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.college-guide-chip {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 4px;
+  padding: 2px 7px;
+  align-self: flex-start;
+}
+
+.college-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.college-card-block {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.college-card-block:hover {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.college-card-block.analogy {
+  background: rgba(56, 189, 248, 0.06);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.college-card-block.quote {
+  background: rgba(168, 85, 247, 0.06);
+  border-color: rgba(168, 85, 247, 0.25);
+}
+
+.block-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.label-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.label-dot.blue { background: #38bdf8; box-shadow: 0 0 6px #38bdf8; }
+.label-dot.amber { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
+.label-dot.purple { background: #a855f7; box-shadow: 0 0 6px #a855f7; }
+
+.block-body {
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.block-body strong {
+  color: #ffffff;
+}
+
+.block-body em {
+  color: #f1f5f9;
+}
+
+.block-body code {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #38bdf8;
+  font-size: 0.82rem;
+}
+
 </style>
 </head>
 <body>
@@ -6643,143 +6773,204 @@ function handleUserAiMessage(userText, statusNote = '') {
 function generateSmartAiResponse(query) {
   const q = query.toLowerCase();
 
+  const collegeCard = (title, emoji, whatIsIt, analogy, whyCollege, howToSay) => `
+    <div class="ai-college-card">
+      <div class="college-card-header">
+        <span class="college-card-emoji">${emoji}</span>
+        <div class="college-card-title-box">
+          <span class="college-guide-chip">🎓 1ST-YEAR COLLEGE CHEAT-SHEET</span>
+          <h3 class="college-card-title">${title}</h3>
+        </div>
+      </div>
+
+      <div class="college-card-block">
+        <div class="block-label"><span class="label-dot green"></span> 💡 What is that, basically?</div>
+        <div class="block-body">${whatIsIt}</div>
+      </div>
+
+      <div class="college-card-block analogy">
+        <div class="block-label"><span class="label-dot blue"></span> 🍕 Everyday Real-World Analogy:</div>
+        <div class="block-body">${analogy}</div>
+      </div>
+
+      <div class="college-card-block">
+        <div class="block-label"><span class="label-dot amber"></span> 🎯 Why does this matter to you in college?</div>
+        <div class="block-body">${whyCollege}</div>
+      </div>
+
+      <div class="college-card-block quote">
+        <div class="block-label"><span class="label-dot purple"></span> 🗣️ How to explain it confidently:</div>
+        <div class="block-body"><em>"${howToSay}"</em></div>
+      </div>
+    </div>
+  `;
+
+  // 1. "Cooked" / "Locked In"
   if (q.includes('cooked') || q.includes('locked in')) {
-    return `<strong>Here is your slang breakdown:</strong><br><br>
-    • <strong>"Cooked":</strong> Means doomed, done for, or completely exhausted.<br>
-    <em>Example:</em> "I studied the wrong chapter for the test, I am cooked."<br><br>
-    • <strong>"Locked in":</strong> Means reaching 100% focus and zero distractions.<br>
-    <em>Example:</em> "Phone on Do Not Disturb, coffee ready—I'm locked in."<br><br>
-    • <strong>Polished Workplace Alternative:</strong> Instead of "I'm cooked", say: <em>"I am at maximum bandwidth today."</em>`;
+    return collegeCard(
+      '"Cooked" & "Locked In" Explained',
+      '🔥',
+      '<strong>"Cooked"</strong> is modern campus and internet slang meaning you are totally doomed, exhausted, or unprepared.<br><strong>"Locked In"</strong> means reaching 100% laser focus with zero phone distractions.',
+      '<strong>Cooked:</strong> Walking into an exam hall and realizing you prepared Unit 1 when the question paper is entirely from Unit 4. You are completely cooked!<br><br><strong>Locked In:</strong> Putting your phone on Do Not Disturb, putting on noise-canceling headphones, and coding through the night before project submission.',
+      'You will hear your batchmates, seniors, and Discord servers use this 50 times a day in your hostel. Knowing it helps you fit into college culture immediately.',
+      'Casual: "Bro, if the professor checks the code line by line, I am cooked."<br>Professional in Viva/Email: "I am currently at maximum capacity and will prioritize this deliverable tomorrow."'
+    );
   }
 
-  if (q.includes('demure') || q.includes('mindful')) {
-    return `<strong>"Very Demure, Very Mindful" Explained:</strong><br><br>
-    Started by TikTok creator Jools Lebron. It is used with heavy irony to show how classy, understated, and composed someone is behaving.<br><br>
-    <em>Example:</em> "Notice how I don't panic when the production server crashes? Very demure. Very mindful."`;
+  // 2. Reasoning Models / Test-Time Compute (Karpathy / Altman / o1 / o3 / DeepSeek)
+  if (q.includes('reasoning') || q.includes('test-time') || q.includes('karpathy') || q.includes('o1') || q.includes('o3') || q.includes('deepseek')) {
+    return collegeCard(
+      'Reasoning Models & Test-Time Compute (Karpathy & Altman)',
+      '🧠',
+      'Older AI (like ChatGPT-3.5) was like a student blurting out the first word that comes to mind without thinking. <strong>Reasoning models</strong> (like OpenAI o1/o3 or DeepSeek-R1) pause for 20 to 60 seconds, write "rough work" in their head, check their own logic, test alternative ideas, and fix mistakes before giving you the final answer.',
+      'Imagine your college math exam. Instead of instantly guessing an answer in 1 second, you take rough scratch paper, solve it step-by-step, verify the calculation, cross out mistakes, and then write the final clean answer. That rough paper thinking time is what scientists call <strong>"Test-Time Compute"</strong>.',
+      'As a 1st-year student, this changes everything. AI won\'t just write simple 5-line homework scripts; it can design complex software architectures. Your job as a future software engineer is learning how to direct, verify, and orchestrate these reasoning agents.',
+      'Instead of just training bigger models on more text, we give models extra compute during inference time so they can search and think through chain-of-thought tokens.'
+    );
   }
 
-  if (q.includes('polish') || q.includes('natural') || q.includes('sick') || q.includes('meeting')) {
-    return `<strong>Here are 2 natural, polite ways to say that:</strong><br><br>
-    1. <strong>Standard Professional:</strong><br>
-    <em>"Good morning team, unfortunately I'm feeling under the weather today and will be unable to attend our scheduled meeting. I'll review any notes afterwards."</em><br><br>
-    2. <strong>Casual / Slack message:</strong><br>
-    <em>"Hey everyone, caught a fever today so I need to step away from calls. Will catch up on messages once I'm feeling better!"</em>`;
+  // 3. GPUs vs CPUs & Jensen Huang (NVIDIA)
+  if (q.includes('jensen') || q.includes('nvidia') || q.includes('gpu') || q.includes('cuda')) {
+    return collegeCard(
+      'GPUs vs CPUs & Why NVIDIA Dominates AI',
+      '⚡',
+      'A <strong>CPU</strong> is like 1 university math professor who can solve any complex, tricky equation one step at a time. A <strong>GPU</strong> is like 5,000 school students who can all do simple arithmetic at the exact same millisecond in parallel.',
+      'Imagine stamping 10,000 college festival passes. 1 genius professor (CPU) stamps them one-by-one. 5,000 students (GPU) each stamp two passes simultaneously and finish in 2 seconds. Because AI neural networks are millions of simple multiplications, GPUs run AI 100x faster than CPUs.',
+      'In college, whether you take machine learning courses, play games, or train deep learning models in PyTorch, you will be using GPUs and CUDA (NVIDIA\'s software language). Knowing how memory bandwidth and parallel cores work will make you stand out in campus placements.',
+      'CPUs excel at complex single-threaded tasks, while GPUs dominate parallel matrix math which makes modern generative AI possible.'
+    );
   }
 
-  if (q.includes('centering a div') || q.includes('css')) {
-    return `<strong>Why developers meme about centering a div:</strong><br><br>
-    Historically in CSS, there was no single property to place a box in the dead center. Developers had to calculate negative margins or use table hacks.<br><br>
-    <strong>Today's clean trick:</strong><br>
-    <code>display: grid; place-items: center;</code><br>
-    Put this on the parent container, and any box inside sits dead center!`;
-  }
-
-  if (q.includes('crash out')) {
-    return `<strong>"Crash out" Explained:</strong><br><br>
-    It means completely losing your temper, getting furiously angry, or ruining everything over a small annoyance.<br><br>
-    <em>Casual Example:</em> "If this Wi-Fi disconnects during my ranked match, I'm gonna crash out."<br>
-    <em>Professional Equivalent:</em> "I am reaching my boiling point."`;
-  }
-
-  if (q.includes('speed') || q.includes('ronaldo')) {
-    return `<strong>IShowSpeed & Cristiano Ronaldo:</strong><br><br>
-    IShowSpeed became a global phenomenon through high-energy streams and his intense obsession with football legend Cristiano Ronaldo.<br>
-    His catchphrase "SIUUU" and energetic street streams have made him one of the most recognized figures among Gen Z globally.`;
-  }
-
-  // Tech Titans & Leaders Knowledge for Students
-  if (q.includes('trump') || q.includes('tariff') || q.includes('policy')) {
-    return `<strong>Donald Trump & Tech Policy for Students:</strong><br><br>
-    • <strong>Semiconductor Tariffs:</strong> Tariffs on imported chips accelerate the push to manufacture electronics domestically (TSMC Arizona, Intel).<br>
-    • <strong>AI Deregulation:</strong> Prioritizing minimal regulatory hurdles allows AI labs to scale compute without bureaucratic delays.<br>
-    • <strong>Student Impact:</strong> Energy infrastructure (nuclear/gas for data centers) and STEM visa policies directly dictate which tech companies hire and where compute is built.`;
-  }
-
+  // 4. Linux & Git (Linus Torvalds)
   if (q.includes('linus') || q.includes('git') || q.includes('linux')) {
-    return `<strong>Linus Torvalds, Linux & Git Explained:</strong><br><br>
-    • <strong>Linux (1991):</strong> Linus built the Linux kernel as a 21-year-old student. Today, it runs virtually every web server, Android phone, Docker container, and cloud infrastructure on Earth.<br>
-    • <strong>Git (2005):</strong> Created in just 14 days when BitKeeper revoked their license. Git revolutionized collaboration, version control, and GitHub.<br>
-    • <strong>Student Tip:</strong> Master the Linux command line (bash, ssh, grep, permissions) and Git branching early. It is the #1 foundational skill expected of every junior software engineer.`;
+    return collegeCard(
+      'Linux & Git (Linus Torvalds) Explained',
+      '🐧',
+      '<strong>Linux</strong> is the underlying engine (operating system) that runs without Windows bloat. It runs 96% of web servers, Android phones, and supercomputers.<br><strong>Git</strong> is a "Time Machine" for your code files created by Linus in 2005.',
+      'Imagine a 4-person college group project. Without Git, people email files named <code>project_v2_final_FINAL.zip</code> and accidentally overwrite each other\'s work. With Git, everyone codes simultaneously in separate branches, merges them cleanly, and if code breaks, you press one button to travel back in time.',
+      'Git and the Linux command line (bash, ssh, terminal commands) are the <strong>#1 foundational skill</strong> every software company expects on Day 1 of internships. Learn Git in your 1st semester!',
+      'Git is our distributed version control system that tracks every commit, while Linux is the core OS powering modern cloud deployments.'
+    );
   }
 
-  if (q.includes('jensen') || q.includes('nvidia') || q.includes('cuda')) {
-    return `<strong>Jensen Huang & NVIDIA's AI Dominance:</strong><br><br>
-    • <strong>The CUDA Gamble (2006):</strong> Jensen spent billions adding parallel computing capability to every gaming GPU, laying the groundwork for Deep Learning 10 years before anyone else realized it.<br>
-    • <strong>Advice for Students:</strong> Jensen emphasizes that while AI will handle syntax coding, students must focus on <em>domain expertise</em> (biology, finance, physics, math) and systems architecture.<br>
-    • <strong>Key Takeaway:</strong> Learn how memory bandwidth, GPU clustering, and parallel algorithms operate under the hood.`;
+  // 5. Centering a Div in CSS
+  if (q.includes('centering a div') || q.includes('css') || q.includes('div')) {
+    return collegeCard(
+      'Centering a Div in CSS (The Legend)',
+      '🎯',
+      'In web development, putting a box in the dead center of a webpage (vertically and horizontally) was historically so painful that it became the most famous programming meme on the internet.',
+      'Think of hanging a picture frame on your hostel wall. In the old days, you had to measure margins, use negative offsets, and pray it didn\'t slide off. Modern CSS gave us an instant laser-level tool.',
+      'You\'ll build your first HTML/CSS personal portfolio website this year. Instead of fighting with confusing margins, write these 2 lines on the parent container:<br><br><code>display: grid;<br>place-items: center;</code><br><br>Boom! Whatever is inside sits in the exact dead center.',
+      'In modern CSS, centering any element takes just two lines: display grid and place-items center.'
+    );
   }
 
-  if (q.includes('satya') || q.includes('growth mindset') || q.includes('nadella')) {
-    return `<strong>Satya Nadella & Growth Mindset Leadership:</strong><br><br>
-    • <strong>The Turnaround:</strong> Shifted Microsoft from defensive Windows monopolies to open-source (acquiring GitHub in 2018), Azure cloud, and the historic $13B partnership with OpenAI.<br>
-    • <strong>"Learn-it-all vs. Know-it-all":</strong> Replaced internal arrogance with empathy and continuous learning.<br>
-    • <strong>Student Takeaway:</strong> Technology changes every 3 years; having the curiosity to learn new tools fast is far more valuable than being an expert in an obsolete framework.`;
+  // 6. World Models & Yann LeCun (V-JEPA)
+  if (q.includes('world model') || q.includes('lecun') || q.includes('jepa')) {
+    return collegeCard(
+      'World Models & Yann LeCun\'s Critique of LLMs',
+      '🌍',
+      'A <strong>"World Model"</strong> is having a mental simulation of how the physical world works. If a glass rolls off a desk, you instinctively know it will fall down and smash on the floor. Current text models don\'t know that—they only predict the next word in a sentence.',
+      'A 1-year-old baby doesn\'t read 10,000 encyclopedia articles about gravity. The baby watches the world, pushes objects, and builds an intuitive visual model of physics. Yann LeCun (Turing Award winner) says AI must learn from video and abstract representations, not just text tokens.',
+      'Helps you realize that current LLMs are not the end of AI—they have big blindspots. Your generation in college will be the engineers who build real world models for robotics and autonomous systems.',
+      'Autoregressive language models predict words, but true physical intelligence requires world models that understand cause and effect in abstract space.'
+    );
   }
 
-  if (q.includes('altman') || q.includes('openai') || q.includes('reasoning') || q.includes('o1')) {
-    return `<strong>Sam Altman & Frontier AI Models:</strong><br><br>
-    • <strong>From Next-Token to Reasoning:</strong> With the o1/o3 series, AI models now use "test-time compute"—spending seconds thinking and checking their own logic before generating a response.<br>
-    • <strong>Student Impact:</strong> Simple boilerplate coding is automated; engineers now act as architectural orchestrators and system designers directing fleets of AI agents.`;
+  // 7. Physical AI & Robotics (Jim Fan)
+  if (q.includes('physical ai') || q.includes('robot') || q.includes('fan')) {
+    return collegeCard(
+      'Physical AI & Humanoid Robotics (Dr. Jim Fan)',
+      '🤖',
+      '<strong>Physical AI</strong> means taking artificial intelligence out of computer screens and putting it into physical bodies—humanoid robots, robotic arms, and autonomous machines that navigate the real world.',
+      'Learning to drive in a realistic video game simulator for 1,000 hours before sitting in a real car. In Physical AI, robots practice in super-fast GPU physics simulations (NVIDIA Omniverse) for 10,000 virtual years, learning how to walk and grasp objects before touching physical hardware.',
+      'When you graduate college in 3-4 years, robotics and embodied AI will be at the exact stage smartphones were in 2010. Understanding robotic simulation and motor policies will be a massive career track.',
+      'Physical AI uses sim-to-real reinforcement learning to let foundation models control robot actuators directly.'
+    );
   }
 
-  if (q.includes('zuck') || q.includes('zuckerberg') || q.includes('llama')) {
-    return `<strong>Mark Zuckerberg & Open-Source AI:</strong><br><br>
-    • <strong>The Open Weights Revolution:</strong> By giving away Llama 2 and 3 for free, Meta prevented closed AI gatekeepers from monopolizing modern AI infrastructure.<br>
-    • <strong>Student Tip:</strong> You can download Llama models locally using tools like Ollama or vLLM to run and fine-tune private AI on your own laptop without paying API fees!`;
+  // 8. Python & The Global Interpreter Lock (Guido van Rossum)
+  if (q.includes('python') || q.includes('guido') || q.includes('gil')) {
+    return collegeCard(
+      'Why Python Won AI & What is the "GIL"?',
+      '🐍',
+      'Python creator Guido van Rossum designed Python to read like plain, friendly English sentences rather than cryptic machine code. Because it\'s so clean, AI researchers used Python as the control dashboard for deep learning.',
+      'Imagine an 8-lane highway (your 8 CPU cores), but a single toll booth operator (the GIL - Global Interpreter Lock) only allows 1 car through at a time. In Python 3.13, they eliminated that toll booth, allowing all CPU cores to drive at full speed together!',
+      'Python is almost certainly your first programming language in college. It\'s the language of data science, AI, web servers, and automation. Knowing that Python 3.13 now supports true multi-threaded CPU speed makes you look super sharp in class.',
+      'Python prioritized human readability, and with Python 3.13\'s free-threaded execution, it removes the GIL to unlock multi-core parallel computing.'
+    );
   }
 
-  if (q.includes('hassabis') || q.includes('alphafold') || q.includes('nobel')) {
-    return `<strong>Demis Hassabis & AlphaFold (2024 Nobel Prize):</strong><br><br>
-    • <strong>The Breakthrough:</strong> Solved the 50-year-old protein folding problem, predicting the 3D molecular structure of 200+ million proteins.<br>
-    • <strong>Why it Matters:</strong> Proved to the world that Computer Science and AI are now the driving engines of biological discovery and cancer medicine.`;
+  // 9. APIs (What is an API?)
+  if (q.includes('api') || q.includes('rest') || q.includes('backend')) {
+    return collegeCard(
+      'What is an API? (The Waiter Concept)',
+      '🔌',
+      '<strong>API</strong> stands for Application Programming Interface. It\'s simply a digital bridge that lets two different software programs talk to each other and share data.',
+      'You are sitting at a restaurant table. The kitchen has the food (the database/server). You don\'t walk into the kitchen yourself—you give your order to the <strong>waiter (the API)</strong>. The waiter tells the kitchen, gets your food, and brings it back to your table. That\'s an API!',
+      'In your 1st-year college mini-projects, you won\'t build everything from scratch. You will connect your frontend app to third-party APIs (Weather API, Gemini AI API, Google Maps API, Spotify API).',
+      'An API is a standardized interface that allows our frontend application to request and receive structured data from a backend server.'
+    );
   }
 
-  if (q.includes('guido') || q.includes('python')) {
-    return `<strong>Guido van Rossum & The Power of Python:</strong><br><br>
-    • <strong>The Philosophy:</strong> 'Readability counts.' Python prioritized human ergonomics over machine verbosity.<br>
-    • <strong>Why it Won AI:</strong> Because researchers could write clean math without worrying about memory pointers, Python became the official wrapper for PyTorch and C++ backend compute.`;
+  // 10. Data Structures & Algorithms (Why LeetCode?)
+  if (q.includes('dsa') || q.includes('leetcode') || q.includes('algorithm') || q.includes('data structure')) {
+    return collegeCard(
+      'Why Everyone in College Stresses Over "DSA"',
+      '📚',
+      '<strong>Data Structures</strong> are simply ways to organize data in computer memory (like arrays, stacks, queues, hash maps). <strong>Algorithms</strong> are step-by-step recipe instructions to solve a problem with that data.',
+      'If you have 10 books in your hostel room, throwing them on the floor in a messy pile is fine. But if you are managing a university library with 1,000,000 books, you need an alphabetized catalog system or finding one book will take 3 weeks. DSA teaches you how to keep software fast when data grows huge.',
+      'Every major tech company (Google, Microsoft, Amazon, startups) uses DSA coding problems during campus placements to test if you write clean, efficient code that won\'t crash their servers.',
+      'Data structures organize memory, while algorithms minimize time and space complexity so software scales efficiently.'
+    );
   }
 
-  if (q.includes('vitalik') || q.includes('ethereum') || q.includes('smart contract')) {
-    return `<strong>Vitalik Buterin & Ethereum:</strong><br><br>
-    • <strong>Smart Contracts:</strong> Turning blockchain from a simple ledger (Bitcoin) into a Turing-complete global decentralized computer.<br>
-    • <strong>The Merge:</strong> Successfully shifted Ethereum from Proof of Work to Proof of Stake live on mainnet, cutting global power consumption by 99.95%.`;
+  // 11. "Demure and Mindful"
+  if (q.includes('demure') || q.includes('mindful')) {
+    return collegeCard(
+      '"Very Demure, Very Mindful" Explained',
+      '🎀',
+      'A viral internet phrase coined by creator Jools Lebron. It is used humorously to describe acting polite, classy, modest, and composed instead of being loud or dramatic.',
+      'Submitting your college assignment at 11:59 PM with 30 seconds left on the clock, quietly closing your laptop lid, and taking a calm sip of water. See how I don\'t panic? Very demure. Very mindful.',
+      'Modern workplace English loves irony and subtle humor. Understanding cultural phrases helps you connect naturally with international teams on Slack and LinkedIn.',
+      'It\'s an ironic, playful way to highlight being understated, considerate, and professional in any situation.'
+    );
   }
 
+  // 12. Satya Nadella & Growth Mindset
+  if (q.includes('satya') || q.includes('nadella') || q.includes('growth mindset')) {
+    return collegeCard(
+      'Satya Nadella\'s "Learn-It-All" Mindset',
+      '🌱',
+      'When Satya took over Microsoft, he replaced company arrogance with a simple philosophy: <em>"The learn-it-all will always beat the know-it-all in the long run."</em>',
+      'Think of two students in your 1st-year coding class. Student A thinks they already know everything and refuses to ask for help when stuck. Student B admits when they don\'t know, asks questions, reads documentation, and improves every single day. By 4th year, Student B is miles ahead.',
+      'Tech frameworks change every 2-3 years. The most valuable skill you can build in college isn\'t memorizing a syntax textbook—it\'s learning how to learn new technologies without feeling intimidated.',
+      'Technology shifts constantly, so having the curiosity to be a continuous learner is far more valuable than trying to be a know-it-all.'
+    );
+  }
+
+  // 13. Elon Musk & First Principles Thinking
   if (q.includes('elon') || q.includes('musk') || q.includes('first principles')) {
-    return `<strong>Elon Musk & First-Principles Engineering:</strong><br><br>
-    • <strong>The Technique:</strong> Boil things down to fundamental physics truths (e.g., what are the raw material costs of a rocket or battery cell?) rather than reasoning by analogy.<br>
-    • <strong>Execution:</strong> Built SpaceX, Tesla, Neuralink, and trained Grok 3 on custom superclusters.`;
+    return collegeCard(
+      'First-Principles Thinking (Elon Musk)',
+      '🚀',
+      '<strong>First-Principles Thinking</strong> means boiling a problem down to fundamental physical truths and building up a solution from scratch, rather than copying what everyone else is doing (reasoning by analogy).',
+      'Everyone told Elon that space rockets cost $65M because that was the industry price. Elon asked: <em>"What is a rocket physically made of? Aerospace-grade aluminum, titanium, copper, and carbon fiber. What do those raw metals cost on the London exchange? Only 2% of the rocket\'s price!"</em> So SpaceX built their own rockets from scratch at 1/10th the cost.',
+      'In engineering college, whenever a senior or professor says "that\'s impossible" or "we\'ve always done it this way", break it down into fundamental facts. That\'s how you build standout hackathon projects.',
+      'First-principles thinking strips away conventional assumptions and builds innovative solutions from fundamental truths.'
+    );
   }
 
-  return `<strong>Here is my take on that:</strong><br><br>
-  That's a popular discussion right now! In modern internet culture, things move at lightspeed. The key to sounding fluent and confident is blending concise sentence structure with an understanding of the context.<br><br>
-  Would you like me to show you how to write a comment about this, or decode specific words from it?`;
-}
-
-// ==========================================
-// 9. WEB AUDIO SYNTHESIZER & SPEECH
-// ==========================================
-function playSyntheticTone(freq, type = 'sine', duration = 0.1) {
-  if (!AppState.soundEnabled) return;
-  try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.15, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start();
-    osc.stop(ctx.currentTime + duration);
-  } catch (e) {}
+  // 14. Fallback: Friendly, Welcoming 1st-Year College Guide for ANY query
+  const cleanTitle = query.length > 50 ? query.slice(0, 47) + '...' : query;
+  return collegeCard(
+    `Decoding: "${cleanTitle}"`,
+    '✨',
+    `When you're in 1st year, tech jargon can feel like an alien language. In plain English: <strong>"${cleanTitle}"</strong> is a concept where engineers or digital creators are solving a real problem to make software, communication, or workflows faster and smarter.`,
+    'Think of your college campus or hostel. Everyone is looking for the cleanest shortcut to get good results without wasting energy. Whenever a new trend, library, or tool appears, it exists because someone got tired of doing things the slow, painful way!',
+    'As a 1st-year student, you don\'t need to stress over memorizing every tiny detail right now. Focus on understanding <strong>the big picture</strong>—what problem does this solve, and why do people care? Having that conceptual clarity will put you in the top 10% of your class.',
+    `It's basically a modern, clean approach to solving that challenge more efficiently than traditional methods.`
+  );
 }
 
 window.speakText = function(text) {
