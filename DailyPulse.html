@@ -3564,6 +3564,112 @@ body.theme-white-glass .dynamic-island-capsule::after {
   font-size: 0.82rem;
 }
 
+/* ============================================================
+   SHORT OPEN-IN-REAL-APP BUTTON & DEEP-LINK STYLING
+   ============================================================ */
+.footer-left-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn:active {
+  transform: scale(0.95);
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.x-btn {
+  background: rgba(29, 155, 240, 0.12);
+  border-color: rgba(29, 155, 240, 0.35);
+  color: #ffffff;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.x-btn:hover {
+  background: rgba(29, 155, 240, 0.25);
+  border-color: #1d9bf0;
+  box-shadow: 0 4px 16px rgba(29, 155, 240, 0.3);
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.reddit-btn {
+  background: rgba(255, 69, 0, 0.12);
+  border-color: rgba(255, 69, 0, 0.35);
+  color: #ffffff;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.reddit-btn:hover {
+  background: rgba(255, 69, 0, 0.25);
+  border-color: #ff4500;
+  box-shadow: 0 4px 16px rgba(255, 69, 0, 0.3);
+}
+
+.x-source-brand-pill.clickable-pill {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.x-source-brand-pill.clickable-pill:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+}
+
+.x-source-brand-pill.clickable-pill:active {
+  transform: scale(0.95);
+}
+
+.card-icon-action-btn.card-app-link-top-btn {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.card-icon-action-btn.card-app-link-top-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #ffffff;
+}
+
+.stream-app-link-btn:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
 </style>
 </head>
 <body>
@@ -5561,12 +5667,12 @@ function renderCardAestheticVisual(card) {
               <span class="x-tweet-handle">${card.handle || '@tech'} • ${card.time || 'Live'}</span>
             </div>
           </div>
-          <div class="x-source-brand-pill">
+          <button class="x-source-brand-pill clickable-pill" onclick="openRealApp(event, '${(card.sourceUrl || ('https://x.com/' + (card.handle ? card.handle.replace('@','') : ''))).replace(/'/g, "\\'")}', 'x')" title="Open post directly in 𝕏 app">
             <svg class="x-source-svg" viewBox="0 0 24 24" fill="#ffffff" style="width:13px; height:13px;">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <span>Post on 𝕏</span>
-          </div>
+            <span>Open in 𝕏 ↗</span>
+          </button>
         </div>
 
         <div class="x-tweet-body-text">
@@ -5972,6 +6078,119 @@ function renderCardAestheticVisual(card) {
   return '';
 }
 
+// Native Real-App Deep Linking Engine (Mobile twitter://, reddit:// & Universal Fallback)
+window.openRealApp = function(event, url, platform) {
+  if (event) {
+    if (typeof event.stopPropagation === 'function') event.stopPropagation();
+    if (typeof event.preventDefault === 'function') event.preventDefault();
+  }
+  if (!url) return;
+  
+  // Auditory tactile feedback
+  try {
+    playSyntheticTone(820, 'sine', 0.05);
+  } catch (e) {}
+
+  const ua = navigator.userAgent || '';
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+  const targetUrl = url.trim();
+
+  // 1. Twitter / 𝕏 Deep-Linking
+  if (platform === 'x' || /x\.com|twitter\.com/i.test(targetUrl)) {
+    const statusMatch = targetUrl.match(/(?:x\.com|twitter\.com)\/[^/]+\/status\/(\d+)/i);
+    const userMatch = targetUrl.match(/(?:x\.com|twitter\.com)\/([a-zA-Z0-9_]+)/i);
+
+    if (isMobile) {
+      let appScheme = 'twitter://timeline';
+      if (statusMatch && statusMatch[1]) {
+        appScheme = `twitter://status?id=${statusMatch[1]}`;
+      } else if (userMatch && userMatch[1] && !['search', 'explore', 'home', 'i'].includes(userMatch[1].toLowerCase())) {
+        appScheme = `twitter://user?screen_name=${userMatch[1]}`;
+      }
+
+      const launchTime = Date.now();
+      window.location.href = appScheme;
+
+      // Fallback to web link if native app did not intercept within 650ms
+      setTimeout(() => {
+        if (Date.now() - launchTime < 1400) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      }, 650);
+      return;
+    }
+  }
+
+  // 2. Reddit Deep-Linking
+  if (platform === 'reddit' || /reddit\.com/i.test(targetUrl)) {
+    if (isMobile) {
+      const cleanPath = targetUrl.replace(/^https?:\/\/(?:www\.)?reddit\.com\/?/i, '');
+      const appScheme = `reddit://${cleanPath}`;
+      const launchTime = Date.now();
+      window.location.href = appScheme;
+      setTimeout(() => {
+        if (Date.now() - launchTime < 1400) {
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        }
+      }, 650);
+      return;
+    }
+  }
+
+  // 3. Desktop / Standard News App Universal Link
+  window.open(targetUrl, '_blank', 'noopener,noreferrer');
+};
+
+function getRealAppPillButtonHtml(card) {
+  const isX = card.isXPost || (card.sourceUrl && (card.sourceUrl.includes('x.com') || card.sourceUrl.includes('twitter.com')));
+  const isReddit = card.platform === 'reddit' || (card.sourceUrl && card.sourceUrl.includes('reddit.com'));
+  
+  let targetUrl = card.sourceUrl;
+  if (!targetUrl) {
+    if (isX && card.handle) {
+      targetUrl = `https://x.com/${card.handle.replace('@', '')}`;
+    } else {
+      targetUrl = `https://x.com/search?q=${encodeURIComponent(card.title || 'tech')}`;
+    }
+  }
+
+  const cleanUrl = targetUrl.replace(/'/g, "\\'");
+
+  if (isX) {
+    return `
+      <button class="card-footer-pill-btn open-real-app-pill-btn x-btn" onclick="openRealApp(event, '${cleanUrl}', 'x')" title="Open post directly in 𝕏 / Twitter app">
+        <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+        <span>Open in 𝕏 ↗</span>
+      </button>
+    `;
+  }
+
+  if (isReddit) {
+    return `
+      <button class="card-footer-pill-btn open-real-app-pill-btn reddit-btn" onclick="openRealApp(event, '${cleanUrl}', 'reddit')" title="Open thread directly in Reddit app">
+        <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12h8m-4-4v8"/>
+        </svg>
+        <span>Open in Reddit ↗</span>
+      </button>
+    `;
+  }
+
+  return `
+    <button class="card-footer-pill-btn open-real-app-pill-btn source-btn" onclick="openRealApp(event, '${cleanUrl}', 'web')" title="Open original post in real app or browser">
+      <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+      <span>Open in App ↗</span>
+    </button>
+  `;
+}
+
 function renderSingleCardHtml(card, idx) {
   const isSaved = AppState.savedItems.some(i => i.title === card.title);
   const isLiked = AppState.likedCards[card.id] || false;
@@ -5989,9 +6208,9 @@ function renderSingleCardHtml(card, idx) {
         
         <div class="card-top-actions">
           ${card.sourceUrl ? `
-          <a class="card-icon-action-btn" href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" title="Read original news on ${card.sourceOutlet || 'source'}">
-            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> <span>Source ↗</span>
-          </a>` : ''}
+          <button class="card-icon-action-btn card-app-link-top-btn" onclick="openRealApp(event, '${card.sourceUrl.replace(/'/g, "\\'")}', '${card.isXPost ? 'x' : (card.platform || 'web')}')" title="Open original post on ${card.sourceOutlet || 'source'}">
+            <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> <span>${card.isXPost ? '𝕏 Post ↗' : 'Source ↗'}</span>
+          </button>` : ''}
           <button class="card-icon-action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem('${card.title.replace(/'/g, "\\'")}', '${card.author}', this)" title="${isSaved ? 'Saved to Vault' : 'Save to Vault'}">
             <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg> <span>${isSaved ? 'Saved' : 'Save'}</span>
           </button>
@@ -6022,9 +6241,9 @@ function renderSingleCardHtml(card, idx) {
             <span class="source-name">${card.sourceOutlet || 'Global News Outlet'}</span>
           </div>
         </div>
-        <a href="${card.sourceUrl}" target="_blank" rel="noopener noreferrer" class="source-direct-link" title="Read original news report on ${card.sourceOutlet || 'source'}">
-          <span>Read Full Article ↗</span>
-        </a>
+        <button onclick="openRealApp(event, '${card.sourceUrl.replace(/'/g, "\\'")}', '${card.isXPost ? 'x' : (card.platform || 'web')}')" class="source-direct-link" title="Open original post in real app or browser">
+          <span>${card.isXPost ? 'Open in 𝕏 App ↗' : 'Read in Real App ↗'}</span>
+        </button>
       </div>` : ''}
 
       <!-- Pulse AI Context Note -->
@@ -6047,6 +6266,7 @@ function renderSingleCardHtml(card, idx) {
           <button class="card-footer-pill-btn" onclick="askAiAboutCard('${card.title.replace(/'/g, "\\'")}')">
             <svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c0 4.5-3.5 8-8 8 4.5 0 8 3.5 8 8 0-4.5 3.5-8 8-8-4.5 0-8-3.5-8-8z"></path></svg> <span>Ask AI</span>
           </button>
+          ${getRealAppPillButtonHtml(card)}
         </div>
         <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 700; letter-spacing: 0.04em;">Story #${idx + 1} • Infinite Radar</span>
       </div>
@@ -6605,7 +6825,7 @@ function renderRadarStream(filter) {
         <p class="stream-body-text">${item.summary}</p>
 
         <div class="stream-bottom-row">
-          <a href="${item.link}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); text-decoration:none; font-size:0.8rem; font-weight:600;">Open on ${item.platformLabel} ↗</a>
+          <button onclick="openRealApp(event, '${item.link.replace(/'/g, "\\'")}', '${item.platform}')" class="stream-app-link-btn" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:0.8rem; font-weight:600; display:inline-flex; align-items:center; gap:4px; padding:0;">Open on ${item.platformLabel} ↗</button>
           <button class="btn-ask-ai-pill" onclick="askAiAboutRadar('${encodeURIComponent(item.title)}', '${encodeURIComponent(item.aiPrompt)}')">Query AI</button>
         </div>
       </article>
