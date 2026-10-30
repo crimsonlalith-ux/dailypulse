@@ -3670,6 +3670,636 @@ body.theme-white-glass .dynamic-island-capsule::after {
   text-decoration: underline !important;
 }
 
+
+/* ============================================================
+   PLAIN TWITTER / 𝕏 OFFICIAL "LIGHTS OUT" DESIGN SYSTEM
+   Same-to-same Twitter clean plain theme: pitch black, #2f3336 border, zero orb/glow
+   ============================================================ */
+
+:root {
+  --app-bg: #000000;
+  --x-black: #000000;
+  --x-card-bg: #000000;
+  --x-card-hover: rgba(255, 255, 255, 0.03);
+  --x-module-bg: #16181c;
+  --x-border: #2f3336;
+  --x-border-light: #202327;
+  --x-border-hover: #536471;
+  --x-text-primary: #e7e9ea;
+  --x-text-secondary: #71767b;
+  --x-text-muted: #71767b;
+  --x-blue: #1d9bf0;
+  --x-blue-hover: #1a8cd8;
+  --x-blue-light: rgba(29, 155, 240, 0.1);
+  --x-like: #f91880;
+  --x-repost: #00ba7c;
+  --x-pill-bg: #eff3f4;
+  --x-pill-text: #0f1419;
+
+  /* Aliases mapped to Plain Twitter specifications */
+  --glass-card: #000000;
+  --glass-card-hover: rgba(255, 255, 255, 0.03);
+  --glass-card-active: rgba(255, 255, 255, 0.06);
+  --glass-header: rgba(0, 0, 0, 0.85);
+  --glass-nav: #000000;
+  --glass-embed: #16181c;
+  
+  --glass-border: #2f3336;
+  --glass-border-hover: #536471;
+  --glass-border-strong: #71767b;
+  
+  --glass-blur: none;
+  --glass-shadow: none;
+  --glass-inset: none;
+
+  --text-primary: #e7e9ea;
+  --text-secondary: #71767b;
+  --text-muted: #71767b;
+  
+  --accent-btn-bg: #eff3f4;
+  --accent-btn-text: #0f1419;
+  --accent-gold: #ffd400;
+  --accent-orange: #f91880;
+  --accent-emerald: #00ba7c;
+
+  --font-social: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --transition: all 0.15s ease;
+}
+
+/* Base Plain Twitter Background (Strictly Pure Black, No Orbs) */
+body {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-social);
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.18s ease;
+}
+
+/* Twitter Dim Alternate Theme */
+body.theme-twitter-dim {
+  --app-bg: #15202b !important;
+  --glass-card: #15202b !important;
+  --glass-card-hover: rgba(255, 255, 255, 0.03) !important;
+  --glass-header: rgba(21, 32, 43, 0.85) !important;
+  --glass-nav: #15202b !important;
+  --glass-embed: #1e2732 !important;
+  --glass-border: #38444d !important;
+  --text-primary: #f7f9f9 !important;
+  --text-secondary: #8b98a5 !important;
+  --text-muted: #8b98a5 !important;
+  --x-border: #38444d !important;
+  --x-module-bg: #1e2732 !important;
+  background-color: #15202b !important;
+}
+
+/* Disable all pseudo aurora spinners */
+.dynamic-island-capsule::before,
+.dynamic-island-capsule::after,
+.x-brand-emblem::before,
+.x-brand-emblem::after,
+.pulse-radar-halo {
+  display: none !important;
+}
+
+/* Sticky Twitter Header Bar / Island */
+.floating-island-container {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 250 !important;
+  width: 100% !important;
+  padding: 8px 16px !important;
+  margin-bottom: 6px !important;
+}
+
+.dynamic-island-capsule {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  height: 48px !important;
+}
+
+.dynamic-island-capsule:hover {
+  border-color: #536471 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+}
+
+.island-icon-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.island-icon-btn:hover {
+  background: rgba(239, 243, 244, 0.1) !important;
+  color: #e7e9ea !important;
+  border-color: #536471 !important;
+  transform: none !important;
+}
+
+.island-badge-label {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+}
+
+.island-stat-chip {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Desktop Sidebar */
+.x-desktop-nav {
+  background: #000000 !important;
+  border-right: 1px solid #2f3336 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.sidebar-brand-box {
+  border-bottom: 1px solid #2f3336 !important;
+}
+
+.sidebar-brand-box:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+}
+
+.x-brand-emblem {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  box-shadow: none !important;
+}
+
+.brand-title-daily {
+  color: #e7e9ea !important;
+}
+
+.brand-title-pulse {
+  color: #e7e9ea !important;
+  text-shadow: none !important;
+}
+
+.x-nav-button {
+  color: #e7e9ea !important;
+  border-radius: 9999px !important;
+  padding: 12px 18px !important;
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.x-nav-button .nav-svg-icon {
+  stroke: #e7e9ea !important;
+}
+
+.x-nav-button:hover {
+  background: rgba(239, 243, 244, 0.1) !important;
+  border-color: transparent !important;
+}
+
+.x-nav-button.active {
+  background: rgba(239, 243, 244, 0.1) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.x-profile-strip {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.x-profile-strip:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+}
+
+.x-avatar {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+  box-shadow: none !important;
+}
+
+.verified-badge {
+  color: #1d9bf0 !important;
+  filter: none !important;
+}
+
+/* Category Filter Tabs (Plain Twitter Style) */
+.category-filter-bar {
+  margin-bottom: 14px !important;
+  border-bottom: 1px solid #2f3336 !important;
+  padding-bottom: 10px !important;
+}
+
+.category-pill {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  padding: 7px 16px !important;
+  border-radius: 9999px !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.category-pill:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+  color: #e7e9ea !important;
+  border-color: #536471 !important;
+}
+
+.category-pill.active {
+  background: #eff3f4 !important;
+  color: #0f1419 !important;
+  border-color: #eff3f4 !important;
+  font-weight: 800 !important;
+  box-shadow: none !important;
+}
+
+/* Feed Timeline & Cards (Plain Twitter Feed) */
+.social-timeline {
+  border-right: 1px solid #2f3336 !important;
+}
+
+.social-post-card {
+  background: #000000 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 16px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 12px !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+.social-post-card:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: #2f3336 !important;
+  box-shadow: none !important;
+}
+
+.card-category-tag {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  box-shadow: none !important;
+}
+
+.post-headline-text {
+  font-size: 1.12rem !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  color: #e7e9ea !important;
+}
+
+.post-narrative {
+  color: #e7e9ea !important;
+  font-size: 0.94rem !important;
+  line-height: 1.55 !important;
+}
+
+/* Twitter Tweet Embed (Clean Plain Border) */
+.x-tweet-card-embed {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 16px !important;
+  padding: 16px 18px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.x-tweet-card-embed:hover {
+  border-color: #536471 !important;
+}
+
+.x-tweet-body-text {
+  color: #e7e9ea !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+}
+
+.x-source-brand-pill {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.x-source-brand-pill.clickable-pill:hover {
+  background: rgba(239, 243, 244, 0.1) !important;
+  border-color: #536471 !important;
+}
+
+.x-tweet-avatar-ring {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+}
+
+.x-metric-item {
+  color: #71767b !important;
+  transition: color 0.15s ease !important;
+}
+
+.x-metric-item:hover {
+  color: #1d9bf0 !important;
+}
+
+/* Card News Source Citation Box */
+.card-news-source-box {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  margin: 12px 0 6px 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.card-news-source-box:hover {
+  border-color: #536471 !important;
+  background: #1c1f24 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.source-direct-link {
+  color: #1d9bf0 !important;
+  font-weight: 700 !important;
+}
+
+/* Community Note (Plain Twitter Style) */
+.x-community-note {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-left: 3.5px solid #1d9bf0 !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  animation: none !important;
+}
+
+.note-header {
+  color: #1d9bf0 !important;
+  font-weight: 700 !important;
+}
+
+.note-body {
+  color: #e7e9ea !important;
+}
+
+/* Card Action Footer Buttons (Plain Twitter Style) */
+.card-footer-action-bar {
+  border-top: 1px solid #2f3336 !important;
+  padding-top: 12px !important;
+  margin-top: 4px !important;
+}
+
+.card-footer-pill-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  padding: 6px 14px !important;
+  border-radius: 9999px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.15s ease !important;
+}
+
+.card-footer-pill-btn:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+  color: #e7e9ea !important;
+  border-color: #536471 !important;
+  transform: none !important;
+}
+
+.card-footer-pill-btn.liked {
+  color: #f91880 !important;
+  border-color: rgba(249, 24, 128, 0.4) !important;
+  background: rgba(249, 24, 128, 0.1) !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.x-btn {
+  background: rgba(29, 155, 240, 0.08) !important;
+  border-color: rgba(29, 155, 240, 0.35) !important;
+  color: #1d9bf0 !important;
+  font-weight: 700 !important;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.x-btn:hover {
+  background: rgba(29, 155, 240, 0.18) !important;
+  border-color: #1d9bf0 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.reddit-btn {
+  background: rgba(255, 69, 0, 0.08) !important;
+  border-color: rgba(255, 69, 0, 0.35) !important;
+  color: #ff4500 !important;
+}
+
+.card-footer-pill-btn.open-real-app-pill-btn.reddit-btn:hover {
+  background: rgba(255, 69, 0, 0.18) !important;
+  border-color: #ff4500 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.card-icon-action-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.card-icon-action-btn:hover {
+  background: rgba(239, 243, 244, 0.08) !important;
+  color: #e7e9ea !important;
+  border-color: #536471 !important;
+}
+
+/* Aesthetic banners (Brat Summer, Jensen Blackwell, etc.) */
+.aesthetic-visual-banner {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.art-vector-card {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 10px !important;
+}
+
+.sound-mini-btn {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+}
+
+/* Mobile Bottom Navigation (Plain Twitter) */
+.social-bottom-nav {
+  background: rgba(0, 0, 0, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-top: 1px solid #2f3336 !important;
+  box-shadow: none !important;
+}
+
+.nav-bottom-item {
+  color: #71767b !important;
+}
+
+.nav-bottom-item.active {
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+/* Mobile Pull-to-refresh */
+.pull-refresh-capsule {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+  box-shadow: none !important;
+}
+
+.pull-refresh-icon {
+  color: #1d9bf0 !important;
+}
+
+/* All-Caught-Up banner */
+.all-caught-up-banner {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+}
+
+.caught-up-badge-sheen {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+}
+
+/* AI Chat Pane (Twitter DM Style) */
+.dm-bubble.ai {
+  background: #16181c !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.dm-bubble.user {
+  background: #1d9bf0 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dm-composer-bar {
+  background: #202327 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 9999px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 4px 6px 4px 14px !important;
+  animation: none !important;
+}
+
+.dm-input {
+  background: transparent !important;
+  color: #e7e9ea !important;
+  border: none !important;
+}
+
+.dm-send-btn {
+  background: #1d9bf0 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 50% !important;
+}
+
+.ai-college-card .cheat-block {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 12px !important;
+}
+
+/* Radar Stream Cards */
+.radar-stream-card {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.radar-tab-pill {
+  background: transparent !important;
+  border: 1px solid #2f3336 !important;
+  color: #71767b !important;
+}
+
+.radar-tab-pill.active {
+  background: #eff3f4 !important;
+  color: #0f1419 !important;
+  border-color: #eff3f4 !important;
+}
+
+/* Quiz Stage Box */
+.quiz-stage-box {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  border-radius: 16px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+.quiz-option-btn {
+  background: #000000 !important;
+  border: 1px solid #2f3336 !important;
+  color: #e7e9ea !important;
+}
+
+.quiz-option-btn:hover {
+  background: #16181c !important;
+  border-color: #536471 !important;
+}
+
 </style>
 </head>
 <body>
@@ -3682,9 +4312,9 @@ body.theme-white-glass .dynamic-island-capsule::after {
       <aside class="x-desktop-nav">
         <!-- Sidebar Top Brand Header -->
         <div class="sidebar-brand-box" id="sidebarBrandBtn" title="DailyPulse: Global Culture & Fluency">
-          <div class="x-brand-emblem">
-            <svg class="x-brand-svg" viewBox="0 0 24 24" fill="none">
-              <path d="M13 2 L3 14 H12 L10 22 L21 10 H12 L13 2 Z" fill="#ffffff" />
+          <div class="x-brand-emblem" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; background:#000; border:1px solid #2f3336; border-radius:50%;">
+            <svg class="x-brand-svg" viewBox="0 0 24 24" fill="#ffffff" style="width:20px; height:20px;">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
           </div>
           <div class="pulse-brand-text">
@@ -3771,9 +4401,9 @@ body.theme-white-glass .dynamic-island-capsule::after {
             
             <!-- Left Live Beacon & Home Trigger -->
             <div class="island-left-meta" id="brandLogoBtn" title="DailyPulse">
-              <div class="island-logo-emblem">
-                <svg class="island-brand-svg" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2 L3 14 H12 L10 22 L21 10 H12 L13 2 Z" fill="#ffffff" />
+              <div class="island-logo-emblem" style="display:flex; align-items:center; justify-content:center;">
+                <svg class="island-brand-svg" viewBox="0 0 24 24" fill="#ffffff" style="width:17px; height:17px;">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
               </div>
               <span class="island-badge-label">DAILYPULSE</span>
@@ -4216,7 +4846,7 @@ const AppState = {
   speechRate: parseFloat(localStorage.getItem('dp_speech_rate') || '0.95'),
   userName: localStorage.getItem('dp_user_name') || 'Lalith Sanjay',
   radarFilter: 'all',
-  glassTheme: localStorage.getItem('dp_glass_theme') || 'black',
+  glassTheme: (localStorage.getItem('dp_glass_theme') === 'dim' ? 'dim' : 'black'),
   likedCards: JSON.parse(localStorage.getItem('dp_likes') || '{}'),
   cardVotes: { 0: 4210, 1: 8940, 2: 3120, 3: 15400, 4: 9820, 5: 6420, 6: 11200, 7: 8400, 8: 5120, 9: 14500, 10: 9300, 11: 18900, 12: 21300 },
   currentQuizIndex: 0,
@@ -4969,28 +5599,30 @@ function initNavigation() {
     playSyntheticTone(AppState.soundEnabled ? 659.25 : 300, 'sine', 0.1);
   });
 
-  // Theme Switcher (Black Transparent Glass vs White Transparent Glass)
+  // Plain Twitter Theme Switcher (Twitter Lights Out #000000 vs Twitter Dim #15202b)
   const themeBtn = document.getElementById('themeToggleBtn');
   const themeIcon = document.getElementById('themeIcon');
-  if (AppState.glassTheme === 'white') {
-    document.body.classList.add('theme-white-glass');
-        if (themeIcon) {
-      themeIcon.innerHTML = AppState.glassTheme === 'white'
-        ? `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
-        : `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>`;
-    }
+  
+  // Ensure white glass theme is cleaned out for plain Twitter look
+  document.body.classList.remove('theme-white-glass');
+  if (AppState.glassTheme === 'dim') {
+    document.body.classList.add('theme-twitter-dim');
+  } else {
+    document.body.classList.remove('theme-twitter-dim');
   }
 
   themeBtn?.addEventListener('click', () => {
-    AppState.glassTheme = AppState.glassTheme === 'black' ? 'white' : 'black';
+    AppState.glassTheme = AppState.glassTheme === 'black' ? 'dim' : 'black';
     localStorage.setItem('dp_glass_theme', AppState.glassTheme);
-    document.body.classList.toggle('theme-white-glass', AppState.glassTheme === 'white');
-        if (themeIcon) {
-      themeIcon.innerHTML = AppState.glassTheme === 'white'
+    document.body.classList.toggle('theme-twitter-dim', AppState.glassTheme === 'dim');
+    document.body.classList.remove('theme-white-glass');
+    
+    if (themeIcon) {
+      themeIcon.innerHTML = AppState.glassTheme === 'dim'
         ? `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
         : `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>`;
     }
-    playSyntheticTone(AppState.glassTheme === 'white' ? 880 : 440, 'sine', 0.08);
+    playSyntheticTone(AppState.glassTheme === 'dim' ? 620 : 880, 'sine', 0.06);
   });
 }
 

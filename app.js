@@ -30,7 +30,7 @@ const AppState = {
   speechRate: parseFloat(localStorage.getItem('dp_speech_rate') || '0.95'),
   userName: localStorage.getItem('dp_user_name') || 'Lalith Sanjay',
   radarFilter: 'all',
-  glassTheme: localStorage.getItem('dp_glass_theme') || 'black',
+  glassTheme: (localStorage.getItem('dp_glass_theme') === 'dim' ? 'dim' : 'black'),
   likedCards: JSON.parse(localStorage.getItem('dp_likes') || '{}'),
   cardVotes: { 0: 4210, 1: 8940, 2: 3120, 3: 15400, 4: 9820, 5: 6420, 6: 11200, 7: 8400, 8: 5120, 9: 14500, 10: 9300, 11: 18900, 12: 21300 },
   currentQuizIndex: 0,
@@ -783,28 +783,30 @@ function initNavigation() {
     playSyntheticTone(AppState.soundEnabled ? 659.25 : 300, 'sine', 0.1);
   });
 
-  // Theme Switcher (Black Transparent Glass vs White Transparent Glass)
+  // Plain Twitter Theme Switcher (Twitter Lights Out #000000 vs Twitter Dim #15202b)
   const themeBtn = document.getElementById('themeToggleBtn');
   const themeIcon = document.getElementById('themeIcon');
-  if (AppState.glassTheme === 'white') {
-    document.body.classList.add('theme-white-glass');
-        if (themeIcon) {
-      themeIcon.innerHTML = AppState.glassTheme === 'white'
-        ? `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
-        : `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>`;
-    }
+  
+  // Ensure white glass theme is cleaned out for plain Twitter look
+  document.body.classList.remove('theme-white-glass');
+  if (AppState.glassTheme === 'dim') {
+    document.body.classList.add('theme-twitter-dim');
+  } else {
+    document.body.classList.remove('theme-twitter-dim');
   }
 
   themeBtn?.addEventListener('click', () => {
-    AppState.glassTheme = AppState.glassTheme === 'black' ? 'white' : 'black';
+    AppState.glassTheme = AppState.glassTheme === 'black' ? 'dim' : 'black';
     localStorage.setItem('dp_glass_theme', AppState.glassTheme);
-    document.body.classList.toggle('theme-white-glass', AppState.glassTheme === 'white');
-        if (themeIcon) {
-      themeIcon.innerHTML = AppState.glassTheme === 'white'
+    document.body.classList.toggle('theme-twitter-dim', AppState.glassTheme === 'dim');
+    document.body.classList.remove('theme-white-glass');
+    
+    if (themeIcon) {
+      themeIcon.innerHTML = AppState.glassTheme === 'dim'
         ? `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`
         : `<svg class="btn-svg-mini" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>`;
     }
-    playSyntheticTone(AppState.glassTheme === 'white' ? 880 : 440, 'sine', 0.08);
+    playSyntheticTone(AppState.glassTheme === 'dim' ? 620 : 880, 'sine', 0.06);
   });
 }
 
